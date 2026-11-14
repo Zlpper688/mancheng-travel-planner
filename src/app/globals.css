@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f0e4;
+  --color-paper-deep: #ece2d1;
+  --color-card: #fffdf8;
+  --color-ink: #232a24;
+  --color-ink-soft: #5f675f;
+  --color-ink-faint: #8b9187;
+  --color-line: #dcd1bd;
+  --color-accent: #c15a36;
+  --color-accent-deep: #a34828;
+  --color-accent-soft: #f4e1d5;
+  --color-jade: #2f6a52;
+  --color-jade-soft: #e3ece5;
+  --color-amber: #a97725;
+  --color-amber-soft: #f5e9d0;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
+  --shadow-soft: 0 24px 60px -32px rgb(44 34 22 / 0.42);
+  --shadow-lift: 0 18px 44px -26px rgb(44 34 22 / 0.5);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(193 90 54 / 0.22);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-canvas {
+  background-image:
+    radial-gradient(circle at 8% -8%, rgb(193 90 54 / 0.1), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgb(47 106 82 / 0.08), transparent 30%);
+}
+
+.glass {
+  background: rgb(255 253 248 / 0.82);
+  backdrop-filter: blur(16px) saturate(1.15);
+  border: 1px solid rgb(255 255 255 / 0.55);
+  box-shadow: 0 18px 40px -28px rgb(34 26 18 / 0.45);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #c9bba5 transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: #c9bba5;
+  border-radius: 999px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mc-details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.mc-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.mc-details[open] .mc-chevron {
+  transform: rotate(180deg);
+}
+
+.mc-chevron {
+  transition: transform 0.2s ease;
+}
+
+/* ---------- MapLibre ---------- */
+
+.mc-map .maplibregl-canvas {
+  outline: none;
+}
+
+.mc-map.picking .maplibregl-canvas {
+  cursor: crosshair !important;
+}
+
+.mc-map .maplibregl-ctrl-group {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px -16px rgb(30 24 16 / 0.45);
+  border: 1px solid rgb(255 255 255 / 0.6);
+}
+
+.mc-map .maplibregl-ctrl-group button {
+  background: rgb(255 253 248 / 0.92);
+}
+
+.mc-map .maplibregl-ctrl-group button + button {
+  border-top-color: rgb(35 42 36 / 0.08);
+}
+
+.mc-map .maplibregl-ctrl-attrib {
+  background: rgb(255 253 248 / 0.78);
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.mc-map .maplibregl-ctrl-attrib a {
+  color: #6f766d;
+}
+
+.mc-map .maplibregl-popup-content {
+  padding: 13px 15px;
+  border-radius: 16px;
+  background: #fffdf8;
+  border: 1px solid rgb(60 50 35 / 0.08);
+  box-shadow: 0 22px 44px -22px rgb(24 20 14 / 0.5);
+  font-family: var(--font-sans);
+}
+
+.mc-map .maplibregl-popup-close-button {
+  display: none;
+}
+
+.mc-popup h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #232a24;
+  letter-spacing: 0.01em;
+}
+
+.mc-popup .mc-popup-meta {
+  margin: 5px 0 0;
+  font-size: 11px;
+  color: #8b9187;
+  letter-spacing: 0.02em;
+}
+
+.mc-popup .mc-popup-note {
+  margin: 7px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #5f675f;
+  max-width: 210px;
+}
+
+.mc-popup .mc-popup-tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f4e1d5;
+  color: #a34828;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Map markers ---------- */
+
+.mc-stop {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mc-stop-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--marker-color, #c15a36);
+  border: 2px solid rgb(255 253 248 / 0.96);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow:
+    0 0 0 1px rgb(30 24 16 / 0.08),
+    0 8px 18px -8px rgb(24 20 14 / 0.55);
+  transition: transform 0.25s cubic-bezier(0.22, 0.8, 0.3, 1.2), box-shadow 0.25s ease;
+}
+
+.mc-stop.is-meal .mc-stop-dot {
+  border-radius: 9px;
+  transform: rotate(45deg);
+}
+
+.mc-stop.is-meal .mc-stop-dot span {
+  transform: rotate(-45deg);
+}
+
+.mc-stop-label {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgb(255 253 248 / 0.92);
+  border: 1px solid rgb(35 42 36 / 0.07);
+  box-shadow: 0 5px 12px -8px rgb(24 20 14 / 0.4);
+  color: #3d443d;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: nowrap;
+  max-width: 108px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mc-stop.is-dim {
+  opacity: 0.25;
+  filter: grayscale(0.4);
+  transform: scale(0.85);
+}
+
+.mc-stop.is-active {
+  z-index: 20;
+}
+
+.mc-stop.is-active .mc-stop-dot {
+  transform: scale(1.24);
+  box-shadow:
+    0 0 0 7px var(--marker-halo, rgb(193 90 54 / 0.18)),
+    0 10px 22px -8px rgb(24 20 14 / 0.5);
+}
+
+.mc-stop.is-active.is-meal .mc-stop-dot {
+  transform: rotate(45deg) scale(1.2);
+}
+
+.mc-stop.is-active .mc-stop-label {
+  background: #232a24;
+  border-color: transparent;
+  color: #fffdf8;
+}
+
+.mc-hotel {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.mc-hotel-halo {
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  background: rgb(47 106 82 / 0.16);
+  animation: hotel-halo 3.2s ease-out infinite;
+}
+
+.mc-hotel-pin {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px 999px 999px 5px;
+  transform: rotate(-45deg);
+  background: linear-gradient(150deg, #3b7a60, #275844);
+  border: 2px solid rgb(255 253 248 / 0.92);
+  box-shadow: 0 14px 26px -12px rgb(28 54 43 / 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mc-hotel-pin svg {
+  transform: rotate(45deg);
+  color: #f8f2e6;
+}
+
+.mc-hotel-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #232a24;
+  color: #fffdf8;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: nowrap;
+  max-width: 132px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 8px 16px -10px rgb(24 20 14 / 0.6);
+}
+
+@keyframes hotel-halo {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.animate-soft-pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes route-scan {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -120;
+  }
+}
+
+.route-scan {
+  stroke-dasharray: 6 8;
+  animation: route-scan 2.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-soft-pulse,
+  .mc-hotel-halo,
+  .route-scan {
+    animation: none;
+  }
+}
