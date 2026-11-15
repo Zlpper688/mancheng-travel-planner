@@ -188,6 +188,13 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     Number.isFinite(hotelPriceRaw) && hotelPriceRaw > 0 && hotelPriceRaw <= 50000
       ? hotelPriceRaw
       : undefined;
+  let farDays: number | undefined;
+  if (data.farDays !== undefined && data.farDays !== null) {
+    const parsedFar = Number(data.farDays);
+    if (Number.isFinite(parsedFar)) {
+      farDays = Math.min(2, Math.max(0, Math.round(parsedFar)));
+    }
+  }
 
   const fixedPlaces: FixedPlace[] = [];
   if (Array.isArray(data.fixedPlaces)) {
@@ -223,5 +230,6 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     seed,
     hotelPrice,
     fixedPlaces: fixedPlaces.length ? fixedPlaces : undefined,
+    farDays,
   };
 }

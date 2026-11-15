@@ -73,6 +73,7 @@ export interface TripInput {
   seed: number;
   hotelPrice?: number;
   fixedPlaces?: FixedPlace[];
+  farDays?: number;
 }
 
 export interface RouteAlternative {
@@ -140,6 +141,7 @@ export interface DayPlan {
   startMin: number;
   endMin: number;
   tip: string;
+  far?: boolean;
 }
 
 export interface BudgetItem {

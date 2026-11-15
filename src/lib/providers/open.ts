@@ -173,7 +173,7 @@ async function wikidataSearch(
   SERVICE wikibase:around {
     ?item wdt:P625 ?coord.
     bd:serviceParam wikibase:center "Point(${center[0]} ${center[1]})"^^geo:wktLiteral.
-    bd:serviceParam wikibase:radius "${Math.min(radiusKm, 18)}".
+    bd:serviceParam wikibase:radius "${Math.min(radiusKm, 40)}".
   }
   ?item wdt:P31 ?type.
   VALUES ?type { ${WIKIDATA_TYPES.join(" ")} }
@@ -328,9 +328,10 @@ async function openRoute(
   const crossing =
     Boolean(from.island || to.island) && from.island !== to.island;
   if (crossing) {
+    const landMin = estimateModeMinutes(from, to, "taxi");
     return {
       mode,
-      durationMin: mode === "taxi" ? 46 : 50,
+      durationMin: Math.max(mode === "taxi" ? 46 : 50, landMin + 25),
       distanceKm: Math.max(
         0.4,
         estimateRouteDistanceKm([from.lng, from.lat], [to.lng, to.lat]),
@@ -408,7 +409,7 @@ async function discoverOpen(options: DiscoverOptions): Promise<DiscoverResult> {
   }
 
   const center: [number, number] = options.center ?? [options.hotel.lng, options.hotel.lat];
-  const radiusKm = Math.min(15, Math.max(6, options.radiusKm));
+  const radiusKm = Math.min(40, Math.max(6, options.radiusKm));
   const radius = Math.round(radiusKm * 1000);
   const lat = center[1];
   const lng = center[0];

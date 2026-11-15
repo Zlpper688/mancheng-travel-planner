@@ -30,11 +30,17 @@ export function discoverRadius(input: TripInput): number {
   return Math.max(6, Math.min(30, radius));
 }
 
+export function discoverReach(input: TripInput): number {
+  const near = discoverRadius(input);
+  if (input.farDays === 0) return near;
+  return Math.min(50, Math.max(near, near + 18));
+}
+
 export async function discoverForTrip(input: TripInput): Promise<DiscoverResult> {
   const provider = getProvider();
   const center: [number, number] =
     input.center ?? [input.hotel.lng, input.hotel.lat];
-  const radiusKm = discoverRadius(input);
+  const radiusKm = discoverReach(input);
   const options: DiscoverOptions = {
     city: input.city,
     center,
@@ -54,6 +60,7 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
     radiusKm,
     input.days,
     input.styles.join(","),
+    input.farDays ?? "auto",
   ].join(":");
   return cached(key, 10 * 60 * 1000, () => provider.discover(options));
 }
@@ -62,6 +69,7 @@ function buildMeta(
   input: TripInput,
   discovered: DiscoverResult,
   days: DayPlan[],
+  farDays: number,
 ): PlanMeta {
   const holiday = getHoliday(input.date);
   const isFixed = Boolean(input.fixedPlaces?.length);
@@ -82,6 +90,13 @@ function buildMeta(
   }
   if (isFixed) {
     dataNotes.push("导入攻略的日期按攻略站点顺序规划，其余日期由漫城自动排线。");
+  }
+  if (farDays > 0) {
+    dataNotes.push(
+      farDays === 1
+        ? "其中 1 天安排给较远但出名的景点，集中走一个方向，其余天在酒店附近慢逛。"
+        : `其中 ${farDays} 天留给较远但出名的景点，集中在同一方向，减少来回折腾。`,
+    );
   }
   dataNotes.push("预算为带区间的估算，房价与门票以预订页和现场为准。");
 
@@ -118,6 +133,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     seed: input.seed,
     radiusKm,
     fixedPlaces: input.fixedPlaces,
+    farDays: input.farDays,
   });
 
   const warnings: string[] = [];
@@ -152,7 +168,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   }
 
   const budget = buildBudget(days, input, holiday?.hotelFactor ?? 1);
-  const meta = buildMeta(input, discovered, days);
+  const meta = buildMeta(input, discovered, days, selection.farDays);
   const seen = new Set<string>();
 
   return {

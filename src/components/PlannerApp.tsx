@@ -41,6 +41,7 @@ type PlanOverrides = Partial<{
   children: number;
   seed: number;
   fixedPlaces: FixedPlace[];
+  farDays: number | null;
 }>;
 
 function pickedHotel(lng: number, lat: number): Place {
@@ -76,6 +77,7 @@ export default function PlannerApp({
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [seed, setSeed] = useState(42);
+  const [farDays, setFarDays] = useState<number | null>(null);
   const [fixedPlaces, setFixedPlaces] = useState<FixedPlace[]>([]);
   const [guideResetKey, setGuideResetKey] = useState(0);
 
@@ -122,6 +124,8 @@ export default function PlannerApp({
     const nextChildren = overrides.children ?? children;
     const nextSeed = overrides.seed ?? seed;
     const nextFixed = overrides.fixedPlaces ?? fixedPlaces;
+    const nextFarDays =
+      overrides.farDays !== undefined ? overrides.farDays : farDays;
 
     const body: TripInput = {
       city: nextCity.name,
@@ -138,6 +142,7 @@ export default function PlannerApp({
       seed: nextSeed,
       hotelPrice: nextHotel.cost,
       fixedPlaces: nextFixed.length ? nextFixed : undefined,
+      farDays: nextFarDays ?? undefined,
     };
 
     controllerRef.current?.abort();
@@ -254,6 +259,11 @@ export default function PlannerApp({
   function handleTransportChange(next: TransportPref) {
     setTransport(next);
     void requestPlan({ transport: next });
+  }
+
+  function handleFarDaysChange(next: number | null) {
+    setFarDays(next);
+    void requestPlan({ farDays: next });
   }
 
   function handleBudgetChange(next: BudgetTier) {
@@ -405,6 +415,7 @@ export default function PlannerApp({
                 budgetTier={budgetTier}
                 adults={adults}
                 children={children}
+                farDays={farDays}
                 busy={busy}
                 picking={picking}
                 liveData={liveData}
@@ -421,6 +432,7 @@ export default function PlannerApp({
                 onBudgetChange={handleBudgetChange}
                 onAdultsChange={handleAdultsChange}
                 onChildrenChange={handleChildrenChange}
+                onFarDaysChange={handleFarDaysChange}
                 onTogglePick={handleTogglePick}
                 onGenerate={() => void requestPlan()}
                 onGuideApply={handleGuideApply}

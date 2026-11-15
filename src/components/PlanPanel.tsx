@@ -325,8 +325,13 @@ function DayCard({
               {formatDateCN(day.date)} {weekdayCN(day.date)}
             </span>
           </div>
-          <p className="mt-0.5 truncate text-[10px] text-ink-faint">
-            {day.area}
+          <p className="mt-0.5 flex items-center gap-1.5 text-[10px] text-ink-faint">
+            {day.far ? (
+              <span className="shrink-0 rounded bg-jade-soft px-1 py-px text-[8px] tracking-wide text-jade">
+                远足日
+              </span>
+            ) : null}
+            <span className="truncate">{day.area}</span>
           </p>
           <div className="mt-1.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-ink-soft">
             <span>{day.stats.stopCount} 个停留</span>

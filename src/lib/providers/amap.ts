@@ -415,14 +415,19 @@ async function fetchCityPois(
 
 async function discoverAmap(options: DiscoverOptions): Promise<DiscoverResult> {
   const hotel: [number, number] = [options.hotel.lng, options.hotel.lat];
-  const radius = Math.min(30_000, Math.max(8_000, options.radiusKm * 1000));
+  const radius = Math.min(50_000, Math.max(8_000, options.radiusKm * 1000));
   // 景点走「全市检索 + 距离圈定」，而不是 place/around。
   // place/around 按距离排序，8km 内只会把酒店门口那几十个小景点（广场、雕塑、
   // 某某殿）喂进来，宽窄巷子、武侯祠这类真正值得去的地方挤不进前 50 条。
   // 吃喝仍然就近搜索——跑 5 公里吃饭不合理。
   const citySightSpecs: CitySpec[] = [
     // 110000 风景名胜：公园广场、旅游景点、寺庙道观、纪念馆、特色商业街
-    { types: "110000", pages: 3, want: "sight", radiusFactor: 1.5 },
+    {
+      types: "110000",
+      pages: radius >= 35_000 ? 4 : 3,
+      want: "sight",
+      radiusFactor: 1.5,
+    },
     // 博物馆 / 展览馆 / 美术馆
     { types: "140500|140600|140700", pages: 1, want: "sight", radiusFactor: 1.5 },
   ];

@@ -1,8 +1,10 @@
 import { PACES } from "../constants";
 import {
+  angleDistance,
   bearing,
   clamp,
   directionLabel,
+  estimateModeMinutes,
   haversine,
   meanPoint,
   placeDistance,
@@ -23,6 +25,8 @@ export interface DaySeed {
   fixed: boolean;
   area: string;
   theme: string;
+  far?: boolean;
+  anchorIds?: string[];
 }
 
 export interface SelectInput {
@@ -34,11 +38,13 @@ export interface SelectInput {
   seed: number;
   radiusKm: number;
   fixedPlaces?: FixedPlace[];
+  farDays?: number;
 }
 
 export interface SelectResult {
   days: DaySeed[];
   warnings: string[];
+  farDays: number;
 }
 
 type StyleProfile = {
@@ -123,15 +129,147 @@ function scorePlace(
   const islandPenalty =
     place.island && place.island !== hotel.island ? 0.5 : 0;
   const ratingBonus = place.rating && place.rating >= 4.6 ? 0.25 : 0;
+  const fameWeight = styles.includes("classic") ? 5 : 3.4;
+  const fameBonus = Math.max(0, popularity - 4.1) * fameWeight;
   const jitter = seededJitter(seed, place.id, 0.85);
   return (
     affinity * 2.1 +
     popularity * 1.2 +
+    fameBonus +
     reach +
     ratingBonus +
     jitter -
     islandPenalty
   );
+}
+
+const FAR_MIN_POPULARITY = 4.15;
+const FAR_MAX_ONE_WAY_MIN = 110;
+
+function isFamous(place: Place): boolean {
+  return (
+    (place.popularity ?? 0) >= FAR_MIN_POPULARITY ||
+    (place.rating ?? 0) >= 4.6
+  );
+}
+
+function farLimitKm(styles: StyleId[]): number {
+  let limit = 45;
+  if (styles.includes("family")) limit = 32;
+  else if (styles.includes("citywalk")) limit = 38;
+  return limit;
+}
+
+function decideFarDays(
+  requested: number | undefined,
+  autoCount: number,
+  capacity: number,
+  farPool: ScoredPlace[],
+  anchors: ScoredPlace[],
+): number {
+  if (autoCount < 1) return 0;
+  const hardCap = Math.min(2, autoCount >= 2 ? autoCount - 1 : 1);
+  if (requested !== undefined) {
+    return Math.max(0, Math.min(requested, hardCap));
+  }
+  if (autoCount < 2 || anchors.length === 0) return 0;
+  const want =
+    autoCount >= 5 && anchors.length >= 3 && farPool.length >= capacity * 1.5
+      ? 2
+      : 1;
+  return Math.min(want, hardCap);
+}
+
+// 远足日先选“主锚点”，再收拢周边顺路点位，保证一天只去一个方向。
+function pickFarGroups(
+  pool: ScoredPlace[],
+  count: number,
+  capacity: number,
+  hotel: Place,
+  seed: number,
+): ScoredPlace[][] {
+  const remaining = [...pool].sort((a, b) => b.score - a.score);
+  const used = new Set<string>();
+  const groups: ScoredPlace[][] = [];
+  let previousDir: number | null = null;
+
+  for (let day = 0; day < count; day++) {
+    const candidates = remaining.filter((item) => !used.has(item.place.id));
+    if (!candidates.length) break;
+    const famous = candidates.filter((item) => isFamous(item.place));
+    const anchorPool = famous.length ? famous : candidates;
+    let bestAnchor: ScoredPlace | null = null;
+    let bestValue = -Infinity;
+    for (const item of anchorPool.slice(0, 36)) {
+      const dir = bearing(
+        [hotel.lng, hotel.lat],
+        [item.place.lng, item.place.lat],
+      );
+      const company = candidates.filter(
+        (other) =>
+          other.place.id !== item.place.id &&
+          placeDistance(other.place, item.place) <= 16,
+      ).length;
+      let value =
+        item.score +
+        Math.min(3, company) * 0.45 +
+        seededJitter(seed, `far-${day}-${item.place.id}`, 0.5);
+      if (previousDir !== null && angleDistance(dir, previousDir) < 55) {
+        value -= 2.2;
+      }
+      if (value > bestValue) {
+        bestValue = value;
+        bestAnchor = item;
+      }
+    }
+    if (!bestAnchor) break;
+    const anchor = bestAnchor;
+    const group: ScoredPlace[] = [anchor];
+    used.add(anchor.place.id);
+    // 车程近的外围城区可以排满；真正 1–2 小时的远足日少排一个点，留出路上时间。
+    const oneWay = estimateModeMinutes(hotel, anchor.place, "taxi");
+    const groupCap =
+      oneWay <= 45 ? capacity : Math.max(2, capacity - 1);
+    const anchorDir = bearing(
+      [hotel.lng, hotel.lat],
+      [anchor.place.lng, anchor.place.lat],
+    );
+    const nearby = candidates
+      .filter(
+        (item) =>
+          item.place.id !== anchor.place.id && !used.has(item.place.id),
+      )
+      .map((item) => ({
+        item,
+        km: placeDistance(item.place, anchor.place),
+        dir: bearing(
+          [hotel.lng, hotel.lat],
+          [item.place.lng, item.place.lat],
+        ),
+      }))
+      .filter(
+        (entry) =>
+          entry.km <= 16 &&
+          (entry.km <= 6 ||
+            angleDistance(entry.dir, anchorDir) <= 55) &&
+          estimateModeMinutes(anchor.place, entry.item.place, "taxi") <= 30,
+      )
+      .sort(
+        (a, b) =>
+          b.item.score - b.km * 0.16 - (a.item.score - a.km * 0.16),
+      );
+    for (const entry of nearby) {
+      if (group.length >= groupCap) break;
+      group.push(entry.item);
+      used.add(entry.item.place.id);
+    }
+    groups.push(group);
+    previousDir = bearing(
+      [hotel.lng, hotel.lat],
+      [anchor.place.lng, anchor.place.lat],
+    );
+  }
+  return groups;
 }
 
 function normalizeAngle(value: number): number {
@@ -460,53 +598,155 @@ export function selectDays(input: SelectInput): SelectResult {
     .filter((item) => Number.isFinite(item.place.lat) && Number.isFinite(item.place.lng))
     .sort((a, b) => b.score - a.score);
 
-  let pool = scored.filter((item) => item.distance <= input.radiusKm);
-  const need = autoDays.length * PACES[pace].sights;
-  if (pool.length < need + 2) {
-    const widened = scored.filter((item) => item.distance <= input.radiusKm * 1.7);
-    if (widened.length > pool.length) {
-      pool = widened;
-      warnings.push("酒店周边可选的景点不多，已把搜索范围放宽到更远一些。");
+  const capacity = PACES[pace].sights;
+  const nearKm = input.radiusKm;
+  const farKm = farLimitKm(styles);
+
+  const nearCandidates = scored.filter((item) => item.distance <= nearKm);
+  const farCandidates = scored.filter(
+    (item) =>
+      item.distance > nearKm &&
+      item.distance <= farKm &&
+      estimateModeMinutes(hotel, item.place, "taxi") <= FAR_MAX_ONE_WAY_MIN,
+  );
+  const farAnchors = farCandidates.filter((item) => isFamous(item.place));
+
+  // 用户手动指定远足日时，把“同城外围、车程够远”的著名点位也纳入锚点，
+  // 例如住在市中心却想专程去另一片城区的集美学村，而不是凑数的近郊点位。
+  const fringeFloorKm = Math.max(8, nearKm * 0.55);
+  const fringeCandidates =
+    input.farDays !== undefined && input.farDays > 0
+      ? scored.filter(
+          (item) =>
+            item.distance > fringeFloorKm &&
+            item.distance <= nearKm &&
+            estimateModeMinutes(hotel, item.place, "taxi") >= 22,
+        )
+      : [];
+  const farPool = [...farCandidates, ...fringeCandidates];
+
+  let farCount = decideFarDays(
+    input.farDays,
+    autoDays.length,
+    capacity,
+    farCandidates,
+    farAnchors,
+  );
+  const farGroups =
+    farCount > 0
+      ? pickFarGroups(
+          farPool,
+          farCount,
+          capacity,
+          hotel,
+          seed,
+        )
+      : [];
+  farCount = farGroups.length;
+
+  if (
+    input.farDays !== undefined &&
+    input.farDays > 0 &&
+    farCount < input.farDays
+  ) {
+    if (farPool.length === 0) {
+      warnings.push("酒店远一些的方向没有找到合适点位，这次先按就近安排。");
+    } else if (autoDays.length <= 1) {
+      warnings.push("整趟只有 1 天，先把一个远足日走扎实，其余留给下次。");
+    } else {
+      warnings.push(`远足只排出了 ${farCount} 天，其余日期先就近安排。`);
     }
   }
 
-  const dayPlaces = new Map<number, Place[]>();
+  if (farGroups.some((group) => group[0] && !isFamous(group[0].place))) {
+    warnings.push("较远方向特别出名的景点不多，远足日已按口碑挑了几处顺路的点位。");
+  }
 
-  if (autoDays.length > 0) {
-    const span = 360 / autoDays.length;
+  const farIds = new Set<string>();
+  for (const group of farGroups) {
+    for (const item of group) farIds.add(item.place.id);
+  }
+
+  const dayPlaces = new Map<number, Place[]>();
+  const farDaysSet = new Set<number>();
+  const anchorByDay = new Map<number, string[]>();
+
+  const farStart = Math.max(
+    0,
+    Math.round((autoDays.length - farCount) / 2),
+  );
+  const farPositions = new Set<number>();
+  for (let index = 0; index < farCount; index++) {
+    farPositions.add(farStart + index);
+  }
+  const nearPositions = autoDays
+    .map((_, index) => index)
+    .filter((index) => !farPositions.has(index));
+
+  [...farPositions].forEach((position, index) => {
+    const group = farGroups[index];
+    const day = autoDays[position];
+    if (!group || day === undefined) return;
+    dayPlaces.set(day, group.map((item) => item.place));
+    farDaysSet.add(day);
+    anchorByDay.set(day, [group[0].place.id]);
+  });
+
+  if (nearPositions.length > 0) {
+    let nearPool = nearCandidates.filter((item) => !farIds.has(item.place.id));
+    const need = nearPositions.length * capacity + 2;
+    if (nearPool.length < need) {
+      const widened = scored.filter(
+        (item) =>
+          item.distance <= Math.min(farKm, nearKm * 1.6) &&
+          !farIds.has(item.place.id),
+      );
+      if (widened.length > nearPool.length) {
+        nearPool = widened;
+        warnings.push("酒店周边可选的景点不多，已把搜索范围放宽到更远一些。");
+      }
+    }
+
+    const span = 360 / nearPositions.length;
     let bestBuckets: ScoredPlace[][] | null = null;
     let bestScore = -Infinity;
     const phase = seededJitter(seed, "sector-rotation", span / 2);
     for (let step = 0; step < 12; step++) {
       const offset = normalizeAngle(phase + (step * span) / 12);
-      const buckets = assignSectors(pool, hotel, autoDays.length, offset);
-      const score = sectorScore(buckets, pace, hotel);
-      if (score > bestScore) {
-        bestScore = score;
+      const buckets = assignSectors(
+        nearPool,
+        hotel,
+        nearPositions.length,
+        offset,
+      );
+      const value = sectorScore(buckets, pace, hotel);
+      if (value > bestScore) {
+        bestScore = value;
         bestBuckets = buckets;
       }
     }
     const buckets = bestBuckets ?? [];
-    const capacity = PACES[pace].sights;
     const chosenIds = new Set<string>();
 
-    autoDays.forEach((day, dayPosition) => {
-      const bucket = (buckets[dayPosition] ?? []).slice().sort((a, b) => b.score - a.score);
+    nearPositions.forEach((position, bucketIndex) => {
+      const day = autoDays[position];
+      const bucket = (buckets[bucketIndex] ?? []).slice().sort((a, b) => b.score - a.score);
       const picked = bucket.slice(0, capacity).map((item) => item.place);
       picked.forEach((place) => chosenIds.add(place.id));
       dayPlaces.set(day, picked);
     });
 
     // 景点稀疏的方向，从邻近的剩余点位补齐，避免出现空荡的一天。
-    autoDays.forEach((day, dayPosition) => {
+    nearPositions.forEach((position, bucketIndex) => {
+      const day = autoDays[position];
       const picked = dayPlaces.get(day) ?? [];
       if (picked.length >= 2) return;
       const sectorCenter = destinationPoint(
         [hotel.lng, hotel.lat],
-        normalizeAngle(phase + ((dayPosition + 0.5) * span)),
+        normalizeAngle(phase + ((bucketIndex + 0.5) * span)),
         3,
       );
-      const spare = pool
+      const spare = nearPool
         .filter((item) => !chosenIds.has(item.place.id))
         .sort((a, b) => {
           const da = haversine(sectorCenter, [a.place.lng, a.place.lat]);
@@ -515,7 +755,7 @@ export function selectDays(input: SelectInput): SelectResult {
         });
       for (let i = 0; i < spare.length && picked.length < 2; i++) {
         const candidate = spare[i];
-        if (candidate.distance > input.radiusKm * 1.8) continue;
+        if (candidate.distance > nearKm * 1.8) continue;
         if (picked.some((place) => placeDistance(place, candidate.place) < 0.3)) continue;
         picked.push(candidate.place);
         chosenIds.add(candidate.place.id);
@@ -523,14 +763,15 @@ export function selectDays(input: SelectInput): SelectResult {
       dayPlaces.set(day, picked);
     });
 
-    for (const day of autoDays) {
+    for (const position of nearPositions) {
+      const day = autoDays[position];
       const picked = dayPlaces.get(day) ?? [];
       if (!picked.length) {
         warnings.push(`第 ${day} 天附近可选地点不足，留作自由活动或临时加点多好。`);
       }
-      if (pool.length < need) {
-        warnings.push("这个城市的点位偏少，部分日期会安排得更松一些。");
-      }
+    }
+    if (nearPool.length < need) {
+      warnings.push("这个城市的点位偏少，部分日期会安排得更松一些。");
     }
   }
 
@@ -555,14 +796,38 @@ export function selectDays(input: SelectInput): SelectResult {
       continue;
     }
     const picked = dayPlaces.get(day) ?? [];
+    const far = farDaysSet.has(day);
+    const anchorId = anchorByDay.get(day)?.[0];
+    const anchor = anchorId
+      ? picked.find((place) => place.id === anchorId) ?? picked[0]
+      : undefined;
+    if (far && anchor) {
+      const ferryExtra =
+        anchor.island && anchor.island !== hotel.island ? 30 : 0;
+      const oneWay = estimateModeMinutes(hotel, anchor, "taxi") + ferryExtra;
+      const dir = directionLabel(
+        bearing([hotel.lng, hotel.lat], [anchor.lng, anchor.lat]),
+      );
+      warnings.push(
+        `第 ${day} 天是远足日：往${dir}方向，单程约 ${oneWay} 分钟，${
+          oneWay >= 60 ? "早点出发更从容。" : "按这条线走不用来回折返。"
+        }`,
+      );
+    }
     result.push({
       index: day,
       places: orderLoop(picked, hotel, seed, day),
       fixed: false,
-      area: describeArea(picked, hotel),
+      area: far ? `远足 · ${describeArea(picked, hotel)}` : describeArea(picked, hotel),
       theme: describeTheme(picked, seed, day),
+      far,
+      anchorIds: anchorByDay.get(day),
     });
   }
 
-  return { days: result, warnings: Array.from(new Set(warnings)) };
+  return {
+    days: result,
+    warnings: Array.from(new Set(warnings)),
+    farDays: farDaysSet.size,
+  };
 }

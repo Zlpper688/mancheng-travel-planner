@@ -49,9 +49,12 @@ interface BuildContext {
   dayIndex: number;
   provider: PlaceProvider;
   meals: Place[];
+  far: boolean;
+  startMin: number;
 }
 
-export interface ScheduleInput extends BuildContext {
+export interface ScheduleInput
+  extends Omit<BuildContext, "far" | "startMin"> {
   seedDay: DaySeed;
   usedMealIds: Set<string>;
 }
@@ -271,7 +274,7 @@ function insertMeals(
   const rough = roughTimeline(
     sights.map((stop) => stop.place),
     context.hotel,
-    PACES[context.pace].startMin,
+    context.startMin,
     context.pace,
     context.transport,
     context.styles,
@@ -459,8 +462,8 @@ async function buildOnce(
     return {
       stops: [],
       legs: [],
-      startMin: PACES[context.pace].startMin,
-      endMin: PACES[context.pace].startMin,
+      startMin: context.startMin,
+      endMin: context.startMin,
       stats: { stopCount: 0, sightCount: 0, distanceKm: 0, travelMin: 0, walkKm: 0, ticket: 0 },
       warnings: ["今天没有排到合适的点位，留作自由活动。"],
       tip: "今天是留白的一天，睡到自然醒，在酒店附近随意走走也很好。",
@@ -493,7 +496,7 @@ async function buildOnce(
     safeRoute(context.provider, nodes[index], nodes[index + 1], mode, context.city),
   );
 
-  let clock = PACES[context.pace].startMin;
+  let clock = context.startMin;
   let previous = context.hotel;
   const stops: StopPlan[] = [];
   const legs: RouteLeg[] = [];
@@ -615,6 +618,13 @@ async function buildOnce(
 
   const names = stops.map((stop) => stop.place.name).join(" ");
   const tips: string[] = [];
+  if (context.far) {
+    tips.push(
+      context.startMin < PACES[context.pace].startMin
+        ? "今天是远足日，路上时间较长，早点出发，回程留点余量。"
+        : "今天是远足日，景点集中在另一片城区，按这条线走不用来回折返。",
+    );
+  }
   if (names.includes("厦门大学")) {
     tips.push("厦门大学需要提前预约，进校记得带身份证。");
   }
@@ -653,6 +663,14 @@ async function buildOnce(
 
 export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult> {
   const warnings: string[] = [];
+  const far = Boolean(input.seedDay.far);
+  const firstSight = input.seedDay.places.find(
+    (place) => place.category !== "hotel",
+  );
+  const farLong =
+    far && firstSight
+      ? estimateModeMinutes(input.hotel, firstSight, "taxi") >= 60
+      : false;
   const context: BuildContext = {
     hotel: input.hotel,
     city: input.city,
@@ -666,6 +684,8 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     dayIndex: input.seedDay.index,
     provider: input.provider,
     meals: input.meals,
+    far,
+    startMin: PACES[input.pace].startMin - (farLong ? 30 : 0),
   };
   const localUsed = new Set(input.usedMealIds);
 
@@ -681,7 +701,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     const rough = roughTimeline(
       sightStops.map((stop) => stop.place),
       input.hotel,
-      PACES[input.pace].startMin,
+      context.startMin,
       input.pace,
       input.transport,
       input.styles,
@@ -690,7 +710,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     sightStops = sightStops.filter((stop, index) => {
       const windows = parseOpenWindows(stop.place.openHours);
       if (!windows.length) return true;
-      const arrive = rough[index]?.arrive ?? PACES[input.pace].startMin;
+      const arrive = rough[index]?.arrive ?? context.startMin;
       const latest = Math.max(...windows.map((window) => window.end));
       if (arrive > latest - 20) {
         warnings.push(`「${stop.place.name}」到达时已接近闭馆，已从当天行程里拿掉。`);
@@ -702,17 +722,24 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
 
   let attempt = sightStops;
   let last: BuiltDay | null = null;
+  const anchorIds = new Set(input.seedDay.anchorIds ?? []);
   const maxDrops = input.seedDay.fixed ? 0 : 2;
+  const endLimit = PACES[input.pace].endMin + (farLong ? 75 : 0);
 
   for (let drop = 0; drop <= maxDrops; drop++) {
     last = await buildOnce(attempt, context, localUsed);
-    const overrun = last.endMin - PACES[input.pace].endMin;
+    const overrun = last.endMin - endLimit;
     if (overrun <= 75) break;
     if (drop === maxDrops) {
       warnings.push(`今日行程比较满，回到酒店约 ${minutesToTime(last.endMin)}。`);
       break;
     }
-    const droppable = attempt.filter((stop) => stop.kind === "sight" && !stop.fixed);
+    const sights = attempt.filter(
+      (stop) => stop.kind === "sight" && !stop.fixed,
+    );
+    const droppable = sights.some((stop) => !anchorIds.has(stop.place.id))
+      ? sights.filter((stop) => !anchorIds.has(stop.place.id))
+      : sights;
     if (!droppable.length) {
       warnings.push(`今日行程比较满，回到酒店约 ${minutesToTime(last.endMin)}。`);
       break;
@@ -737,6 +764,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     startMin: built.startMin,
     endMin: built.endMin,
     tip: built.tip,
+    far,
   };
 
   return {

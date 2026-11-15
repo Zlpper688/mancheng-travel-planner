@@ -36,6 +36,7 @@ export interface SetupPanelProps {
   budgetTier: BudgetTier;
   adults: number;
   children: number;
+  farDays: number | null;
   busy: boolean;
   picking: boolean;
   liveData: boolean;
@@ -52,6 +53,7 @@ export interface SetupPanelProps {
   onBudgetChange: (tier: BudgetTier) => void;
   onAdultsChange: (count: number) => void;
   onChildrenChange: (count: number) => void;
+  onFarDaysChange: (value: number | null) => void;
   onTogglePick: () => void;
   onGenerate: () => void;
   onGuideApply: (fixed: FixedPlace[], days: number) => void;
@@ -65,6 +67,13 @@ type SearchResponse = {
 
 const FIELD_CLASS =
   "w-full rounded-xl border border-line bg-card/75 px-3 py-2 text-[12px] text-ink placeholder:text-ink-faint/70 focus:border-ink/25 focus:outline-none";
+
+const FAR_DAY_OPTIONS: { value: number | null; label: string }[] = [
+  { value: null, label: "自动" },
+  { value: 0, label: "就近" },
+  { value: 1, label: "1 天" },
+  { value: 2, label: "2 天" },
+];
 
 function SearchList({
   results,
@@ -113,6 +122,7 @@ export default function SetupPanel({
   budgetTier,
   adults,
   children,
+  farDays,
   busy,
   picking,
   liveData,
@@ -129,6 +139,7 @@ export default function SetupPanel({
   onBudgetChange,
   onAdultsChange,
   onChildrenChange,
+  onFarDaysChange,
   onTogglePick,
   onGenerate,
   onGuideApply,
@@ -449,6 +460,32 @@ export default function SetupPanel({
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <p className="px-1 text-[9px] tracking-[0.12em] text-ink-faint">
+            远足天数
+          </p>
+          <div className="grid grid-cols-4 gap-1.5">
+            {FAR_DAY_OPTIONS.map((option) => (
+              <button
+                key={option.label}
+                type="button"
+                onClick={() => onFarDaysChange(option.value)}
+                className={cn(
+                  "rounded-xl border px-1 py-2 text-center text-[11px] transition",
+                  farDays === option.value
+                    ? "border-jade/55 bg-jade-soft/70 text-jade"
+                    : "border-line bg-card/70 text-ink hover:border-ink/25",
+                )}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+          <p className="px-1 text-[9px] leading-relaxed text-ink-faint">
+            较远但出名的景点值得专程去，全天只走一个方向；自动会按名气和距离权衡。
+          </p>
         </div>
 
         <div className="space-y-1.5">
