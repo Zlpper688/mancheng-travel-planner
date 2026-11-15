@@ -2,22 +2,28 @@ import { PACES } from "../constants";
 import {
   angleDistance,
   bearing,
-  clamp,
   directionLabel,
   estimateModeMinutes,
-  haversine,
   meanPoint,
   placeDistance,
   seededJitter,
 } from "../geo";
 import { dedupePlaces } from "../providers/normalize";
+import { metroAccess, sharedMetroLine } from "../transit/metro";
 import type {
   Category,
   FixedPlace,
   PaceId,
   Place,
   StyleId,
+  TransportPref,
 } from "../types";
+import {
+  composeDay,
+  rhythmBudgetMinutes,
+  rhythmOf,
+  type RhythmProfile,
+} from "./rhythm";
 
 export interface DaySeed {
   index: number;
@@ -27,6 +33,7 @@ export interface DaySeed {
   theme: string;
   far?: boolean;
   anchorIds?: string[];
+  startMinHint?: number;
 }
 
 export interface SelectInput {
@@ -37,6 +44,8 @@ export interface SelectInput {
   styles: StyleId[];
   seed: number;
   radiusKm: number;
+  transport: TransportPref;
+  city: string;
   fixedPlaces?: FixedPlace[];
   farDays?: number;
 }
@@ -121,26 +130,222 @@ function scorePlace(
   styles: StyleId[],
   seed: number,
   radiusKm: number,
+  transport: TransportPref,
+  city: string,
 ): number {
   const affinity = styleAffinity(place, styles);
   const popularity = place.popularity ?? 3.4;
   const distance = placeDistance(hotel, place);
-  const reach = 0.9 - clamp(distance / Math.max(5, radiusKm * 1.45), 0, 1) * 0.72;
+  const distanceScale =
+    transport === "drive" ? 0.58 : transport === "walk" ? 1.05 : 0.82;
+  const reachPenalty =
+    Math.pow(
+      Math.min(2.2, distance / Math.max(5, radiusKm * 0.5)),
+      1.35,
+    ) *
+    1.45 *
+    distanceScale;
+  const qualityPenalty = Math.max(0, 4.05 - popularity) * 1.8;
+  const text = `${place.name} ${place.note ?? ""} ${(place.tags ?? []).join(" ")}`;
+  const mustSee =
+    popularity >= 4.5 || /classic|必去|地标/.test(text) ? 1.1 : 0;
+  const ratingBonus = place.rating && place.rating >= 4.6 ? 0.3 : 0;
+  const fameWeight = styles.includes("classic") ? 2.7 : 2;
+  const fameBonus = Math.max(0, popularity - 4.1) * fameWeight;
+  const metro =
+    transport === "drive" ? null : metroAccess(place, city);
+  const metroBonus = metro
+    ? metro.walkMin <= 10
+      ? 0.48
+      : metro.walkMin <= 16
+        ? 0.2
+        : 0
+    : 0;
   const islandPenalty =
     place.island && place.island !== hotel.island ? 0.5 : 0;
-  const ratingBonus = place.rating && place.rating >= 4.6 ? 0.25 : 0;
-  const fameWeight = styles.includes("classic") ? 5 : 3.4;
-  const fameBonus = Math.max(0, popularity - 4.1) * fameWeight;
-  const jitter = seededJitter(seed, place.id, 0.85);
+  const jitter = seededJitter(seed, place.id, 0.28);
   return (
-    affinity * 2.1 +
-    popularity * 1.2 +
+    affinity * 1 +
+    popularity * 2 +
     fameBonus +
-    reach +
+    mustSee +
+    metroBonus +
     ratingBonus +
     jitter -
+    qualityPenalty -
+    reachPenalty -
     islandPenalty
   );
+}
+
+function anchorSameCluster(a: Place, b: Place): boolean {
+  if (a.island || b.island) {
+    return Boolean(a.island && b.island && a.island === b.island);
+  }
+  return placeDistance(a, b) < 2.3;
+}
+
+function canCluster(anchor: Place, place: Place, radiusKm: number): boolean {
+  if (anchor.island || place.island) {
+    return Boolean(
+      anchor.island && place.island && anchor.island === place.island,
+    );
+  }
+  return placeDistance(anchor, place) <= radiusKm;
+}
+
+function clusterRadiusFor(
+  styles: StyleId[],
+  pace: PaceId,
+  transport: TransportPref,
+): number {
+  let radius = 4.4;
+  if (transport === "drive") radius += 0.8;
+  if (styles.includes("family")) radius -= 0.6;
+  if (styles.includes("citywalk")) radius -= 0.3;
+  if (pace === "chill") radius -= 0.3;
+  return Math.max(3.2, radius);
+}
+
+function isMandatoryAnchor(place: Place): boolean {
+  const text = `${place.name} ${place.note ?? ""} ${(place.tags ?? []).join(" ")}`;
+  return (place.popularity ?? 0) >= 4.4 || /classic|必去|地标/.test(text);
+}
+
+function rhythmRoles(profile: RhythmProfile): string[] {
+  const roles: string[] = [];
+  if (profile.sunset) roles.push("sunset");
+  if (profile.sunrise) roles.push("sunrise");
+  if (profile.indoor) roles.push("indoor");
+  if (profile.marketMorning) roles.push("market");
+  if (profile.morningOnly) roles.push("morningOnly");
+  if (profile.nightStreet) roles.push("night");
+  if (profile.quickStop) roles.push("quick");
+  if (profile.bands.includes("morning") || profile.bands.includes("dawn")) {
+    roles.push("morning");
+  }
+  return roles;
+}
+
+function roleCount(profiles: RhythmProfile[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const profile of profiles) {
+    for (const role of rhythmRoles(profile)) {
+      counts[role] = (counts[role] ?? 0) + 1;
+    }
+  }
+  return counts;
+}
+
+function sunTooFar(place: Place, hotel: Place): boolean {
+  return placeDistance(hotel, place) > 6.5;
+}
+
+// 只有傍晚才进入状态的普通点位，撑不起一整天；名气不够时不该当锚点。
+function closingOnly(profile: RhythmProfile): boolean {
+  return (
+    !profile.sunset &&
+    !profile.nightStreet &&
+    profile.windows.length > 0 &&
+    Math.min(...profile.windows.map(([start]) => start)) >= 14 * 60
+  );
+}
+
+// 锚点不再只按名气取，先保证一天里能有一个主景、一个日落/室内位，
+// 并避免把两个商业街或两个日落点排进同一天。
+function pickNearAnchors(
+  pool: ScoredPlace[],
+  count: number,
+  radiusKm: number,
+  city: string,
+  hotel: Place,
+  styles: StyleId[],
+): ScoredPlace[] {
+  const anchors: ScoredPlace[] = [];
+  const profileOf = (item: ScoredPlace) => rhythmOf(city, item.place);
+  const mandatory = [...pool].sort(
+    (a, b) =>
+      (b.place.popularity ?? 0) - (a.place.popularity ?? 0) ||
+      b.score - a.score,
+  );
+  for (const item of mandatory) {
+    if (anchors.length >= count) break;
+    if (!isMandatoryAnchor(item.place)) continue;
+    const profile = profileOf(item);
+    if (profile.quickStop || !profile.heroEligible) continue;
+    if (profile.sunrise && sunTooFar(item.place, hotel)) continue;
+    if (
+      profile.sunset &&
+      anchors.some((anchor) => profileOf(anchor).sunset)
+    ) {
+      continue;
+    }
+    if (
+      profile.nightStreet &&
+      anchors.some((anchor) => profileOf(anchor).nightStreet)
+    ) {
+      continue;
+    }
+    // 半天型大景（植物园这类）值得单独占一天；天数够多时允许它和邻近锚点分处两天。
+    const standaloneLongStay =
+      count >= 5 && profile.heroEligible && profile.longStay;
+    if (
+      !standaloneLongStay &&
+      anchors.some((anchor) => anchorSameCluster(anchor.place, item.place))
+    ) {
+      continue;
+    }
+    anchors.push(item);
+  }
+  while (anchors.length < count) {
+    let best: ScoredPlace | null = null;
+    let bestValue = -Infinity;
+    const counts = roleCount(anchors.map(profileOf));
+    for (const item of pool) {
+      const profile = profileOf(item);
+      // 为了一个黄昏点专程跑很远不值：傍晚型点位名气不够时只当顺路收尾。
+      if (closingOnly(profile) && !isFamous(item.place)) continue;
+      const standaloneLongStay =
+        count >= 5 && profile.heroEligible && profile.longStay;
+      if (
+        !standaloneLongStay &&
+        anchors.some((anchor) => anchorSameCluster(anchor.place, item.place))
+      ) {
+        continue;
+      }
+      const company = pool.filter(
+        (other) =>
+          other.place.id !== item.place.id &&
+          canCluster(item.place, other.place, radiusKm),
+      ).length;
+      let value = item.score + Math.min(5, company) * 0.34;
+      if ((item.place.popularity ?? 0) >= 4.5) value += 0.35;
+      if (anchors.some((anchor) => anchor.place.category === item.place.category)) {
+        value -= 0.45;
+      }
+      if (!profile.heroEligible) value -= 1.4;
+      if (profile.quickStop) value -= 3;
+      if (profile.sunset) {
+        value += counts.sunset ? (styles.includes("coastal") ? -1.2 : -2.8) : 0.5;
+      }
+      if (profile.sunrise) {
+        value += counts.sunrise ? -3 : 0.35;
+        if (sunTooFar(item.place, hotel)) value -= 2.5;
+      }
+      if (profile.indoor) value += counts.indoor ? -0.9 : 0.35;
+      if (profile.marketMorning) value += counts.market ? -1.1 : 0.3;
+      if (profile.nightStreet) value += counts.night ? -0.9 : 0.25;
+      if (profile.quickStop && counts.quick) value -= 2.6;
+      if (!counts.morning && profile.bands.includes("morning")) value += 0.6;
+      if (value > bestValue) {
+        bestValue = value;
+        best = item;
+      }
+    }
+    if (!best) break;
+    anchors.push(best);
+  }
+  return anchors;
 }
 
 const FAR_MIN_POPULARITY = 4.15;
@@ -187,10 +392,13 @@ function pickFarGroups(
   capacity: number,
   hotel: Place,
   seed: number,
+  city: string,
+  styles: StyleId[],
 ): ScoredPlace[][] {
   const remaining = [...pool].sort((a, b) => b.score - a.score);
   const used = new Set<string>();
   const groups: ScoredPlace[][] = [];
+  const usedRoles: Record<string, number> = {};
   let previousDir: number | null = null;
 
   for (let day = 0; day < count; day++) {
@@ -201,6 +409,10 @@ function pickFarGroups(
     let bestAnchor: ScoredPlace | null = null;
     let bestValue = -Infinity;
     for (const item of anchorPool.slice(0, 36)) {
+      const profile = rhythmOf(city, item.place);
+      if (profile.quickStop) continue;
+      // 远足日要有一个白天能撑起来的点，纯傍晚的普通点位不当远足锚点。
+      if (closingOnly(profile) && !isFamous(item.place)) continue;
       const dir = bearing(
         [hotel.lng, hotel.lat],
         [item.place.lng, item.place.lat],
@@ -217,6 +429,14 @@ function pickFarGroups(
       if (previousDir !== null && angleDistance(dir, previousDir) < 55) {
         value -= 2.2;
       }
+      if (!profile.heroEligible) value -= 0.9;
+      if (profile.sunset) {
+        value += usedRoles.sunset
+          ? (styles.includes("coastal") ? -1.2 : -2.6)
+          : 0.45;
+      }
+      if (profile.sunrise && sunTooFar(item.place, hotel)) value -= 2.4;
+      if (profile.sunrise && usedRoles.sunrise) value -= 3;
       if (value > bestValue) {
         bestValue = value;
         bestAnchor = item;
@@ -224,6 +444,7 @@ function pickFarGroups(
     }
     if (!bestAnchor) break;
     const anchor = bestAnchor;
+    const anchorProfile = rhythmOf(city, anchor.place);
     const group: ScoredPlace[] = [anchor];
     used.add(anchor.place.id);
     // 车程近的外围城区可以排满；真正 1–2 小时的远足日少排一个点，留出路上时间。
@@ -258,12 +479,40 @@ function pickFarGroups(
         (a, b) =>
           b.item.score - b.km * 0.16 - (a.item.score - a.km * 0.16),
       );
+    const groupRoles: Record<string, number> = {
+      sunset: anchorProfile.sunset ? 1 : 0,
+      sunrise: anchorProfile.sunrise ? 1 : 0,
+      market: anchorProfile.marketMorning ? 1 : 0,
+      quick: anchorProfile.quickStop ? 1 : 0,
+      indoor: anchorProfile.indoor ? 1 : 0,
+    };
     for (const entry of nearby) {
       if (group.length >= groupCap) break;
+      const profile = rhythmOf(city, entry.item.place);
+      if (profile.quickStop && groupRoles.quick >= 1) continue;
+      if (profile.sunset && groupRoles.sunset >= 1) continue;
+      if (profile.sunrise && groupRoles.sunrise >= 1) continue;
+      if (profile.indoor && groupRoles.indoor >= 2) continue;
+      const groupOpensEarly =
+        (groupRoles.market ?? 0) > 0 || (groupRoles.sunrise ?? 0) > 0;
+      if (profile.sunset && groupOpensEarly) continue;
+      if (
+        (profile.marketMorning || profile.sunrise) &&
+        (groupRoles.sunset ?? 0) > 0
+      ) {
+        continue;
+      }
       group.push(entry.item);
       used.add(entry.item.place.id);
+      groupRoles.sunset += profile.sunset ? 1 : 0;
+      groupRoles.sunrise += profile.sunrise ? 1 : 0;
+      groupRoles.market += profile.marketMorning ? 1 : 0;
+      groupRoles.quick += profile.quickStop ? 1 : 0;
+      groupRoles.indoor += profile.indoor ? 1 : 0;
     }
     groups.push(group);
+    usedRoles.sunset = (usedRoles.sunset ?? 0) + (groupRoles.sunset > 0 ? 1 : 0);
+    usedRoles.sunrise = (usedRoles.sunrise ?? 0) + (groupRoles.sunrise > 0 ? 1 : 0);
     previousDir = bearing(
       [hotel.lng, hotel.lat],
       [anchor.place.lng, anchor.place.lat],
@@ -272,158 +521,7 @@ function pickFarGroups(
   return groups;
 }
 
-function normalizeAngle(value: number): number {
-  return ((value % 360) + 360) % 360;
-}
-
-function destinationPoint(
-  from: [number, number],
-  angleDeg: number,
-  km: number,
-): [number, number] {
-  const radius = 6371;
-  const delta = km / radius;
-  const theta = (angleDeg * Math.PI) / 180;
-  const phi1 = (from[1] * Math.PI) / 180;
-  const lambda1 = (from[0] * Math.PI) / 180;
-  const phi2 = Math.asin(
-    Math.sin(phi1) * Math.cos(delta) +
-      Math.cos(phi1) * Math.sin(delta) * Math.cos(theta),
-  );
-  const lambda2 =
-    lambda1 +
-    Math.atan2(
-      Math.sin(theta) * Math.sin(delta) * Math.cos(phi1),
-      Math.cos(delta) - Math.sin(phi1) * Math.sin(phi2),
-    );
-  return [(lambda2 * 180) / Math.PI, (phi2 * 180) / Math.PI];
-}
-
 type ScoredPlace = { place: Place; score: number; distance: number };
-
-function assignSectors(
-  places: ScoredPlace[],
-  hotel: Place,
-  count: number,
-  offset: number,
-): ScoredPlace[][] {
-  const span = 360 / count;
-  const buckets: ScoredPlace[][] = Array.from({ length: count }, () => []);
-  const origin: [number, number] = [hotel.lng, hotel.lat];
-  for (const item of places) {
-    const angle = normalizeAngle(
-      bearing(origin, [item.place.lng, item.place.lat]) - offset,
-    );
-    const index = Math.min(count - 1, Math.floor(angle / span));
-    buckets[index].push(item);
-  }
-  return buckets;
-}
-
-function sectorScore(
-  buckets: ScoredPlace[][],
-  pace: PaceId,
-  hotel: Place,
-): number {
-  const need = PACES[pace].sights;
-  let total = 0;
-  for (const bucket of buckets) {
-    const sorted = [...bucket].sort((a, b) => b.score - a.score);
-    total += sorted
-      .slice(0, need)
-      .reduce((sum, item) => sum + item.score, 0);
-    if (bucket.length < 2) total -= (2 - bucket.length) * 6;
-    const islands = new Set(bucket.map((item) => item.place.island ?? ""));
-    if (!hotel.island && islands.size > 1) total -= 2.2;
-    if (bucket.length > 1) {
-      const center = meanPoint(
-        bucket.map((item) => [item.place.lng, item.place.lat]),
-      );
-      const spread =
-        bucket.reduce(
-          (sum, item) =>
-            sum + haversine(center, [item.place.lng, item.place.lat]),
-          0,
-        ) / bucket.length;
-      if (spread > 6) total -= (spread - 6) * 0.35;
-    }
-  }
-  return total;
-}
-
-function legCost(a: Place, b: Place): number {
-  const crossing =
-    Boolean(a.island || b.island) && a.island !== b.island ? 5.5 : 0;
-  return placeDistance(a, b) + crossing;
-}
-
-function twoOpt(
-  tour: Place[],
-  cost: (a: Place, b: Place) => number,
-): Place[] {
-  const route = [...tour];
-  let improved = true;
-  let guard = 0;
-  const n = route.length;
-  while (improved && guard < 8) {
-    improved = false;
-    guard++;
-    for (let i = 1; i < n - 2; i++) {
-      for (let j = i + 1; j < n - 1; j++) {
-        const before = cost(route[i - 1], route[i]) + cost(route[j], route[j + 1]);
-        const after = cost(route[i - 1], route[j]) + cost(route[i], route[j + 1]);
-        if (after + 0.002 < before) {
-          let left = i;
-          let right = j;
-          while (left < right) {
-            const temp = route[left];
-            route[left] = route[right];
-            route[right] = temp;
-            left++;
-            right--;
-          }
-          improved = true;
-        }
-      }
-    }
-  }
-  return route;
-}
-
-function orderLoop(
-  places: Place[],
-  hotel: Place,
-  seed: number,
-  dayIndex: number,
-): Place[] {
-  if (places.length <= 2) {
-    return seededJitter(seed, `flip-${dayIndex}`, 1) > 0
-      ? [...places].reverse()
-      : places;
-  }
-  const remaining = [...places];
-  const ordered: Place[] = [];
-  let current = hotel;
-  while (remaining.length) {
-    let bestIndex = 0;
-    let bestCost = Infinity;
-    for (let i = 0; i < remaining.length; i++) {
-      const cost = legCost(current, remaining[i]);
-      if (cost < bestCost) {
-        bestCost = cost;
-        bestIndex = i;
-      }
-    }
-    const next = remaining.splice(bestIndex, 1)[0];
-    ordered.push(next);
-    current = next;
-  }
-  const tour = [hotel, ...ordered, hotel];
-  const improved = twoOpt(tour, legCost);
-  const result = improved.slice(1, -1);
-  if (seededJitter(seed, `flip-${dayIndex}`, 1) > 0.1) result.reverse();
-  return result;
-}
 
 const AREA_HINTS = [
   "鼓浪屿",
@@ -551,7 +649,16 @@ function samePlace(a: Place, b: Place): boolean {
 }
 
 export function selectDays(input: SelectInput): SelectResult {
-  const { hotel, days, pace, styles, seed, fixedPlaces = [] } = input;
+  const {
+    hotel,
+    days,
+    pace,
+    styles,
+    seed,
+    transport,
+    city,
+    fixedPlaces = [],
+  } = input;
   const warnings: string[] = [];
 
   const fixedByDay = new Map<number, Place[]>();
@@ -592,7 +699,15 @@ export function selectDays(input: SelectInput): SelectResult {
   const scored: ScoredPlace[] = baseSights
     .map((place) => ({
       place,
-      score: scorePlace(place, hotel, styles, seed, input.radiusKm),
+      score: scorePlace(
+        place,
+        hotel,
+        styles,
+        seed,
+        input.radiusKm,
+        transport,
+        city,
+      ),
       distance: placeDistance(hotel, place),
     }))
     .filter((item) => Number.isFinite(item.place.lat) && Number.isFinite(item.place.lng))
@@ -640,6 +755,8 @@ export function selectDays(input: SelectInput): SelectResult {
           capacity,
           hotel,
           seed,
+          city,
+          styles,
         )
       : [];
   farCount = farGroups.length;
@@ -707,56 +824,180 @@ export function selectDays(input: SelectInput): SelectResult {
       }
     }
 
-    const span = 360 / nearPositions.length;
-    let bestBuckets: ScoredPlace[][] | null = null;
-    let bestScore = -Infinity;
-    const phase = seededJitter(seed, "sector-rotation", span / 2);
-    for (let step = 0; step < 12; step++) {
-      const offset = normalizeAngle(phase + (step * span) / 12);
-      const buckets = assignSectors(
-        nearPool,
-        hotel,
-        nearPositions.length,
-        offset,
-      );
-      const value = sectorScore(buckets, pace, hotel);
-      if (value > bestScore) {
-        bestScore = value;
-        bestBuckets = buckets;
+    const clusterRadius = clusterRadiusFor(styles, pace, transport);
+    const anchors = pickNearAnchors(
+      nearPool,
+      nearPositions.length,
+      clusterRadius,
+      city,
+      hotel,
+      styles,
+    );
+    const anchorProfiles = anchors.map((item) =>
+      rhythmOf(city, item.place),
+    );
+    const dayBuckets = anchors.map(() => [] as ScoredPlace[]);
+    const chosenIds = new Set(anchors.map((item) => item.place.id));
+    const perDayLimit = Math.max(1, capacity - 1);
+    const bucketRoles = anchorProfiles.map((profile) => roleCount([profile]));
+    const dayLimitFor = (index: number) => {
+      const day = autoDays[nearPositions[index]];
+      const edge = days >= 3 && (day === 1 || day === days);
+      const roles = bucketRoles[index];
+      const closesLate = (roles.sunset ?? 0) > 0 || (roles.night ?? 0) > 0;
+      // 傍晚/夜市收尾的日子多留一个白天的支撑位，避免午后空一大段。
+      return Math.max(1, perDayLimit - (edge ? 1 : 0) + (closesLate ? 1 : 0));
+    };
+    const dayBudgetFor = (index: number) => {
+      const day = autoDays[nearPositions[index]];
+      const edge = days >= 3 && (day === 1 || day === days);
+      // 有日落/夜市收尾的日子本来就玩到晚上，多给一个支撑位的时长，
+      // 否则中午到傍晚会空出一大段，行程看着“又远又不好玩”。
+      const closingBonus =
+        (anchorProfiles[index]?.sunset || anchorProfiles[index]?.nightStreet)
+          ? 90
+          : 0;
+      return PACES[pace].sights * 80 * (edge ? 0.88 : 1) + closingBonus;
+    };
+    const usedMinutes = anchors.map((item) =>
+      rhythmBudgetMinutes(city, item.place),
+    );
+    const assignable = nearPool
+      .filter((item) => !chosenIds.has(item.place.id))
+      .slice()
+      .sort((a, b) => b.score - a.score);
+
+    for (const item of assignable) {
+      const profile = rhythmOf(city, item.place);
+      const duration = rhythmBudgetMinutes(city, item.place);
+      let bestIndex = -1;
+      let bestValue = -Infinity;
+      for (let index = 0; index < anchors.length; index++) {
+        if (dayBuckets[index].length >= dayLimitFor(index)) continue;
+        if (!canCluster(anchors[index].place, item.place, clusterRadius)) continue;
+        if (profile.quickStop && (bucketRoles[index].quick ?? 0) >= 1) continue;
+        if (usedMinutes[index] + duration > dayBudgetFor(index)) continue;
+        const roles = bucketRoles[index];
+        const dayOpensEarly =
+          (roles.market ?? 0) > 0 || (roles.sunrise ?? 0) > 0;
+        const dayEndsEvening =
+          (roles.sunset ?? 0) > 0 || (roles.night ?? 0) > 0;
+        if (profile.sunset && dayOpensEarly) continue;
+        // 早市和日落/夜市排在同一天，排程会在午后留下大段空档；
+        // 除非用户手动固定，否则宁可把早市留给白天日。
+        if (profile.marketMorning && dayEndsEvening) continue;
+        if (
+          (profile.marketMorning || profile.sunrise) &&
+          (roles.sunset ?? 0) > 0
+        ) {
+          continue;
+        }
+        const km = placeDistance(anchors[index].place, item.place);
+        let value =
+          item.score -
+          km * 0.3 -
+          (dayBuckets[index].length / Math.max(1, dayLimitFor(index))) * 1.7;
+        if (transport !== "drive") {
+          const line = sharedMetroLine(anchors[index].place, item.place, city);
+          if (line) value += 0.35;
+        }
+        const lateOnly =
+          !profile.sunset &&
+          !profile.nightStreet &&
+          profile.windows.length > 0 &&
+          profile.windows.every(([start]) => start >= 14 * 60);
+        // 上午型点位优先去白天日，下午型点位优先接日落/夜市日：
+        // 用软偏好代替硬隔离，避免把南普陀这类大点直接挤掉。
+        if (profile.morningOnly) value += dayEndsEvening ? -0.9 : 0.35;
+        if (lateOnly) value += dayEndsEvening ? 0.55 : -0.25;
+        if (profile.quickStop) value -= 2.8;
+        if (!profile.heroEligible) value -= 0.7;
+        if (profile.sunset) {
+          value += roles.sunset
+            ? styles.includes("coastal")
+              ? -1.1
+              : -2.6
+            : 0.55;
+        }
+        if (profile.sunrise) {
+          value += roles.sunrise ? -3 : 0.35;
+          if (sunTooFar(item.place, hotel)) value -= 2.5;
+        }
+        if (profile.indoor) value += roles.indoor ? -0.8 : 0.4;
+        if (profile.marketMorning) value += roles.market ? -1 : 0.35;
+        if (profile.nightStreet) value += roles.night ? -0.8 : 0.3;
+        if (!roles.morning && profile.bands.includes("morning")) {
+          value += 0.5;
+        }
+        if (value > bestValue) {
+          bestValue = value;
+          bestIndex = index;
+        }
+      }
+      if (bestIndex >= 0) {
+        dayBuckets[bestIndex].push(item);
+        chosenIds.add(item.place.id);
+        usedMinutes[bestIndex] += duration;
+        for (const role of rhythmRoles(profile)) {
+          bucketRoles[bestIndex][role] =
+            (bucketRoles[bestIndex][role] ?? 0) + 1;
+        }
       }
     }
-    const buckets = bestBuckets ?? [];
-    const chosenIds = new Set<string>();
 
-    nearPositions.forEach((position, bucketIndex) => {
+    nearPositions.forEach((position, index) => {
       const day = autoDays[position];
-      const bucket = (buckets[bucketIndex] ?? []).slice().sort((a, b) => b.score - a.score);
-      const picked = bucket.slice(0, capacity).map((item) => item.place);
-      picked.forEach((place) => chosenIds.add(place.id));
-      dayPlaces.set(day, picked);
+      const anchor = anchors[index];
+      if (!anchor) {
+        dayPlaces.set(day, []);
+        return;
+      }
+      dayPlaces.set(day, [
+        anchor.place,
+        ...dayBuckets[index].map((item) => item.place),
+      ]);
     });
 
-    // 景点稀疏的方向，从邻近的剩余点位补齐，避免出现空荡的一天。
-    nearPositions.forEach((position, bucketIndex) => {
+    // 孤立的锚点用最近的高分点位补齐，至少凑成半天的路线。
+    nearPositions.forEach((position, index) => {
       const day = autoDays[position];
       const picked = dayPlaces.get(day) ?? [];
       if (picked.length >= 2) return;
-      const sectorCenter = destinationPoint(
-        [hotel.lng, hotel.lat],
-        normalizeAngle(phase + ((bucketIndex + 0.5) * span)),
-        3,
-      );
+      const anchor = anchors[index];
       const spare = nearPool
         .filter((item) => !chosenIds.has(item.place.id))
+        .filter((item) => {
+          if (!anchor) return item.distance <= nearKm;
+          if (canCluster(anchor.place, item.place, clusterRadius * 1.7)) {
+            return true;
+          }
+          return (
+            !anchor.place.island &&
+            !item.place.island &&
+            item.distance <= nearKm * 1.2
+          );
+        })
         .sort((a, b) => {
-          const da = haversine(sectorCenter, [a.place.lng, a.place.lat]);
-          const db = haversine(sectorCenter, [b.place.lng, b.place.lat]);
+          const da = anchor ? placeDistance(anchor.place, a.place) : a.distance;
+          const db = anchor ? placeDistance(anchor.place, b.place) : b.distance;
           return b.score - db * 0.5 - (a.score - da * 0.5);
         });
       for (let i = 0; i < spare.length && picked.length < 2; i++) {
         const candidate = spare[i];
-        if (candidate.distance > nearKm * 1.8) continue;
-        if (picked.some((place) => placeDistance(place, candidate.place) < 0.3)) continue;
+        if (picked.some((place) => place.id === candidate.place.id)) continue;
+        const candidateProfile = rhythmOf(city, candidate.place);
+        const pickedRoles = roleCount(
+          picked.map((place) => rhythmOf(city, place)),
+        );
+        const opensEarly =
+          (pickedRoles.market ?? 0) > 0 || (pickedRoles.sunrise ?? 0) > 0;
+        if (candidateProfile.sunset && opensEarly) continue;
+        if (
+          (candidateProfile.marketMorning || candidateProfile.sunrise) &&
+          (pickedRoles.sunset ?? 0) > 0
+        ) {
+          continue;
+        }
         picked.push(candidate.place);
         chosenIds.add(candidate.place.id);
       }
@@ -801,10 +1042,11 @@ export function selectDays(input: SelectInput): SelectResult {
     const anchor = anchorId
       ? picked.find((place) => place.id === anchorId) ?? picked[0]
       : undefined;
+    let oneWay = 0;
     if (far && anchor) {
       const ferryExtra =
         anchor.island && anchor.island !== hotel.island ? 30 : 0;
-      const oneWay = estimateModeMinutes(hotel, anchor, "taxi") + ferryExtra;
+      oneWay = estimateModeMinutes(hotel, anchor, "taxi") + ferryExtra;
       const dir = directionLabel(
         bearing([hotel.lng, hotel.lat], [anchor.lng, anchor.lat]),
       );
@@ -814,14 +1056,33 @@ export function selectDays(input: SelectInput): SelectResult {
         }`,
       );
     }
+    const composed = picked.length
+      ? composeDay({
+          places: picked,
+          hotel,
+          city,
+          pace,
+          styles,
+          transport,
+          dayIndex: day,
+          anchorId,
+          baseStart:
+            PACES[pace].startMin - (far && oneWay >= 60 ? 30 : 0),
+          seed,
+        })
+      : null;
+    if (composed?.warnings.length) warnings.push(...composed.warnings);
     result.push({
       index: day,
-      places: orderLoop(picked, hotel, seed, day),
+      places: composed?.places ?? picked,
       fixed: false,
       area: far ? `远足 · ${describeArea(picked, hotel)}` : describeArea(picked, hotel),
       theme: describeTheme(picked, seed, day),
       far,
-      anchorIds: anchorByDay.get(day),
+      anchorIds: composed?.protectedIds.length
+        ? composed.protectedIds
+        : anchorByDay.get(day),
+      startMinHint: composed?.startMinHint,
     });
   }
 

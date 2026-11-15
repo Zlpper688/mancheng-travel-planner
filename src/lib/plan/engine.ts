@@ -4,17 +4,26 @@ import {
   PACES,
   STYLE_LABELS,
 } from "../constants";
-import { addDaysISO, formatDateRange } from "../geo";
+import { addDaysISO, formatDateRange, placeDistance } from "../geo";
 import { crowdFactor, getHoliday } from "../holidays";
 import { getProvider } from "../providers";
 import type { DiscoverOptions, DiscoverResult } from "../providers/types";
 import { cityShortName } from "../providers/normalize";
+import {
+  fetchTripWeather,
+  pickDayWeather,
+  summarizeRainWindows,
+  weatherTip,
+  type WeatherCore,
+} from "../weather";
 import type {
   DayPlan,
   PlanMeta,
   PlanResult,
+  Place,
   TripInput,
 } from "../types";
+import { selectTips } from "../tips/engine";
 import { buildBudget } from "./budget";
 import { scheduleDay } from "./schedule";
 import { selectDays } from "./select";
@@ -70,6 +79,7 @@ function buildMeta(
   discovered: DiscoverResult,
   days: DayPlan[],
   farDays: number,
+  weatherKind?: "forecast" | "climate" | "mixed",
 ): PlanMeta {
   const holiday = getHoliday(input.date);
   const isFixed = Boolean(input.fixedPlaces?.length);
@@ -98,6 +108,15 @@ function buildMeta(
         : `其中 ${farDays} 天留给较远但出名的景点，集中在同一方向，减少来回折腾。`,
     );
   }
+  if (weatherKind) {
+    dataNotes.push(
+      weatherKind === "forecast"
+        ? "天气与日照来自 Open-Meteo 预报，出发前再核对一次。"
+        : weatherKind === "climate"
+          ? "行程日期超出天气预报范围，天气按去年同期气候估算，出发前一周再看预报。"
+          : "部分日期超出天气预报范围，已用去年同期气候补全，出发前一周再看预报。",
+    );
+  }
   dataNotes.push("预算为带区间的估算，房价与门票以预订页和现场为准。");
 
   return {
@@ -117,6 +136,26 @@ function buildMeta(
   };
 }
 
+function pickRainBackup(
+  sights: Place[],
+  planned: Set<string>,
+  anchor: Place,
+): Place | null {
+  let best: Place | null = null;
+  let bestScore = -Infinity;
+  for (const place of sights) {
+    if (place.category !== "museum" || planned.has(place.id)) continue;
+    const km = placeDistance(anchor, place);
+    if (km > 6) continue;
+    const score = (place.popularity ?? place.rating ?? 3) - km * 0.2;
+    if (score > bestScore) {
+      best = place;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
 export async function planTrip(input: TripInput): Promise<PlanResult> {
   const provider = getProvider();
   const discovered = await discoverForTrip(input);
@@ -132,6 +171,8 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     styles: input.styles,
     seed: input.seed,
     radiusKm,
+    transport: input.transport,
+    city: input.city,
     fixedPlaces: input.fixedPlaces,
     farDays: input.farDays,
   });
@@ -139,14 +180,37 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const warnings: string[] = [];
   const usedMealIds = new Set<string>();
   const days: DayPlan[] = [];
+  const usedPlaceIds = new Set(
+    selection.days.flatMap((seedDay) =>
+      seedDay.places.map((place) => place.id),
+    ),
+  );
+
+  const weather = await fetchTripWeather(
+    selection.days.map((seedDay) => {
+      const anchor =
+        seedDay.places.find((place) => place.category !== "hotel") ?? input.hotel;
+      return { lat: anchor.lat, lng: anchor.lng };
+    }),
+    input.date,
+    input.days,
+  );
+  const weatherByDay = new Map<number, WeatherCore | null>();
 
   for (const seedDay of selection.days) {
+    const date = addDaysISO(input.date, seedDay.index - 1);
+    const anchor =
+      seedDay.places.find((place) => place.category !== "hotel") ?? input.hotel;
+    const core = weather
+      ? pickDayWeather(weather, anchor.lat, anchor.lng, date)
+      : null;
+    weatherByDay.set(seedDay.index, core);
     const result = await scheduleDay({
       seedDay,
       hotel: input.hotel,
       meals: discovered.meals,
       city: input.city,
-      date: addDaysISO(input.date, seedDay.index - 1),
+      date,
       pace: input.pace,
       styles: input.styles,
       transport: input.transport,
@@ -156,19 +220,103 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
       dayIndex: seedDay.index,
       provider,
       usedMealIds,
+      weather: core,
+      spares: discovered.sights.filter(
+        (place) => !usedPlaceIds.has(place.id),
+      ),
     });
     days.push(result.plan);
-    warnings.push(...result.warnings);
+    for (const stop of result.plan.stops) {
+      usedPlaceIds.add(stop.place.id);
+    }
+    warnings.push(
+      ...result.warnings.map((warning) =>
+        /^第\s*\d+\s*天/.test(warning)
+          ? warning
+          : `第 ${seedDay.index} 天：${warning}`,
+      ),
+    );
   }
 
   warnings.push(...selection.warnings);
+
+  if (weather) {
+    const planned = new Set(
+      days.flatMap((day) => day.stops.map((stop) => stop.place.id)),
+    );
+    for (const day of days) {
+      const core = weatherByDay.get(day.index);
+      if (!core) continue;
+      const anchor =
+        day.stops.find((stop) => stop.kind === "sight")?.place ?? input.hotel;
+      const windows = summarizeRainWindows(core);
+      const wet =
+        (core.precipProb ?? 0) >= 50 ||
+        (core.precipMm ?? 0) >= 2 ||
+        windows.some((window) => window.mm >= 1);
+      const backup = wet
+        ? pickRainBackup(discovered.sights, planned, anchor)
+        : null;
+      const lastSightEndMin = [...day.stops]
+        .reverse()
+        .find((stop) => stop.kind === "sight")?.endMin;
+      day.weather = {
+        code: core.code,
+        label: core.label,
+        icon: core.icon,
+        tMax: core.tMax,
+        tMin: core.tMin,
+        precipProb: core.precipProb,
+        precipMm: core.precipMm,
+        windKmh: core.windKmh,
+        sunrise: core.sunrise,
+        sunset: core.sunset,
+        estimated: core.estimated,
+        source: core.source,
+        tip: weatherTip(core, lastSightEndMin),
+        backup: backup ? { placeId: backup.id, name: backup.name } : undefined,
+        hourly: core.hourly,
+        rainWindows: windows.length ? windows : undefined,
+      };
+      const severe =
+        !core.estimated &&
+        (core.code >= 95 ||
+          core.code === 65 ||
+          core.code === 82 ||
+          (core.precipProb ?? 0) >= 85 ||
+          core.tMax >= 37 ||
+          core.tMin <= -10);
+      if (severe) {
+        const reason =
+          core.code >= 95
+            ? "有雷雨"
+            : core.code === 65 || core.code === 82
+              ? "有大雨"
+              : (core.precipProb ?? 0) >= 85
+                ? "降雨概率很高"
+                : core.tMax >= 37
+                  ? "高温"
+                  : "严寒";
+        warnings.push(
+          `第 ${day.index} 天${day.far ? "是远足日，" : ""}${reason}，出发前确认天气，必要时换室内点位。`,
+        );
+      }
+    }
+  }
+
   if (holiday) warnings.unshift(holiday.tip);
   if (discovered.isDemo) {
     warnings.push("当前为免 Key 演示模式：厦门点位真实，公交耗时为估算。");
   }
 
+  const tips = selectTips(input, days);
+  for (const day of days) {
+    const dayTips = tips.dayTips.get(day.index);
+    if (dayTips?.length) day.tips = dayTips;
+  }
+
   const budget = buildBudget(days, input, holiday?.hotelFactor ?? 1);
-  const meta = buildMeta(input, discovered, days, selection.farDays);
+  const meta = buildMeta(input, discovered, days, selection.farDays, weather?.kind);
   const seen = new Set<string>();
 
   return {
@@ -180,5 +328,6 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
       seen.add(warning);
       return true;
     }).slice(0, 10),
+    tips: tips.tripTips.length ? tips.tripTips : undefined,
   };
 }

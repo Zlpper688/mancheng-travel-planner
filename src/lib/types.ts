@@ -26,6 +26,47 @@ export type TransportPref = "auto" | "walk" | "transit" | "drive";
 export type BudgetTier = "economy" | "comfort" | "premium";
 export type TransportMode = "walk" | "transit" | "taxi";
 export type DataSourceKind = "amap" | "open" | "demo";
+export type WeatherIcon =
+  | "sun"
+  | "cloud-sun"
+  | "cloud"
+  | "rain"
+  | "snow"
+  | "storm"
+  | "fog";
+
+export interface HourlyPoint {
+  hour: number;
+  mm: number;
+  prob?: number;
+  temp?: number;
+}
+
+export interface RainWindow {
+  startMin: number;
+  endMin: number;
+  mm: number;
+  peakProb: number;
+}
+
+export interface DayWeather {
+  code: number;
+  label: string;
+  icon: WeatherIcon;
+  tMax: number;
+  tMin: number;
+  precipProb?: number;
+  precipMm?: number;
+  windKmh?: number;
+  sunrise?: string;
+  sunset?: string;
+  tip?: string;
+  estimated: boolean;
+  source: "open-meteo" | "open-meteo-archive";
+  backup?: { placeId: string; name: string };
+  hourly?: HourlyPoint[];
+  rainWindows?: RainWindow[];
+}
 
 export interface CityOption {
   name: string;
@@ -107,6 +148,29 @@ export interface RouteLeg {
 
 export type StopKind = "sight" | "meal" | "cafe";
 
+export type TipKind =
+  | "booking"
+  | "family"
+  | "weather"
+  | "crowd"
+  | "ferry"
+  | "island"
+  | "food"
+  | "photo"
+  | "temple"
+  | "slow"
+  | "transit"
+  | "city"
+  | "safety";
+
+export interface PlanTip {
+  id: string;
+  kind: TipKind;
+  title: string;
+  body: string;
+  source: string;
+}
+
 export interface StopPlan {
   id: string;
   place: Place;
@@ -118,6 +182,8 @@ export interface StopPlan {
   note?: string;
   ticket?: number;
   estimatedTicket?: boolean;
+  attrs?: string[];
+  tips?: PlanTip[];
 }
 
 export interface DayStats {
@@ -127,6 +193,14 @@ export interface DayStats {
   travelMin: number;
   walkKm: number;
   ticket: number;
+}
+
+export interface DayRhythm {
+  sunrise?: boolean;
+  sunset?: boolean;
+  early?: boolean;
+  night?: boolean;
+  indoorMidday?: boolean;
 }
 
 export interface DayPlan {
@@ -141,7 +215,13 @@ export interface DayPlan {
   startMin: number;
   endMin: number;
   tip: string;
+  strategy?: string;
+  heroName?: string;
+  heroPlaceId?: string;
+  rhythm?: DayRhythm;
   far?: boolean;
+  weather?: DayWeather;
+  tips?: PlanTip[];
 }
 
 export interface BudgetItem {
@@ -191,6 +271,7 @@ export interface PlanResult {
   days: DayPlan[];
   budget: BudgetSummary;
   warnings: string[];
+  tips?: PlanTip[];
 }
 
 export interface PlanResponse {

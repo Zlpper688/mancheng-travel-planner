@@ -475,7 +475,7 @@ export default function PlannerApp({
 
         <footer className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-3 text-[9px] text-ink-faint">
           <p>漫城 MANCHENG · 用真实地图，把旅行排成一个圈</p>
-          <p>数据来自高德 / OpenStreetMap / OSRM · 时间与价格请以现场为准</p>
+          <p>数据来自高德 / OpenStreetMap / OSRM / Open-Meteo · 时间与价格请以现场为准</p>
         </footer>
       </main>
 
