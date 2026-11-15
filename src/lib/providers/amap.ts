@@ -13,6 +13,7 @@ import {
   estimateTaxiFare,
   estimateTransitFare,
   mergePolylines,
+  pointPlaceDistance,
   straightLine,
 } from "../geo";
 import type { Category, Place, TransportMode } from "../types";
@@ -112,10 +113,68 @@ function asString(value: unknown): string | undefined {
     : undefined;
 }
 
+// 高德个人认证账号的并发配额（QPS）很低，排线时会集中发出几十个请求，
+// 很容易触发 CUQPS_HAS_EXCEEDED_THE_LIMIT。这里做两件事兜住：
+// 1) 所有请求串行化，并保证发起间隔不小于 MIN_GAP_MS；
+// 2) 撞上限流/网络抖动时指数退避重试，而不是直接把错误抛给用户。
+const MIN_GAP_MS = 320;
+const MAX_ATTEMPTS = 4;
+let lastStartAt = 0;
+let queue: Promise<unknown> = Promise.resolve();
+
+function enqueue<T>(task: () => Promise<T>): Promise<T> {
+  const run = queue.then(async () => {
+    const waitFor = lastStartAt + MIN_GAP_MS - Date.now();
+    if (waitFor > 0) await new Promise((resolve) => setTimeout(resolve, waitFor));
+    lastStartAt = Date.now();
+    return task();
+  });
+  queue = run.then(
+    () => undefined,
+    () => undefined,
+  );
+  return run;
+}
+
+/** 只有「重试有意义」的错误才退避重来：限流、网络抖动。Key 错误与配额用尽直接抛。 */
+function shouldRetry(error: unknown): boolean {
+  if (!(error instanceof TravelError)) return true; // 网络层异常
+  if (error.code === "AMAP_KEY_INVALID" || error.code === "AMAP_NOT_CONFIGURED") {
+    return false;
+  }
+  const text = `${error.message} ${error.hint ?? ""}`;
+  if (/DAILY_QUERY_OVER_LIMIT|USER_DAILY_QUERY_OVER_LIMIT|10003|10044/.test(text)) {
+    return false; // 当日/当月配额真的用完了，重试无益
+  }
+  return true; // CUQPS / ACCESS_TOO_FREQUENT / 其他上游抖动
+}
+
 async function amapGet<T>(
   path: string,
   params: Record<string, string | number>,
   timeout = 15_000,
+): Promise<T & AmapBaseResponse> {
+  return enqueue(async () => {
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+      try {
+        return await amapGetOnce<T>(path, params, timeout);
+      } catch (error) {
+        lastError = error;
+        if (attempt === MAX_ATTEMPTS || !shouldRetry(error)) throw error;
+        await new Promise((resolve) =>
+          setTimeout(resolve, 400 * 2 ** (attempt - 1)),
+        );
+      }
+    }
+    throw lastError;
+  });
+}
+
+async function amapGetOnce<T>(
+  path: string,
+  params: Record<string, string | number>,
+  timeout: number,
 ): Promise<T & AmapBaseResponse> {
   const key = getKey();
   const search = new URLSearchParams({
@@ -137,7 +196,7 @@ async function amapGet<T>(
         : "AMAP_ERROR",
       data.infocode === "10003"
         ? "今日调用配额可能已用完，可明天再试或更换 Key"
-        : "检查 Key 是否为「Web服务」类型，以及控制台中的配额设置",
+        : "并发量或频率超限，已自动重试；持续失败请到控制台查看配额",
     );
   }
   return data;
@@ -156,6 +215,24 @@ const CATEGORY_FALLBACK_POPULARITY: Partial<Record<Category, number>> = {
   food: 3.3,
   cafe: 3.2,
 };
+
+// 自动发现点位时，高德「14 科教文化服务」大类里混着学校和培训机构，
+// 排进行程会出现「雅思托福留学」「考研辅导」这类和地方，直接排除。
+// 注意：只用于自动发现（fetchAround），用户主动搜索时不做过滤。
+const JUNK_TYPECODE_PREFIXES = ["140100", "140200", "141400"];
+const JUNK_NAME_PATTERN =
+  /培训|教育|留学|雅思|托福|考研|考公|辅导|补习|进修|驾校|语培|招生|社区|小区|停车场|公厕|厕所|售票处|游客中心|出入口|服务中心|管理处/;
+
+function isJunkPoi(raw: AmapPoiRaw): boolean {
+  const typecode = asString(raw.typecode) ?? "";
+  for (const code of typecode.split("|")) {
+    if (JUNK_TYPECODE_PREFIXES.some((prefix) => code.startsWith(prefix))) {
+      return true;
+    }
+  }
+  const name = asString(raw.name) ?? "";
+  return JUNK_NAME_PATTERN.test(name);
+}
 
 function mapAmapPoi(raw: AmapPoiRaw, forceHotel = false): Place | null {
   const name = asString(raw.name);
@@ -235,12 +312,34 @@ async function amapTextSearch(
   return [];
 }
 
+type AroundWant = "sight" | "meal" | "cafe";
+
 type AroundSpec = {
   center: [number, number];
   radius: number;
   types: string;
   pages: number;
+  want: AroundWant;
 };
+
+/** 可以作为「景点/停留点」的类别。未列入的一律不当作景点（避免 KTV、商店混入）。 */
+const SIGHT_CATEGORIES: ReadonlySet<Category> = new Set<Category>([
+  "attraction",
+  "museum",
+  "park",
+  "viewpoint",
+  "beach",
+  "street",
+  "temple",
+  "market",
+  "nature",
+]);
+
+function acceptByWant(place: Place, want: AroundWant): boolean {
+  if (want === "sight") return SIGHT_CATEGORIES.has(place.category);
+  if (want === "cafe") return place.category === "cafe";
+  return place.category === "food" || place.category === "cafe";
+}
 
 async function fetchAround(spec: AroundSpec): Promise<Place[]> {
   const [gcjLng, gcjLat] = wgs84ToGcj02(spec.center[0], spec.center[1]);
@@ -260,8 +359,54 @@ async function fetchAround(spec: AroundSpec): Promise<Place[]> {
       18_000,
     );
     for (const raw of data.pois ?? []) {
+      if (isJunkPoi(raw)) continue;
       const place = mapAmapPoi(raw);
-      if (place) results.push(place);
+      if (!place) continue;
+      if (!acceptByWant(place, spec.want)) continue;
+      results.push(place);
+    }
+    if ((data.pois ?? []).length < 25) break;
+  }
+  return results;
+}
+
+type CitySpec = {
+  types: string;
+  pages: number;
+  want: AroundWant;
+  /** 距酒店超过 radius × radiusFactor 的点位直接丢掉，避免跨到隔壁城市 */
+  radiusFactor: number;
+};
+
+/** 全市范围按 POI 类型检索，再按到酒店的距离圈定。用于景点发现。 */
+async function fetchCityPois(
+  city: string,
+  spec: CitySpec,
+  hotel: [number, number],
+  radius: number,
+): Promise<Place[]> {
+  const results: Place[] = [];
+  const maxKm = radius * spec.radiusFactor;
+  for (let page = 1; page <= spec.pages; page++) {
+    const data = await amapGet<AmapPoiResponse>(
+      "/place/text",
+      {
+        types: spec.types,
+        city,
+        citylimit: "true",
+        offset: 25,
+        page,
+        extensions: "all",
+      },
+      18_000,
+    );
+    for (const raw of data.pois ?? []) {
+      if (isJunkPoi(raw)) continue;
+      const place = mapAmapPoi(raw);
+      if (!place) continue;
+      if (!acceptByWant(place, spec.want)) continue;
+      if (pointPlaceDistance(place, hotel) > maxKm) continue;
+      results.push(place);
     }
     if ((data.pois ?? []).length < 25) break;
   }
@@ -269,19 +414,33 @@ async function fetchAround(spec: AroundSpec): Promise<Place[]> {
 }
 
 async function discoverAmap(options: DiscoverOptions): Promise<DiscoverResult> {
-  const center: [number, number] =
-    options.center ?? [options.hotel.lng, options.hotel.lat];
   const hotel: [number, number] = [options.hotel.lng, options.hotel.lat];
   const radius = Math.min(30_000, Math.max(8_000, options.radiusKm * 1000));
-  const specs: AroundSpec[] = [
-    { center, radius, types: "110000|140000", pages: 2 },
-    { center: hotel, radius: Math.min(12_000, radius), types: "110000|140000|080000", pages: 1 },
-    { center: hotel, radius: 5000, types: "050000", pages: 2 },
-    { center: hotel, radius: 6000, types: "050500", pages: 1 },
-    { center, radius: 4000, types: "050000", pages: 1 },
+  // 景点走「全市检索 + 距离圈定」，而不是 place/around。
+  // place/around 按距离排序，8km 内只会把酒店门口那几十个小景点（广场、雕塑、
+  // 某某殿）喂进来，宽窄巷子、武侯祠这类真正值得去的地方挤不进前 50 条。
+  // 吃喝仍然就近搜索——跑 5 公里吃饭不合理。
+  const citySightSpecs: CitySpec[] = [
+    // 110000 风景名胜：公园广场、旅游景点、寺庙道观、纪念馆、特色商业街
+    { types: "110000", pages: 3, want: "sight", radiusFactor: 1.5 },
+    // 博物馆 / 展览馆 / 美术馆
+    { types: "140500|140600|140700", pages: 1, want: "sight", radiusFactor: 1.5 },
+  ];
+  const nearSpecs: AroundSpec[] = [
+    // 餐饮（正餐）
+    { center: hotel, radius: 5000, types: "050000", pages: 2, want: "meal" },
+    // 咖啡茶歇
+    { center: hotel, radius: 6000, types: "050500", pages: 1, want: "cafe" },
   ];
 
-  const results = await mapLimit(specs, 3, (spec) => fetchAround(spec));
+  const [citySights, nearPlaces] = await Promise.all([
+    mapLimit(citySightSpecs, 2, (spec) =>
+      fetchCityPois(options.city, spec, hotel, radius),
+    ),
+    mapLimit(nearSpecs, 2, (spec) => fetchAround(spec)),
+  ]);
+
+  const results = [...citySights, ...nearPlaces];
   const all = dedupePlaces(results.flat());
 
   const rawSights = all.filter(

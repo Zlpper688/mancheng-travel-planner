@@ -1,3 +1,5 @@
+import https from "node:https";
+
 type CacheEntry<T> = {
   value: T;
   expiresAt: number;
@@ -45,26 +47,79 @@ export async function fetchJson<T>(
   init: RequestInit = {},
   timeoutMs = 20_000,
 ): Promise<T> {
+  const headers: Record<string, string> = {
+    "User-Agent": "ManchengTravelPlanner/1.0",
+    Accept: "application/json",
+    ...((init.headers as Record<string, string> | undefined) ?? {}),
+  };
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
+  let response: Response;
   try {
-    const response = await fetch(url, {
+    response = await fetch(url, {
       ...init,
       signal: controller.signal,
-      headers: {
-        "User-Agent": "ManchengTravelPlanner/1.0",
-        Accept: "application/json",
-        ...(init.headers ?? {}),
-      },
+      headers,
       cache: "no-store",
     });
-    if (!response.ok) {
-      throw new Error(`上游请求失败（${response.status}）`);
+  } catch (error) {
+    // Next 内置 fetch 走 undici 连接池，某些网络环境下会复用被上游关闭的
+    // 空闲连接，报 UND_ERR_SOCKET / other side closed。这时退回 node:https
+    // 单独建连，绕开连接池，实测更稳。
+    if (!isSocketLevelError(error)) {
+      clearTimeout(timer);
+      throw error;
     }
-    return (await response.json()) as T;
+    const fallback = await httpsGetJson<T>(url, headers, timeoutMs);
+    return fallback;
   } finally {
     clearTimeout(timer);
   }
+  if (!response.ok) {
+    throw new Error(`上游请求失败（${response.status}）`);
+  }
+  return (await response.json()) as T;
+}
+
+function isSocketLevelError(error: unknown): boolean {
+  const cause = (error as { cause?: { code?: string } })?.cause;
+  const code = cause?.code ?? "";
+  return (
+    code === "UND_ERR_SOCKET" ||
+    code === "ECONNRESET" ||
+    code === "EPIPE" ||
+    code === "ECONNREFUSED" ||
+    /other side closed|socket hang up|fetch failed/i.test(
+      `${(error as Error)?.message ?? ""}`,
+    )
+  );
+}
+
+function httpsGetJson<T>(
+  url: string,
+  headers: Record<string, string>,
+  timeoutMs: number,
+): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const req = https.get(url, { headers, timeout: timeoutMs }, (res) => {
+      let body = "";
+      res.setEncoding("utf8");
+      res.on("data", (chunk) => (body += chunk));
+      res.on("end", () => {
+        if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
+          reject(new Error(`上游请求失败（${res.statusCode ?? 0}）`));
+          return;
+        }
+        try {
+          resolve(JSON.parse(body) as T);
+        } catch {
+          reject(new Error("上游返回的不是合法 JSON"));
+        }
+      });
+    });
+    req.on("error", reject);
+    req.on("timeout", () => req.destroy(new Error("上游请求超时")));
+  });
 }
 
 export async function mapLimit<T, R>(
