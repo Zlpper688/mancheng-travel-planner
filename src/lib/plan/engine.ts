@@ -159,12 +159,23 @@ function pickRainBackup(
 export async function planTrip(input: TripInput): Promise<PlanResult> {
   const provider = getProvider();
   const discovered = await discoverForTrip(input);
+
+  // 用户手动移除 / 替换掉的点位，在进入选点与餐食插入之前就剔掉，
+  // 否则「移除」之后重排，同一个点会被发现流程原样塞回来。
+  const excludeIds = new Set(input.excludeIds ?? []);
+  const availableSights = excludeIds.size
+    ? discovered.sights.filter((place) => !excludeIds.has(place.id))
+    : discovered.sights;
+  const availableMeals = excludeIds.size
+    ? discovered.meals.filter((place) => !excludeIds.has(place.id))
+    : discovered.meals;
+
   const radiusKm = discoverRadius(input);
   const holiday = getHoliday(input.date);
   const crowd = crowdFactor(input.date);
 
   const selection = selectDays({
-    sights: discovered.sights,
+    sights: availableSights,
     hotel: input.hotel,
     days: input.days,
     pace: input.pace,
@@ -174,6 +185,8 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     transport: input.transport,
     city: input.city,
     fixedPlaces: input.fixedPlaces,
+    lockedPlaces: input.lockedPlaces,
+    slimDays: input.slimDays,
     farDays: input.farDays,
   });
 
@@ -208,7 +221,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     const result = await scheduleDay({
       seedDay,
       hotel: input.hotel,
-      meals: discovered.meals,
+      meals: availableMeals,
       city: input.city,
       date,
       pace: input.pace,
@@ -221,7 +234,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
       provider,
       usedMealIds,
       weather: core,
-      spares: discovered.sights.filter(
+      spares: availableSights.filter(
         (place) => !usedPlaceIds.has(place.id),
       ),
     });
@@ -255,7 +268,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
         (core.precipMm ?? 0) >= 2 ||
         windows.some((window) => window.mm >= 1);
       const backup = wet
-        ? pickRainBackup(discovered.sights, planned, anchor)
+        ? pickRainBackup(availableSights, planned, anchor)
         : null;
       const lastSightEndMin = [...day.stops]
         .reverse()

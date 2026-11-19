@@ -47,6 +47,10 @@ export interface SelectInput {
   transport: TransportPref;
   city: string;
   fixedPlaces?: FixedPlace[];
+  /** 单点锁定：必须进入指定那天，但当天其余点位仍由算法安排。 */
+  lockedPlaces?: FixedPlace[];
+  /** 用户从某天移除点位后，该天要少排几个，避免「移除」被自动补位抵消。 */
+  slimDays?: Record<number, number>;
   farDays?: number;
 }
 
@@ -658,6 +662,7 @@ export function selectDays(input: SelectInput): SelectResult {
     transport,
     city,
     fixedPlaces = [],
+    lockedPlaces = [],
   } = input;
   const warnings: string[] = [];
 
@@ -690,10 +695,44 @@ export function selectDays(input: SelectInput): SelectResult {
     (day) => !fixedDays.has(day),
   );
 
+  // 单点锁定：这个点必须出现在指定那天，但当天其余点位照常由算法安排。
+  // 必须与 fixedPlaces 分开处理——fixedPlaces 的语义是「整天按给定顺序走」，
+  // 若把单点锁定塞进去，锁一个点会让那一天只剩这一个点。
+  const lockedByDay = new Map<number, Place[]>();
+  for (const locked of lockedPlaces) {
+    const day = Math.round(locked.day);
+    if (day < 1 || day > days) {
+      warnings.push(
+        `锁定的「${locked.place.name}」超出本次 ${days} 天的行程，已忽略。`,
+      );
+      continue;
+    }
+    if (locked.place.category === "hotel") continue;
+    // 攻略日整日顺序已锁定，再叠加单点锁定没有意义。
+    if (fixedDays.has(day)) continue;
+    const list = lockedByDay.get(day) ?? [];
+    if (!list.some((item) => samePlace(item, locked.place))) {
+      list.push(locked.place);
+      lockedByDay.set(day, list);
+    }
+  }
+  const lockedIds = new Set<string>();
+  for (const list of lockedByDay.values()) {
+    for (const place of list) lockedIds.add(place.id);
+  }
+
+  // 「移除」不该被自动补位抵消：用户删掉几个点，当天就少排几个。
+  const slimFor = (day: number) => {
+    const raw = input.slimDays?.[day];
+    if (!raw || !Number.isFinite(raw)) return 0;
+    return Math.max(0, Math.min(4, Math.round(raw)));
+  };
+
   const baseSights = dedupePlaces(input.sights).filter(
     (place) =>
       !["food", "cafe", "hotel", "other"].includes(place.category) &&
-      !fixedIds.has(place.id),
+      !fixedIds.has(place.id) &&
+      !lockedIds.has(place.id),
   );
 
   const scored: ScoredPlace[] = baseSights
@@ -857,7 +896,9 @@ export function selectDays(input: SelectInput): SelectResult {
         (anchorProfiles[index]?.sunset || anchorProfiles[index]?.nightStreet)
           ? 90
           : 0;
-      return PACES[pace].sights * 80 * (edge ? 0.88 : 1) + closingBonus;
+      return (
+        PACES[pace].sights * 80 * (edge ? 0.88 : 1) + closingBonus
+      );
     };
     const usedMinutes = anchors.map((item) =>
       rhythmBudgetMinutes(city, item.place),
@@ -1013,6 +1054,35 @@ export function selectDays(input: SelectInput): SelectResult {
     }
     if (nearPool.length < need) {
       warnings.push("这个城市的点位偏少，部分日期会安排得更松一些。");
+    }
+  }
+
+  // 把锁定的点位放到当天队列最前面：composeDay 若因时间不够删减，
+  // 删的是队尾的自动点位，锁定的点不会被顺手丢掉。
+  for (const [day, places] of lockedByDay) {
+    const current = dayPlaces.get(day) ?? [];
+    const merged = [...places];
+    for (const place of current) {
+      if (!merged.some((item) => samePlace(item, place))) merged.push(place);
+    }
+    dayPlaces.set(day, merged);
+    if (merged.length > capacity + places.length) {
+      warnings.push(
+        `第 ${day} 天锁定了 ${places.length} 个点位，当天会比较满，想轻松点可以解除一两个。`,
+      );
+    }
+  }
+
+  // 「移除」的最终收口：上面的「至少凑 2 站」「补齐空荡的一天」等兜底
+  // 会无视用户意图把人删掉的量补回来，这里按天统一削掉。
+  // 锁定点位在合并时已放在队首，因此截尾不会误伤它们。
+  for (const [day, places] of dayPlaces) {
+    const slim = slimFor(day);
+    if (!slim) continue;
+    const lockedCount = (lockedByDay.get(day) ?? []).length;
+    const keep = Math.max(lockedCount || 1, places.length - slim);
+    if (keep < places.length) {
+      dayPlaces.set(day, places.slice(0, keep));
     }
   }
 

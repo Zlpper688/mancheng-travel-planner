@@ -41,6 +41,9 @@ type PlanOverrides = Partial<{
   children: number;
   seed: number;
   fixedPlaces: FixedPlace[];
+  lockedPlaces: FixedPlace[];
+  excludeIds: string[];
+  slimDays: Record<number, number>;
   farDays: number | null;
 }>;
 
@@ -79,6 +82,12 @@ export default function PlannerApp({
   const [seed, setSeed] = useState(42);
   const [farDays, setFarDays] = useState<number | null>(null);
   const [fixedPlaces, setFixedPlaces] = useState<FixedPlace[]>([]);
+  /** 单点锁定：重排时这些点必须留在原定的那天。 */
+  const [lockedPlaces, setLockedPlaces] = useState<FixedPlace[]>([]);
+  /** 用户移除或替换掉的点位，后续重排不得再出现。 */
+  const [excludeIds, setExcludeIds] = useState<string[]>([]);
+  /** 某天少排几个点位，让「移除」不被自动补位抵消。 */
+  const [slimDays, setSlimDays] = useState<Record<number, number>>({});
   const [guideResetKey, setGuideResetKey] = useState(0);
 
   const [plan, setPlan] = useState<PlanResult | null>(null);
@@ -124,6 +133,9 @@ export default function PlannerApp({
     const nextChildren = overrides.children ?? children;
     const nextSeed = overrides.seed ?? seed;
     const nextFixed = overrides.fixedPlaces ?? fixedPlaces;
+    const nextLocked = overrides.lockedPlaces ?? lockedPlaces;
+    const nextExclude = overrides.excludeIds ?? excludeIds;
+    const nextSlim = overrides.slimDays ?? slimDays;
     const nextFarDays =
       overrides.farDays !== undefined ? overrides.farDays : farDays;
 
@@ -142,6 +154,9 @@ export default function PlannerApp({
       seed: nextSeed,
       hotelPrice: nextHotel.cost,
       fixedPlaces: nextFixed.length ? nextFixed : undefined,
+      lockedPlaces: nextLocked.length ? nextLocked : undefined,
+      excludeIds: nextExclude.length ? nextExclude : undefined,
+      slimDays: Object.keys(nextSlim).length ? nextSlim : undefined,
       farDays: nextFarDays ?? undefined,
     };
 
@@ -214,14 +229,32 @@ export default function PlannerApp({
     setHotel(nextHotel);
     setPicking(false);
     setFixedPlaces([]);
+    setLockedPlaces([]);
+    setExcludeIds([]);
+    setSlimDays({});
     setGuideResetKey((value) => value + 1);
-    void requestPlan({ city: next, hotel: nextHotel, fixedPlaces: [] });
+    void requestPlan({
+      city: next,
+      hotel: nextHotel,
+      fixedPlaces: [],
+      lockedPlaces: [],
+      excludeIds: [],
+      slimDays: {},
+    });
   }
 
   function handleHotelChange(next: Place) {
     setHotel(next);
     setPicking(false);
-    void requestPlan({ hotel: next });
+    setLockedPlaces([]);
+    setExcludeIds([]);
+    setSlimDays({});
+    void requestPlan({
+      hotel: next,
+      lockedPlaces: [],
+      excludeIds: [],
+      slimDays: {},
+    });
   }
 
   function handleDaysChange(next: number) {
@@ -306,12 +339,28 @@ export default function PlannerApp({
           ? { ...(data.place as Place), category: "hotel" }
           : pickedHotel(lng, lat);
       setHotel(nextHotel);
-      void requestPlan({ hotel: nextHotel });
+      setLockedPlaces([]);
+      setExcludeIds([]);
+      setSlimDays({});
+      void requestPlan({
+        hotel: nextHotel,
+        lockedPlaces: [],
+        excludeIds: [],
+        slimDays: {},
+      });
     } catch {
       const nextHotel = pickedHotel(lng, lat);
       setHotel(nextHotel);
+      setLockedPlaces([]);
+      setExcludeIds([]);
+      setSlimDays({});
       setToast("没能识别地名，已用坐标作为落脚点。");
-      void requestPlan({ hotel: nextHotel });
+      void requestPlan({
+        hotel: nextHotel,
+        lockedPlaces: [],
+        excludeIds: [],
+        slimDays: {},
+      });
     } finally {
       setReverseLoading(false);
     }
@@ -335,6 +384,78 @@ export default function PlannerApp({
     const nextSeed = (seed + 1 + Math.floor(Math.random() * 997)) % 2147483646;
     setSeed(nextSeed);
     void requestPlan({ seed: nextSeed });
+  }
+
+  /** 从当前行程里取出某个点位的完整对象，供锁定与替换使用。 */
+  function placeOf(dayIndex: number, placeId: string): Place | undefined {
+    return plan?.days
+      .find((item) => item.index === dayIndex)
+      ?.stops.find((stop) => stop.place.id === placeId)?.place;
+  }
+
+  function handleToggleLock(dayIndex: number, placeId: string) {
+    const already = lockedPlaces.some(
+      (item) => item.day === dayIndex && item.place.id === placeId,
+    );
+    if (already) {
+      setLockedPlaces((previous) =>
+        previous.filter(
+          (item) => !(item.day === dayIndex && item.place.id === placeId),
+        ),
+      );
+      setToast("已解除锁定，下次重排可能会换掉这个点。");
+      return;
+    }
+    const place = placeOf(dayIndex, placeId);
+    if (!place) return;
+    setLockedPlaces((previous) => [...previous, { place, day: dayIndex }]);
+    // 解锁和上锁都不立刻重排：用户看到的是「标记」，真正的重排发生在换一版或改偏好时。
+    setToast(`已锁定「${place.name}」，换一版时会留在第 ${dayIndex} 天。`);
+  }
+
+  function handleReplaceStop(dayIndex: number, placeId: string) {
+    const place = placeOf(dayIndex, placeId);
+    const nextExclude = excludeIds.includes(placeId)
+      ? excludeIds
+      : [...excludeIds, placeId];
+    const nextLocked = lockedPlaces.filter(
+      (item) => item.place.id !== placeId,
+    );
+    setExcludeIds(nextExclude);
+    setLockedPlaces(nextLocked);
+    setToast(place ? `正在换掉「${place.name}」…` : "正在换一个点位…");
+    void requestPlan({
+      excludeIds: nextExclude,
+      lockedPlaces: nextLocked,
+      slimDays,
+    });
+  }
+
+  function handleRemoveStop(dayIndex: number, placeId: string) {
+    const place = placeOf(dayIndex, placeId);
+    const nextExclude = excludeIds.includes(placeId)
+      ? excludeIds
+      : [...excludeIds, placeId];
+    const nextLocked = lockedPlaces.filter(
+      (item) => item.place.id !== placeId,
+    );
+    const nextSlim: Record<number, number> = {
+      ...slimDays,
+      [dayIndex]: Math.min(4, (slimDays[dayIndex] ?? 0) + 1),
+    };
+    setExcludeIds(nextExclude);
+    setLockedPlaces(nextLocked);
+    setSlimDays(nextSlim);
+    setToast(
+      place
+        ? `已移除「${place.name}」，第 ${dayIndex} 天会少排一个点。`
+        : "已移除这个点位。",
+    );
+    void requestPlan({
+      excludeIds: nextExclude,
+      lockedPlaces: nextLocked,
+      slimDays: nextSlim,
+    });
   }
 
   function handleFocusStop(dayIndex: number, placeId: string) {
@@ -469,6 +590,10 @@ export default function PlannerApp({
               onFocusStop={handleFocusStop}
               onShuffle={handleShuffle}
               onGenerate={() => void requestPlan()}
+              lockedIds={lockedPlaces.map((item) => item.place.id)}
+              onToggleLock={handleToggleLock}
+              onReplaceStop={handleReplaceStop}
+              onRemoveStop={handleRemoveStop}
             />
           </div>
         </div>

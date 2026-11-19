@@ -113,7 +113,14 @@ export interface TripInput {
   children: number;
   seed: number;
   hotelPrice?: number;
+  /** 攻略复刻：这些天按给定顺序整日锁定，不再自动选点。 */
   fixedPlaces?: FixedPlace[];
+  /** 单点锁定：这个点必须出现在该天，其余点位仍由算法安排。 */
+  lockedPlaces?: FixedPlace[];
+  /** 用户手动移除或替换掉的点位，后续重排不得再次出现。 */
+  excludeIds?: string[];
+  /** 某天少排几个点位（移除点位后用），键是第几天。 */
+  slimDays?: Record<number, number>;
   farDays?: number;
 }
 

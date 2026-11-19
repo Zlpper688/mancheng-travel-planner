@@ -43,6 +43,11 @@ export interface PlanPanelProps {
   onActiveDay: (day: number | "all") => void;
   onFocusStop: (day: number, placeId: string) => void;
   onShuffle: () => void;
+  /** 已锁定的点位 id，重排时这些点必须留在原定的那一天。 */
+  lockedIds: string[];
+  onToggleLock: (day: number, placeId: string) => void;
+  onReplaceStop: (day: number, placeId: string) => void;
+  onRemoveStop: (day: number, placeId: string) => void;
   onGenerate: () => void;
 }
 
@@ -252,11 +257,19 @@ function LegRow({ leg }: { leg: RouteLeg }) {
 function StopRow({
   stop,
   day,
+  locked,
   onFocus,
+  onToggleLock,
+  onReplace,
+  onRemove,
 }: {
   stop: StopPlan;
   day: DayPlan;
+  locked: boolean;
   onFocus: (placeId: string) => void;
+  onToggleLock: () => void;
+  onReplace: () => void;
+  onRemove: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const meal = stop.kind !== "sight";
@@ -277,6 +290,7 @@ function StopRow({
       className={cn(
         "group w-full cursor-pointer rounded-xl border border-line/60 bg-card px-3 py-2.5 text-left transition hover:border-ink/20 hover:shadow-[0_10px_24px_-20px_rgba(35,42,36,0.5)]",
         hero && "border-amber/40 bg-amber-soft/15",
+        locked && "border-jade/40 ring-1 ring-jade/15",
       )}
     >
       <div className="flex items-center gap-2">
@@ -301,6 +315,12 @@ function StopRow({
               <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
                 <Icon name="star" size={8} />
                 主景
+              </span>
+            ) : null}
+            {locked ? (
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[8px] text-jade">
+                <Icon name="lock" size={8} />
+                锁定
               </span>
             ) : null}
           </span>
@@ -385,6 +405,54 @@ function StopRow({
           ) : null}
         </div>
       ) : null}
+      {/* 常驻显示：藏在悬停背后的操作等于没有，用户要先看见「能改」才敢改。 */}
+      <div className="mt-2 flex flex-wrap items-center gap-1 pl-8">
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onToggleLock();
+          }}
+          className={cn(
+            "inline-flex items-center gap-1 rounded-full border px-2 py-1 text-[11px] transition",
+            locked
+              ? "border-jade/45 bg-jade-soft text-jade"
+              : "border-line bg-card text-ink-faint hover:border-ink/25 hover:text-ink",
+          )}
+          title={
+            locked
+              ? "解除锁定，之后重排可能会换掉它"
+              : "锁定这个点，换一版时保留在原定那天"
+          }
+        >
+          <Icon name={locked ? "lock" : "unlock"} size={10} />
+          {locked ? "已锁定" : "锁定"}
+        </button>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onReplace();
+          }}
+          className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2 py-1 text-[11px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+          title="换一个同类点位，其余行程尽量不动"
+        >
+          <Icon name="shuffle" size={10} />
+          换一个
+        </button>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onRemove();
+          }}
+          className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2 py-1 text-[11px] text-ink-faint transition hover:border-amber/50 hover:text-amber"
+          title="从行程里移除，当天会少排一个点"
+        >
+          <Icon name="x" size={10} />
+          移除
+        </button>
+      </div>
     </div>
   );
 }
@@ -570,11 +638,19 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
 function DayTimeline({
   day,
   hotelName,
+  lockedIds,
   onFocusStop,
+  onToggleLock,
+  onReplaceStop,
+  onRemoveStop,
 }: {
   day: DayPlan;
   hotelName: string;
+  lockedIds: string[];
   onFocusStop: (day: number, placeId: string) => void;
+  onToggleLock: (day: number, placeId: string) => void;
+  onReplaceStop: (day: number, placeId: string) => void;
+  onRemoveStop: (day: number, placeId: string) => void;
 }) {
   const firstLeg = day.legs[0];
   const returnLeg = day.legs[day.legs.length - 1];
@@ -629,7 +705,11 @@ function DayTimeline({
                 <StopRow
                   stop={stop}
                   day={day}
+                  locked={lockedIds.includes(stop.place.id)}
                   onFocus={(placeId) => onFocusStop(day.index, placeId)}
+                  onToggleLock={() => onToggleLock(day.index, stop.place.id)}
+                  onReplace={() => onReplaceStop(day.index, stop.place.id)}
+                  onRemove={() => onRemoveStop(day.index, stop.place.id)}
                 />
               </div>
             </div>
@@ -807,6 +887,10 @@ export default function PlanPanel({
   onFocusStop,
   onShuffle,
   onGenerate,
+  lockedIds,
+  onToggleLock,
+  onReplaceStop,
+  onRemoveStop,
 }: PlanPanelProps) {
   const [tab, setTab] = useState<Tab>("plan");
 
@@ -1033,7 +1117,11 @@ export default function PlanPanel({
               <DayTimeline
                 day={day}
                 hotelName={hotelName}
+                lockedIds={lockedIds}
                 onFocusStop={onFocusStop}
+                onToggleLock={onToggleLock}
+                onReplaceStop={onReplaceStop}
+                onRemoveStop={onRemoveStop}
               />
             )}
           </div>
