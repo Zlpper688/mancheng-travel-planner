@@ -6,6 +6,7 @@ import {
 } from "../coords";
 import { getTaxiRate } from "../constants";
 import { TravelError } from "../errors";
+import { meterAmap, meterOfPath } from "../rate-limit";
 import {
   decodeAmapPolyline,
   estimateModeMinutes,
@@ -139,7 +140,11 @@ function enqueue<T>(task: () => Promise<T>): Promise<T> {
 /** 只有「重试有意义」的错误才退避重来：限流、网络抖动。Key 错误与配额用尽直接抛。 */
 function shouldRetry(error: unknown): boolean {
   if (!(error instanceof TravelError)) return true; // 网络层异常
-  if (error.code === "AMAP_KEY_INVALID" || error.code === "AMAP_NOT_CONFIGURED") {
+  if (
+    error.code === "AMAP_KEY_INVALID" ||
+    error.code === "AMAP_NOT_CONFIGURED" ||
+    error.code === "AMAP_BUDGET_EXHAUSTED"
+  ) {
     return false;
   }
   const text = `${error.message} ${error.hint ?? ""}`;
@@ -177,6 +182,8 @@ async function amapGetOnce<T>(
   timeout: number,
 ): Promise<T & AmapBaseResponse> {
   const key = getKey();
+  // 出网前先记账：额度到顶时这里直接抛，比让高德回一堆 10003 更清楚。
+  meterAmap(meterOfPath(path));
   const search = new URLSearchParams({
     ...Object.fromEntries(
       Object.entries(params).map(([name, value]) => [name, String(value)]),

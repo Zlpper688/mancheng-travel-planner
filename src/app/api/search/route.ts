@@ -3,11 +3,27 @@ import { QUICK_CITIES } from "@/lib/constants";
 import { DEMO_HOTELS, isDemoCity } from "@/lib/demo/xiamen";
 import { getProvider } from "@/lib/providers";
 import { nameSimilarity } from "@/lib/providers/normalize";
+import { checkSearchRate, clientIp } from "@/lib/rate-limit";
 import type { Place } from "@/lib/types";
 
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
+  const limit = checkSearchRate(clientIp(request));
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        results: [],
+        error: "搜索太频繁了，稍等几秒。",
+        hint: `约 ${limit.retryAfterSec} 秒后恢复`,
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limit.retryAfterSec) },
+      },
+    );
+  }
+
   const url = new URL(request.url);
   const query = (url.searchParams.get("q") ?? "").trim().slice(0, 60);
   if (!query) return NextResponse.json({ results: [] });

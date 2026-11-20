@@ -49,6 +49,10 @@ export interface PlanPanelProps {
   onReplaceStop: (day: number, placeId: string) => void;
   onRemoveStop: (day: number, placeId: string) => void;
   onGenerate: () => void;
+  /** 复制当前这一版的分享链接。 */
+  onShare: () => void;
+  /** 把行程复制成可直接粘贴的纯文本。 */
+  onCopyGuide: () => void;
 }
 
 const SHORT_MODE: Record<TransportMode, string> = {
@@ -887,6 +891,8 @@ export default function PlanPanel({
   onFocusStop,
   onShuffle,
   onGenerate,
+  onShare,
+  onCopyGuide,
   lockedIds,
   onToggleLock,
   onReplaceStop,
@@ -957,7 +963,7 @@ export default function PlanPanel({
         ) : null}
 
         {plan ? (
-          <div className="mt-3 flex gap-1">
+          <div className="mt-3 flex items-center gap-1">
             {TABS.map((item) => (
               <button
                 key={item.id}
@@ -976,12 +982,32 @@ export default function PlanPanel({
                 ) : null}
               </button>
             ))}
-            {loading ? (
-              <span className="ml-auto inline-flex items-center gap-1.5 pb-2 text-[10px] text-ink-faint">
-                <Spinner className="h-3 w-3 text-accent" />
-                重排中
-              </span>
-            ) : null}
+            <div className="ml-auto flex items-center gap-1.5 pb-1.5">
+              <button
+                type="button"
+                onClick={onShare}
+                title="复制这一版的链接，朋友打开就是同样的行程"
+                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+              >
+                <Icon name="link" size={11} />
+                分享
+              </button>
+              <button
+                type="button"
+                onClick={onCopyGuide}
+                title="把行程复制成文字，直接粘到微信或备忘录"
+                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+              >
+                <Icon name="copy" size={11} />
+                复制
+              </button>
+              {loading ? (
+                <span className="inline-flex items-center gap-1 text-[10px] text-ink-faint">
+                  <Spinner className="h-3 w-3 text-accent" />
+                  重排中
+                </span>
+              ) : null}
+            </div>
           </div>
         ) : null}
       </div>

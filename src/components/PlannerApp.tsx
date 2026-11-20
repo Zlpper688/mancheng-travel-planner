@@ -20,6 +20,14 @@ import { Icon } from "./Icon";
 import PlanPanel from "./PlanPanel";
 import SetupPanel from "./SetupPanel";
 import { cn } from "./ui";
+import {
+  buildShareUrl,
+  copyText,
+  decodeRecipe,
+  encodeRecipe,
+  formatPlanText,
+  type TripRecipe,
+} from "@/lib/share";
 
 const MapView = dynamic(() => import("./MapView"), {
   ssr: false,
@@ -61,6 +69,24 @@ function pickedHotel(lng: number, lat: number): Place {
 
 const INITIAL_CITY = QUICK_CITIES[0];
 const INITIAL_HOTEL = DEMO_HOTELS[0];
+
+/** 与各 useState 的初始值保持一致，用作分享链接的兜底值。 */
+function defaultRecipe(date: string): TripRecipe {
+  return {
+    city: INITIAL_CITY,
+    hotel: INITIAL_HOTEL,
+    days: 3,
+    date,
+    pace: "balanced",
+    styles: ["citywalk", "coastal"],
+    transport: "auto",
+    budgetTier: "comfort",
+    adults: 2,
+    children: 0,
+    seed: 42,
+    farDays: null,
+  };
+}
 
 export default function PlannerApp({
   initialDate,
@@ -119,6 +145,36 @@ export default function PlannerApp({
     },
     [],
   );
+
+  /** 当前这一版行程的配方，用于分享与地址栏同步。 */
+  function currentRecipe(overrides: PlanOverrides = {}): TripRecipe {
+    return {
+      city: overrides.city ?? city,
+      hotel: overrides.hotel ?? hotel,
+      days: overrides.days ?? days,
+      date: overrides.date ?? date,
+      pace: overrides.pace ?? pace,
+      styles: overrides.styles ?? styles,
+      transport: overrides.transport ?? transport,
+      budgetTier: overrides.budgetTier ?? budgetTier,
+      adults: overrides.adults ?? adults,
+      children: overrides.children ?? children,
+      seed: overrides.seed ?? seed,
+      farDays: overrides.farDays !== undefined ? overrides.farDays : farDays,
+    };
+  }
+
+  /**
+   * 把配方写回地址栏。用 replaceState 而不是 pushState：这只是一份
+   * 「当前视图」的快照，不该在浏览器历史里堆成几十条。
+   * 刷新能恢复、链接能直接发给别人，都靠这一步。
+   */
+  function syncUrl(recipe: TripRecipe) {
+    if (typeof window === "undefined") return;
+    const next = `?${encodeRecipe(recipe)}`;
+    if (window.location.search === next) return;
+    window.history.replaceState(null, "", next);
+  }
 
   async function requestPlan(overrides: PlanOverrides = {}) {
     const nextCity = overrides.city ?? city;
@@ -185,6 +241,8 @@ export default function PlannerApp({
       }
       const nextPlan = data.plan;
       setPlan(nextPlan);
+      // 只有真的排出来了才认这一版：中途失败时地址栏应停留在上一版。
+      syncUrl(currentRecipe(overrides));
       setFocus(null);
       setActiveDay((previous) =>
         previous === "all" ||
@@ -207,7 +265,29 @@ export default function PlannerApp({
   useEffect(() => {
     if (autoRef.current) return;
     autoRef.current = true;
-    void requestPlan();
+    const shared =
+      typeof window === "undefined"
+        ? null
+        : decodeRecipe(window.location.search, defaultRecipe(initialDate));
+    if (!shared) {
+      void requestPlan();
+      return;
+    }
+    // 这条链接带着别人的一版行程，先把界面状态对齐，再照着排一次。
+    setCity(shared.city);
+    setHotel(shared.hotel);
+    setDays(shared.days);
+    setDate(shared.date);
+    setPace(shared.pace);
+    setStyles(shared.styles);
+    setTransport(shared.transport);
+    setBudgetTier(shared.budgetTier);
+    setAdults(shared.adults);
+    setChildren(shared.children);
+    setSeed(shared.seed);
+    setFarDays(shared.farDays);
+    setToast("已按分享链接恢复这一版行程。");
+    void requestPlan(shared);
     // Only the first load should auto-plan; later changes call requestPlan directly.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -384,6 +464,31 @@ export default function PlannerApp({
     const nextSeed = (seed + 1 + Math.floor(Math.random() * 997)) % 2147483646;
     setSeed(nextSeed);
     void requestPlan({ seed: nextSeed });
+  }
+
+  async function handleShare() {
+    const url = buildShareUrl(currentRecipe());
+    const ok = await copyText(url);
+    setToast(
+      ok
+        ? "链接已复制。朋友打开就是这一版，刷新也不会丢。"
+        : "复制失败，可以从地址栏手动复制。",
+    );
+  }
+
+  async function handleCopyGuide() {
+    if (!plan) return;
+    const text = formatPlanText(
+      plan,
+      hotel.name,
+      buildShareUrl(currentRecipe()),
+    );
+    const ok = await copyText(text);
+    setToast(
+      ok
+        ? "行程已复制成文字，可以直接粘到微信或备忘录。"
+        : "复制失败，请换个浏览器再试。",
+    );
   }
 
   /** 从当前行程里取出某个点位的完整对象，供锁定与替换使用。 */
@@ -590,6 +695,8 @@ export default function PlannerApp({
               onFocusStop={handleFocusStop}
               onShuffle={handleShuffle}
               onGenerate={() => void requestPlan()}
+              onShare={handleShare}
+              onCopyGuide={handleCopyGuide}
               lockedIds={lockedPlaces.map((item) => item.place.id)}
               onToggleLock={handleToggleLock}
               onReplaceStop={handleReplaceStop}
