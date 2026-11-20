@@ -85,8 +85,10 @@ export function explainDay({
       )} km，整天只走这一个方向，不再回城绕第二片。`,
     );
   } else if (spread && spread.km <= 8) {
+    // area 有时是片区名（青羊），有时只有方位（东南方向），后者要补个「酒店」才通顺。
+    const area = /方向$/.test(day.area) ? `酒店${day.area}` : day.area;
     bullets.push(
-      `${sights.length} 个景点都在${day.area}一带，最远两点相距 ${spread.km.toFixed(
+      `${sights.length} 个景点都在${area}一带，最远两点相距 ${spread.km.toFixed(
         1,
       )} km，串成一条线走，不用来回穿城。`,
     );

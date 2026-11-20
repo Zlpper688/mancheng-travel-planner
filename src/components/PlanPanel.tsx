@@ -1316,7 +1316,7 @@ export default function PlanPanel({
             </div>
 
             <p className="mt-4 rounded-lg bg-paper/70 px-2.5 py-2 text-meta leading-relaxed text-ink-faint">
-              预算按 {plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前
+              预算按 {plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前{" "}
               {Math.max(0, plan.meta.days - 1)} 晚计
               {plan.meta.holiday ? "，已计入假期酒店上浮" : ""}
               ；没有真实标价的餐食与门票按同档中位数补齐，因此给出区间。

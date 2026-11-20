@@ -343,7 +343,7 @@ function genericGuide(
     add(
       "monday",
       "booking",
-      "闭馆日",
+      weekdayOf(day.date) === 1 ? "闭馆日" : "预约与闭馆",
       weekdayOf(day.date) === 1
         ? "今天是周一，多数博物馆闭馆；出发前先看官方公告。"
         : "多数博物馆周一闭馆，热门馆要实名预约，先约再排行程。",
@@ -402,7 +402,7 @@ function genericGuide(
       "seat",
       "food",
       "歇脚",
-      "海景位和网红位先问低消；下午人少，适合避开正午。",
+      "靠窗位和网红位先问低消；下午人少，适合避开正午。",
     );
   }
   if (place.category === "street") {

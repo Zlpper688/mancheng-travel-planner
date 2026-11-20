@@ -82,6 +82,8 @@ export function encodeRecipe(recipe: TripRecipe): string {
   params.set("q", recipe.city.name);
   params.set("qx", encodeNum(recipe.city.lng));
   params.set("qy", encodeNum(recipe.city.lat));
+  // 不带上地址的话，解出来的城市会退回默认城市（厦门）的地址。
+  if (recipe.city.address) params.set("qa", recipe.city.address.slice(0, 60));
   params.set("h", recipe.hotel.name);
   params.set("hx", encodeNum(recipe.hotel.lng));
   params.set("hy", encodeNum(recipe.hotel.lat));
