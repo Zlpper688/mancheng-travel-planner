@@ -67,6 +67,9 @@ function pickedHotel(lng: number, lat: number): Place {
   };
 }
 
+/** 首次 3 步向导只出现一次：排出行程或点「跳过」后就不再打扰。 */
+const GUIDE_KEY = "mc-guide-v1";
+
 const INITIAL_CITY = QUICK_CITIES[0];
 const INITIAL_HOTEL = DEMO_HOTELS[0];
 
@@ -86,6 +89,24 @@ function defaultRecipe(date: string): TripRecipe {
     seed: 42,
     farDays: null,
   };
+}
+
+function guideDone(): boolean {
+  // SSR 与水合阶段一律当作「已完成」，避免首屏闪一下向导。
+  if (typeof window === "undefined") return true;
+  try {
+    return window.localStorage.getItem(GUIDE_KEY) === "done";
+  } catch {
+    return true;
+  }
+}
+
+function markGuideDone() {
+  try {
+    window.localStorage.setItem(GUIDE_KEY, "done");
+  } catch {
+    // 隐私模式写不进去就每次重新引导，不影响主流程。
+  }
 }
 
 export default function PlannerApp({
@@ -117,6 +138,8 @@ export default function PlannerApp({
   const [guideResetKey, setGuideResetKey] = useState(0);
 
   const [plan, setPlan] = useState<PlanResult | null>(null);
+  /** 首次 3 步向导：1 选目的地 → 2 调玩法 → 3 生成。null 表示不再引导。 */
+  const [guideStep, setGuideStep] = useState<1 | 2 | 3 | null>(null);
   const [loading, setLoading] = useState(false);
   const [reverseLoading, setReverseLoading] = useState(false);
   const [error, setError] = useState<{ message: string; hint?: string } | null>(
@@ -174,6 +197,20 @@ export default function PlannerApp({
     const next = `?${encodeRecipe(recipe)}`;
     if (window.location.search === next) return;
     window.history.replaceState(null, "", next);
+  }
+
+  const guideActive = guideStep !== null && !plan;
+
+  function finishGuide() {
+    setGuideStep(null);
+    markGuideDone();
+  }
+
+  /** 引导进行中，改偏好只落到本地状态——选个城市就立刻排线的话，
+   *  结果页会把向导顶掉，用户反而没机会把三件事选完。 */
+  function commitChange(overrides: PlanOverrides = {}) {
+    if (guideActive) return;
+    void requestPlan(overrides);
   }
 
   async function requestPlan(overrides: PlanOverrides = {}) {
@@ -241,6 +278,7 @@ export default function PlannerApp({
       }
       const nextPlan = data.plan;
       setPlan(nextPlan);
+      finishGuide();
       // 只有真的排出来了才认这一版：中途失败时地址栏应停留在上一版。
       syncUrl(currentRecipe(overrides));
       setFocus(null);
@@ -269,6 +307,14 @@ export default function PlannerApp({
       typeof window === "undefined"
         ? null
         : decodeRecipe(window.location.search, defaultRecipe(initialDate));
+    if (!guideDone()) {
+      // 分享链接里已经有别人的一版行程，直接照着排；否则先让用户自己选三件事。
+      if (shared) markGuideDone();
+      else {
+        setGuideStep(1);
+        return;
+      }
+    }
     if (!shared) {
       void requestPlan();
       return;
@@ -313,7 +359,7 @@ export default function PlannerApp({
     setExcludeIds([]);
     setSlimDays({});
     setGuideResetKey((value) => value + 1);
-    void requestPlan({
+    commitChange({
       city: next,
       hotel: nextHotel,
       fixedPlaces: [],
@@ -329,7 +375,7 @@ export default function PlannerApp({
     setLockedPlaces([]);
     setExcludeIds([]);
     setSlimDays({});
-    void requestPlan({
+    commitChange({
       hotel: next,
       lockedPlaces: [],
       excludeIds: [],
@@ -339,17 +385,17 @@ export default function PlannerApp({
 
   function handleDaysChange(next: number) {
     setDays(next);
-    void requestPlan({ days: next });
+    commitChange({ days: next });
   }
 
   function handleDateChange(next: string) {
     setDate(next);
-    void requestPlan({ date: next });
+    commitChange({ date: next });
   }
 
   function handlePaceChange(next: PaceId) {
     setPace(next);
-    void requestPlan({ pace: next });
+    commitChange({ pace: next });
   }
 
   function handleStyleToggle(id: StyleId) {
@@ -366,32 +412,32 @@ export default function PlannerApp({
       next = [...styles, id];
     }
     setStyles(next);
-    void requestPlan({ styles: next });
+    commitChange({ styles: next });
   }
 
   function handleTransportChange(next: TransportPref) {
     setTransport(next);
-    void requestPlan({ transport: next });
+    commitChange({ transport: next });
   }
 
   function handleFarDaysChange(next: number | null) {
     setFarDays(next);
-    void requestPlan({ farDays: next });
+    commitChange({ farDays: next });
   }
 
   function handleBudgetChange(next: BudgetTier) {
     setBudgetTier(next);
-    void requestPlan({ budgetTier: next });
+    commitChange({ budgetTier: next });
   }
 
   function handleAdultsChange(next: number) {
     setAdults(next);
-    void requestPlan({ adults: next });
+    commitChange({ adults: next });
   }
 
   function handleChildrenChange(next: number) {
     setChildren(next);
-    void requestPlan({ children: next });
+    commitChange({ children: next });
   }
 
   function handleTogglePick() {
@@ -422,7 +468,7 @@ export default function PlannerApp({
       setLockedPlaces([]);
       setExcludeIds([]);
       setSlimDays({});
-      void requestPlan({
+      commitChange({
         hotel: nextHotel,
         lockedPlaces: [],
         excludeIds: [],
@@ -435,7 +481,7 @@ export default function PlannerApp({
       setExcludeIds([]);
       setSlimDays({});
       setToast("没能识别地名，已用坐标作为落脚点。");
-      void requestPlan({
+      commitChange({
         hotel: nextHotel,
         lockedPlaces: [],
         excludeIds: [],
@@ -628,7 +674,13 @@ export default function PlannerApp({
 
       <main className="mx-auto w-full max-w-[1560px] px-3 pb-8 pt-3 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 gap-3.5 lg:grid-cols-[392px_minmax(0,1fr)] lg:items-start">
-          <aside className="order-3 lg:order-none lg:col-start-1 lg:row-span-2 lg:row-start-1">
+          {/* 手机上首次向导放在最前面：地图这时还是空的，先让人把三件事选完。 */}
+          <aside
+            className={cn(
+              "lg:order-none lg:col-start-1 lg:row-span-2 lg:row-start-1",
+              guideActive ? "order-1" : "order-3",
+            )}
+          >
             <div className="scroll-thin lg:sticky lg:top-[68px] lg:max-h-[calc(100vh-84px)] lg:overflow-y-auto lg:pr-1">
               <SetupPanel
                 city={city}
@@ -646,6 +698,9 @@ export default function PlannerApp({
                 picking={picking}
                 liveData={liveData}
                 hasPlan={Boolean(plan)}
+                guideStep={guideActive ? guideStep : null}
+                onGuideStep={setGuideStep}
+                onGuideDone={finishGuide}
                 fixedCount={fixedPlaces.length}
                 guideResetKey={guideResetKey}
                 onCityChange={handleCityChange}
@@ -669,7 +724,10 @@ export default function PlannerApp({
 
           <div
             id="trip-map"
-            className="order-1 h-[50vh] min-h-[340px] max-h-[560px] lg:order-none lg:col-start-2 lg:row-start-1 lg:h-[460px] lg:max-h-none"
+            className={cn(
+              "h-[50vh] min-h-[340px] max-h-[560px] lg:order-none lg:col-start-2 lg:row-start-1 lg:h-[460px] lg:max-h-none",
+              guideActive ? "order-2" : "order-1",
+            )}
           >
             <MapView
               hotel={hotel}
@@ -684,7 +742,12 @@ export default function PlannerApp({
             />
           </div>
 
-          <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-2">
+          <div
+            className={cn(
+              "lg:order-none lg:col-start-2 lg:row-start-2",
+              guideActive ? "order-3" : "order-2",
+            )}
+          >
             <PlanPanel
               plan={plan}
               loading={loading}

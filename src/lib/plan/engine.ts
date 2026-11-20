@@ -27,6 +27,7 @@ import { selectTips } from "../tips/engine";
 import { buildBudget } from "./budget";
 import { scheduleDay } from "./schedule";
 import { selectDays } from "./select";
+import { explainDay } from "./why";
 
 export function discoverRadius(input: TripInput): number {
   let radius = 8 + input.days * 3;
@@ -315,6 +316,13 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
         );
       }
     }
+  }
+
+  // 「为什么这么排」放在天气写回之后算：日出日落时间要拿来解释出发时间。
+  const seedByDay = new Map(selection.days.map((seed) => [seed.index, seed]));
+  for (const day of days) {
+    const seed = seedByDay.get(day.index);
+    if (seed) day.why = explainDay({ day, seed, input });
   }
 
   if (holiday) warnings.unshift(holiday.tip);

@@ -223,6 +223,8 @@ export interface DayPlan {
   endMin: number;
   tip: string;
   strategy?: string;
+  /** 「为什么这么排」：按主景、片区、时间轴和餐食位置给出的四条理由。 */
+  why?: string[];
   heroName?: string;
   heroPlaceId?: string;
   rhythm?: DayRhythm;
