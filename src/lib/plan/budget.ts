@@ -111,7 +111,7 @@ export function buildBudget(
   const transportItem: BudgetItem = {
     key: "transport",
     label: "市内交通",
-    detail: `${days.length} 天 · ${legs.length} 段接驳${vehicles > 1 ? ` · 打车按 ${vehicles} 辆计` : ""}`,
+    detail: `${days.length} 天 · ${legs.length} 段路程${vehicles > 1 ? ` · 打车按 ${vehicles} 辆计` : ""}`,
     min: round(transportTotal * 0.8),
     max: round(transportTotal * 1.3 + travelers * 10),
     note: "步行免费；公交/地铁按票价，打车按里程估费整车计",
