@@ -6,6 +6,7 @@ import {
 } from "../geo";
 import { findPlaceProfile } from "../tips/places";
 import { usableMetroTrip } from "../transit/metro";
+import { LATEST_START } from "./limits";
 import type {
   Category,
   DayRhythm,
@@ -441,14 +442,6 @@ export function rhythmTravelMinutes(
     metro ? metro.minutes + 6 : Infinity,
   );
 }
-
-/** 一天最晚几点该出门。再晚就不是「充实」，是把整个上午扔掉。
- *  这里只约束「算法为了少等待而主动推迟」，不约束点位本身开门晚。 */
-const LATEST_START: Record<PaceId, number> = {
-  chill: 10 * 60 + 30,
-  balanced: 10 * 60,
-  packed: 9 * 60 + 30,
-};
 
 function startForFirst(
   profile: RhythmProfile,

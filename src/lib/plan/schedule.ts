@@ -17,6 +17,7 @@ import {
   usableMetroTrip,
   type MetroTrip,
 } from "../transit/metro";
+import { HARD_CEIL_MIN } from "./limits";
 import type {
   Category,
   DayPlan,
@@ -406,8 +407,11 @@ function rhythmWaitFor(
   }
   if (target === null || arriveMin >= target - 10) return { wait: 0 };
   const gap = target - arriveMin;
-  // “15 点后更热闹”只是建议，不是闸门；空等超过两小时不如先逛起来。
-  const cap = profile.nightStreet || profile.sunset ? 7 * 60 + 30 : 2 * 60;
+  // 「15 点后更热闹」只是建议，不是闸门。
+  // 夜市/日落点原来放到 7.5 小时，等于允许「下午一点站在太古里门口等到五点半」——
+  // 行程表上那四小时是一片空白，比少看一个点难受得多。等待上限统一收到 2.5 小时；
+  // 再长的空档该由排序解决（把这一站排到后面），而不是靠原地罚站。
+  const cap = profile.nightStreet || profile.sunset ? 150 : 2 * 60;
   if (gap > cap) return { wait: 0 };
   const wait = roundToFive(gap);
   const at = minutesToTime(target);
@@ -1306,7 +1310,11 @@ async function fillAfternoonHole(
         ((a.popularity ?? 3.4) - placeDistance(hole.prev.place, a) * 0.3),
     )
     .slice(0, 2);
-  const cap = Math.max(built.endMin + 90, endLimit + overrunLimit);
+  // 补位也要守同一条回家时间线：主循环的闸不能因为「顺手补一个点」被绕过。
+  const cap = Math.min(
+    Math.max(built.endMin + 90, endLimit + overrunLimit),
+    HARD_CEIL_MIN,
+  );
   for (const candidate of candidates) {
     const nextAttempt = [...attempt];
     nextAttempt.splice(nextIndex, 0, {
@@ -1319,7 +1327,7 @@ async function fillAfternoonHole(
       cafe: includeCafe,
     });
     if (!trial.stops.some((stop) => stop.place.id === candidate.id)) continue;
-    if (trial.endMin > cap || trial.endMin > 23 * 60 + 30) continue;
+    if (trial.endMin > cap) continue;
     return { attempt: nextAttempt, used: trialUsed, built: trial };
   }
   return null;
@@ -1415,7 +1423,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
   const anchorIds = new Set(input.seedDay.anchorIds ?? []);
   const maxDrops = input.seedDay.fixed ? 0 : 2;
   /** 没有任何一天该在午夜后才回到酒店，哪怕为此再少看一个点。 */
-  const HARD_CEIL = 23 * 60 + 15;
+  const HARD_CEIL = HARD_CEIL_MIN;
   const closesLate = input.seedDay.places.some((place) => {
     const profile = rhythmOf(input.city, place);
     return profile.nightStreet || profile.sunset;

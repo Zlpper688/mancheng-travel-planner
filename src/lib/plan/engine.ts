@@ -24,6 +24,7 @@ import type {
   TripInput,
 } from "../types";
 import { selectTips } from "../tips/engine";
+import { auditPlan } from "./audit";
 import { buildBudget } from "./budget";
 import { scheduleDay } from "./schedule";
 import { selectDays } from "./select";
@@ -340,7 +341,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const meta = buildMeta(input, discovered, days, selection.farDays, weather?.kind);
   const seen = new Set<string>();
 
-  return {
+  const plan: PlanResult = {
     meta,
     days,
     budget,
@@ -351,4 +352,22 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     }).slice(0, 10),
     tips: tips.tripTips.length ? tips.tripTips : undefined,
   };
+
+  // 每一版行程都过一遍体检。规则改动后最容易出现的是「程序没报错、
+  // 结果却不像人排的」，这里把它变成一条能进日志、能统计的信号。
+  if (process.env.NODE_ENV !== "production" || process.env.PLAN_AUDIT === "1") {
+    const issues = auditPlan(plan, {
+      pace: input.pace,
+      isFixed: meta.isFixed,
+    });
+    const errors = issues.filter((issue) => issue.severity === "error");
+    if (errors.length) {
+      console.warn(
+        `[plan-audit] ${input.city} ${input.days}日 ${input.pace} seed=${input.seed}：${errors.length} 项硬伤`,
+        errors.map((issue) => `D${issue.day} ${issue.code} ${issue.detail}`),
+      );
+    }
+  }
+
+  return plan;
 }
