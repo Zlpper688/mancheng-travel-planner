@@ -456,7 +456,7 @@ export default function PlannerApp({
 
   function handleGuideClear() {
     setFixedPlaces([]);
-    setToast("已取消攻略复刻，恢复自动排线。");
+    setToast("已取消攻略复刻，恢复自动安排。");
     void requestPlan({ fixedPlaces: [] });
   }
 
@@ -606,20 +606,20 @@ export default function PlannerApp({
               <p className="font-serif text-[19px] tracking-[0.22em] text-ink">
                 漫城
               </p>
-              <span className="hidden text-[8px] tracking-[0.28em] text-ink-faint sm:inline">
+              <span className="hidden text-micro tracking-[0.28em] text-ink-faint sm:inline">
                 MANCHENG
               </span>
             </div>
-            <p className="mt-1.5 truncate text-[9px] tracking-[0.14em] text-ink-faint">
+            <p className="mt-1.5 truncate text-meta tracking-[0.14em] text-ink-faint">
               从一间酒店出发的城市漫游计划
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-[10px] text-ink-soft sm:inline-flex">
+            <span className="hidden items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-meta text-ink-soft sm:inline-flex">
               <span className={cn("h-1.5 w-1.5 rounded-full", sourceDot)} />
               {sourceLabel}
             </span>
-            <span className="hidden text-[9px] tracking-wide text-ink-faint md:inline">
+            <span className="hidden text-meta tracking-wide text-ink-faint md:inline">
               点 = 停留 · 线 = 路程
             </span>
           </div>
@@ -705,7 +705,7 @@ export default function PlannerApp({
           </div>
         </div>
 
-        <footer className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-3 text-[9px] text-ink-faint">
+        <footer className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-3 text-meta text-ink-faint">
           <p>漫城 MANCHENG · 用真实地图，把旅行排成一个圈</p>
           <p>数据来自高德 / OpenStreetMap / OSRM / Open-Meteo · 时间与价格请以现场为准</p>
         </footer>

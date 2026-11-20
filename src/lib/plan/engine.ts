@@ -99,7 +99,7 @@ function buildMeta(
     dataNotes.push("步行与驾车为真实路径，公交耗时为估算；配置高德 Key 后可精确到线路与班次。");
   }
   if (isFixed) {
-    dataNotes.push("导入攻略的日期按攻略站点顺序规划，其余日期由漫城自动排线。");
+    dataNotes.push("导入攻略的日期按攻略站点顺序规划，其余日期由漫城自动安排。");
   }
   if (farDays > 0) {
     dataNotes.push(

@@ -16,6 +16,7 @@ import {
   weekdayCN,
 } from "@/lib/geo";
 import type {
+  BudgetItem,
   DayPlan,
   DayWeather,
   HourlyPoint,
@@ -112,9 +113,9 @@ function RhythmChips({ rhythm }: { rhythm?: DayPlan["rhythm"] }) {
       {active.map((chip) => (
         <span
           key={chip.key}
-          className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-[8px] text-ink-soft"
+          className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-micro text-ink-soft"
         >
-          <Icon name={chip.icon} size={8} className="text-jade" />
+          <Icon name={chip.icon} size={10} className="text-jade" />
           {chip.label}
         </span>
       ))}
@@ -126,17 +127,17 @@ function StrategyStrip({ day }: { day: DayPlan }) {
   if (!day.strategy) return null;
   return (
     <div className="mb-3 rounded-xl border border-jade/25 bg-jade-soft/30 px-3 py-2">
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-medium text-jade">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta font-medium text-jade">
         <Icon name="route" size={12} />
         今日走法
         {day.heroName ? (
-          <span className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-[8px] font-normal text-ink-soft">
-            <Icon name="star" size={8} className="text-amber" />
+          <span className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-micro font-normal text-ink-soft">
+            <Icon name="star" size={10} className="text-amber" />
             主景 · {day.heroName}
           </span>
         ) : null}
       </div>
-      <p className="mt-1 text-[10px] leading-relaxed text-ink-soft">
+      <p className="mt-1 text-body leading-relaxed text-ink-soft">
         {day.strategy}
       </p>
       <div className="mt-1.5">
@@ -149,7 +150,7 @@ function StrategyStrip({ day }: { day: DayPlan }) {
 function TipCard({ tip }: { tip: PlanTip }) {
   return (
     <div className="rounded-xl border border-line/60 bg-card px-3 py-2">
-      <p className="flex items-start gap-1.5 text-[10px] font-medium leading-snug text-ink">
+      <p className="flex items-start gap-1.5 text-body font-medium leading-snug text-ink">
         <Icon
           name={TIP_ICONS[tip.kind]}
           size={11}
@@ -157,10 +158,10 @@ function TipCard({ tip }: { tip: PlanTip }) {
         />
         {tip.title}
       </p>
-      <p className="mt-1 text-[10px] leading-relaxed text-ink-soft">
+      <p className="mt-1 text-body leading-relaxed text-ink-soft">
         {tip.body}
       </p>
-      <p className="mt-1.5 text-[8px] text-ink-faint">{tip.source}</p>
+      <p className="mt-1.5 text-micro text-ink-faint">{tip.source}</p>
     </div>
   );
 }
@@ -220,7 +221,7 @@ function alternativeIcon(alternative: RouteAlternative): string {
 function LegRow({ leg }: { leg: RouteLeg }) {
   return (
     <div
-      className="rounded-lg px-2 py-1.5 text-[10px] text-ink-faint"
+      className="rounded-lg px-2 py-1.5 text-meta text-ink-faint"
       title={leg.note}
     >
       <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
@@ -237,7 +238,7 @@ function LegRow({ leg }: { leg: RouteLeg }) {
           </span>
         ) : null}
         {leg.estimated ? (
-          <span className="rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
+          <span className="rounded bg-amber-soft px-1 py-px text-micro text-amber">
             估算
           </span>
         ) : null}
@@ -245,10 +246,10 @@ function LegRow({ leg }: { leg: RouteLeg }) {
           {minutesToTime(leg.departMin)} → {minutesToTime(leg.arriveMin)}
         </span>
       </div>
-      <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5 text-[9px] text-ink-faint/85">
+      <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5 text-meta text-ink-faint/85">
         {leg.alternatives.map((alternative) => (
           <span key={alternative.mode} className="inline-flex items-center gap-0.5">
-            <Icon name={alternativeIcon(alternative)} size={9} />
+            <Icon name={alternativeIcon(alternative)} size={10} />
             {alternativeLabel(alternative)} {alternative.durationMin} 分
           </span>
         ))}
@@ -300,7 +301,7 @@ function StopRow({
       <div className="flex items-center gap-2">
         <span
           className={cn(
-            "flex h-6 w-6 shrink-0 items-center justify-center text-[10px] font-semibold text-paper",
+            "flex h-6 w-6 shrink-0 items-center justify-center text-meta font-semibold text-paper",
             meal ? "rotate-45 rounded-[6px]" : "rounded-full",
           )}
           style={{ background: day.color }}
@@ -312,23 +313,23 @@ function StopRow({
             <span className="truncate text-[12.5px] font-medium text-ink">
               {stop.place.name}
             </span>
-            <span className="shrink-0 text-[9px] text-ink-faint">
+            <span className="shrink-0 text-meta text-ink-faint">
               {kindLabel(stop.kind)}
             </span>
             {hero ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
-                <Icon name="star" size={8} />
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-micro text-amber">
+                <Icon name="star" size={10} />
                 主景
               </span>
             ) : null}
             {locked ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[8px] text-jade">
-                <Icon name="lock" size={8} />
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-micro text-jade">
+                <Icon name="lock" size={10} />
                 锁定
               </span>
             ) : null}
           </span>
-          <span className="mt-0.5 block truncate text-[9px] text-ink-faint">
+          <span className="mt-0.5 block truncate text-meta text-ink-faint">
             {clockRange(stop.startMin, stop.endMin)} · 停留 {stop.dwellMin} 分 ·{" "}
             {CATEGORY_LABELS[stop.place.category]}
           </span>
@@ -340,15 +341,15 @@ function StopRow({
         />
       </div>
       {stop.note ? (
-        <p className="mt-1.5 pl-8 text-[10px] leading-relaxed text-ink-soft">
+        <p className="mt-1.5 pl-8 text-body leading-relaxed text-ink-soft">
           {stop.note}
         </p>
       ) : null}
       {stop.ticket || stop.place.rating || stop.place.openHours ? (
-        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 pl-8 text-[9px] text-ink-faint">
+        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 pl-8 text-meta text-ink-faint">
           {stop.ticket ? (
             <span className="inline-flex items-center gap-0.5">
-              <Icon name="ticket" size={9} />
+              <Icon name="ticket" size={10} />
               门票 ¥{stop.ticket}
               {stop.estimatedTicket ? " 起" : ""}
             </span>
@@ -364,7 +365,7 @@ function StopRow({
           {stop.attrs.map((attr) => (
             <span
               key={attr}
-              className="rounded bg-jade-soft/70 px-1.5 py-px text-[8px] text-jade"
+              className="rounded bg-jade-soft/70 px-1.5 py-px text-micro text-jade"
             >
               {attr}
             </span>
@@ -376,11 +377,11 @@ function StopRow({
           {visibleTips.map((tip) => (
             <div
               key={tip.id}
-              className="flex gap-1 text-[9.5px] leading-relaxed text-ink-soft"
+              className="flex gap-1 text-meta leading-relaxed text-ink-soft"
             >
               <Icon
                 name={TIP_ICONS[tip.kind]}
-                size={9}
+                size={10}
                 className="mt-0.5 shrink-0 text-jade"
               />
               <span className="min-w-0">
@@ -388,7 +389,7 @@ function StopRow({
                 <span className="text-ink-faint"> · </span>
                 {tip.body}
                 {expanded ? (
-                  <span className="mt-0.5 block text-[8px] text-ink-faint/80">
+                  <span className="mt-0.5 block text-micro text-ink-faint/80">
                     来源：{tip.source}
                   </span>
                 ) : null}
@@ -402,7 +403,7 @@ function StopRow({
                 event.stopPropagation();
                 setExpanded((value) => !value);
               }}
-              className="text-[8.5px] text-jade hover:underline"
+              className="text-meta text-jade hover:underline"
             >
               {expanded ? "收起点位贴士" : `展开另外 ${tips.length - 2} 条`}
             </button>
@@ -509,7 +510,7 @@ function WeatherChart({
     <div className="mt-2">
       {showTemp ? (
         <div className="flex items-center gap-1.5">
-          <span className="shrink-0 text-[8px] text-ink-faint">气温</span>
+          <span className="shrink-0 text-micro text-ink-faint">气温</span>
           <svg
             viewBox="0 0 24 100"
             preserveAspectRatio="none"
@@ -529,7 +530,7 @@ function WeatherChart({
               />
             ))}
           </svg>
-          <span className="shrink-0 text-[8px] tabular-nums text-ink-faint">
+          <span className="shrink-0 text-micro tabular-nums text-ink-faint">
             {Math.round(tempMin)}°~{Math.round(tempMax)}°
           </span>
         </div>
@@ -569,7 +570,7 @@ function WeatherChart({
               );
             })}
           </div>
-          <div className="mt-0.5 flex justify-between text-[8px] tabular-nums text-ink-faint">
+          <div className="mt-0.5 flex justify-between text-micro tabular-nums text-ink-faint">
             <span>0 时</span>
             <span>6</span>
             <span>12</span>
@@ -577,7 +578,7 @@ function WeatherChart({
             <span>24 时</span>
           </div>
           {labels.length ? (
-            <p className="mt-1 text-[9px] text-ink-faint">
+            <p className="mt-1 text-meta text-ink-faint">
               雨段 {labels.join("、")}
             </p>
           ) : null}
@@ -591,7 +592,7 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
   const hasDetail = Boolean(weather.tip || weather.backup || weather.estimated);
   return (
     <div className="mb-3 rounded-xl border border-line/70 bg-paper/70 px-3 py-2">
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-ink-soft">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-meta text-ink-soft">
         <Icon name={weather.icon} size={14} className="text-jade" />
         <span className="font-medium text-ink">{weather.label}</span>
         <span className="tabular-nums">
@@ -611,7 +612,7 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
           </span>
         ) : null}
         {weather.sunrise && weather.sunset ? (
-          <span className="ml-auto inline-flex items-center gap-1 text-[9px] text-ink-faint">
+          <span className="ml-auto inline-flex items-center gap-1 text-meta text-ink-faint">
             <Icon name="sun" size={10} />
             日出 {weather.sunrise} · 日落 {weather.sunset}
           </span>
@@ -621,7 +622,7 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
         <WeatherChart hours={weather.hourly} windows={weather.rainWindows} />
       ) : null}
       {hasDetail ? (
-        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] leading-relaxed">
+        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-meta leading-relaxed">
           {weather.tip ? (
             <span className="text-ink-soft">{weather.tip}</span>
           ) : null}
@@ -629,7 +630,7 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
             <span className="text-jade">雨天备选：{weather.backup.name}</span>
           ) : null}
           {weather.estimated ? (
-            <span className="rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
+            <span className="rounded bg-amber-soft px-1 py-px text-micro text-amber">
               去年同期气候
             </span>
           ) : null}
@@ -677,7 +678,7 @@ function DayTimeline({
           <p className="text-[12px] font-medium text-ink">
             从 {hotelName} 出发
           </p>
-          <p className="mt-0.5 text-[9px] text-ink-faint">
+          <p className="mt-0.5 text-meta text-ink-faint">
             {minutesToTime(firstLeg?.departMin ?? day.startMin)} ·
             早餐吃饱，水杯灌满
           </p>
@@ -739,7 +740,7 @@ function DayTimeline({
               <p className="text-[12px] font-medium text-ink">
                 回到 {hotelName}
               </p>
-              <p className="mt-0.5 text-[9px] text-ink-faint">
+              <p className="mt-0.5 text-meta text-ink-faint">
                 {minutesToTime(returnLeg.arriveMin)} · 今天一共走了{" "}
                 {day.stats.distanceKm.toFixed(1)} km
               </p>
@@ -749,7 +750,7 @@ function DayTimeline({
       ) : null}
 
       {day.tip ? (
-        <div className="relative mt-3 ml-11 rounded-xl bg-paper/80 px-3 py-2 text-[10px] leading-relaxed text-ink-soft">
+        <div className="relative mt-3 ml-11 rounded-xl bg-paper/80 px-3 py-2 text-body leading-relaxed text-ink-soft">
           <span className="mr-1 inline-flex translate-y-px items-center text-jade">
             <Icon name="sparkles" size={11} />
           </span>
@@ -794,26 +795,26 @@ function DayCard({
             <h3 className="truncate font-serif text-[15px] tracking-wide text-ink">
               {day.theme}
             </h3>
-            <span className="ml-auto shrink-0 text-[9px] text-ink-faint">
+            <span className="ml-auto shrink-0 text-meta text-ink-faint">
               {formatDateCN(day.date)} {weekdayCN(day.date)}
             </span>
           </div>
-          <p className="mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-ink-faint">
+          <p className="mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-meta text-ink-faint">
             {day.far ? (
-              <span className="shrink-0 rounded bg-jade-soft px-1 py-px text-[8px] tracking-wide text-jade">
+              <span className="shrink-0 rounded bg-jade-soft px-1 py-px text-micro tracking-wide text-jade">
                 远足日
               </span>
             ) : null}
             {day.weather ? (
               <span
-                className="inline-flex shrink-0 items-center gap-0.5 rounded bg-paper px-1 py-px text-[8px] text-ink-soft"
+                className="inline-flex shrink-0 items-center gap-0.5 rounded bg-paper px-1 py-px text-micro text-ink-soft"
                 title={`${day.weather.label}${
                   day.weather.precipProb !== undefined
                     ? ` · 降水概率 ${Math.round(day.weather.precipProb)}%`
                     : ""
                 }`}
               >
-                <Icon name={day.weather.icon} size={9} className="text-jade" />
+                <Icon name={day.weather.icon} size={10} className="text-jade" />
                 <span className="tabular-nums">
                   {Math.round(day.weather.tMin)}°~
                   {Math.round(day.weather.tMax)}°
@@ -827,14 +828,14 @@ function DayCard({
               </span>
             ) : null}
             {day.tips?.length ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[8px] text-jade">
-                <Icon name="sparkles" size={8} />
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-micro text-jade">
+                <Icon name="sparkles" size={10} />
                 {day.tips.length} 条贴士
               </span>
             ) : null}
             {day.heroName ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
-                <Icon name="star" size={8} />
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-micro text-amber">
+                <Icon name="star" size={10} />
                 <span className="max-w-[6.5rem] truncate">
                   主景 {day.heroName}
                 </span>
@@ -843,19 +844,17 @@ function DayCard({
             <span className="truncate">{day.area}</span>
           </p>
           {day.strategy ? (
-            <p className="mt-1 line-clamp-1 text-[9px] leading-relaxed text-ink-faint">
-              <Icon name="route" size={9} className="mr-0.5 inline text-jade" />
+            <p className="mt-1 line-clamp-1 text-meta leading-relaxed text-ink-faint">
+              <Icon name="route" size={10} className="mr-0.5 inline text-jade" />
               {day.strategy}
             </p>
           ) : null}
-          <div className="mt-1.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-ink-soft">
+          {/* 分隔点会跟着换行跑到行首或行尾，索性只用间距分组。 */}
+          <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-0.5 text-meta text-ink-soft">
             <span>{day.stats.stopCount} 个停留</span>
-            <span className="text-line">·</span>
             <span>{day.stats.distanceKm.toFixed(1)} km</span>
-            <span className="text-line">·</span>
             <span>路上 {hoursLabel(day.stats.travelMin)}</span>
-            <span className="text-line">·</span>
-            <span className="tabular-nums">
+            <span className="tabular-nums text-ink-faint">
               {clockRange(day.startMin, day.endMin)}
             </span>
           </div>
@@ -863,11 +862,11 @@ function DayCard({
             {day.stops.map((stop) => (
               <span
                 key={stop.id}
-                className="inline-flex max-w-full items-center gap-1 rounded-full bg-paper px-2 py-0.5 text-[9px] text-ink-soft"
+                className="inline-flex max-w-full items-center gap-1 rounded-full bg-paper px-2 py-0.5 text-meta text-ink-soft"
               >
                 <Icon
                   name={CATEGORY_ICONS[stop.place.category]}
-                  size={9}
+                  size={10}
                 />
                 <span className="max-w-[7.5rem] truncate">
                   {stop.place.name}
@@ -878,6 +877,90 @@ function DayCard({
         </div>
       </div>
     </button>
+  );
+}
+
+/** 预算一项一行：收起只给总额，展开才给人均、每天折算与算法口径。
+ *  一屏塞满注释反而没人看，所以默认收起。 */
+function BudgetRow({
+  item,
+  travelers,
+  days,
+  nights,
+  totalMax,
+  open,
+  onToggle,
+}: {
+  item: BudgetItem;
+  travelers: number;
+  days: number;
+  nights: number;
+  totalMax: number;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const share = Math.min(
+    100,
+    Math.round((item.max / Math.max(1, totalMax)) * 100),
+  );
+  const perPerson = moneyRange(
+    item.min / Math.max(1, travelers),
+    item.max / Math.max(1, travelers),
+  );
+  // 住宿按晚摊，其余按天摊，否则「每天 ¥347」会让人以为三晚只要一千。
+  const hotelUnit = item.key === "hotel" && nights > 0;
+  const unitDays = hotelUnit ? nights : Math.max(1, days);
+  const perDay = moneyRange(item.min / unitDays, item.max / unitDays);
+  const color = BUDGET_COLORS[item.key] ?? "#8b9187";
+  return (
+    <div className="rounded-xl transition hover:bg-paper/40">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="w-full rounded-xl px-1.5 py-1.5 text-left"
+      >
+        <span className="flex items-baseline gap-2 text-body">
+          <span className="shrink-0 font-medium text-ink">{item.label}</span>
+          <span className="truncate text-meta text-ink-faint">
+            {item.detail}
+          </span>
+          <span className="ml-auto shrink-0 tabular-nums text-ink-soft">
+            {moneyRange(item.min, item.max)}
+          </span>
+          <Icon
+            name="chevron-down"
+            size={13}
+            className={cn(
+              "shrink-0 self-center text-ink-faint transition",
+              open && "rotate-180",
+            )}
+          />
+        </span>
+        <span className="mt-1 block h-1 overflow-hidden rounded-full bg-paper">
+          <span
+            className="block h-full rounded-full"
+            style={{ width: `${Math.max(4, share)}%`, background: color }}
+          />
+        </span>
+      </button>
+      {open ? (
+        <div
+          className="mb-1 ml-1.5 space-y-1 border-l-2 pl-2.5 text-meta leading-relaxed text-ink-soft"
+          style={{ borderColor: color }}
+        >
+          <p>
+            占总额约 <span className="tabular-nums text-ink">{share}%</span>
+            <span className="text-line"> · </span>人均{" "}
+            <span className="tabular-nums text-ink">{perPerson}</span>
+            <span className="text-line"> · </span>
+            {hotelUnit ? "每晚" : "每天"}{" "}
+            <span className="tabular-nums text-ink">{perDay}</span>
+          </p>
+          {item.note ? <p className="text-ink-faint">{item.note}</p> : null}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -899,6 +982,7 @@ export default function PlanPanel({
   onRemoveStop,
 }: PlanPanelProps) {
   const [tab, setTab] = useState<Tab>("plan");
+  const [openBudget, setOpenBudget] = useState<string | null>(null);
 
   useEffect(() => {
     if (!plan) setTab("plan");
@@ -930,12 +1014,12 @@ export default function PlanPanel({
                 {plan ? plan.meta.title : "把一座城，走成一个圈"}
               </h2>
               {plan?.meta.isFixed ? (
-                <span className="shrink-0 rounded-full bg-jade-soft px-1.5 py-0.5 text-[8px] tracking-wide text-jade">
+                <span className="shrink-0 rounded-full bg-jade-soft px-1.5 py-0.5 text-micro tracking-wide text-jade">
                   攻略复刻
                 </span>
               ) : null}
             </div>
-            <p className="mt-1 truncate text-[10px] text-ink-faint">
+            <p className="mt-1 truncate text-meta text-ink-faint">
               {plan
                 ? plan.meta.subtitle
                 : "从酒店出发 · 不走回头路 · 最后回到酒店"}
@@ -946,16 +1030,18 @@ export default function PlanPanel({
               type="button"
               onClick={onShuffle}
               disabled={loading}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-[10px] text-ink-soft transition hover:border-ink/25 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
+              aria-label="换一版"
+              title="同样条件下换一条路线"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-meta text-ink-soft transition hover:border-ink/25 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Icon name="shuffle" size={12} />
-              换一版
+              <span className="hidden sm:inline">换一版</span>
             </button>
           ) : null}
         </div>
 
         {plan?.meta.holiday ? (
-          <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-amber-soft px-2.5 py-1 text-[9px] text-amber">
+          <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-amber-soft px-2.5 py-1 text-meta text-amber">
             <Icon name="calendar" size={10} />
             {plan.meta.holiday.name} · 人流约 +{plan.meta.holiday.crowdPct}% ·
             已计入路程与房价
@@ -963,14 +1049,14 @@ export default function PlanPanel({
         ) : null}
 
         {plan ? (
-          <div className="mt-3 flex items-center gap-1">
+          <div className="mt-3 flex flex-wrap items-center gap-1">
             {TABS.map((item) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setTab(item.id)}
                 className={cn(
-                  "relative px-3 py-2 text-[11px] transition",
+                  "relative shrink-0 whitespace-nowrap px-3 py-2 text-[11px] transition",
                   tab === item.id
                     ? "text-ink"
                     : "text-ink-faint hover:text-ink-soft",
@@ -982,12 +1068,12 @@ export default function PlanPanel({
                 ) : null}
               </button>
             ))}
-            <div className="ml-auto flex items-center gap-1.5 pb-1.5">
+            <div className="ml-auto flex shrink-0 items-center gap-1.5 pb-1.5">
               <button
                 type="button"
                 onClick={onShare}
                 title="复制这一版的链接，朋友打开就是同样的行程"
-                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-line bg-card px-2.5 py-1 text-meta text-ink-faint transition hover:border-ink/25 hover:text-ink"
               >
                 <Icon name="link" size={11} />
                 分享
@@ -996,13 +1082,13 @@ export default function PlanPanel({
                 type="button"
                 onClick={onCopyGuide}
                 title="把行程复制成文字，直接粘到微信或备忘录"
-                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-line bg-card px-2.5 py-1 text-meta text-ink-faint transition hover:border-ink/25 hover:text-ink"
               >
                 <Icon name="copy" size={11} />
                 复制
               </button>
               {loading ? (
-                <span className="inline-flex items-center gap-1 text-[10px] text-ink-faint">
+                <span className="inline-flex items-center gap-1 text-meta text-ink-faint">
                   <Spinner className="h-3 w-3 text-accent" />
                   重排中
                 </span>
@@ -1016,7 +1102,7 @@ export default function PlanPanel({
         {error ? (
           <div
             className={cn(
-              "mb-3 rounded-xl border px-3 py-2.5 text-[10px] leading-relaxed",
+              "mb-3 rounded-xl border px-3 py-2.5 text-body leading-relaxed",
               plan
                 ? "border-amber/30 bg-amber-soft/70 text-amber"
                 : "border-accent/25 bg-accent-soft/70 text-accent-deep",
@@ -1033,7 +1119,7 @@ export default function PlanPanel({
             <button
               type="button"
               onClick={onGenerate}
-              className="mt-2 inline-flex items-center gap-1 rounded-full border border-current/20 px-2.5 py-1 text-[10px] transition hover:bg-card/60"
+              className="mt-2 inline-flex items-center gap-1 rounded-full border border-current/20 px-2.5 py-1 text-meta transition hover:bg-card/60"
             >
               <Icon name="refresh" size={11} />
               再试一次
@@ -1053,7 +1139,7 @@ export default function PlanPanel({
               <p className="font-serif text-[16px] text-ink">
                 选好落脚点，就能生成第一条路线
               </p>
-              <p className="mx-auto mt-1.5 max-w-xs text-[10px] leading-relaxed text-ink-faint">
+              <p className="mx-auto mt-1.5 max-w-xs text-body leading-relaxed text-ink-faint">
                 漫城会先找出必去地标，再把顺路的点位按片区串成一天；同一天尽量沿一个方向走，最后回到酒店。
               </p>
               <button
@@ -1073,7 +1159,7 @@ export default function PlanPanel({
                 type="button"
                 onClick={() => onActiveDay("all")}
                 className={cn(
-                  "shrink-0 rounded-full border px-2.5 py-1 text-[10px] transition",
+                  "shrink-0 rounded-full border px-2.5 py-1 text-meta transition",
                   activeDay === "all"
                     ? "border-ink bg-ink text-paper"
                     : "border-line bg-card text-ink-soft hover:border-ink/25",
@@ -1087,7 +1173,7 @@ export default function PlanPanel({
                   type="button"
                   onClick={() => onActiveDay(item.index)}
                   className={cn(
-                    "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] transition",
+                    "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-meta transition",
                     activeDay === item.index
                       ? "border-ink bg-ink text-paper"
                       : "border-line bg-card text-ink-soft hover:border-ink/25",
@@ -1110,22 +1196,22 @@ export default function PlanPanel({
                       <p className="font-serif text-[18px] leading-none text-ink">
                         {totals.stops}
                       </p>
-                      <p className="mt-1 text-[9px] text-ink-faint">停留点</p>
+                      <p className="mt-1 text-meta text-ink-faint">停留点</p>
                     </div>
                     <div className="border-x border-line/60">
                       <p className="font-serif text-[18px] leading-none text-ink">
                         {totals.distance.toFixed(1)}
-                        <span className="ml-0.5 text-[9px] text-ink-faint">
+                        <span className="ml-0.5 text-meta text-ink-faint">
                           km
                         </span>
                       </p>
-                      <p className="mt-1 text-[9px] text-ink-faint">总路程</p>
+                      <p className="mt-1 text-meta text-ink-faint">总路程</p>
                     </div>
                     <div>
                       <p className="font-serif text-[18px] leading-none text-ink">
                         {hoursLabel(totals.travel)}
                       </p>
-                      <p className="mt-1 text-[9px] text-ink-faint">路上时间</p>
+                      <p className="mt-1 text-meta text-ink-faint">路上时间</p>
                     </div>
                   </div>
                 ) : null}
@@ -1155,14 +1241,14 @@ export default function PlanPanel({
           <div>
             <div className="flex flex-wrap items-end gap-3">
               <div>
-                <p className="text-[9px] tracking-[0.16em] text-ink-faint">
+                <p className="text-meta tracking-[0.16em] text-ink-faint">
                   总预算 · {plan.budget.travelers} 人
                 </p>
                 <p className="mt-1 font-serif text-[30px] leading-none tabular-nums text-ink">
                   {moneyRange(plan.budget.totalMin, plan.budget.totalMax)}
                 </p>
               </div>
-              <span className="ml-auto rounded-full bg-paper px-2.5 py-1 text-[10px] text-ink-soft">
+              <span className="ml-auto rounded-full bg-paper px-2.5 py-1 text-meta text-ink-soft">
                 人均{" "}
                 {moneyRange(
                   plan.budget.perPersonMin,
@@ -1171,43 +1257,30 @@ export default function PlanPanel({
               </span>
             </div>
 
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-0.5">
+              <p className="mb-1 px-1.5 text-meta text-ink-faint">
+                点任意一项，展开看人均、每天折算和算法口径
+              </p>
               {plan.budget.items.map((item) => (
-                <div key={item.key}>
-                  <div className="flex items-baseline gap-2 text-[11px]">
-                    <span className="shrink-0 font-medium text-ink">
-                      {item.label}
-                    </span>
-                    <span className="truncate text-[9px] text-ink-faint">
-                      {item.detail}
-                    </span>
-                    <span className="ml-auto shrink-0 tabular-nums text-ink-soft">
-                      {moneyRange(item.min, item.max)}
-                    </span>
-                  </div>
-                  <div className="mt-1 h-1 overflow-hidden rounded-full bg-paper">
-                    <span
-                      className="block h-full rounded-full"
-                      style={{
-                        width: `${Math.max(
-                          4,
-                          Math.round((item.max / Math.max(1, plan.budget.totalMax)) * 100),
-                        )}%`,
-                        background: BUDGET_COLORS[item.key] ?? "#8b9187",
-                      }}
-                    />
-                  </div>
-                  {item.note ? (
-                    <p className="mt-1 text-[9px] leading-relaxed text-ink-faint">
-                      {item.note}
-                    </p>
-                  ) : null}
-                </div>
+                <BudgetRow
+                  key={item.key}
+                  item={item}
+                  travelers={plan.budget.travelers}
+                  days={plan.meta.days}
+                  nights={Math.max(0, plan.meta.days - 1)}
+                  totalMax={plan.budget.totalMax}
+                  open={openBudget === item.key}
+                  onToggle={() =>
+                    setOpenBudget((current) =>
+                      current === item.key ? null : item.key,
+                    )
+                  }
+                />
               ))}
             </div>
 
-            <p className="mt-4 rounded-lg bg-paper/70 px-2.5 py-2 text-[9px] leading-relaxed text-ink-faint">
-              预算按{plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前
+            <p className="mt-4 rounded-lg bg-paper/70 px-2.5 py-2 text-meta leading-relaxed text-ink-faint">
+              预算按 {plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前
               {Math.max(0, plan.meta.days - 1)} 晚计
               {plan.meta.holiday ? "，已计入假期酒店上浮" : ""}
               ；没有真实标价的餐食与门票按同档中位数补齐，因此给出区间。
@@ -1217,7 +1290,7 @@ export default function PlanPanel({
           <div className="space-y-3">
             {plan.warnings.length > 0 ? (
               <div className="rounded-xl bg-amber-soft/70 p-3">
-                <p className="flex items-center gap-1.5 text-[11px] font-medium text-amber">
+                <p className="flex items-center gap-1.5 text-body font-medium text-amber">
                   <Icon name="alert" size={12} />
                   出发前留意
                 </p>
@@ -1225,7 +1298,7 @@ export default function PlanPanel({
                   {plan.warnings.map((warning) => (
                     <li
                       key={warning}
-                      className="flex gap-1.5 text-[10px] leading-relaxed text-amber/90"
+                      className="flex gap-1.5 text-body leading-relaxed text-amber/90"
                     >
                       <span className="mt-[5px] h-1 w-1 shrink-0 rounded-full bg-amber" />
                       {warning}
@@ -1237,7 +1310,7 @@ export default function PlanPanel({
 
             {plan.tips?.length ? (
               <div className="rounded-xl bg-paper/60 p-3">
-                <p className="flex items-center gap-1.5 text-[11px] font-medium text-ink">
+                <p className="flex items-center gap-1.5 text-body font-medium text-ink">
                   <Icon name="sparkles" size={12} className="text-jade" />
                   场景贴士
                 </p>
@@ -1246,14 +1319,14 @@ export default function PlanPanel({
                     <TipCard key={tip.id} tip={tip} />
                   ))}
                 </div>
-                <p className="mt-2 text-[9px] leading-relaxed text-ink-faint">
+                <p className="mt-2 text-meta leading-relaxed text-ink-faint">
                   由公开攻略与景区/交通公告提炼，每个停留点还会带预约、最佳时段与停留建议；规则、价格和班次可能调整，出发前以官方最新公告为准。
                 </p>
               </div>
             ) : null}
 
             <div className="rounded-xl bg-paper/60 p-3">
-              <p className="flex items-center gap-1.5 text-[11px] font-medium text-ink">
+              <p className="flex items-center gap-1.5 text-body font-medium text-ink">
                 <Icon name="info" size={12} className="text-ink-soft" />
                 数据与算法说明
               </p>
@@ -1261,7 +1334,7 @@ export default function PlanPanel({
                 {plan.meta.dataNotes.map((note) => (
                   <li
                     key={note}
-                    className="flex gap-1.5 text-[10px] leading-relaxed text-ink-soft"
+                    className="flex gap-1.5 text-body leading-relaxed text-ink-soft"
                   >
                     <span className="mt-[5px] h-1 w-1 shrink-0 rounded-full bg-line" />
                     {note}
@@ -1270,7 +1343,7 @@ export default function PlanPanel({
               </ul>
             </div>
 
-            <div className="space-y-1 text-[9px] leading-relaxed text-ink-faint">
+            <div className="space-y-1 text-meta leading-relaxed text-ink-faint">
               <p>
                 数据来源：
                 {plan.meta.source === "amap"

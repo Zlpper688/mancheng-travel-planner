@@ -549,7 +549,7 @@ export default function MapView({
       ) : null}
 
       {basemapWarning && !mapFailed ? (
-        <div className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-1.5 rounded-full border border-white/60 bg-card/92 px-2.5 py-1 text-[9px] text-amber shadow-lift backdrop-blur">
+        <div className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-1.5 rounded-full border border-white/60 bg-card/92 px-2.5 py-1 text-meta text-amber shadow-lift backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-amber" />
           底图瓦片加载较慢，点位与路线仍可查看
         </div>
@@ -580,7 +580,7 @@ export default function MapView({
         </div>
       ) : null}
 
-      <div className="pointer-events-none absolute bottom-2 left-2 z-10 rounded-xl border border-white/60 bg-card/88 px-2.5 py-1.5 text-[9px] leading-relaxed text-ink-soft shadow-lift backdrop-blur">
+      <div className="pointer-events-none absolute bottom-2 left-2 z-10 rounded-xl border border-white/60 bg-card/88 px-2.5 py-1.5 text-meta leading-relaxed text-ink-soft shadow-lift backdrop-blur">
         <div className="flex items-center gap-2.5">
           <span className="flex items-center gap-1">
             <span className="h-2 w-2 rounded-full bg-accent" />

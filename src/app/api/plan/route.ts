@@ -41,7 +41,7 @@ export async function POST(request: Request): Promise<NextResponse<PlanResponse>
     console.error("[plan]", error);
     return NextResponse.json(
       {
-        error: "排线时出了点问题",
+        error: "安排行程时出了点问题",
         hint: "请稍后重试；如果刚配置了高德 Key，确认它是「Web服务」类型并重启了服务。",
         code: "PLAN_FAILED",
       },

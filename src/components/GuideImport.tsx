@@ -158,11 +158,11 @@ export default function GuideImport({
           <span className="block text-[12px] font-medium text-ink">
             导入现成攻略
           </span>
-          <span className="mt-0.5 block text-[10px] text-ink-faint">
+          <span className="mt-0.5 block text-meta text-ink-faint">
             粘贴别人的游记，按原文顺序复刻
           </span>
         </span>
-        <span className="ml-auto flex items-center gap-1.5 text-[10px] text-ink-faint">
+        <span className="ml-auto flex items-center gap-1.5 text-meta text-ink-faint">
           {appliedCount > 0 ? `已采用 ${appliedCount} 个` : open ? "收起" : "展开"}
           <Icon
             name="chevron-down"
@@ -175,7 +175,7 @@ export default function GuideImport({
       {open ? (
         <div className="space-y-3 border-t border-line/70 px-3.5 py-3">
           {appliedCount > 0 ? (
-            <div className="flex items-center gap-2 rounded-lg bg-jade-soft px-2.5 py-2 text-[10px] leading-relaxed text-jade">
+            <div className="flex items-center gap-2 rounded-lg bg-jade-soft px-2.5 py-2 text-body leading-relaxed text-jade">
               <Icon name="check" size={12} className="shrink-0" />
               <span className="min-w-0 flex-1">
                 已采用 {appliedCount} 个攻略点，行程已按攻略日期与顺序重排。
@@ -196,9 +196,9 @@ export default function GuideImport({
               onChange={(event) => setText(event.target.value.slice(0, 8000))}
               rows={5}
               placeholder="把游记或攻略整段贴进来，例如：Day 1 上午先去八市吃沙茶面，然后逛中山路……"
-              className="scroll-thin w-full resize-y rounded-xl border border-line bg-paper/60 px-3 py-2.5 text-[11px] leading-relaxed text-ink placeholder:text-ink-faint/70 focus:border-ink/25 focus:outline-none"
+              className="scroll-thin w-full resize-y rounded-xl border border-line bg-paper/60 px-3 py-2.5 text-body leading-relaxed text-ink placeholder:text-ink-faint/70 focus:border-ink/25 focus:outline-none"
             />
-            <span className="pointer-events-none absolute bottom-2 right-3 text-[9px] tabular-nums text-ink-faint">
+            <span className="pointer-events-none absolute bottom-2 right-3 text-meta tabular-nums text-ink-faint">
               {text.length} / 8000
             </span>
           </div>
@@ -207,7 +207,7 @@ export default function GuideImport({
             <button
               type="button"
               onClick={() => setText(GUIDE_SAMPLE)}
-              className="rounded-full border border-line bg-card px-2.5 py-1.5 text-[10px] text-ink-soft transition hover:border-ink/25 hover:text-ink"
+              className="rounded-full border border-line bg-card px-2.5 py-1.5 text-meta text-ink-soft transition hover:border-ink/25 hover:text-ink"
             >
               填入示例
             </button>
@@ -223,14 +223,14 @@ export default function GuideImport({
           </div>
 
           {error ? (
-            <p className="rounded-lg bg-accent-soft px-2.5 py-2 text-[10px] leading-relaxed text-accent-deep">
+            <p className="rounded-lg bg-accent-soft px-2.5 py-2 text-body leading-relaxed text-accent-deep">
               {error}
             </p>
           ) : null}
 
           {result ? (
             <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-2 text-[10px] text-ink-faint">
+              <div className="flex flex-wrap items-center gap-2 text-meta text-ink-faint">
                 <span className="rounded-full bg-paper px-2 py-0.5 text-ink-soft">
                   识别出 {result.days} 天
                 </span>
@@ -250,7 +250,7 @@ export default function GuideImport({
                       <span className="font-serif text-[12px] text-ink">
                         Day {day}
                       </span>
-                      <span className="text-[9px] text-ink-faint">
+                      <span className="text-meta text-ink-faint">
                         {stops.length} 个点
                       </span>
                     </div>
@@ -281,12 +281,12 @@ export default function GuideImport({
                                   {stop.place.name}
                                 </span>
                                 {stop.confidence < 0.7 ? (
-                                  <span className="shrink-0 rounded bg-amber-soft px-1 py-px text-[8px] text-amber">
+                                  <span className="shrink-0 rounded bg-amber-soft px-1 py-px text-micro text-amber">
                                     {stop.confidence < 0.55 ? "低置信" : "相近"}
                                   </span>
                                 ) : null}
                               </span>
-                              <span className="mt-0.5 block truncate text-[9px] text-ink-faint">
+                              <span className="mt-0.5 block truncate text-meta text-ink-faint">
                                 {CATEGORY_LABELS[stop.place.category]} · 原文「
                                 {stop.query}」
                               </span>
@@ -300,7 +300,7 @@ export default function GuideImport({
               </div>
 
               {result.unmatched.length > 0 ? (
-                <p className="text-[9px] leading-relaxed text-ink-faint">
+                <p className="text-meta leading-relaxed text-ink-faint">
                   未在数据里找到：
                   {result.unmatched
                     .slice(0, 6)
@@ -313,13 +313,13 @@ export default function GuideImport({
               ) : null}
 
               {result.notes.length > 0 ? (
-                <p className="text-[9px] leading-relaxed text-ink-faint">
+                <p className="text-meta leading-relaxed text-ink-faint">
                   {result.notes.slice(0, 2).join(" ")}
                 </p>
               ) : null}
 
               <div className="flex items-center gap-2">
-                <span className="text-[10px] text-ink-faint">
+                <span className="text-meta text-ink-faint">
                   已选 {selectedStops.length} 个
                 </span>
                 <button
@@ -329,7 +329,7 @@ export default function GuideImport({
                   className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-[11px] text-paper transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Icon name="route" size={12} />
-                  {appliedCount > 0 ? "重新采用" : "按攻略排线"}
+                  {appliedCount > 0 ? "重新采用" : "按攻略安排"}
                 </button>
               </div>
             </div>

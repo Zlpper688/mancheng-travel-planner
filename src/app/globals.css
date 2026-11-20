@@ -15,6 +15,14 @@
   --color-jade-soft: #e3ece5;
   --color-amber: #a97725;
   --color-amber-soft: #f5e9d0;
+  /* 字号分三档，正文一律不低于 12px：中文 9px 在手机上基本看不清。
+     micro：角标、来源、徽标；meta：时间、地址、计数等辅助行；body：正文。 */
+  --text-micro: 10px;
+  --text-micro--line-height: 1.5;
+  --text-meta: 11px;
+  --text-meta--line-height: 1.55;
+  --text-body: 12px;
+  --text-body--line-height: 1.65;
   --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", Georgia, serif;
   --shadow-soft: 0 24px 60px -32px rgb(44 34 22 / 0.42);

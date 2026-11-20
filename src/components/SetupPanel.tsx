@@ -101,7 +101,7 @@ function SearchList({
             <span className="block truncate text-[12px] text-ink">
               {place.name}
             </span>
-            <span className="mt-0.5 block truncate text-[9px] text-ink-faint">
+            <span className="mt-0.5 block truncate text-meta text-ink-faint">
               {place.address ?? place.city ?? "地图点位"}
             </span>
           </span>
@@ -249,12 +249,12 @@ export default function SetupPanel({
               <p className="font-serif text-[22px] leading-tight tracking-wide text-ink">
                 {city.name}
               </p>
-              <p className="mt-1 truncate text-[10px] text-ink-faint">
+              <p className="mt-1 truncate text-meta text-ink-faint">
                 {city.address ??
                   `${city.lat.toFixed(3)}, ${city.lng.toFixed(3)}`}
               </p>
             </div>
-            <span className="shrink-0 rounded-full bg-jade-soft px-2 py-1 text-[9px] tracking-[0.12em] text-jade">
+            <span className="shrink-0 rounded-full bg-jade-soft px-2 py-1 text-meta tracking-[0.12em] text-jade">
               目的地
             </span>
           </div>
@@ -300,7 +300,7 @@ export default function SetupPanel({
 
       <div className="h-px bg-line/60" />
 
-      <Section no="02" title="落脚点" hint="闭环的起点">
+      <Section no="02" title="落脚点" hint="每天从这里出发、回到这里">
         <div className="rounded-xl border border-line bg-card px-3 py-2.5">
           <div className="flex items-start gap-2.5">
             <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-jade-soft text-jade">
@@ -310,12 +310,12 @@ export default function SetupPanel({
               <p className="truncate text-[13px] font-medium text-ink">
                 {hotel.name}
               </p>
-              <p className="mt-0.5 truncate text-[10px] text-ink-faint">
+              <p className="mt-0.5 truncate text-meta text-ink-faint">
                 {hotel.address ??
                   `${hotel.lat.toFixed(3)}, ${hotel.lng.toFixed(3)}`}
               </p>
               {hotel.cost ? (
-                <p className="mt-1 text-[10px] text-jade">
+                <p className="mt-1 text-meta text-jade">
                   {money(hotel.cost)} / 晚 · 参考价
                 </p>
               ) : null}
@@ -364,7 +364,7 @@ export default function SetupPanel({
 
         {demoCity ? (
           <div className="space-y-1.5">
-            <p className="text-[9px] tracking-[0.12em] text-ink-faint">
+            <p className="text-meta tracking-[0.12em] text-ink-faint">
               厦门常用落脚点
             </p>
             {DEMO_HOTELS.map((option) => (
@@ -373,7 +373,7 @@ export default function SetupPanel({
                 type="button"
                 onClick={() => onHotelChange(option)}
                 className={cn(
-                  "flex w-full items-center gap-2 rounded-lg border px-2.5 py-1.5 text-left text-[10px] transition",
+                  "flex w-full items-center gap-2 rounded-lg border px-2.5 py-1.5 text-left text-meta transition",
                   option.id === hotel.id
                     ? "border-jade/50 bg-jade-soft/60 text-jade"
                     : "border-line bg-card/60 text-ink-soft hover:border-ink/25",
@@ -418,21 +418,21 @@ export default function SetupPanel({
             />
           </div>
           {holiday ? (
-            <div className="rounded-lg bg-amber-soft px-2.5 py-2 text-[9px] leading-relaxed text-amber">
+            <div className="rounded-lg bg-amber-soft px-2.5 py-2 text-meta leading-relaxed text-amber">
               <span className="font-medium">
                 {holiday.name} · 人流约 +{holiday.crowdPct}%
               </span>
               <span className="mt-0.5 block text-amber/85">{holiday.tip}</span>
             </div>
           ) : weekend ? (
-            <p className="px-1 text-[9px] leading-relaxed text-ink-faint">
-              周末热门点位会排队，排线已按人流系数放宽路上的时间。
+            <p className="px-1 text-meta leading-relaxed text-ink-faint">
+              周末热门点位会排队，行程已按人流系数放宽路上的时间。
             </p>
           ) : null}
         </div>
 
         <div className="space-y-1.5">
-          <p className="px-1 text-[9px] tracking-[0.12em] text-ink-faint">节奏</p>
+          <p className="px-1 text-meta tracking-[0.12em] text-ink-faint">节奏</p>
           <div className="grid grid-cols-3 gap-1.5">
             {Object.entries(PACES).map(([id, option]) => (
               <button
@@ -451,7 +451,7 @@ export default function SetupPanel({
                 </span>
                 <span
                   className={cn(
-                    "mt-1 block text-[9px] leading-none",
+                    "mt-1 block text-meta leading-none",
                     pace === id ? "text-paper/70" : "text-ink-faint",
                   )}
                 >
@@ -463,7 +463,7 @@ export default function SetupPanel({
         </div>
 
         <div className="space-y-1.5">
-          <p className="px-1 text-[9px] tracking-[0.12em] text-ink-faint">
+          <p className="px-1 text-meta tracking-[0.12em] text-ink-faint">
             远足天数
           </p>
           <div className="grid grid-cols-4 gap-1.5">
@@ -483,13 +483,13 @@ export default function SetupPanel({
               </button>
             ))}
           </div>
-          <p className="px-1 text-[9px] leading-relaxed text-ink-faint">
+          <p className="px-1 text-meta leading-relaxed text-ink-faint">
             较远但出名的景点值得专程去，全天只走一个方向；自动会按名气和距离权衡。
           </p>
         </div>
 
         <div className="space-y-1.5">
-          <p className="flex items-center justify-between px-1 text-[9px] tracking-[0.12em] text-ink-faint">
+          <p className="flex items-center justify-between px-1 text-meta tracking-[0.12em] text-ink-faint">
             <span>旅行风格</span>
             <span>最多 3 个 · 已选 {styles.length}</span>
           </p>
@@ -519,13 +519,13 @@ export default function SetupPanel({
                   <span className="min-w-0">
                     <span
                       className={cn(
-                        "block text-[11px] leading-tight",
+                        "block text-body leading-tight",
                         active ? "text-accent-deep" : "text-ink",
                       )}
                     >
                       {style.label}
                     </span>
-                    <span className="mt-0.5 block truncate text-[9px] leading-tight text-ink-faint">
+                    <span className="mt-0.5 block truncate text-meta leading-tight text-ink-faint">
                       {style.tagline}
                     </span>
                   </span>
@@ -536,7 +536,7 @@ export default function SetupPanel({
         </div>
 
         <div className="space-y-1.5">
-          <p className="px-1 text-[9px] tracking-[0.12em] text-ink-faint">
+          <p className="px-1 text-meta tracking-[0.12em] text-ink-faint">
             交通方式
           </p>
           <div className="grid grid-cols-2 gap-1.5">
@@ -562,13 +562,13 @@ export default function SetupPanel({
                 <span className="min-w-0">
                   <span
                     className={cn(
-                      "block text-[11px] leading-tight",
+                      "block text-body leading-tight",
                       transport === option.id ? "text-jade" : "text-ink",
                     )}
                   >
                     {option.label}
                   </span>
-                  <span className="mt-0.5 block truncate text-[8px] leading-tight text-ink-faint">
+                  <span className="mt-0.5 block truncate text-meta leading-tight text-ink-faint">
                     {option.description}
                   </span>
                 </span>
@@ -578,7 +578,7 @@ export default function SetupPanel({
         </div>
 
         <div className="space-y-1.5">
-          <p className="px-1 text-[9px] tracking-[0.12em] text-ink-faint">
+          <p className="px-1 text-meta tracking-[0.12em] text-ink-faint">
             预算档位
           </p>
           <div className="grid grid-cols-3 gap-1.5">
@@ -641,17 +641,17 @@ export default function SetupPanel({
             <Icon name="sparkles" size={15} />
           )}
           {busy
-            ? "正在重新排线…"
+            ? "正在重新安排…"
             : hasPlan
               ? "按当前偏好重新生成"
               : "生成我的行程"}
         </button>
-        <p className="text-center text-[9px] leading-relaxed text-ink-faint">
+        <p className="text-center text-meta leading-relaxed text-ink-faint">
           改动任一偏好都会自动重排；想保留设置时，也可以手动再生成一次。
         </p>
       </div>
 
-      <div className="rounded-xl border border-line/70 bg-paper/60 px-3 py-2.5 text-[9px] leading-relaxed text-ink-faint">
+      <div className="rounded-xl border border-line/70 bg-paper/60 px-3 py-2.5 text-meta leading-relaxed text-ink-faint">
         <div className="flex items-center gap-1.5 text-ink-soft">
           <span
             className={cn(
