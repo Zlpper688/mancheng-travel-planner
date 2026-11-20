@@ -442,6 +442,14 @@ export function rhythmTravelMinutes(
   );
 }
 
+/** 一天最晚几点该出门。再晚就不是「充实」，是把整个上午扔掉。
+ *  这里只约束「算法为了少等待而主动推迟」，不约束点位本身开门晚。 */
+const LATEST_START: Record<PaceId, number> = {
+  chill: 10 * 60 + 30,
+  balanced: 10 * 60,
+  packed: 9 * 60 + 30,
+};
+
 function startForFirst(
   profile: RhythmProfile,
   pace: PaceId,
@@ -457,7 +465,13 @@ function startForFirst(
   if (best !== undefined) {
     if (best >= 15 * 60) return Math.max(baseStart, 14 * 60);
     if (best >= 13 * 60) return Math.max(baseStart, 13 * 60);
-    if (best >= 10 * 60 + 30) return Math.max(baseStart, 10 * 60 + 45);
+    if (best >= 10 * 60 + 30) {
+      // 开门偏晚可以等一等，但不能等到午后：等 40 分钟好过丢掉整个上午。
+      return Math.min(
+        Math.max(baseStart, 10 * 60 + 45),
+        Math.max(baseStart, LATEST_START[pace]),
+      );
+    }
   }
   return baseStart;
 }
@@ -931,6 +945,23 @@ function frameStart(
   closing: Entry[],
   input: ComposeInput,
 ): number {
+  const raw = frameStartRaw(opening, middle, closing, input);
+  const baseStart = input.baseStart ?? PACES[input.pace].startMin;
+  // 只要这一天还有「早上进得去」的点，出发就不该晚过 LATEST_START。
+  // 原来几个分支是直接 return 的，封顶被绕过，于是仍会排出 11 点出门的一天。
+  const morningPossible = [...opening, ...middle, ...closing].some((entry) =>
+    entry.profile.windows.some(([start]) => start <= 10 * 60 + 30),
+  );
+  if (!morningPossible) return raw;
+  return Math.min(raw, Math.max(baseStart, LATEST_START[input.pace]));
+}
+
+function frameStartRaw(
+  opening: Entry[],
+  middle: Entry[],
+  closing: Entry[],
+  input: ComposeInput,
+): number {
   const baseStart = input.baseStart ?? PACES[input.pace].startMin;
   if (opening.some((entry) => entry.profile.sunrise)) {
     return Math.max(5 * 60, Math.min(baseStart, 6 * 60));
@@ -1075,17 +1106,26 @@ function buildOrder(
   const frame = buildFrame(entries, input);
   if (!frame.opening.length && !frame.closing.length) {
     const baseStart = input.baseStart ?? PACES[input.pace].startMin;
-    const candidates = new Set<number>([
-      baseStart,
-      10 * 60 + 45,
-      12 * 60,
-      13 * 60,
-      14 * 60,
-    ]);
+    // 原来的候选里固定带着 12:00 / 13:00 / 14:00，而评估只看「早到要等多久」，
+    // 于是越晚出发分越高，最后排出一版 11 点出门的「充实」行程。
+    // 只有整天都是日落/夜市型点位时，下午出门才成立。
+    const lateOnly = entries.every(
+      (entry) => entry.profile.sunset || entry.profile.nightStreet,
+    );
+    const candidates = new Set<number>([baseStart]);
+    if (lateOnly) {
+      candidates.add(12 * 60);
+      candidates.add(13 * 60);
+      candidates.add(14 * 60);
+    }
     for (const entry of entries) {
       const open = entry.profile.windows[0]?.[0];
-      if (open !== undefined && open >= 8 * 60 && open <= 15 * 60) {
-        candidates.add(Math.max(baseStart, open));
+      if (open === undefined || open < 8 * 60) continue;
+      // 点位开门晚可以顺着它推迟，但推到 LATEST_START 就封顶。
+      if (lateOnly) {
+        if (open <= 15 * 60) candidates.add(Math.max(baseStart, open));
+      } else if (open <= LATEST_START[input.pace]) {
+        candidates.add(open);
       }
     }
     let best: { order: Entry[]; startMin: number; total: number } | null =

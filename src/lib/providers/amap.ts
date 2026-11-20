@@ -439,20 +439,31 @@ async function discoverAmap(options: DiscoverOptions): Promise<DiscoverResult> {
     { types: "140500|140600|140700", pages: 1, want: "sight", radiusFactor: 1.5 },
   ];
   const nearSpecs: AroundSpec[] = [
-    // 餐饮（正餐）
-    { center: hotel, radius: 5000, types: "050000", pages: 2, want: "meal" },
+    // 餐饮（正餐）。原来只搜 5km：酒店在中山路、当天活动区在环岛路时，
+    // 午饭候选全都落在 5km 之外，于是整份行程一顿饭都排不出来。
+    { center: hotel, radius: 8000, types: "050000", pages: 2, want: "meal" },
     // 咖啡茶歇
-    { center: hotel, radius: 6000, types: "050500", pages: 1, want: "cafe" },
+    { center: hotel, radius: 8000, types: "050500", pages: 1, want: "cafe" },
   ];
 
-  const [citySights, nearPlaces] = await Promise.all([
+  // 餐饮只在酒店周边搜是不够的：当天活动区在环岛路、酒店在中山路时，
+  // 午饭候选全在 10km 外，整份行程会一顿饭都排不出来。这里补一次全市检索。
+  const cityMealSpec: CitySpec = {
+    types: "050000",
+    pages: 2,
+    want: "meal",
+    radiusFactor: 1.8,
+  };
+
+  const [citySights, cityMeals, nearPlaces] = await Promise.all([
     mapLimit(citySightSpecs, 2, (spec) =>
       fetchCityPois(options.city, spec, hotel, radius),
     ),
+    fetchCityPois(options.city, cityMealSpec, hotel, radius),
     mapLimit(nearSpecs, 2, (spec) => fetchAround(spec)),
   ]);
 
-  const results = [...citySights, ...nearPlaces];
+  const results = [...citySights, [...cityMeals], ...nearPlaces];
   const all = dedupePlaces(results.flat());
 
   const rawSights = all.filter(
