@@ -27,6 +27,7 @@ import type {
 } from "../types";
 import { selectTips } from "../tips/engine";
 import { enrichPlacesFromWikidata } from "../wikidata";
+import { auditPlan } from "./audit";
 import { buildBudget } from "./budget";
 import { alternativesFor, buildWishlist, EXPERIENCE_DEFS } from "./experience";
 import { alignLodgingNights, planLodging } from "./lodging";
@@ -36,6 +37,7 @@ import { distributeSelectedPlaces } from "./selected";
 import { selectDays } from "./select";
 import { farLimitKm } from "./select/far";
 import { avoidSteepFor, steepnessOf } from "./strenuous";
+import { explainDay } from "./why";
 
 // 有老人同行时整体降一档节奏，避免“充实”被理解成赶场。
 function seniorPace(input: TripInput): PaceId {
@@ -281,11 +283,19 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const avoidSteep = avoidSteepFor(input);
   // 自动选点、心愿单、备选和空档补位共用同一套“避开爬坡”口径，
   // 否则手册里仍会推荐爬山点，和行程自相矛盾。
-  const planSights = avoidSteep
-    ? discovered.sights.filter(
-        (place) => steepnessOf(input.city, place) !== "core",
-      )
-    : discovered.sights;
+  // 用户手动移除 / 替换掉的点位，在进入选点与餐食插入之前就剔掉，
+  // 否则「移除」之后重排，同一个点会被发现流程原样塞回来。
+  const excludeIds = new Set(input.excludeIds ?? []);
+  const planSights = (
+    avoidSteep
+      ? discovered.sights.filter(
+          (place) => steepnessOf(input.city, place) !== "core",
+        )
+      : discovered.sights
+  ).filter((place) => !excludeIds.has(place.id));
+  const planMeals = excludeIds.size
+    ? discovered.meals.filter((place) => !excludeIds.has(place.id))
+    : discovered.meals;
 
   // 酒店不是出发前必须知道的事：没定住处时，先按点位分布推荐落脚片区，
   // 后面的选点、排线和预算都用这个“基地”作为每天往返的锚点。
@@ -373,7 +383,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     const result = await scheduleDay({
       seedDay,
       hotel: base,
-      meals: discovered.meals,
+      meals: planMeals,
       city: input.city,
       family:
         input.children > 0 ||
@@ -403,6 +413,13 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
           : `第 ${seedDay.index} 天：${warning}`,
       ),
     );
+  }
+
+  // 「为什么这么排」放在天气写回之后算：日出日落时间要拿来解释出发时间。
+  const seedByDay = new Map(selection.days.map((seed) => [seed.index, seed]));
+  for (const day of days) {
+    const seed = seedByDay.get(day.index);
+    if (seed) day.why = explainDay({ day, seed, input });
   }
 
   warnings.push(...selection.warnings);
@@ -590,7 +607,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   );
   const seen = new Set<string>();
 
-  return {
+  const plan: PlanResult = {
     meta,
     days,
     budget,
@@ -603,4 +620,22 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     wishlist: wishlist.length ? wishlist : undefined,
     lodging: lodgingPlan,
   };
+
+  // 每一版行程都过一遍体检。规则改动后最容易出现的是「程序没报错、
+  // 结果却不像人排的」，这里把它变成一条能进日志、能统计的信号。
+  if (process.env.NODE_ENV !== "production" || process.env.PLAN_AUDIT === "1") {
+    const issues = auditPlan(plan, {
+      pace,
+      isFixed: meta.isFixed,
+    });
+    const errors = issues.filter((issue) => issue.severity === "error");
+    if (errors.length) {
+      console.warn(
+        `[plan-audit] ${input.city} ${input.days}日 ${pace} seed=${input.seed}：${errors.length} 项硬伤`,
+        errors.map((issue) => `D${issue.day} ${issue.code} ${issue.detail}`),
+      );
+    }
+  }
+
+  return plan;
 }

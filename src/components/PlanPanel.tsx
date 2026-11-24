@@ -71,8 +71,43 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "notes", label: "说明" },
 ];
 
+/** 「为什么这么排」：默认收起，点开才展开四条理由。
+ *  放在单日视图里——这时用户正在读这一天的细节，才有耐心看解释。 */
+function WhyBlock({ why }: { why?: string[] }) {
+  const [open, setOpen] = useState(false);
+  if (!why || !why.length) return null;
+  return (
+    <div className="mt-2">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        className="inline-flex items-center gap-1 rounded-full border border-jade/25 bg-card/70 px-2 py-0.5 text-[10px] text-jade transition hover:border-jade/50"
+      >
+        <Icon name="info" size={11} />
+        为什么这么排
+        <Icon
+          name="chevron-down"
+          size={11}
+          className={open ? "rotate-180 transition" : "transition"}
+        />
+      </button>
+      {open ? (
+        <ul className="mt-1.5 space-y-1 rounded-xl border border-line/60 bg-card/70 px-2.5 py-2 text-[10.5px] leading-relaxed text-ink-soft">
+          {why.map((line) => (
+            <li key={line} className="flex gap-1.5">
+              <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-jade/60" />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 function StrategyStrip({ day }: { day: DayPlan }) {
-  if (!day.strategy) return null;
+  if (!day.strategy && !day.why?.length) return null;
   return (
     <div className="mb-3 rounded-xl border border-jade/25 bg-jade-soft/30 px-3 py-2">
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] font-medium text-jade">
@@ -85,12 +120,15 @@ function StrategyStrip({ day }: { day: DayPlan }) {
           </span>
         ) : null}
       </div>
-      <p className="mt-1 text-[11.5px] leading-relaxed text-ink-soft">
-        {day.strategy}
-      </p>
+      {day.strategy ? (
+        <p className="mt-1 text-[11.5px] leading-relaxed text-ink-soft">
+          {day.strategy}
+        </p>
+      ) : null}
       <div className="mt-1.5">
         <PlanRhythmChips rhythm={day.rhythm} />
       </div>
+      <WhyBlock why={day.why} />
     </div>
   );
 }

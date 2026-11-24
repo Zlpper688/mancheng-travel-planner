@@ -140,6 +140,12 @@ export interface TripInput {
   hotelPrice?: number;
   fixedPlaces?: FixedPlace[];
   selectedPlaces?: Place[];
+  /** 单点锁定：这个点必须出现在该天，其余点位仍由算法安排。 */
+  lockedPlaces?: FixedPlace[];
+  /** 用户手动移除或替换掉的点位，后续重排不得再次出现。 */
+  excludeIds?: string[];
+  /** 某天少排几个点位（移除点位后用），键是第几天。 */
+  slimDays?: Record<number, number>;
   farDays?: number;
   experiences?: ExperienceId[];
 }
@@ -265,6 +271,8 @@ export interface DayPlan {
   endMin: number;
   tip: string;
   strategy?: string;
+  /** 「为什么这么排」：按主景、片区、时间轴和餐食位置给出的四条理由。 */
+  why?: string[];
   heroName?: string;
   heroPlaceId?: string;
   rhythm?: DayRhythm;

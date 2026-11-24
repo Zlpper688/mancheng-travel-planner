@@ -144,6 +144,31 @@ function tryPlace(raw: unknown, forceHotel = false): Place | null {
   };
 }
 
+/**
+ * 解析「指定某天的某个点」。攻略复刻（fixedPlaces）与单点锁定（lockedPlaces）
+ * 用的是同一种结构，差别只在 select.ts 里的处理方式。
+ */
+function readFixedPlaces(raw: unknown, max: number): FixedPlace[] {
+  if (!Array.isArray(raw)) return [];
+  const result: FixedPlace[] = [];
+  for (const item of raw.slice(0, max)) {
+    if (!item || typeof item !== "object") continue;
+    const record = item as Record<string, unknown>;
+    const place = tryPlace(record.place);
+    const day = Number(record.day);
+    if (
+      place &&
+      place.category !== "hotel" &&
+      Number.isInteger(day) &&
+      day >= 1 &&
+      day <= 15
+    ) {
+      result.push({ place, day });
+    }
+  }
+  return result;
+}
+
 export function sanitizeTripInput(raw: unknown): TripInput {
   const data = asRecord(raw);
   const city = readString(data.city, "目的地", { max: 40, required: true });
@@ -222,23 +247,29 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     }
   }
 
-  const fixedPlaces: FixedPlace[] = [];
-  if (Array.isArray(data.fixedPlaces)) {
-    for (const item of data.fixedPlaces.slice(0, 80)) {
-      if (!item || typeof item !== "object") continue;
-      const record = item as Record<string, unknown>;
-      const place = tryPlace(record.place);
-      const day = Number(record.day);
-      if (
-        place &&
-        place.category !== "hotel" &&
-        Number.isInteger(day) &&
-        day >= 1 &&
-        day <= 15
-      ) {
-        fixedPlaces.push({ place, day });
-      }
+  const fixedPlaces = readFixedPlaces(data.fixedPlaces, 80);
+  const lockedPlaces = readFixedPlaces(data.lockedPlaces, 30);
+
+  const excludeIds: string[] = [];
+  if (Array.isArray(data.excludeIds)) {
+    for (const item of data.excludeIds.slice(0, 120)) {
+      if (typeof item !== "string") continue;
+      const id = item.trim().slice(0, 80);
+      if (id && !excludeIds.includes(id)) excludeIds.push(id);
     }
+  }
+
+  let slimDays: Record<number, number> | undefined;
+  if (data.slimDays && typeof data.slimDays === "object" && !Array.isArray(data.slimDays)) {
+    const cleaned: Record<number, number> = {};
+    for (const [key, value] of Object.entries(data.slimDays as Record<string, unknown>)) {
+      const day = Number(key);
+      const count = Number(value);
+      if (!Number.isInteger(day) || day < 1 || day > 15) continue;
+      if (!Number.isFinite(count) || count <= 0) continue;
+      cleaned[day] = Math.min(4, Math.round(count));
+    }
+    if (Object.keys(cleaned).length) slimDays = cleaned;
   }
 
   const selectedPlaces: Place[] = [];
@@ -274,6 +305,9 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     seed,
     hotelPrice,
     fixedPlaces: fixedPlaces.length ? fixedPlaces : undefined,
+    lockedPlaces: lockedPlaces.length ? lockedPlaces : undefined,
+    excludeIds: excludeIds.length ? excludeIds : undefined,
+    slimDays,
     selectedPlaces: selectedPlaces.length ? selectedPlaces : undefined,
     farDays,
   };

@@ -8,3 +8,8 @@ out
 *.log
 *.tsbuildinfo
 .DS_Store
+
+# 自动合并用的备份、独立构建目录
+.backup-auto/
+.backup-mancheng-*/
+.next-build/
