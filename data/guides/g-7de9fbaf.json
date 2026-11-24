@@ -1,0 +1,197 @@
+{
+  "id": "g-7de9fbaf",
+  "city": "绍兴",
+  "cityAliases": [],
+  "region": "浙江",
+  "title": "绍兴",
+  "source": "浙江地区/我是驴友-绍兴.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "深度四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大禹陵",
+              "kind": "sight"
+            },
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大禹陵-兰亭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "仓桥直街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东湖-沈园-鲁迅故里-仓桥直街",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "柯岩",
+              "kind": "sight"
+            },
+            {
+              "name": "鉴湖",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "柯岩-鉴湖-鲁镇",
+          "title": "深度四日游"
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "文化一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东湖-鲁迅故里-沈园",
+          "title": "文化一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "经典二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大禹陵",
+              "kind": "sight"
+            },
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大禹陵-兰亭",
+          "title": "经典二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "仓桥直街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东湖-沈园-鲁迅故里-仓桥直街",
+          "title": "深度四日游"
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "宋城",
+              "kind": "sight"
+            },
+            {
+              "name": "清河坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西湖→宋城→清河坊",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "西溪湿地",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村→西溪湿地",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

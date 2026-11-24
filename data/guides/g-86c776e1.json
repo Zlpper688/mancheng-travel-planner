@@ -1,0 +1,45 @@
+{
+  "id": "g-86c776e1",
+  "city": "三清山",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "三清山",
+  "source": "华中地区/我是驴友-三清山.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "经典一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "万寿园",
+              "kind": "sight"
+            },
+            {
+              "name": "南清园",
+              "kind": "sight"
+            },
+            {
+              "name": "西海岸",
+              "kind": "sight"
+            },
+            {
+              "name": "三清宫",
+              "kind": "sight"
+            }
+          ],
+          "raw": "万寿园—南清园--西海岸--三清宫",
+          "title": "经典一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

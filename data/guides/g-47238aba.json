@@ -1,0 +1,77 @@
+{
+  "id": "g-47238aba",
+  "city": "平遥",
+  "cityAliases": [],
+  "region": "华北",
+  "title": "平遥",
+  "source": "华北地区/我是驴友-平遥.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "精华路线",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "城墙",
+              "kind": "sight"
+            },
+            {
+              "name": "日昇昌",
+              "kind": "sight"
+            },
+            {
+              "name": "县衙",
+              "kind": "sight"
+            },
+            {
+              "name": "清虚观",
+              "kind": "sight"
+            },
+            {
+              "name": "城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "明清古街",
+              "kind": "sight"
+            },
+            {
+              "name": "百川通",
+              "kind": "sight"
+            },
+            {
+              "name": "协同庆钱庄",
+              "kind": "sight"
+            },
+            {
+              "name": "天吉祥",
+              "kind": "sight"
+            },
+            {
+              "name": "雷履泰故居",
+              "kind": "sight"
+            },
+            {
+              "name": "商会博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "同兴公镖局",
+              "kind": "sight"
+            }
+          ],
+          "raw": "为：城墙、日昇昌、县衙、清虚观、城隍庙、明清古街、百川通、协同庆钱庄、天吉祥、雷履泰故居、商会博物馆、同兴公镖局、古民居博物馆、华北第一镖局、中国镖局博物馆、蔚盛长、汇武林、文庙、中国珍奇报纸",
+          "title": null
+        }
+      ],
+      "stopCount": 12,
+      "source": "fallback",
+      "needsReview": true
+    }
+  ]
+}

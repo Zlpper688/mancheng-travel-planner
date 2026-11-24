@@ -1,0 +1,360 @@
+{
+  "id": "g-ee583ca4",
+  "city": "上海",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "上海",
+  "source": "华东地区/我是驴友-上海旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "文化两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "杜莎夫人蜡像馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "豫园",
+              "kind": "sight"
+            },
+            {
+              "name": "金茂大厦",
+              "kind": "sight"
+            },
+            {
+              "name": "外滩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南京路步行街-杜莎夫人蜡像馆-老城隍庙-豫园-金茂大厦-外滩",
+          "title": "文化两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "徐家汇天主教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "徐家汇藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "七宝老",
+              "kind": "sight"
+            }
+          ],
+          "raw": "徐家汇天主教堂-徐家汇藏书楼-七宝老",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "悠闲三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "上海博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "外滩",
+              "kind": "sight"
+            },
+            {
+              "name": "老城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "豫园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上海博物馆-南京路步行街-外滩-老城隍庙-豫园",
+          "title": "悠闲三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "徐家汇天主教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "徐家汇藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "七宝老",
+              "kind": "sight"
+            }
+          ],
+          "raw": "徐家汇天主教堂-徐家汇藏书楼-七宝老",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "田子坊",
+              "kind": "sight"
+            },
+            {
+              "name": "周公馆",
+              "kind": "sight"
+            },
+            {
+              "name": "新天地",
+              "kind": "sight"
+            },
+            {
+              "name": "中共一大会址",
+              "kind": "sight"
+            }
+          ],
+          "raw": "田子坊-周公馆-新天地-中共一大会址",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "上海",
+              "kind": "sight"
+            },
+            {
+              "name": "绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上海→绍兴→鲁迅故里→鲁镇",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "上海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "兰亭→沈园→上海",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "对这位大文豪",
+              "kind": "sight"
+            }
+          ],
+          "raw": "到达绍兴后，我们先去探访鲁迅故里，对这位大文豪，更多的",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "上海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "兰亭→沈园→上海",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "上海",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "歙县",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上海→屯溪→歙县",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            },
+            {
+              "name": "上海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递→上海",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r6",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达黄山市",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晚上乘火车到达黄山市，早上出发，经歙县赶往棠樾，沿途的",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            },
+            {
+              "name": "上海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递→上海",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

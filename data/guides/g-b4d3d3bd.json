@@ -1,0 +1,273 @@
+{
+  "id": "g-b4d3d3bd",
+  "city": "青岛",
+  "cityAliases": [],
+  "region": "山东",
+  "title": "青岛",
+  "source": "山东地区/我是驴友-青岛旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "啤酒博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "啤酒街",
+              "kind": "sight"
+            },
+            {
+              "name": "台东夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "啤酒博物馆-啤酒街-台东夜市",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "崂山",
+              "kind": "sight"
+            },
+            {
+              "name": "仰口",
+              "kind": "sight"
+            },
+            {
+              "name": "石老人海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            }
+          ],
+          "raw": "崂山（太清宫-仰口）-石老人海水浴场-奥帆中心-香港花园附近的酒吧区",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "啤酒美食一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "栈桥",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅公园",
+              "kind": "sight"
+            },
+            {
+              "name": "第一海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "八大关",
+              "kind": "sight"
+            },
+            {
+              "name": "第三海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "五四广场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            }
+          ],
+          "raw": "栈桥-鲁迅公园-第一海水浴场-八大关-第三海水浴场-五四广场-奥帆中心",
+          "title": "啤酒美食一日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "自驾一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "胶州湾隧道",
+              "kind": "sight"
+            },
+            {
+              "name": "黄岛金沙滩",
+              "kind": "sight"
+            },
+            {
+              "name": "青岛森林野生动物",
+              "kind": "sight"
+            }
+          ],
+          "raw": "胶州湾隧道-黄岛金沙滩-青岛森林野生动物",
+          "title": "自驾一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "栈桥",
+              "kind": "sight"
+            },
+            {
+              "name": "小鱼山公园",
+              "kind": "sight"
+            },
+            {
+              "name": "迎宾馆",
+              "kind": "sight"
+            },
+            {
+              "name": "基督教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "胶澳总督府",
+              "kind": "sight"
+            },
+            {
+              "name": "天主教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "劈柴院小吃",
+              "kind": "meal"
+            }
+          ],
+          "raw": "栈桥-小鱼山公园-迎宾馆-基督教堂-胶澳总督府-天主教堂-劈柴院小吃",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "崂山",
+              "kind": "sight"
+            },
+            {
+              "name": "仰口",
+              "kind": "sight"
+            },
+            {
+              "name": "石老人海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            }
+          ],
+          "raw": "崂山（太清宫-仰口）-石老人海水浴场-奥帆中心-香港花园附近的酒吧区",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "青岛",
+              "kind": "sight"
+            },
+            {
+              "name": "蓬莱",
+              "kind": "sight"
+            },
+            {
+              "name": "烟台",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青岛→蓬莱→烟台",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "烟台",
+              "kind": "sight"
+            },
+            {
+              "name": "刘公岛",
+              "kind": "sight"
+            },
+            {
+              "name": "威海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "烟台→刘公岛→威海",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "威海",
+              "kind": "sight"
+            },
+            {
+              "name": "成山头",
+              "kind": "sight"
+            },
+            {
+              "name": "天鹅湖",
+              "kind": "sight"
+            },
+            {
+              "name": "青岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "威海→成山头→天鹅湖→青岛",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

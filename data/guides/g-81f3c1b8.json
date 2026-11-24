@@ -1,0 +1,114 @@
+{
+  "id": "g-81f3c1b8",
+  "city": "威海",
+  "cityAliases": [],
+  "region": "山东",
+  "title": "威海",
+  "source": "山东地区/我是驴友-威海旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "夏日惬意海滩三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "甲午战争博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "刘公岛森林公园",
+              "kind": "sight"
+            },
+            {
+              "name": "刘公庙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "甲午战争博物馆-刘公岛森林公园-刘公庙",
+          "title": "夏日惬意海滩三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "环翠楼公园",
+              "kind": "sight"
+            },
+            {
+              "name": "影视文化城",
+              "kind": "sight"
+            },
+            {
+              "name": "国际海水浴场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "环翠楼公园-影视文化城-国际海水浴场",
+          "title": "夏日惬意海滩三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "成头山",
+              "kind": "sight"
+            },
+            {
+              "name": "始皇庙",
+              "kind": "sight"
+            },
+            {
+              "name": "乳山银滩旅游度假区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "成头山-始皇庙-乳山银滩旅游度假区",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "冬日泡温泉赏天鹅二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "威海汤泊温泉",
+              "kind": "sight"
+            },
+            {
+              "name": "成头山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "威海汤泊温泉-成头山",
+          "title": "冬日泡温泉赏天鹅二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "荣成天鹅湖 / 烟墩角天鹅村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "荣成天鹅湖 / 烟墩角天鹅村",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

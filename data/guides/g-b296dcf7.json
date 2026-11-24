@@ -1,0 +1,221 @@
+{
+  "id": "g-b296dcf7",
+  "city": "青海",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "青海",
+  "source": "西北地区/我是驴友-青海.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "夏河",
+              "kind": "sight"
+            },
+            {
+              "name": "西宁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "夏河-西宁",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黑马河-鸟岛-茶卡-格尔木",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "贵德",
+              "kind": "sight"
+            },
+            {
+              "name": "日月山",
+              "kind": "sight"
+            },
+            {
+              "name": "151基地",
+              "kind": "sight"
+            },
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "贵德-日月山-151基地-黑马河-茶卡",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黑马河-鸟岛-茶卡-格尔木",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "昆仑山口",
+              "kind": "sight"
+            }
+          ],
+          "raw": "格尔木-昆仑山口-格尔木",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黑马河-鸟岛-茶卡-格尔木",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "不冻泉",
+              "kind": "sight"
+            },
+            {
+              "name": "索南达杰保护站",
+              "kind": "sight"
+            },
+            {
+              "name": "唐古拉山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "格尔木-不冻泉-索南达杰保护站-唐古拉山-格尔木",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天峻县",
+              "kind": "sight"
+            },
+            {
+              "name": "德令哈",
+              "kind": "sight"
+            },
+            {
+              "name": "外星人遗址",
+              "kind": "sight"
+            },
+            {
+              "name": "大柴旦",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天峻县-德令哈-外星人遗址-大柴旦",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "id": "g-88d6a86f",
+  "city": "武汉",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "武汉",
+  "source": "华中地区/我是驴友-武汉.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "阅马场",
+              "kind": "sight"
+            },
+            {
+              "name": "长江大桥",
+              "kind": "sight"
+            },
+            {
+              "name": "江大道武汉关",
+              "kind": "sight"
+            },
+            {
+              "name": "兰陵路",
+              "kind": "sight"
+            },
+            {
+              "name": "洞庭街",
+              "kind": "sight"
+            },
+            {
+              "name": "鄱阳街",
+              "kind": "sight"
+            },
+            {
+              "name": "珞珈山街",
+              "kind": "sight"
+            },
+            {
+              "name": "黎黄陂路",
+              "kind": "sight"
+            },
+            {
+              "name": "京汉大道",
+              "kind": "sight"
+            },
+            {
+              "name": "芦沟桥路",
+              "kind": "sight"
+            },
+            {
+              "name": "长江二桥",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阅马场-长江大桥-沿江大道武汉关-兰陵路-洞庭街-鄱阳街-珞珈山街-黎黄陂路-京汉大道-芦沟桥路-长江二桥",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黄鹤楼",
+              "kind": "sight"
+            },
+            {
+              "name": "长江大桥",
+              "kind": "sight"
+            },
+            {
+              "name": "武汉大学",
+              "kind": "sight"
+            },
+            {
+              "name": "磨山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄鹤楼—长江大桥—武汉大学—磨山",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "芦沟桥路",
+              "kind": "sight"
+            },
+            {
+              "name": "长江二桥",
+              "kind": "sight"
+            }
+          ],
+          "raw": "道-芦沟桥路-长江二桥",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黄鹤楼",
+              "kind": "sight"
+            },
+            {
+              "name": "长江大桥",
+              "kind": "sight"
+            },
+            {
+              "name": "武汉大学",
+              "kind": "sight"
+            },
+            {
+              "name": "磨山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄鹤楼—长江大桥—武汉大学—磨山",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "深度三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "晴川阁",
+              "kind": "sight"
+            },
+            {
+              "name": "龟山公园",
+              "kind": "sight"
+            },
+            {
+              "name": "汉阳造",
+              "kind": "sight"
+            },
+            {
+              "name": "古琴台",
+              "kind": "sight"
+            },
+            {
+              "name": "归元寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晴川阁—龟山公园—汉阳造—古琴台—归元寺",
+          "title": "深度三日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "玄岳门",
+              "kind": "sight"
+            },
+            {
+              "name": "玉虚宫",
+              "kind": "sight"
+            },
+            {
+              "name": "飞升崖",
+              "kind": "sight"
+            },
+            {
+              "name": "紫霄宫",
+              "kind": "sight"
+            },
+            {
+              "name": "金殿",
+              "kind": "sight"
+            }
+          ],
+          "raw": "玄岳门—玉虚宫—飞升崖—紫霄宫—金殿",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南岩宫",
+              "kind": "sight"
+            },
+            {
+              "name": "太子坡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南岩宫—太子坡",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

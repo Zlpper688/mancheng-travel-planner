@@ -1,0 +1,237 @@
+{
+  "id": "g-0326c85b",
+  "city": "北海",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "北海",
+  "source": "华南地区/我是驴友-北海旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "走马观“海”两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "涠洲岛",
+          "title": "走马观“海”两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "银滩",
+              "kind": "sight"
+            },
+            {
+              "name": "北部湾广场",
+              "kind": "sight"
+            },
+            {
+              "name": "冠头岭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "银滩-北部湾广场-冠头岭",
+          "title": "合浦一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北海",
+              "kind": "sight"
+            },
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海-涠洲岛",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "北海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "涠洲岛-北海",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "三亚",
+              "kind": "sight"
+            },
+            {
+              "name": "海口",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三亚-海口",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "兴隆",
+              "kind": "sight"
+            },
+            {
+              "name": "三亚",
+              "kind": "sight"
+            }
+          ],
+          "raw": "兴隆-三亚",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北海",
+              "kind": "sight"
+            },
+            {
+              "name": "海口",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海-海口",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "海口",
+              "kind": "sight"
+            },
+            {
+              "name": "兴隆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海口-兴隆",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "河内",
+              "kind": "sight"
+            },
+            {
+              "name": "下龙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "河内-下龙",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "下龙",
+              "kind": "sight"
+            },
+            {
+              "name": "东兴",
+              "kind": "sight"
+            },
+            {
+              "name": "北海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "下龙-东兴-北海",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "北海",
+              "kind": "sight"
+            },
+            {
+              "name": "南宁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海-南宁",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": "南宁5日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "南宁",
+              "kind": "sight"
+            },
+            {
+              "name": "东兴",
+              "kind": "sight"
+            },
+            {
+              "name": "下龙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南宁-东兴-下龙",
+          "title": "南宁5日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "id": "g-5aa29c8a",
+  "city": "西安",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "西安",
+  "source": "西北地区/我是驴友-西安.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "城墙",
+              "kind": "sight"
+            },
+            {
+              "name": "钟鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "回民街",
+              "kind": "sight"
+            },
+            {
+              "name": "碑林",
+              "kind": "sight"
+            },
+            {
+              "name": "书院门",
+              "kind": "sight"
+            },
+            {
+              "name": "小雁塔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "城墙-钟鼓楼-回民街-碑林-书院门-小雁塔",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "陕西历史博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "大雁塔",
+              "kind": "sight"
+            },
+            {
+              "name": "大唐芙蓉园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "陕西历史博物馆-大雁塔-大唐芙蓉园",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "兵马俑",
+              "kind": "sight"
+            },
+            {
+              "name": "秦始皇陵",
+              "kind": "sight"
+            },
+            {
+              "name": "华清池",
+              "kind": "sight"
+            },
+            {
+              "name": "骊山森林公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "兵马俑-秦始皇陵-华清池-骊山森林公园",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "延安壶口两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西安",
+              "kind": "sight"
+            },
+            {
+              "name": "黄帝陵",
+              "kind": "sight"
+            },
+            {
+              "name": "壶口瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西安→黄帝陵→壶口瀑布",
+          "title": "延安壶口两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "壶口瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "延安市",
+              "kind": "sight"
+            },
+            {
+              "name": "宝塔山",
+              "kind": "sight"
+            },
+            {
+              "name": "枣园",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家岭",
+              "kind": "sight"
+            },
+            {
+              "name": "延安革命纪念馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "壶口瀑布→延安市→宝塔山→枣园→杨家岭→延安革命纪念馆",
+          "title": "延安壶口两日游"
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

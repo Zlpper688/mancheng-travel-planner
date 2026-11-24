@@ -1,0 +1,98 @@
+{
+  "id": "g-ee57b827",
+  "city": "贵阳",
+  "cityAliases": [],
+  "region": "贵州",
+  "title": "贵阳",
+  "source": "贵州地区/我是驴友-贵阳旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "周边三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天河潭",
+              "kind": "sight"
+            },
+            {
+              "name": "青岩",
+              "kind": "sight"
+            },
+            {
+              "name": "花溪",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天河潭-青岩-花溪",
+          "title": "周边三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "红军烈士陵园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "-红军烈士陵园",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "龙宫",
+              "kind": "sight"
+            },
+            {
+              "name": "黄果树瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙宫-黄果树瀑布",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "清凉二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "黔粹行",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黔粹行",
+          "title": "清凉二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天河潭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "早餐后乘坐公交前往花溪区游览以山、水、洞三奇著称的——天河潭",
+          "title": null
+        }
+      ],
+      "stopCount": 2,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

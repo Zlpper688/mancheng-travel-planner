@@ -1,0 +1,174 @@
+{
+  "id": "g-d5894d41",
+  "city": "乌镇",
+  "cityAliases": [
+    "嘉兴"
+  ],
+  "region": "浙江",
+  "title": "乌镇",
+  "source": "浙江地区/我是驴友-乌镇攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "夜游西栅",
+              "kind": "sight"
+            }
+          ],
+          "raw": "夜游西栅",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摆渡安渡坊码头",
+              "kind": "sight"
+            },
+            {
+              "name": "三寸金莲馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老邮局寄明信片",
+              "kind": "sight"
+            },
+            {
+              "name": "乌镇多",
+              "kind": "sight"
+            }
+          ],
+          "raw": "摆渡安渡坊码头→ 参观三寸金莲馆→ 在老邮局寄明信片→ 在乌镇多",
+          "title": "西栅景区一日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西栅",
+              "kind": "sight"
+            },
+            {
+              "name": "三寸金莲馆",
+              "kind": "sight"
+            },
+            {
+              "name": "乌镇老邮局",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西栅半日游：三寸金莲馆-乌镇老邮局-乌",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "镇大戏院",
+              "kind": "sight"
+            },
+            {
+              "name": "白莲塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "灵水居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "镇大戏院-白莲塔寺-灵水居",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": "东栅景区一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "东栅停车场进入景区",
+              "kind": "sight"
+            },
+            {
+              "name": "过逢源双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "江南百床",
+              "kind": "sight"
+            }
+          ],
+          "raw": "从东栅停车场进入景区 → 观看高杆表演 → 过逢源双桥 → 江南百床",
+          "title": "东栅景区一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "小莲庄",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉业堂藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "张石铭旧宅",
+              "kind": "sight"
+            },
+            {
+              "name": "刘氏梯号",
+              "kind": "sight"
+            }
+          ],
+          "raw": "小莲庄-嘉业堂藏书楼-张石铭旧宅-刘氏梯号",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

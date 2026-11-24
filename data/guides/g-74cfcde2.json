@@ -1,0 +1,291 @@
+{
+  "id": "g-74cfcde2",
+  "city": "庐山",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "庐山",
+  "source": "华中地区/我是驴友-庐山.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "牯岭街",
+              "kind": "sight"
+            },
+            {
+              "name": "庐山会议旧址",
+              "kind": "sight"
+            },
+            {
+              "name": "博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "芦林湖",
+              "kind": "sight"
+            },
+            {
+              "name": "黄龙寺",
+              "kind": "sight"
+            },
+            {
+              "name": "三宝树",
+              "kind": "sight"
+            },
+            {
+              "name": "黄龙潭",
+              "kind": "sight"
+            },
+            {
+              "name": "乌龙潭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "牯岭街-庐山会议旧址-博物馆-芦林湖-黄龙寺-三宝树-黄龙潭-乌龙潭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "牯岭街",
+              "kind": "sight"
+            },
+            {
+              "name": "含鄱口",
+              "kind": "sight"
+            },
+            {
+              "name": "植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "五老峰",
+              "kind": "sight"
+            },
+            {
+              "name": "三叠泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "牯岭街-含鄱口-植物园-五老峰-三叠泉",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "牯岭街",
+              "kind": "sight"
+            },
+            {
+              "name": "天桥",
+              "kind": "sight"
+            },
+            {
+              "name": "花径",
+              "kind": "sight"
+            },
+            {
+              "name": "锦绣谷",
+              "kind": "sight"
+            },
+            {
+              "name": "仙人洞",
+              "kind": "sight"
+            },
+            {
+              "name": "大天池",
+              "kind": "sight"
+            },
+            {
+              "name": "龙首崖",
+              "kind": "sight"
+            },
+            {
+              "name": "石门涧",
+              "kind": "sight"
+            },
+            {
+              "name": "悬索桥",
+              "kind": "sight"
+            }
+          ],
+          "raw": "牯岭街-天桥-花径-锦绣谷-仙人洞-大天池-龙首崖-石门涧-悬索桥",
+          "title": null
+        }
+      ],
+      "stopCount": 22,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "精华一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "含鄱口",
+              "kind": "sight"
+            },
+            {
+              "name": "植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "五老峰",
+              "kind": "sight"
+            },
+            {
+              "name": "三叠泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "含鄱口-植物园-五老峰-三叠泉",
+          "title": "精华一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "月亮湾",
+              "kind": "sight"
+            },
+            {
+              "name": "李坑",
+              "kind": "sight"
+            },
+            {
+              "name": "上下晓起",
+              "kind": "sight"
+            },
+            {
+              "name": "江岭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "月亮湾→李坑→上下晓起→江岭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "九江",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "歙县",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九江→屯溪→歙县",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

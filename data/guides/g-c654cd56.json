@@ -1,0 +1,173 @@
+{
+  "id": "g-c654cd56",
+  "city": "深圳",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "深圳",
+  "source": "华南地区/我是驴友-深圳旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "地王大厦",
+              "kind": "sight"
+            },
+            {
+              "name": "中英街",
+              "kind": "sight"
+            },
+            {
+              "name": "小梅沙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "地王大厦-中英街-小梅沙",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "中英街",
+              "kind": "sight"
+            },
+            {
+              "name": "中信明斯克航母",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中英街-中信明斯克航母",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "锦绣中华",
+              "kind": "sight"
+            },
+            {
+              "name": "东门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "锦绣中华-东门",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "世界之窗",
+              "kind": "sight"
+            },
+            {
+              "name": "地王观光",
+              "kind": "sight"
+            }
+          ],
+          "raw": "世界之窗-地王观光",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "欢乐谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "欢乐谷",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "小梅沙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "小梅沙",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "中英街",
+              "kind": "sight"
+            },
+            {
+              "name": "中信明斯克航母",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中英街-中信明斯克航母",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "锦绣中华",
+              "kind": "sight"
+            },
+            {
+              "name": "东门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "锦绣中华-东门",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "世界之窗",
+              "kind": "sight"
+            },
+            {
+              "name": "地王观光",
+              "kind": "sight"
+            }
+          ],
+          "raw": "世界之窗-地王观光",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "欢乐谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "欢乐谷",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

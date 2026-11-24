@@ -1,0 +1,182 @@
+{
+  "id": "g-80c1ccec",
+  "city": "武当山",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "武当山",
+  "source": "华中地区/我是驴友-武当山.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "琼台",
+              "kind": "sight"
+            },
+            {
+              "name": "金顶",
+              "kind": "sight"
+            },
+            {
+              "name": "朝天宫",
+              "kind": "sight"
+            },
+            {
+              "name": "黄龙洞",
+              "kind": "sight"
+            },
+            {
+              "name": "榔梅祠",
+              "kind": "sight"
+            },
+            {
+              "name": "南岩宫",
+              "kind": "sight"
+            },
+            {
+              "name": "乌鸦岭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "琼台—金顶—朝天宫—黄龙洞—榔梅祠—南岩宫—乌鸦岭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "紫霄宫",
+              "kind": "sight"
+            },
+            {
+              "name": "逍遥谷",
+              "kind": "sight"
+            },
+            {
+              "name": "武术表演",
+              "kind": "sight"
+            },
+            {
+              "name": "太子坡",
+              "kind": "sight"
+            },
+            {
+              "name": "磨针井",
+              "kind": "sight"
+            },
+            {
+              "name": "玄岳门",
+              "kind": "sight"
+            },
+            {
+              "name": "太极湖水上游",
+              "kind": "sight"
+            },
+            {
+              "name": "武当博物馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "紫霄宫—逍遥谷（猕猴剧场、武术表演）—太子坡—磨针井—玄岳门—太极湖水上游—武当博物馆—夜观武乐盛典《太极武当》",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "板壁岩",
+              "kind": "sight"
+            },
+            {
+              "name": "风景垭",
+              "kind": "sight"
+            },
+            {
+              "name": "金猴岭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "板壁岩—风景垭—金猴岭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "神农架红坪景区",
+              "kind": "sight"
+            },
+            {
+              "name": "燕子洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "神农架红坪景区—燕子洞",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "去板壁岩",
+              "kind": "sight"
+            },
+            {
+              "name": "板壁岩上下箭竹林漫山遍野",
+              "kind": "sight"
+            },
+            {
+              "name": "时见怪石突兀而起",
+              "kind": "sight"
+            }
+          ],
+          "raw": "先去板壁岩，板壁岩上下箭竹林漫山遍野，时见怪石突兀而起，",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "神农架红坪景区",
+              "kind": "sight"
+            },
+            {
+              "name": "燕子洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "神农架红坪景区—燕子洞",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

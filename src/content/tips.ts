@@ -4,7 +4,7 @@ import type {
   StyleId,
   TipKind,
   TransportPref,
-} from "../types";
+} from "../lib/types";
 
 export type TipScope = "day" | "trip";
 
@@ -14,6 +14,7 @@ export interface TipWhen {
   tags?: string[];
   names?: string[];
   island?: boolean;
+  coastal?: boolean;
   far?: boolean;
   holiday?: boolean;
   crowdMin?: number;
@@ -462,7 +463,7 @@ export const TIPS: TipDef[] = [
     title: "海边正午紫外线最强",
     body: "10:00–16:00 尽量安排在室内或树荫下，遮阳帽、防晒和补水都备好；下水前看警示旗和救生员位置，别在无人看护的野海滩下水。",
     source: "海滨出行提示",
-    when: { categories: ["beach"], heat: true },
+    when: { categories: ["beach"], coastal: true, heat: true },
     priority: 50,
     group: "beach-sun",
   },
@@ -473,7 +474,7 @@ export const TIPS: TipDef[] = [
     title: "礁石区先看潮汐",
     body: "退潮后的礁石湿滑，别穿拖鞋下去；查一下当天潮汐表，涨潮前离开低处礁石，不翻越护栏，也别让孩子单独下水。",
     source: "海滨安全提示",
-    when: { categories: ["beach"] },
+    when: { categories: ["beach"], coastal: true },
     priority: 45,
     group: "beach-tide",
   },
@@ -482,7 +483,7 @@ export const TIPS: TipDef[] = [
     scope: "day",
     kind: "photo",
     title: "日落机位提前 40 分钟到",
-    body: "日落前 40–60 分钟到机位，光线最柔和；日落后别急着走，蓝调时刻通常更出片。海边日落后降温快，带件薄外套。",
+    body: "日落前 40–60 分钟到机位，光线最柔和；日落后别急着走，蓝调时刻通常更出片。日落后降温快，带件薄外套。",
     source: "摄影攻略整理",
     when: { tags: ["photo"], sunsetNear: true },
     priority: 48,
@@ -504,7 +505,7 @@ export const TIPS: TipDef[] = [
     scope: "day",
     kind: "weather",
     title: "高温天把户外点放早晚",
-    body: "11:30–14:30 安排午餐、室内馆或回酒店休息；户外点尽量放早上和傍晚，随身带水和电解质，别等口渴才喝。",
+    body: "11:30–14:30 安排午餐、室内馆或回住处休息；户外点尽量放早上和傍晚，随身带水和电解质，别等口渴才喝。",
     source: "高温出行提示",
     when: { heat: true },
     priority: 58,
@@ -526,7 +527,7 @@ export const TIPS: TipDef[] = [
     scope: "day",
     kind: "weather",
     title: "早晚温差大，分层穿",
-    body: "低温或海边风大时用薄羽绒、抓绒加围巾，早晚分层穿脱；老人和孩子多带一件，室内暖气足时方便脱。",
+    body: "低温或风大时用薄羽绒、抓绒加围巾，早晚分层穿脱；老人和孩子多带一件，室内暖气足时方便脱。",
     source: "出行天气提示",
     when: { cold: true },
     priority: 55,
@@ -559,7 +560,7 @@ export const TIPS: TipDef[] = [
     scope: "trip",
     kind: "family",
     title: "带娃一天只排 1–2 个主活动",
-    body: "上午一个重点，午饭后回酒店休息或找室内馆，傍晚再出门；推车在石板路和老街不好推，鼓浪屿、古镇这类地方背带更实用。",
+    body: "上午一个重点，午饭后回住处休息或找室内馆，傍晚再出门；推车在石板路和老街不好推，古镇这类地方背带更实用。",
     source: "亲子游攻略整理",
     when: { children: true },
     priority: 80,
@@ -570,7 +571,7 @@ export const TIPS: TipDef[] = [
     scope: "trip",
     kind: "family",
     title: "亲子随身包清单",
-    body: "防晒、驱蚊、备用衣物、小手巾、常用药和小零食分袋装；海边加一双防滑凉鞋，雨天给推车带雨罩。",
+    body: "防晒、驱蚊、备用衣物、小手巾、常用药和小零食分袋装；去水边加一双防滑凉鞋，雨天给推车带雨罩。",
     source: "亲子游攻略整理",
     when: { children: true },
     priority: 70,
@@ -581,7 +582,7 @@ export const TIPS: TipDef[] = [
     scope: "trip",
     kind: "slow",
     title: "慢节奏也适合带长辈",
-    body: "一天一个重点，9 点后再出发，午休 1–2 小时，18:00 前回酒店；台阶多、坡陡的点位量力而行，能坐观光车就别硬走。",
+    body: "一天一个重点，9 点后再出发，午休 1–2 小时，18:00 前回住处；台阶多、坡陡的点位量力而行，能坐观光车就别硬走。",
     source: "慢游/长辈出行攻略整理",
     when: { pace: ["chill"] },
     priority: 60,

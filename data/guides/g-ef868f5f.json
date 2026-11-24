@@ -1,0 +1,223 @@
+{
+  "id": "g-ef868f5f",
+  "city": "哈尔滨",
+  "cityAliases": [],
+  "region": "东北",
+  "title": "哈尔滨",
+  "source": "东北地区/我是驴友-哈尔滨旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            },
+            {
+              "name": "雪乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "哈尔滨→雪乡",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "牛羊山",
+              "kind": "sight"
+            },
+            {
+              "name": "雪屋",
+              "kind": "sight"
+            },
+            {
+              "name": "红灯笼",
+              "kind": "sight"
+            }
+          ],
+          "raw": "徒步牛羊山→看日出→观赏雪蘑菇、雪屋、红灯笼→玩雪圈、、",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "雪乡",
+              "kind": "sight"
+            },
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            }
+          ],
+          "raw": "雪乡→哈尔滨",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "经典冰雪二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "中央大街大街",
+              "kind": "sight"
+            },
+            {
+              "name": "太阳岛风景区",
+              "kind": "sight"
+            },
+            {
+              "name": "冰雪大世界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中央大街大街-太阳岛风景区-冰雪大世界",
+          "title": "经典冰雪二日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "秋林公司",
+              "kind": "sight"
+            }
+          ],
+          "raw": "秋林公司",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "老道外",
+              "kind": "sight"
+            },
+            {
+              "name": "犹太新会堂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "老道外-犹太新会堂",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            },
+            {
+              "name": "东升林场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "哈尔滨→东升林场。到达后早早休息，为第二天储备体力。",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东升",
+              "kind": "sight"
+            },
+            {
+              "name": "雪乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东升→雪乡。",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "雪乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "在雪乡看日出，感受清晨的炊烟，白天观赏雪景，玩雪上项",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "雪乡",
+              "kind": "sight"
+            },
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            }
+          ],
+          "raw": "雪乡→哈尔滨",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "在东升林场",
+              "kind": "sight"
+            },
+            {
+              "name": "第二",
+              "kind": "sight"
+            }
+          ],
+          "raw": "住在东升林场，第二、",
+          "title": null
+        }
+      ],
+      "stopCount": 2,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

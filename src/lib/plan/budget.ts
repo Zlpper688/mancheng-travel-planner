@@ -20,12 +20,20 @@ export function buildBudget(
   input: TripInput,
   hotelFactor = 1,
 ): BudgetSummary {
-  const travelers = Math.max(1, input.adults + input.children);
-  const childWeight = input.adults + input.children * 0.6;
-  const ticketWeight = input.adults + input.children * 0.5;
+  const seniors = input.seniors ?? 0;
+  const travelers = Math.max(1, input.adults + input.children + seniors);
+  // 全是老人或儿童同行时，用餐/门票权重也不能归零。
+  const childWeight = Math.max(
+    1,
+    input.adults + seniors + input.children * 0.6,
+  );
+  const ticketWeight = Math.max(
+    1,
+    input.adults + seniors * 0.85 + input.children * 0.5,
+  );
   const tier = BUDGET_TIERS[input.budgetTier];
   const nights = Math.max(0, input.days - 1);
-  const rooms = Math.max(1, Math.ceil(Math.max(1, input.adults) / 2));
+  const rooms = Math.max(1, Math.ceil(Math.max(1, input.adults + seniors) / 2));
 
   const stops = days.flatMap((day) => day.stops);
   const meals = stops.filter((stop) => stop.kind === "meal");
@@ -35,11 +43,17 @@ export function buildBudget(
   const baseHotelPrice =
     input.hotelPrice && input.hotelPrice > 0
       ? input.hotelPrice
-      : input.hotel.cost && input.hotel.cost > 0
+      : input.hotel?.cost && input.hotel.cost > 0
         ? input.hotel.cost
         : tier.hotel;
   const nightly = baseHotelPrice * hotelFactor;
   const hotelTotal = nightly * nights * rooms;
+  const anchorOnly =
+    Boolean(input.hotelUndecided) ||
+    !input.hotel ||
+    input.hotel.id.startsWith("base-") ||
+    input.hotel.id.startsWith("center-") ||
+    input.hotel.name.includes("市中心");
   const hotelItem: BudgetItem = {
     key: "hotel",
     label: "住宿",
@@ -52,7 +66,9 @@ export function buildBudget(
     note:
       nights === 0
         ? undefined
-        : "按「" + tier.label + "」档参考房价，实际以预订页为准",
+        : anchorOnly
+          ? `未锁定具体酒店，按${input.hotel?.name ?? "推荐落脚片区"}的位置与「${tier.label}」档预留，实际以预订页为准`
+          : "按「" + tier.label + "」档参考房价，实际以预订页为准",
   };
 
   const fallbackMeal = (tier.food[0] + tier.food[1]) / 2;
@@ -61,7 +77,10 @@ export function buildBudget(
   const knownCafes = cafes.reduce((sum, stop) => sum + (stop.place.cost ?? 0), 0);
   const unknownMeals = meals.filter((stop) => stop.place.cost === undefined).length;
   const unknownCafes = cafes.filter((stop) => stop.place.cost === undefined).length;
-  const expectedCafes = Math.max(cafes.length, input.pace === "packed" ? 0 : input.days);
+  const expectedCafes = Math.max(
+    cafes.length,
+    input.pace === "packed" && !seniors ? 0 : input.days,
+  );
   const missingCafes = Math.max(0, expectedCafes - cafes.length);
   const expectedMeals = Math.max(meals.length, input.days * 2);
   const missingMeals = Math.max(0, expectedMeals - meals.length);
@@ -77,10 +96,13 @@ export function buildBudget(
   const foodItem: BudgetItem = {
     key: "food",
     label: "餐饮",
-    detail: `${expectedMeals} 顿正餐 · ${expectedCafes} 次咖啡茶歇 · ${travelers} 人`,
+    detail:
+      missingMeals > 0
+        ? `${expectedMeals} 顿正餐（行程内 ${meals.length} 段）· ${expectedCafes} 次茶歇 · ${travelers} 人`
+        : `${expectedMeals} 顿正餐 · ${expectedCafes} 次咖啡茶歇 · ${travelers} 人`,
     min: round(foodTotal * 0.88),
     max: round(foodTotal * 1.35),
-    note: "有参考人均的按人均计，没有标价的按同档餐厅中位数补齐",
+    note: "有参考人均的按人均计；自由用餐时段按同档餐厅中位数预留",
   };
 
   const knownTickets = sights.reduce((sum, stop) => sum + (stop.ticket ?? 0), 0);

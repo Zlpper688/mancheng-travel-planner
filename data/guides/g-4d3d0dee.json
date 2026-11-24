@@ -1,0 +1,144 @@
+{
+  "id": "g-4d3d0dee",
+  "city": "大连",
+  "cityAliases": [],
+  "region": "东北",
+  "title": "大连",
+  "source": "东北地区/我是驴友-大连旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "滨海路",
+              "kind": "sight"
+            },
+            {
+              "name": "老虎滩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "滨海路-老虎滩",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "金石滩",
+              "kind": "sight"
+            },
+            {
+              "name": "发现王国",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金石滩-发现王国",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大连环城游",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大连环城游",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "老虎滩",
+              "kind": "sight"
+            },
+            {
+              "name": "棒棰岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "老虎滩-棒棰岛",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "金石滩国家旅游度假区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金石滩国家旅游度假区",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大连",
+              "kind": "sight"
+            }
+          ],
+          "raw": "来到大连，一定",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "老虎滩",
+              "kind": "sight"
+            },
+            {
+              "name": "棒棰岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "老虎滩-棒棰岛",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "金石滩国家旅游度假区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金石滩国家旅游度假区",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

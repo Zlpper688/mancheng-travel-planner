@@ -1,4 +1,4 @@
-import type { Category, CityOption, Place } from "../types";
+import type { Category, CityOption, Place } from "../lib/types";
 
 export const XIAMEN_CITY: CityOption = {
   name: "厦门",
@@ -6,11 +6,6 @@ export const XIAMEN_CITY: CityOption = {
   lat: 24.456,
   lng: 118.085,
 };
-
-export function isDemoCity(city: string): boolean {
-  const clean = city.replace(/市$/, "").trim();
-  return clean === "厦门" || clean.includes("厦门");
-}
 
 function place(
   id: string,

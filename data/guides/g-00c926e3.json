@@ -1,0 +1,131 @@
+{
+  "id": "g-00c926e3",
+  "city": "野三坡",
+  "cityAliases": [],
+  "region": "河北",
+  "title": "野三坡",
+  "source": "河北地区/我是驴友-野三坡旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "深度三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "野三坡",
+              "kind": "sight"
+            },
+            {
+              "name": "百里峡",
+              "kind": "sight"
+            },
+            {
+              "name": "印象野三坡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "野三坡-百里峡-印象野三坡",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "百里峡",
+              "kind": "sight"
+            },
+            {
+              "name": "鱼谷洞",
+              "kind": "sight"
+            },
+            {
+              "name": "篝火晚会",
+              "kind": "sight"
+            }
+          ],
+          "raw": "百里峡-鱼谷洞-篝火晚会",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "百草畔",
+              "kind": "sight"
+            },
+            {
+              "name": "龙门天关",
+              "kind": "sight"
+            }
+          ],
+          "raw": "百草畔-龙门天关",
+          "title": "深度三日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "经典一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "百里峡",
+              "kind": "sight"
+            },
+            {
+              "name": "鱼谷洞",
+              "kind": "sight"
+            },
+            {
+              "name": "拒马河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "百里峡-鱼谷洞-拒马河",
+          "title": "经典一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "经典一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "拒马河",
+              "kind": "sight"
+            },
+            {
+              "name": "民族园",
+              "kind": "sight"
+            },
+            {
+              "name": "印象野三坡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "拒马河-民族园-印象野三坡",
+          "title": "经典一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

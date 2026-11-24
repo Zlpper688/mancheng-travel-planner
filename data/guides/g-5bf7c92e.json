@@ -1,0 +1,256 @@
+{
+  "id": "g-5bf7c92e",
+  "city": "西双版纳",
+  "cityAliases": [],
+  "region": "云南",
+  "title": "西双版纳",
+  "source": "云南地区/我是驴友-西双版纳.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "傣族园",
+              "kind": "sight"
+            },
+            {
+              "name": "西双版纳热带植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "曼听公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "傣族园-西双版纳热带植物园-曼听公园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "望天树景区",
+              "kind": "sight"
+            },
+            {
+              "name": "热带雨林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "前往望天树景区，体验世界最高的树冠空中走廊，在热带雨林",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "西双版纳热带植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "曼听公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西双版纳热带植物园-曼听公园",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "基诺山寨",
+              "kind": "sight"
+            },
+            {
+              "name": "野象谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "基诺山寨-野象谷",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "勐泐大佛寺",
+              "kind": "sight"
+            },
+            {
+              "name": "傣族园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "勐泐大佛寺-傣族园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "望天树景区",
+              "kind": "sight"
+            },
+            {
+              "name": "热带雨林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "前往望天树景区，体验世界最高的树冠空中走廊，在热带雨林",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "西双版纳热带植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "曼听公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西双版纳热带植物园-曼听公园",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "基诺山寨",
+              "kind": "sight"
+            },
+            {
+              "name": "野象谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "基诺山寨-野象谷",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "风光三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "勐泐大佛寺",
+              "kind": "sight"
+            },
+            {
+              "name": "傣族园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "勐泐大佛寺-傣族园",
+          "title": "风光三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "勐泐大佛寺",
+              "kind": "sight"
+            },
+            {
+              "name": "傣族园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "勐泐大佛寺-傣族园",
+          "title": "风光三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "西双版纳热带植物园",
+              "kind": "sight"
+            },
+            {
+              "name": "曼听公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西双版纳热带植物园-曼听公园",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "洱海",
+              "kind": "sight"
+            },
+            {
+              "name": "南诏风情岛",
+              "kind": "sight"
+            },
+            {
+              "name": "大理古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "洱海→南诏风情岛→大理古城",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "蝴蝶泉",
+              "kind": "sight"
+            },
+            {
+              "name": "苍山",
+              "kind": "sight"
+            },
+            {
+              "name": "崇圣寺三塔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "蝴蝶泉→苍山→崇圣寺三塔",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

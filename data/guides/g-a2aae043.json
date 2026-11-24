@@ -1,0 +1,88 @@
+{
+  "id": "g-a2aae043",
+  "city": "香港离岛",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "香港离岛",
+  "source": "港澳台/我是驴友-香港离岛旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "长洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "榕树湾天后庙",
+              "kind": "sight"
+            },
+            {
+              "name": "洪圣爷湾泳滩",
+              "kind": "sight"
+            },
+            {
+              "name": "索罟湾海鲜食肆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "长洲岛：榕树湾天后庙-洪圣爷湾泳滩-索罟湾海鲜食肆",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "索罟湾海鲜食肆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "索罟湾海鲜食肆",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大屿山",
+              "kind": "sight"
+            },
+            {
+              "name": "昂坪缆车",
+              "kind": "sight"
+            },
+            {
+              "name": "天坛大佛",
+              "kind": "sight"
+            },
+            {
+              "name": "大澳",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大屿山：昂坪缆车-天坛大佛-大澳",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

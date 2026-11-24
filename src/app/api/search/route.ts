@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { QUICK_CITIES } from "@/lib/constants";
-import { DEMO_HOTELS, isDemoCity } from "@/lib/demo/xiamen";
+import { DEMO_HOTELS } from "@/content/demo-xiamen";
+import { isDemoCity } from "@/lib/demo";
 import { getProvider } from "@/lib/providers";
 import { nameSimilarity } from "@/lib/providers/normalize";
 import type { Place } from "@/lib/types";

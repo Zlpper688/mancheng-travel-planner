@@ -1,0 +1,220 @@
+{
+  "id": "g-d800f7e0",
+  "city": "林芝",
+  "cityAliases": [],
+  "region": "西南",
+  "title": "林芝",
+  "source": "西南地区/我是驴友-林芝旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "深度四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "拉萨",
+              "kind": "sight"
+            },
+            {
+              "name": "巴松措",
+              "kind": "sight"
+            },
+            {
+              "name": "尼洋河",
+              "kind": "sight"
+            },
+            {
+              "name": "卡定沟",
+              "kind": "sight"
+            },
+            {
+              "name": "八一",
+              "kind": "sight"
+            }
+          ],
+          "raw": "拉萨-巴松措-尼洋河-卡定沟-八一",
+          "title": "深度四日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "雅鲁藏布大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "南迦巴瓦峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "雅鲁藏布大峡谷-南迦巴瓦峰",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "鲁朗",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁朗林海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鲁朗-鲁朗林海",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "南伊沟",
+              "kind": "sight"
+            },
+            {
+              "name": "喇嘛岭寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南伊沟-喇嘛岭寺",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "318进藏二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "波密",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁朗",
+              "kind": "sight"
+            },
+            {
+              "name": "八一",
+              "kind": "sight"
+            }
+          ],
+          "raw": "波密-鲁朗-八一",
+          "title": "318进藏二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "米堆冰川",
+              "kind": "sight"
+            },
+            {
+              "name": "波密",
+              "kind": "sight"
+            }
+          ],
+          "raw": "米堆冰川-波密",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "八一",
+              "kind": "sight"
+            },
+            {
+              "name": "派乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "八一-派乡",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "派乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "派乡-拉格 18公里",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "拉格",
+              "kind": "sight"
+            }
+          ],
+          "raw": "拉格-汉密 28公里",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "汉密",
+              "kind": "sight"
+            }
+          ],
+          "raw": "汉密-背崩 32公里",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "背崩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "背崩-墨脱 36公里",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "墨脱",
+              "kind": "sight"
+            },
+            {
+              "name": "波密",
+              "kind": "sight"
+            }
+          ],
+          "raw": "墨脱-波密",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

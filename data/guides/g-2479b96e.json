@@ -1,0 +1,304 @@
+{
+  "id": "g-2479b96e",
+  "city": "呼伦贝尔",
+  "cityAliases": [],
+  "region": "华北",
+  "title": "呼伦贝尔",
+  "source": "华北地区/我是驴友-呼伦贝尔.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "海拉尔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海拉尔",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "奇乾",
+              "kind": "sight"
+            },
+            {
+              "name": "莫尔道嘎",
+              "kind": "sight"
+            },
+            {
+              "name": "海拉尔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "奇乾-莫尔道嘎-海拉尔",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "额尔古纳",
+              "kind": "sight"
+            },
+            {
+              "name": "恩和",
+              "kind": "sight"
+            },
+            {
+              "name": "室韦",
+              "kind": "sight"
+            }
+          ],
+          "raw": "额尔古纳-恩和-室韦",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "海拉尔",
+              "kind": "sight"
+            },
+            {
+              "name": "红花尔基",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海拉尔-红花尔基",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "红花尔基",
+              "kind": "sight"
+            },
+            {
+              "name": "阿尔山温泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "红花尔基-阿尔山温泉",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "天池",
+              "kind": "sight"
+            },
+            {
+              "name": "阿尔山漂流",
+              "kind": "sight"
+            },
+            {
+              "name": "海拉尔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天池-阿尔山漂流-海拉尔",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "国门",
+              "kind": "sight"
+            },
+            {
+              "name": "互市贸易区",
+              "kind": "sight"
+            },
+            {
+              "name": "俄罗斯套娃广场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "国门-互市贸易区-俄罗斯套娃广场",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "呼伦湖",
+              "kind": "sight"
+            },
+            {
+              "name": "呼和诺尔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "呼伦湖-呼和诺尔",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "凤凰山庄",
+              "kind": "sight"
+            },
+            {
+              "name": "喇嘛山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "凤凰山庄-喇嘛山",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北极村",
+              "kind": "sight"
+            },
+            {
+              "name": "乌苏里浅滩",
+              "kind": "sight"
+            },
+            {
+              "name": "龙江第一湾",
+              "kind": "sight"
+            },
+            {
+              "name": "漠河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北极村-乌苏里浅滩-龙江第一湾-漠河",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "漠河",
+              "kind": "sight"
+            },
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            }
+          ],
+          "raw": "漠河-哈尔滨",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "莫尔道嘎",
+              "kind": "sight"
+            },
+            {
+              "name": "满归",
+              "kind": "sight"
+            },
+            {
+              "name": "漠河",
+              "kind": "sight"
+            },
+            {
+              "name": "北极村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "莫尔道嘎-满归-漠河-北极村",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北极村",
+              "kind": "sight"
+            },
+            {
+              "name": "乌苏里浅滩",
+              "kind": "sight"
+            },
+            {
+              "name": "龙江第一湾",
+              "kind": "sight"
+            },
+            {
+              "name": "漠河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北极村-乌苏里浅滩-龙江第一湾-漠河",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "漠河",
+              "kind": "sight"
+            },
+            {
+              "name": "哈尔滨",
+              "kind": "sight"
+            }
+          ],
+          "raw": "漠河-哈尔滨",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

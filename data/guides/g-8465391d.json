@@ -1,0 +1,107 @@
+{
+  "id": "g-8465391d",
+  "city": "海口",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "海口",
+  "source": "华南地区/我是驴友-海口旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五公祠",
+              "kind": "sight"
+            },
+            {
+              "name": "骑楼老街",
+              "kind": "sight"
+            },
+            {
+              "name": "火山群世界地质公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五公祠-骑楼老街-火山群世界地质公园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "海南热带野生动物园",
+              "kind": "sight"
+            },
+            {
+              "name": "假日海滩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海南热带野生动物园-假日海滩",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "东寨港红树林",
+              "kind": "sight"
+            },
+            {
+              "name": "海底村庄",
+              "kind": "sight"
+            },
+            {
+              "name": "西秀海滩公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东寨港红树林-海底村庄-西秀海滩公园",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五公祠",
+              "kind": "sight"
+            },
+            {
+              "name": "海南省博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "海口骑楼老街",
+              "kind": "sight"
+            },
+            {
+              "name": "雷琼",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五公祠-海南省博物馆-海口骑楼老街-雷琼",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

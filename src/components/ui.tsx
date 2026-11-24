@@ -22,14 +22,14 @@ export function Section({
   return (
     <section className={cn("space-y-3", className)}>
       <header className="flex items-baseline gap-2">
-        <span className="font-serif text-[11px] tracking-[0.22em] text-accent">
+        <span className="font-serif text-[12px] tracking-[0.22em] text-accent">
           {no}
         </span>
-        <h2 className="font-serif text-[17px] leading-none tracking-wide text-ink">
+        <h2 className="font-serif text-[18px] leading-none tracking-wide text-ink">
           {title}
         </h2>
         {hint ? (
-          <span className="ml-auto text-[11px] text-ink-faint">{hint}</span>
+          <span className="ml-auto text-[12px] text-ink-faint">{hint}</span>
         ) : null}
       </header>
       {children}
@@ -59,7 +59,7 @@ export function Chip({
       disabled={disabled}
       title={title}
       className={cn(
-        "rounded-full border px-3 py-1.5 text-[12px] leading-none transition",
+        "min-h-8 rounded-full border px-3.5 py-2 text-[13px] leading-none transition",
         active
           ? "border-ink bg-ink text-paper shadow-[0_8px_18px_-14px_rgba(35,42,36,0.8)]"
           : "border-line bg-card/70 text-ink-soft hover:border-ink/30 hover:text-ink",
@@ -89,21 +89,21 @@ export function Stepper({
 }) {
   return (
     <div className="flex items-center justify-between rounded-xl border border-line bg-card/70 px-3 py-2.5">
-      <span className="text-[12px] text-ink-soft">{label}</span>
-      <div className="flex items-center gap-2.5">
+      <span className="text-[13px] text-ink-soft">{label}</span>
+      <div className="flex items-center gap-3">
         <button
           type="button"
           aria-label={`减少${label}`}
           disabled={value <= min}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="flex h-6 w-6 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-ink/30 hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-ink/30 hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
         >
           −
         </button>
-        <span className="min-w-8 text-center font-serif text-[15px] tabular-nums text-ink">
+        <span className="min-w-8 text-center font-serif text-[16px] tabular-nums text-ink">
           {value}
           {suffix ? (
-            <span className="ml-0.5 text-[11px] text-ink-faint">{suffix}</span>
+            <span className="ml-0.5 text-[12px] text-ink-faint">{suffix}</span>
           ) : null}
         </span>
         <button
@@ -111,7 +111,7 @@ export function Stepper({
           aria-label={`增加${label}`}
           disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className="flex h-6 w-6 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-ink/30 hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-ink/30 hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
         >
           +
         </button>

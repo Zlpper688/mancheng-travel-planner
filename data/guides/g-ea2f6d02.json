@@ -1,0 +1,407 @@
+{
+  "id": "g-ea2f6d02",
+  "city": "浙江",
+  "cityAliases": [],
+  "region": "浙江",
+  "title": "浙江",
+  "source": "浙江地区/我是驴友-浙江攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "浙江魅力城市4日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "杭州",
+              "kind": "sight"
+            },
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "杭州：灵隐寺-西湖（宿：同第一天）",
+          "title": "浙江魅力城市4日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "宁波",
+              "kind": "sight"
+            },
+            {
+              "name": "七塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "庆安会馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老外滩",
+              "kind": "sight"
+            },
+            {
+              "name": "天一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "月湖景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宁波：七塔寺-庆安会馆-老外滩-天一广场-月湖景区（宿：宁波）",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "仓桥直街",
+              "kind": "sight"
+            },
+            {
+              "name": "宁波",
+              "kind": "sight"
+            }
+          ],
+          "raw": "绍兴：东湖-沈园-鲁迅故里-仓桥直街（宿：宁波）",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "舟山",
+              "kind": "sight"
+            },
+            {
+              "name": "塔湾金沙",
+              "kind": "sight"
+            },
+            {
+              "name": "安期峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "舟山：塔湾金沙-安期峰（宿：舟山）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "宁波",
+              "kind": "sight"
+            },
+            {
+              "name": "七塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "庆安会馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老外滩",
+              "kind": "sight"
+            },
+            {
+              "name": "天一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "月湖景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宁波：七塔寺-庆安会馆-老外滩-天一广场-月湖景区（宿：宁波）",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "仓桥直街",
+              "kind": "sight"
+            },
+            {
+              "name": "宁波",
+              "kind": "sight"
+            }
+          ],
+          "raw": "绍兴：东湖-沈园-鲁迅故里-仓桥直街（宿：宁波）",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "浙江休闲9日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "温州",
+              "kind": "sight"
+            },
+            {
+              "name": "茶山五美景园",
+              "kind": "sight"
+            },
+            {
+              "name": "江心屿",
+              "kind": "sight"
+            }
+          ],
+          "raw": "温州：茶山五美景园-江心屿（宿：温州）",
+          "title": "浙江休闲9日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "金华",
+              "kind": "sight"
+            },
+            {
+              "name": "双龙洞",
+              "kind": "sight"
+            },
+            {
+              "name": "冰壶洞",
+              "kind": "sight"
+            },
+            {
+              "name": "桃源洞",
+              "kind": "sight"
+            },
+            {
+              "name": "卢宅建筑群",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金华：双龙洞-冰壶洞-桃源洞-卢宅建筑群（宿：金华）",
+          "title": "浙江休闲9日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "定海古城",
+              "kind": "sight"
+            },
+            {
+              "name": "鸦片战争遗址",
+              "kind": "sight"
+            },
+            {
+              "name": "三毛祖居",
+              "kind": "sight"
+            },
+            {
+              "name": "黄杨尖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "定海古城-鸦片战争遗址-三毛祖居-黄杨尖",
+          "title": "浙江浪漫6日游"
+        }
+      ],
+      "stopCount": 12,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": "浙江浪漫6日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "浙江海岛城市5日深度游线路",
+              "kind": "sight"
+            },
+            {
+              "name": "舟山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "浙江海岛城市5日深度游线路——舟山",
+          "title": "浙江浪漫6日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大青山",
+              "kind": "sight"
+            },
+            {
+              "name": "南沙",
+              "kind": "sight"
+            },
+            {
+              "name": "国际沙雕艺术广场",
+              "kind": "sight"
+            },
+            {
+              "name": "乌石塘",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大青山-南沙-国际沙雕艺术广场-乌石塘",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "秦王宫",
+              "kind": "sight"
+            },
+            {
+              "name": "清明上河图",
+              "kind": "sight"
+            },
+            {
+              "name": "明清民居博览城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "秦王宫-清明上河图-明清民居博览城",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "桃花峪",
+              "kind": "sight"
+            },
+            {
+              "name": "塔湾金沙",
+              "kind": "sight"
+            },
+            {
+              "name": "安期峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "桃花峪-塔湾金沙-安期峰",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大青山",
+              "kind": "sight"
+            },
+            {
+              "name": "南沙",
+              "kind": "sight"
+            },
+            {
+              "name": "国际沙雕艺术广场",
+              "kind": "sight"
+            },
+            {
+              "name": "乌石塘",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大青山-南沙-国际沙雕艺术广场-乌石塘",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "秦王宫",
+              "kind": "sight"
+            },
+            {
+              "name": "清明上河图",
+              "kind": "sight"
+            },
+            {
+              "name": "明清民居博览城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "秦王宫-清明上河图-明清民居博览城",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

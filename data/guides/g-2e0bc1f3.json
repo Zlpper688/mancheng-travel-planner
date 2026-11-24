@@ -1,0 +1,107 @@
+{
+  "id": "g-2e0bc1f3",
+  "city": "连云港",
+  "cityAliases": [],
+  "region": "江苏",
+  "title": "连云港",
+  "source": "江苏地区/我是驴友-连云港旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "花果山",
+              "kind": "sight"
+            },
+            {
+              "name": "三元宫",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞连",
+              "kind": "sight"
+            },
+            {
+              "name": "万佛洞",
+              "kind": "sight"
+            },
+            {
+              "name": "东磊景区",
+              "kind": "sight"
+            },
+            {
+              "name": "延福观",
+              "kind": "sight"
+            }
+          ],
+          "raw": "花果山-三元宫-水帘洞连-万佛洞-东磊景区-延福观",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东西连岛",
+              "kind": "sight"
+            },
+            {
+              "name": "连岛海滨浴场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东西连岛-连岛海滨浴场",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "休闲放松三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "桃花涧",
+              "kind": "sight"
+            },
+            {
+              "name": "孔望山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "桃花涧-孔望山",
+          "title": "休闲放松三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔湾",
+              "kind": "sight"
+            },
+            {
+              "name": "花果山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "渔湾-花果山",
+          "title": "休闲放松三日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

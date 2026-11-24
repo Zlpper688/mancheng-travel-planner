@@ -1,0 +1,60 @@
+{
+  "id": "g-a67d9997",
+  "city": "澳门",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "澳门",
+  "source": "港澳台/我是驴友-澳门旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "威尼斯人度假村",
+              "kind": "sight"
+            },
+            {
+              "name": "龙环葡韵住宅式博物馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "威尼斯人度假村-龙环葡韵住宅式博物馆",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "新马路",
+              "kind": "sight"
+            },
+            {
+              "name": "议事亭前地",
+              "kind": "sight"
+            },
+            {
+              "name": "玫瑰圣母堂",
+              "kind": "sight"
+            },
+            {
+              "name": "大三",
+              "kind": "sight"
+            }
+          ],
+          "raw": "新马路-议事亭前地-玫瑰圣母堂-大三",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

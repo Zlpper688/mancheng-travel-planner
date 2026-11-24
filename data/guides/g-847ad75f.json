@@ -1,0 +1,307 @@
+{
+  "id": "g-847ad75f",
+  "city": "台北",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "台北",
+  "source": "港澳台/我是驴友-台北旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北101",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "台北101-国父纪念馆-中正纪念堂-淡水-士林夜市",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙山寺-西门町-中正纪念堂-国父纪念馆",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "故宫博物院-士林官邸-美丽华百乐园-士林夜市",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "台湾大学",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中正纪念堂-台湾大学",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "总统府",
+              "kind": "sight"
+            },
+            {
+              "name": "228和平公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            }
+          ],
+          "raw": "总统府-228和平公园-西门町",
+          "title": null
+        }
+      ],
+      "stopCount": 18,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北故事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "北投",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台北故事馆-北投-淡水",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙山寺-西门町-中正纪念堂-国父纪念馆",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "故宫博物院-士林官邸-美丽华百乐园-士林夜市",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "台湾大学",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中正纪念堂-台湾大学",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "总统府",
+              "kind": "sight"
+            },
+            {
+              "name": "228和平公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            }
+          ],
+          "raw": "总统府-228和平公园-西门町",
+          "title": null
+        }
+      ],
+      "stopCount": 16,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北故事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "北投",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台北故事馆-北投-淡水",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "台北101",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙山寺-国父纪念馆-台北101",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "故宫博物院-士林官邸-美丽华百乐园-士林夜市",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "id": "g-efac0f97",
+  "city": "镇江",
+  "cityAliases": [],
+  "region": "江苏",
+  "title": "镇江",
+  "source": "江苏地区/我是驴友-镇江旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "悠闲二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西津渡",
+              "kind": "sight"
+            },
+            {
+              "name": "金山",
+              "kind": "sight"
+            },
+            {
+              "name": "焦山",
+              "kind": "sight"
+            },
+            {
+              "name": "北固山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西津渡-金山-焦山-北固山",
+          "title": "悠闲二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "镇江",
+              "kind": "sight"
+            },
+            {
+              "name": "金山",
+              "kind": "sight"
+            },
+            {
+              "name": "焦山",
+              "kind": "sight"
+            },
+            {
+              "name": "北固山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "镇江：金山-焦山-北固山",
+          "title": "周边四日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "精品一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "金山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "焦山",
+              "kind": "sight"
+            },
+            {
+              "name": "北固山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金山寺-焦山-北固山",
+          "title": "精品一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "周边四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "南京",
+              "kind": "sight"
+            },
+            {
+              "name": "中山陵",
+              "kind": "sight"
+            },
+            {
+              "name": "玄武湖",
+              "kind": "sight"
+            },
+            {
+              "name": "秦淮河",
+              "kind": "sight"
+            },
+            {
+              "name": "夫子庙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南京：中山陵-玄武湖-秦淮河-夫子庙",
+          "title": "周边四日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "镇江",
+              "kind": "sight"
+            },
+            {
+              "name": "金山",
+              "kind": "sight"
+            },
+            {
+              "name": "焦山",
+              "kind": "sight"
+            },
+            {
+              "name": "北固山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "镇江：金山-焦山-北固山",
+          "title": "周边四日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "扬州",
+              "kind": "sight"
+            },
+            {
+              "name": "大明寺",
+              "kind": "sight"
+            },
+            {
+              "name": "瘦西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "个园",
+              "kind": "sight"
+            },
+            {
+              "name": "文昌阁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "扬州：大明寺-瘦西湖-个园-文昌阁",
+          "title": "周边四日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "苏州",
+              "kind": "sight"
+            },
+            {
+              "name": "平江路",
+              "kind": "sight"
+            },
+            {
+              "name": "拙政园",
+              "kind": "sight"
+            },
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "寒山寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "苏州：平江路-拙政园-虎丘-寒山寺",
+          "title": "周边四日游"
+        }
+      ],
+      "stopCount": 19,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "id": "g-cfffbc92",
+  "city": "济南",
+  "cityAliases": [],
+  "region": "山东",
+  "title": "济南",
+  "source": "山东地区/我是驴友-济南旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "趵突泉",
+              "kind": "sight"
+            },
+            {
+              "name": "五龙潭",
+              "kind": "sight"
+            },
+            {
+              "name": "大明湖",
+              "kind": "sight"
+            },
+            {
+              "name": "曲水亭街",
+              "kind": "sight"
+            },
+            {
+              "name": "西更道街",
+              "kind": "sight"
+            },
+            {
+              "name": "王府池子",
+              "kind": "sight"
+            },
+            {
+              "name": "珍珠泉",
+              "kind": "sight"
+            },
+            {
+              "name": "芙蓉街",
+              "kind": "sight"
+            },
+            {
+              "name": "泉城广场",
+              "kind": "sight"
+            },
+            {
+              "name": "黑虎泉",
+              "kind": "sight"
+            },
+            {
+              "name": "解放阁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "趵突泉—五龙潭—大明湖—曲水亭街—西更道街—王府池子—珍珠泉—芙蓉街—泉城广场—黑虎泉—解放阁",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天街",
+              "kind": "sight"
+            },
+            {
+              "name": "玉皇顶",
+              "kind": "sight"
+            },
+            {
+              "name": "后石坞",
+              "kind": "sight"
+            },
+            {
+              "name": "天烛峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天街—玉皇顶—后石坞—天烛峰",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "趵突泉",
+              "kind": "sight"
+            },
+            {
+              "name": "五龙潭",
+              "kind": "sight"
+            },
+            {
+              "name": "大明湖",
+              "kind": "sight"
+            },
+            {
+              "name": "老街区",
+              "kind": "sight"
+            },
+            {
+              "name": "泉城广场",
+              "kind": "sight"
+            },
+            {
+              "name": "黑虎泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "趵突泉—五龙潭—大明湖—老街区—泉城广场—黑虎泉",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天街",
+              "kind": "sight"
+            },
+            {
+              "name": "玉皇顶",
+              "kind": "sight"
+            },
+            {
+              "name": "后石坞",
+              "kind": "sight"
+            },
+            {
+              "name": "天烛峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天街—玉皇顶—后石坞—天烛峰",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "中天门",
+              "kind": "sight"
+            },
+            {
+              "name": "南天门",
+              "kind": "sight"
+            },
+            {
+              "name": "碧霞祠",
+              "kind": "sight"
+            },
+            {
+              "name": "玉皇顶",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中天门—南天门—碧霞祠—玉皇顶",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天街",
+              "kind": "sight"
+            },
+            {
+              "name": "玉皇顶",
+              "kind": "sight"
+            },
+            {
+              "name": "后石坞",
+              "kind": "sight"
+            },
+            {
+              "name": "天烛峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天街—玉皇顶—后石坞—天烛峰",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

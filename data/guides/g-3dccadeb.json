@@ -1,0 +1,452 @@
+{
+  "id": "g-3dccadeb",
+  "city": "黄山",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "黄山",
+  "source": "华中地区/我是驴友-黄山.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "云谷寺",
+              "kind": "sight"
+            },
+            {
+              "name": "始信峰",
+              "kind": "sight"
+            },
+            {
+              "name": "猴子观海",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子峰",
+              "kind": "sight"
+            },
+            {
+              "name": "排云亭",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来石",
+              "kind": "sight"
+            },
+            {
+              "name": "西海大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "云谷寺-始信峰-猴子观海-狮子峰-排云亭-飞来石-西海大峡谷-光明顶-鳌鱼峰-莲花峰-迎客松-天都峰-慈光阁",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "光明顶-鳌鱼峰-莲花峰-迎客松-天都峰",
+          "title": null
+        }
+      ],
+      "stopCount": 17,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "云谷寺",
+              "kind": "sight"
+            },
+            {
+              "name": "始信峰",
+              "kind": "sight"
+            },
+            {
+              "name": "猴子观海",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子峰",
+              "kind": "sight"
+            },
+            {
+              "name": "排云亭",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来石",
+              "kind": "sight"
+            },
+            {
+              "name": "西海大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            }
+          ],
+          "raw": "云谷寺-始信峰-猴子观海-狮子峰-排云亭-飞来石-西海大峡谷-光明顶",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "光明顶-鳌鱼峰-莲花峰-迎客松-天都峰",
+          "title": null
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "云谷寺",
+              "kind": "sight"
+            },
+            {
+              "name": "始信峰",
+              "kind": "sight"
+            },
+            {
+              "name": "猴子观海",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子峰",
+              "kind": "sight"
+            },
+            {
+              "name": "排云亭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "云谷寺-始信峰-猴子观海-狮子峰-排云亭",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "狮子峰",
+              "kind": "sight"
+            },
+            {
+              "name": "猴子观海",
+              "kind": "sight"
+            },
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            }
+          ],
+          "raw": "狮子峰-猴子观海-光明顶",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "光明顶-鳌鱼峰-莲花峰-迎客松-天都峰",
+          "title": null
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "黄屏",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "歙县",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄屏→屯溪→歙县",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            },
+            {
+              "name": "黄屏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递→黄屏",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达黄屏市",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晚上乘火车到达黄屏市，早上出发，经歙县赶往棠樾，沿途的",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县→屯溪→宏村",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            },
+            {
+              "name": "黄屏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村→西递→黄屏",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r6",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "黄屏",
+              "kind": "sight"
+            },
+            {
+              "name": "绩溪",
+              "kind": "sight"
+            },
+            {
+              "name": "鱼川",
+              "kind": "sight"
+            },
+            {
+              "name": "古道饭店",
+              "kind": "sight"
+            },
+            {
+              "name": "江南第一兰",
+              "kind": "sight"
+            },
+            {
+              "name": "蓝天凹",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄屏→绩溪→鱼川→古道饭店→江南第一兰→蓝天凹",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "蓝天凹",
+              "kind": "sight"
+            },
+            {
+              "name": "野猪塘",
+              "kind": "sight"
+            },
+            {
+              "name": "好汉坡",
+              "kind": "sight"
+            },
+            {
+              "name": "清凉峰",
+              "kind": "sight"
+            },
+            {
+              "name": "黄屏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "蓝天凹→野猪塘→好汉坡→清凉峰→黄屏",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

@@ -21,6 +21,22 @@ export type StyleId =
   | "foodie"
   | "family";
 
+export type ExperienceId =
+  | "sunrise"
+  | "sunset"
+  | "night"
+  | "coast"
+  | "boat"
+  | "hike"
+  | "oldtown"
+  | "museum"
+  | "temple"
+  | "food"
+  | "ride"
+  | "photo"
+  | "soak"
+  | "show";
+
 export type PaceId = "chill" | "balanced" | "packed";
 export type TransportPref = "auto" | "walk" | "transit" | "drive";
 export type BudgetTier = "economy" | "comfort" | "premium";
@@ -92,6 +108,11 @@ export interface Place {
   source: "amap" | "osm" | "wikidata" | "demo";
   tags?: string[];
   island?: string;
+  wikidataId?: string;
+  image?: string;
+  commons?: string;
+  wikipedia?: string;
+  website?: string;
 }
 
 export interface FixedPlace {
@@ -102,7 +123,8 @@ export interface FixedPlace {
 export interface TripInput {
   city: string;
   center?: [number, number];
-  hotel: Place;
+  hotel?: Place;
+  hotelUndecided?: boolean;
   days: number;
   date: string;
   pace: PaceId;
@@ -111,10 +133,35 @@ export interface TripInput {
   budgetTier: BudgetTier;
   adults: number;
   children: number;
+  seniors?: number;
+  avoidSteep?: boolean;
+  notes?: string;
   seed: number;
   hotelPrice?: number;
   fixedPlaces?: FixedPlace[];
+  selectedPlaces?: Place[];
   farDays?: number;
+  experiences?: ExperienceId[];
+}
+
+export interface WishlistGoal {
+  experience: ExperienceId;
+  label: string;
+  placeId: string;
+  placeName: string;
+  bandLabel: string;
+  durationMin: number;
+  reason?: string;
+  alternatives: { placeId: string; name: string }[];
+}
+
+export interface DayAlternative {
+  placeId: string;
+  name: string;
+  experience: ExperienceId;
+  experienceLabel: string;
+  distanceKm: number;
+  reason: string;
 }
 
 export interface RouteAlternative {
@@ -182,6 +229,8 @@ export interface StopPlan {
   note?: string;
   ticket?: number;
   estimatedTicket?: boolean;
+  slot?: "lunch" | "dinner" | "cafe";
+  flexible?: boolean;
   attrs?: string[];
   tips?: PlanTip[];
 }
@@ -222,6 +271,7 @@ export interface DayPlan {
   far?: boolean;
   weather?: DayWeather;
   tips?: PlanTip[];
+  alternatives?: DayAlternative[];
 }
 
 export interface BudgetItem {
@@ -263,7 +313,37 @@ export interface PlanMeta {
   dataNotes: string[];
   holiday?: HolidayInfo;
   isFixed: boolean;
+  fixedKind?: "guide" | "selected" | "mixed";
+  archetype?: { id: string; label: string; summary: string };
   generatedAt: string;
+}
+
+export type LodgingKind =
+  | "city"
+  | "oldtown"
+  | "gateway"
+  | "inside"
+  | "transit";
+
+export interface LodgingBase {
+  id: string;
+  name: string;
+  kind: LodgingKind;
+  lat: number;
+  lng: number;
+  role: "main" | "optional";
+  nights: number[];
+  reason: string;
+  tradeoff?: string;
+}
+
+export interface LodgingPlan {
+  status: "fixed" | "recommended";
+  strategy: "hub" | "gateway" | "multi";
+  headline: string;
+  summary: string;
+  bases: LodgingBase[];
+  notes: string[];
 }
 
 export interface PlanResult {
@@ -272,6 +352,8 @@ export interface PlanResult {
   budget: BudgetSummary;
   warnings: string[];
   tips?: PlanTip[];
+  wishlist?: WishlistGoal[];
+  lodging?: LodgingPlan;
 }
 
 export interface PlanResponse {

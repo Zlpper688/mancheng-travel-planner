@@ -1,0 +1,150 @@
+{
+  "id": "g-61e5eeac",
+  "city": "乌鲁木齐",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "乌鲁木齐",
+  "source": "西北地区/我是驴友-乌鲁木齐.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "乌鲁木齐市内及周边五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "红山公园",
+              "kind": "sight"
+            },
+            {
+              "name": "新疆博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "二道桥大巴扎",
+              "kind": "sight"
+            }
+          ],
+          "raw": "红山公园-新疆博物馆-二道桥大巴扎",
+          "title": "乌鲁木齐市内及周边五日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "金泉沟",
+              "kind": "sight"
+            },
+            {
+              "name": "驴达板",
+              "kind": "sight"
+            },
+            {
+              "name": "菊花台",
+              "kind": "sight"
+            },
+            {
+              "name": "苏克达坂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金泉沟-驴达板-菊花台-苏克达坂",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "小渠子",
+              "kind": "sight"
+            },
+            {
+              "name": "直沟",
+              "kind": "sight"
+            },
+            {
+              "name": "菊花台",
+              "kind": "sight"
+            },
+            {
+              "name": "苏克达坂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "小渠子-直沟-菊花台-苏克达坂",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "金泉沟",
+              "kind": "sight"
+            },
+            {
+              "name": "驴达板",
+              "kind": "sight"
+            },
+            {
+              "name": "菊花台",
+              "kind": "sight"
+            },
+            {
+              "name": "苏克达坂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金泉沟-驴达板-菊花台-苏克达坂",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "吐鲁番",
+              "kind": "sight"
+            }
+          ],
+          "raw": "吐鲁番",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "鄯善",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鄯善",
+          "title": null
+        }
+      ],
+      "stopCount": 2,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

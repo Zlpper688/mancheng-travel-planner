@@ -1,0 +1,107 @@
+{
+  "id": "g-c2ea9972",
+  "city": "华山",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "华山",
+  "source": "西北地区/我是驴友-华山.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "华山徒步二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "玉泉院",
+              "kind": "sight"
+            },
+            {
+              "name": "北峰",
+              "kind": "sight"
+            },
+            {
+              "name": "西峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "玉泉院—北峰—西峰",
+          "title": "华山徒步二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西峰",
+              "kind": "sight"
+            },
+            {
+              "name": "南峰",
+              "kind": "sight"
+            },
+            {
+              "name": "东峰",
+              "kind": "sight"
+            },
+            {
+              "name": "中峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西峰—南峰—东峰—中峰",
+          "title": "华山徒步二日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "华山徒步二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北峰上",
+              "kind": "sight"
+            }
+          ],
+          "raw": "早晨游览玉泉院后登山，经北峰上至金锁关。然后有两种安",
+          "title": "华山徒步二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西峰",
+              "kind": "sight"
+            },
+            {
+              "name": "南峰",
+              "kind": "sight"
+            },
+            {
+              "name": "东峰",
+              "kind": "sight"
+            },
+            {
+              "name": "中峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西峰—南峰—东峰—中峰",
+          "title": "华山徒步二日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

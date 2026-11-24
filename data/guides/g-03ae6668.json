@@ -1,0 +1,243 @@
+{
+  "id": "g-03ae6668",
+  "city": "重庆",
+  "cityAliases": [],
+  "region": "西南",
+  "title": "重庆",
+  "source": "西南地区/我是驴友-重庆旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "重庆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "重庆",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "磁器口千年古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "南山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "磁器口千年古镇-南山",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "磁器口千年古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "南山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "磁器口千年古镇-南山",
+          "title": "大足石刻一日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "山水都市两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "解放碑",
+              "kind": "sight"
+            },
+            {
+              "name": "洪崖洞",
+              "kind": "sight"
+            },
+            {
+              "name": "朝天门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "解放碑-洪崖洞-朝天门",
+          "title": "山水都市两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "磁器口千年古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "南山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "磁器口千年古镇-南山",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "大足石刻一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "洪崖洞",
+              "kind": "sight"
+            },
+            {
+              "name": "朝天门",
+              "kind": "sight"
+            },
+            {
+              "name": "洋人街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "洪崖洞-朝天门-洋人街",
+          "title": "大足石刻一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "重庆",
+              "kind": "sight"
+            },
+            {
+              "name": "白帝城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "重庆-白帝城",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "白帝城",
+              "kind": "sight"
+            },
+            {
+              "name": "瞿塘峡",
+              "kind": "sight"
+            },
+            {
+              "name": "小三峡",
+              "kind": "sight"
+            },
+            {
+              "name": "巫峡",
+              "kind": "sight"
+            },
+            {
+              "name": "神女峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "白帝城-瞿塘峡-小三峡-巫峡-神女峰",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "三峡多坝",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三峡多坝",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "武隆",
+              "kind": "sight"
+            },
+            {
+              "name": "芙蓉洞",
+              "kind": "sight"
+            },
+            {
+              "name": "芙蓉江",
+              "kind": "sight"
+            }
+          ],
+          "raw": "武隆-芙蓉洞-芙蓉江",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "仙女山",
+              "kind": "sight"
+            },
+            {
+              "name": "天生三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "龙水峡地缝",
+              "kind": "sight"
+            }
+          ],
+          "raw": "仙女山-天生三桥-龙水峡地缝",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

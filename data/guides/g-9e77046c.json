@@ -1,0 +1,117 @@
+{
+  "id": "g-9e77046c",
+  "city": "束河",
+  "cityAliases": [
+    "丽江"
+  ],
+  "region": "云南",
+  "title": "束河",
+  "source": "云南地区/我是驴友-束河.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "慢生活三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "各地",
+              "kind": "sight"
+            },
+            {
+              "name": "昆明",
+              "kind": "sight"
+            }
+          ],
+          "raw": "各地 — 昆明",
+          "title": "慢生活三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "昆明",
+              "kind": "sight"
+            },
+            {
+              "name": "大理",
+              "kind": "sight"
+            }
+          ],
+          "raw": "昆明 — 大理",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "大理",
+              "kind": "sight"
+            },
+            {
+              "name": "双廊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大理 — 双廊",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "骑车1日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "束河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "束河",
+          "title": "骑车1日游"
+        }
+      ],
+      "stopCount": 1,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": "骑行一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "束河古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "白沙古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "玉湖村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "束河古镇 — 白沙古镇 — 玉湖村",
+          "title": "骑行一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

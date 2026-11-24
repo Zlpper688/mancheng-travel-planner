@@ -13,8 +13,9 @@ import type {
   TripInput,
 } from "../types";
 import { metroAccess } from "../transit/metro";
-import { TIPS, type TipDef, type TipWhen } from "./data";
-import { findPlaceProfile, type PlaceProfile } from "./places";
+import { TIPS, type TipDef, type TipWhen } from "../../content/tips";
+import { placeWaterKind } from "../water";
+import { findPlaceProfile, type PlaceProfile } from "./lookup";
 
 interface TipContext {
   city: string;
@@ -22,6 +23,7 @@ interface TipContext {
   tags: Set<string>;
   names: string[];
   island: boolean;
+  coastal: boolean;
   far: boolean;
   holiday: boolean;
   crowd: number;
@@ -94,6 +96,9 @@ function buildDayContext(day: DayPlan, input: TripInput): TipContext {
     island: day.stops.some(
       (stop) => stop.kind === "sight" && Boolean(stop.place.island),
     ),
+    coastal: places.some(
+      (place) => placeWaterKind(input.city, place) === "sea",
+    ),
     far: Boolean(day.far),
     holiday: Boolean(getHoliday(day.date)),
     crowd: crowdFactor(day.date),
@@ -124,6 +129,9 @@ function buildTripContext(input: TripInput, days: DayPlan[]): TipContext {
       day.stops.some(
         (stop) => stop.kind === "sight" && Boolean(stop.place.island),
       ),
+    ),
+    coastal: places.some(
+      (place) => placeWaterKind(input.city, place) === "sea",
     ),
     far: days.some((day) => Boolean(day.far)),
     holiday: days.some((day) => Boolean(getHoliday(day.date))),
@@ -172,6 +180,7 @@ function matches(when: TipWhen, ctx: TipContext): boolean {
     return false;
   }
   if (when.island !== undefined && ctx.island !== when.island) return false;
+  if (when.coastal !== undefined && ctx.coastal !== when.coastal) return false;
   if (when.far !== undefined && ctx.far !== when.far) return false;
   if (when.holiday !== undefined && ctx.holiday !== when.holiday) return false;
   if (when.crowdMin !== undefined && ctx.crowd < when.crowdMin) return false;
@@ -210,6 +219,7 @@ function score(def: TipDef): number {
   if (when.rain || when.heat || when.cold) value += 2;
   if (when.categories || when.tags) value += 2;
   if (when.island) value += 2;
+  if (when.coastal) value += 2;
   return value;
 }
 
@@ -350,11 +360,14 @@ function genericGuide(
     );
   }
   if (place.category === "beach") {
+    const sea = placeWaterKind(input.city, place) === "sea";
     add(
       "tide",
       "safety",
-      "海边",
-      "留意潮汐和礁石，别下深水；紫外线强，防晒和替换衣物都带上。",
+      sea ? "海边" : "水边",
+      sea
+        ? "留意潮汐和礁石，别下深水；紫外线强，防晒和替换衣物都带上。"
+        : "湖边或河边风大、水温低，别下深水；步道湿滑，防晒和替换衣物都带上。",
     );
   }
   if (place.category === "temple") {
@@ -394,7 +407,7 @@ function genericGuide(
       "queue",
       "food",
       "吃饭",
-      "错峰 11:30 前或 13:30 后；先看明码标价，海鲜问清时价和加工费。",
+      "错峰 11:30 前或 13:30 后；先看明码标价，时价菜问清价格和加工费。",
     );
   }
   if (place.category === "cafe") {
@@ -402,7 +415,7 @@ function genericGuide(
       "seat",
       "food",
       "歇脚",
-      "海景位和网红位先问低消；下午人少，适合避开正午。",
+      "临窗位和网红位先问低消；下午人少，适合避开正午。",
     );
   }
   if (place.category === "street") {
@@ -421,7 +434,16 @@ function genericGuide(
       "傍晚蚊虫多，带驱蚊液；草坪和水边注意防晒，周末停车位紧张。",
     );
   }
-  if (place.island) {
+  const islandProfile = findPlaceProfile(input.city, place.name);
+  const islandText = [
+    place.name,
+    place.note ?? "",
+    (place.tags ?? []).join(" "),
+    islandProfile?.booking ?? "",
+    islandProfile?.bestTime ?? "",
+    islandProfile?.highlight ?? "",
+  ].join(" ");
+  if (place.island && /船票|轮渡|坐船|码头|上岛|摆渡/.test(islandText)) {
     add(
       "ferry",
       "ferry",

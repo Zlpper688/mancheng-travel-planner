@@ -1,0 +1,216 @@
+{
+  "id": "g-8509d566",
+  "city": "凤凰",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "凤凰",
+  "source": "华中地区/我是驴友-凤凰.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "湘西风情三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "沱江",
+              "kind": "sight"
+            },
+            {
+              "name": "虹桥",
+              "kind": "sight"
+            },
+            {
+              "name": "沈从文墓地",
+              "kind": "sight"
+            }
+          ],
+          "raw": "沱江-虹桥-沈从文墓地",
+          "title": "湘西风情三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南方长城",
+              "kind": "sight"
+            },
+            {
+              "name": "黄丝桥古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南方长城 -黄丝桥古城",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "城内城外两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "沱江",
+              "kind": "sight"
+            },
+            {
+              "name": "虹桥",
+              "kind": "sight"
+            },
+            {
+              "name": "沈从文故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "沱江-虹桥-沈从文故居",
+          "title": "城内城外两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南方长城",
+              "kind": "sight"
+            },
+            {
+              "name": "黄丝桥古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南方长城 -黄丝桥古城",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "城内城外两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "虹桥",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家祠堂",
+              "kind": "sight"
+            },
+            {
+              "name": "跳岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "虹桥-杨家祠堂-跳岩",
+          "title": "城内城外两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南方长城",
+              "kind": "sight"
+            },
+            {
+              "name": "黄丝桥古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南方长城 -黄丝桥古城",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "张家界国家森林公园",
+              "kind": "sight"
+            },
+            {
+              "name": "金鞭溪东",
+              "kind": "sight"
+            },
+            {
+              "name": "黄石寨",
+              "kind": "sight"
+            }
+          ],
+          "raw": "张家界国家森林公园→金鞭溪东→黄石寨",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "索溪峪",
+              "kind": "sight"
+            },
+            {
+              "name": "天子山",
+              "kind": "sight"
+            },
+            {
+              "name": "贺龙公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西海峰林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "索溪峪→ 天子山 → 贺龙公园  →西海峰林",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宝峰湖",
+              "kind": "sight"
+            },
+            {
+              "name": "百丈峡",
+              "kind": "sight"
+            },
+            {
+              "name": "秀华山馆",
+              "kind": "sight"
+            },
+            {
+              "name": "普光禅寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宝峰湖→百丈峡→秀华山馆→普光禅寺",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

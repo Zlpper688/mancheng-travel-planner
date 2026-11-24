@@ -110,7 +110,7 @@ export const PLACE_PROFILES: PlaceProfile[] = [
   {
     id: "xm-pianomuseum",
     city: XIAMEN,
-    names: ["钢琴博物馆"],
+    names: ["钢琴博物馆", "鼓浪屿钢琴博物馆"],
     duration: "45 分钟",
     highlight: "近百架古钢琴，钢琴之岛的名片。",
     caution: "室内禁止闪光，跟讲解听一段演奏更值。",
@@ -364,7 +364,7 @@ export const PLACE_PROFILES: PlaceProfile[] = [
   {
     id: "xm-tianzhu",
     city: XIAMEN,
-    names: ["天竺山"],
+    names: ["天竺山", "天竺山森林公园"],
     duration: "半天",
     highlight: "城郊溪谷徒步，夏天避暑。",
     caution: "防蚊防晒，雨天路滑；穿徒步鞋。",
@@ -1131,27 +1131,3 @@ export const PLACE_PROFILES: PlaceProfile[] = [
     source: "大小洞天公告 · 以官方为准",
   },
 ];
-
-export function findPlaceProfile(
-  city: string,
-  name: string,
-): PlaceProfile | undefined {
-  let best: { profile: PlaceProfile; length: number } | undefined;
-  for (const profile of PLACE_PROFILES) {
-    if (
-      !profile.city.some(
-        (token) => city.includes(token) || token.includes(city),
-      )
-    ) {
-      continue;
-    }
-    for (const token of profile.names) {
-      if (name.includes(token)) {
-        if (!best || token.length > best.length) {
-          best = { profile, length: token.length };
-        }
-      }
-    }
-  }
-  return best?.profile;
-}

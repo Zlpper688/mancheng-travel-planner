@@ -1,0 +1,153 @@
+{
+  "id": "g-b19d67cd",
+  "city": "长沙",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "长沙",
+  "source": "华中地区/我是驴友-长沙.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "湖南省第一师范",
+              "kind": "sight"
+            },
+            {
+              "name": "岳麓书院",
+              "kind": "sight"
+            },
+            {
+              "name": "岳麓山",
+              "kind": "sight"
+            },
+            {
+              "name": "橘子洲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "湖南省第一师范-岳麓书院-岳麓山-橘子洲",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "故居",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "虹桥",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家祠堂",
+              "kind": "sight"
+            },
+            {
+              "name": "跳岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "虹桥-杨家祠堂-跳岩",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "勾良苗寨",
+              "kind": "sight"
+            },
+            {
+              "name": "天龙峡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "勾良苗寨-天龙峡",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天子山",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天子山-十里画廊",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大观台",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大观台-杨家界",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "袁家界",
+              "kind": "sight"
+            },
+            {
+              "name": "金鞭溪",
+              "kind": "sight"
+            }
+          ],
+          "raw": "袁家界-金鞭溪",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

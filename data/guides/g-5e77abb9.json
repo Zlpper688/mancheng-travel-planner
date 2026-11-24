@@ -1,0 +1,375 @@
+{
+  "id": "g-5e77abb9",
+  "city": "四姑娘山",
+  "cityAliases": [],
+  "region": "四川",
+  "title": "四姑娘山",
+  "source": "四川地区/我是驴友-四姑娘山.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "经典四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "双桥沟",
+              "kind": "sight"
+            },
+            {
+              "name": "长坪沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "双桥沟-长坪沟",
+          "title": "经典四日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "丹巴",
+              "kind": "sight"
+            },
+            {
+              "name": "塔公",
+              "kind": "sight"
+            },
+            {
+              "name": "新都桥",
+              "kind": "sight"
+            }
+          ],
+          "raw": "丹巴-塔公-新都桥",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "新都桥",
+              "kind": "sight"
+            },
+            {
+              "name": "康定",
+              "kind": "sight"
+            }
+          ],
+          "raw": "新都桥-康定",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定—海螺沟",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "精华一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "双桥沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "双桥沟",
+          "title": "精华一日游"
+        }
+      ],
+      "stopCount": 1,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": "周边六日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "四姑娘山",
+              "kind": "sight"
+            },
+            {
+              "name": "小金",
+              "kind": "sight"
+            },
+            {
+              "name": "丹巴",
+              "kind": "sight"
+            }
+          ],
+          "raw": "四姑娘山—小金—丹巴",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "丹巴",
+              "kind": "sight"
+            },
+            {
+              "name": "塔公",
+              "kind": "sight"
+            },
+            {
+              "name": "新都桥",
+              "kind": "sight"
+            }
+          ],
+          "raw": "丹巴-塔公-新都桥",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "新都桥",
+              "kind": "sight"
+            },
+            {
+              "name": "康定",
+              "kind": "sight"
+            }
+          ],
+          "raw": "新都桥-康定",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定—海螺沟",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "海螺沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海螺沟",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "不可错过",
+              "kind": "sight"
+            }
+          ],
+          "raw": "不可错过",
+          "title": "周边六日游"
+        }
+      ],
+      "stopCount": 12,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "成都",
+              "kind": "sight"
+            },
+            {
+              "name": "日隆镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "成都-日隆镇",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "日隆",
+              "kind": "sight"
+            },
+            {
+              "name": "长坪沟徒步13km",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日隆-7km-长坪沟徒步13km-日隆（当天为高海拔适应）",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "日隆",
+              "kind": "sight"
+            },
+            {
+              "name": "2km斋或坪",
+              "kind": "sight"
+            },
+            {
+              "name": "锅庄坪",
+              "kind": "sight"
+            },
+            {
+              "name": "石板热",
+              "kind": "sight"
+            },
+            {
+              "name": "打尖包",
+              "kind": "sight"
+            },
+            {
+              "name": "鸡棚子",
+              "kind": "sight"
+            },
+            {
+              "name": "大槽",
+              "kind": "sight"
+            },
+            {
+              "name": "大峰大本营",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日隆-2km斋或坪-1km-锅庄坪-3km-石板热-3km-打尖包-3km-鸡棚子-3km-大槽-4km-大峰大本营",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "日隆",
+              "kind": "sight"
+            },
+            {
+              "name": "成都",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大本营-7km-登顶-22km-返回日隆-成都",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "成都",
+              "kind": "sight"
+            },
+            {
+              "name": "日隆镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "成都-日隆镇（3200m）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "日隆镇休整",
+              "kind": "sight"
+            },
+            {
+              "name": "培训",
+              "kind": "sight"
+            },
+            {
+              "name": "适应海拔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日隆镇休整、培训，适应海拔",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "日隆",
+              "kind": "sight"
+            },
+            {
+              "name": "二峰大本营",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日隆-二峰大本营",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "日隆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大本营-登顶(5276M)-返回日隆",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

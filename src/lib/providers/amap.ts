@@ -221,7 +221,7 @@ const CATEGORY_FALLBACK_POPULARITY: Partial<Record<Category, number>> = {
 // 注意：只用于自动发现（fetchAround），用户主动搜索时不做过滤。
 const JUNK_TYPECODE_PREFIXES = ["140100", "140200", "141400"];
 const JUNK_NAME_PATTERN =
-  /培训|教育|留学|雅思|托福|考研|考公|辅导|补习|进修|驾校|语培|招生|社区|小区|停车场|公厕|厕所|售票处|游客中心|出入口|服务中心|管理处/;
+  /培训|教育|留学|雅思|托福|考研|考公|辅导|补习|进修|驾校|语培|招生|社区|小区|停车场|公厕|厕所|售票处|游客中心|出入口|服务中心|管理处|标识牌|标志牌|指示牌|导览图|景区大门|大门$|山门$|驿站$|服务点$|检票|闸机|值班室|警务室|母婴室/;
 
 function isJunkPoi(raw: AmapPoiRaw): boolean {
   const typecode = asString(raw.typecode) ?? "";
@@ -411,6 +411,147 @@ async function fetchCityPois(
     if ((data.pois ?? []).length < 25) break;
   }
   return results;
+}
+
+type AmapDistrictRaw = {
+  name?: string;
+  adcode?: string;
+  level?: string;
+  center?: string;
+  polyline?: string;
+};
+
+export interface AmapCityBoundary {
+  name: string;
+  adcode?: string;
+  /** [minLng, minLat, maxLng, maxLat] */
+  bbox: [number, number, number, number];
+  /** WGS-84 边界环；无边界数据时为空 */
+  rings: [number, number][][];
+}
+
+function parseAmapRings(polyline: string | undefined): [number, number][][] {
+  if (!polyline) return [];
+  return polyline
+    .split("|")
+    .map((ring) =>
+      ring
+        .split(";")
+        .map((pair) => pair.split(",").map(Number))
+        .filter(
+          (pair): pair is [number, number] =>
+            pair.length === 2 && pair.every(Number.isFinite),
+        )
+        .map(([lng, lat]) => gcj02ToWgs84(lng, lat)),
+    )
+    .filter((ring) => ring.length >= 3);
+}
+
+/**
+ * 城市行政区边界只用来圈定扫描范围，一天缓存一次即可。
+ * 优先用 110000（风景名胜）等类型做全市分页扫描，比 place/around
+ * 按距离排序可靠得多，也不会只看到酒店门口那些小广场。
+ */
+export async function amapCityBoundary(
+  city: string,
+): Promise<AmapCityBoundary | null> {
+  return cached(`amap:boundary:${city}`, 24 * 60 * 60 * 1000, async () => {
+    const municipality = /^(北京|上海|天津|重庆|香港|澳门)/.test(city);
+    const names = [
+      city,
+      /市$|区$|县$/.test(city) ? "" : `${city}市`,
+    ].filter(Boolean);
+    for (const name of names) {
+      try {
+        const data = await amapGet<{ districts?: AmapDistrictRaw[] }>(
+          "/config/district",
+          { keywords: name, subdistrict: 0, extensions: "all" },
+          12_000,
+        );
+        const district = (data.districts ?? []).find((item) => {
+          if (!item || !item.adcode) return false;
+          if (!municipality && item.level === "province") return false;
+          return item.level === "city" || item.level === "district" ||
+            Boolean(item.polyline) || municipality;
+        });
+        if (!district) continue;
+        const rings = parseAmapRings(district.polyline);
+        const points = rings.flat();
+        if (points.length) {
+          let minLng = Infinity;
+          let minLat = Infinity;
+          let maxLng = -Infinity;
+          let maxLat = -Infinity;
+          for (const [lng, lat] of points) {
+            minLng = Math.min(minLng, lng);
+            minLat = Math.min(minLat, lat);
+            maxLng = Math.max(maxLng, lng);
+            maxLat = Math.max(maxLat, lat);
+          }
+          return {
+            name: district.name ?? name,
+            adcode: district.adcode,
+            bbox: [minLng, minLat, maxLng, maxLat],
+            rings,
+          };
+        }
+        const centerPoint = parseAmapLocation(district.center);
+        if (centerPoint) {
+          const [lng, lat] = gcj02ToWgs84(centerPoint[0], centerPoint[1]);
+          return {
+            name: district.name ?? name,
+            adcode: district.adcode,
+            bbox: [lng - 0.25, lat - 0.25, lng + 0.25, lat + 0.25],
+            rings: [],
+          };
+        }
+      } catch {
+        // 换下一个名称再试；边界不是嗅探的硬依赖。
+      }
+    }
+    return null;
+  });
+}
+
+export interface AmapSweepPageResult {
+  places: Place[];
+  rawCount: number;
+  totalCount: number;
+}
+
+/** 全市 POI 分页扫描。每页结果缓存 30 分钟，供快速扫描与深挖共用。 */
+export async function amapSweepPage(
+  cityOrAdcode: string,
+  types: string,
+  page: number,
+  offset = 25,
+): Promise<AmapSweepPageResult> {
+  const key = `amap:sweep:${cityOrAdcode}:${types}:${page}:${offset}`;
+  return cached(key, 30 * 60 * 1000, async () => {
+    const data = await amapGet<AmapPoiResponse>(
+      "/place/text",
+      {
+        types,
+        city: cityOrAdcode,
+        citylimit: "true",
+        offset,
+        page,
+        extensions: "all",
+      },
+      18_000,
+    );
+    const places: Place[] = [];
+    for (const raw of data.pois ?? []) {
+      if (isJunkPoi(raw)) continue;
+      const place = mapAmapPoi(raw);
+      if (place) places.push(place);
+    }
+    return {
+      places,
+      rawCount: (data.pois ?? []).length,
+      totalCount: Number(data.count ?? 0) || 0,
+    };
+  });
 }
 
 async function discoverAmap(options: DiscoverOptions): Promise<DiscoverResult> {

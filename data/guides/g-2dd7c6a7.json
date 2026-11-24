@@ -1,0 +1,158 @@
+{
+  "id": "g-2dd7c6a7",
+  "city": "天津",
+  "cityAliases": [],
+  "region": "华北",
+  "title": "天津",
+  "source": "华北地区/我是驴友-天津.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五大道",
+              "kind": "sight"
+            },
+            {
+              "name": "小白楼",
+              "kind": "sight"
+            },
+            {
+              "name": "滨江道商业街",
+              "kind": "sight"
+            },
+            {
+              "name": "西开教堂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五大道—小白楼—滨江道商业街—西开教堂",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "洋货市场",
+              "kind": "sight"
+            },
+            {
+              "name": "塘沽",
+              "kind": "sight"
+            },
+            {
+              "name": "塘沽航母主题公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "洋货市场—塘沽—塘沽航母主题公园",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "世纪钟广场",
+              "kind": "sight"
+            },
+            {
+              "name": "海河风景线",
+              "kind": "sight"
+            },
+            {
+              "name": "意式风情街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "世纪钟广场—海河风景线—意式风情街",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "洋货市场",
+              "kind": "sight"
+            },
+            {
+              "name": "塘沽",
+              "kind": "sight"
+            },
+            {
+              "name": "塘沽航母主题公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "洋货市场—塘沽—塘沽航母主题公园",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天津",
+              "kind": "sight"
+            },
+            {
+              "name": "蓟县",
+              "kind": "sight"
+            },
+            {
+              "name": "盘山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天津→蓟县→盘山",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "徒蓟县",
+              "kind": "sight"
+            },
+            {
+              "name": "独乐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "清王陵",
+              "kind": "sight"
+            }
+          ],
+          "raw": "徒蓟县→独乐寺→清王陵",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

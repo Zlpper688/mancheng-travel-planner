@@ -1,0 +1,111 @@
+{
+  "id": "g-97528369",
+  "city": "惠州",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "惠州",
+  "source": "华南地区/我是驴友-惠州旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "九龙峰",
+              "kind": "sight"
+            },
+            {
+              "name": "惠州西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "巽寮湾",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九龙峰-惠州西湖-巽寮湾",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南昆山",
+              "kind": "sight"
+            },
+            {
+              "name": "石河奇观",
+              "kind": "sight"
+            },
+            {
+              "name": "观音潭",
+              "kind": "sight"
+            },
+            {
+              "name": "川龙瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南昆山-石河奇观-观音潭-川龙瀑布",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "香溪堡",
+              "kind": "sight"
+            },
+            {
+              "name": "南昆山大观园温泉度假区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "香溪堡-南昆山大观园温泉度假区",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南昆山",
+              "kind": "sight"
+            },
+            {
+              "name": "石河奇观",
+              "kind": "sight"
+            },
+            {
+              "name": "观音潭",
+              "kind": "sight"
+            },
+            {
+              "name": "川龙瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南昆山-石河奇观-观音潭-川龙瀑布",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "id": "g-999b150c",
+  "city": "厦门",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "厦门",
+  "source": "华东地区/我是驴友-厦门旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "休闲三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            },
+            {
+              "name": "海湾公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "厦门大学-南普陀-环岛路-海湾公园",
+          "title": "休闲三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "中山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南普陀-厦门大学-中山路",
+          "title": "环岛四日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "南普陀寺",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "胡里山炮台",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南普陀寺-厦门大学-胡里山炮台-环岛路",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "鼓浪屿",
+              "kind": "sight"
+            },
+            {
+              "name": "皓月园",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛海滨浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "菽庄花园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鼓浪屿-皓月园-环岛海滨浴场-菽庄花园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "毓园",
+              "kind": "sight"
+            },
+            {
+              "name": "日光岩",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门海底世界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "毓园-日光岩-郑成功纪念馆-厦门海底世界",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "南普陀寺",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "胡里山炮台",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南普陀寺-厦门大学-胡里山炮台-环岛路",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "集美学村",
+              "kind": "sight"
+            },
+            {
+              "name": "集美陈嘉庚纪念胜地",
+              "kind": "sight"
+            }
+          ],
+          "raw": "集美学村-集美陈嘉庚纪念胜地",
+          "title": null
+        }
+      ],
+      "stopCount": 14,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            },
+            {
+              "name": "茶洞",
+              "kind": "sight"
+            },
+            {
+              "name": "云窝",
+              "kind": "sight"
+            },
+            {
+              "name": "隐屏峰",
+              "kind": "sight"
+            },
+            {
+              "name": "仙掌峰",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天游峰—茶洞—云窝—隐屏峰—仙掌峰—一线天—风洞—神仙楼—阁虎啸岩",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "鹰嘴岩",
+              "kind": "sight"
+            },
+            {
+              "name": "天车架",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            },
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "宋街",
+              "kind": "sight"
+            },
+            {
+              "name": "万春园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大红袍—鹰嘴岩—天车架—水帘洞—九曲溪—武夷宫—宋街—万春园",
+          "title": null
+        }
+      ],
+      "stopCount": 17,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

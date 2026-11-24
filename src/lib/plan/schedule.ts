@@ -12,11 +12,9 @@ import {
   straightLine,
 } from "../geo";
 import type { PlaceProvider, RawRoute } from "../providers/types";
-import {
-  metroLabel,
-  usableMetroTrip,
-  type MetroTrip,
-} from "../transit/metro";
+import { metroLabel, usableMetroTrip } from "../transit/metro";
+import type { MetroTrip } from "../transit/types";
+import { lateReturnLimits, PAID_SIGHT_WARNING_LIMIT } from "./policy";
 import type {
   Category,
   DayPlan,
@@ -47,6 +45,7 @@ interface StopSeed {
   kind: StopKind;
   fixed: boolean;
   slot?: MealSlot;
+  flexible?: boolean;
 }
 
 interface BuildContext {
@@ -63,6 +62,7 @@ interface BuildContext {
   provider: PlaceProvider;
   meals: Place[];
   far: boolean;
+  family: boolean;
   heroId?: string;
   startMin: number;
   weather: WeatherCore | null;
@@ -412,17 +412,19 @@ function rhythmWaitFor(
   const longRest = wait >= 180;
   const note = profile.nightStreet
     ? longRest
-      ? `亮灯还早，建议先回酒店歇一会儿，${at} 再出来逛`
+      ? `亮灯还早，建议先回住处歇一会儿，${at} 再出来逛`
       : `亮灯还早，先在附近把晚饭吃了，${at} 再逛`
     : profile.sunset
       ? longRest
-        ? `离日落还早，建议先回酒店休息或找家店坐一会儿，${at} 去机位`
+        ? `离日落还早，建议先回住处休息或找家店坐一会儿，${at} 去机位`
         : `离日落还早，先在附近慢慢逛或坐一会儿，${at} 去机位`
       : target >= 17 * 60
               ? `这个点晚些才热闹，先在附近逛逛、吃个晚饭，${at} 再过来`
               : target >= 16 * 60
                 ? `还没到最舒服的时候，先在附近喝杯咖啡、坐一会儿，${at} 再逛`
-                : `还没到最舒服的时候，先在附近吃午饭、歇一会儿，${at} 再逛`;
+                : arriveMin < 13 * 60 + 30
+                  ? `还没到最舒服的时候，先在附近吃午饭、歇一会儿，${at} 再逛`
+                  : `还没到最舒服的时候，先在附近喝杯咖啡、逛逛小店，${at} 再逛`;
   return { wait, note };
 }
 
@@ -539,14 +541,58 @@ function chooseMeal(
   return pick(maxKm) ?? pick(maxKm * 1.8);
 }
 
+// 吃饭先占时间，不把行程绑在某一家的排队上；找到靠谱餐馆也只作同片区的首选参考。
+function flexibleMealPlace(
+  slot: "lunch" | "dinner",
+  anchor: Place,
+  suggestion: Place | null,
+  night: boolean,
+  context: BuildContext,
+): Place {
+  const spot = suggestion?.name ?? anchor.name;
+  const atHotel = anchor.id === context.hotel.id;
+  const note =
+    slot === "lunch"
+      ? atHotel
+        ? suggestion
+          ? `这一段留给午饭：出发前可以看「${spot}」，吃完再走，不必按攻略打卡。`
+          : "这一段留给午饭：出发前在酒店附近吃，吃完再走，不必按攻略打卡。"
+        : suggestion
+          ? `这一段留给午饭：可以先看「${spot}」，不合口味就在同片区另挑，不必按攻略打卡。`
+          : `这一段留给午饭：在「${spot}」附近现场挑，先看人气和口味，不必按攻略打卡。`
+      : night
+        ? suggestion
+          ? `这一段留给晚饭：先在「${spot}」一带吃，再逛夜市，别空着肚子排长队。`
+          : `这一段留给晚饭：先在「${spot}」附近吃，再逛夜市，别空着肚子排长队。`
+        : atHotel
+          ? suggestion
+            ? `这一段留给晚饭：回住处附近可以看「${spot}」，吃完直接休息，不必再折返。`
+            : "这一段留给晚饭：回住处附近挑一家，吃完直接休息，不必再折返。"
+          : suggestion
+            ? `这一段留给晚饭：可以先看「${spot}」，吃完再回住处，不必为某家店绕路。`
+            : `这一段留给晚饭：在「${spot}」附近挑一家，吃完再回住处，不必为某家店绕路。`;
+  return {
+    ...(suggestion ?? anchor),
+    id: `flex-${slot}-${context.dayIndex}`,
+    name: slot === "lunch" ? "午餐" : "晚餐",
+    // 占位用餐点跟着锚点坐标走，但类别必须是餐饮，不能继承酒店/景点类别。
+    category: "food",
+    note,
+    cost: undefined,
+    costNote: undefined,
+    rating: undefined,
+    openHours: undefined,
+    tags: undefined,
+  };
+}
+
 function insertMeals(
   sights: StopSeed[],
   options: { lunch: boolean; dinner: boolean; cafe: boolean },
   context: BuildContext,
   used: Set<string>,
-): { stops: StopSeed[]; warnings: string[] } {
-  if (!sights.length) return { stops: sights, warnings: [] };
-  const warnings: string[] = [];
+): StopSeed[] {
+  if (!sights.length) return sights;
   const rough = roughTimeline(
     sights.map((stop) => stop.place),
     context.hotel,
@@ -594,42 +640,33 @@ function insertMeals(
   const lastPlace = sights[sights.length - 1]?.place ?? context.hotel;
   const lastProfile = rhythmOf(context.city, lastPlace);
   const beforeNight = Boolean(lastProfile.nightStreet);
-  const lastRough = rough[rough.length - 1];
 
-  const insertDinner = () => {
-    if (!options.dinner) return;
-    const shouldEat =
-      beforeNight || !lastRough || lastRough.end >= 16 * 60;
-    if (!shouldEat) return;
-    const target = beforeNight
-      ? lastPlace
-      : !lastRough || lastRough.end < 16 * 60
-        ? context.hotel
-        : lastPlace;
-    const dinner = chooseMeal(
+  // 夜市当天先定晚饭：晚饭就该落在夜市那片，
+  // 不能因为午饭先挑走了附近的小吃街，晚上再折返几公里去吃饭。
+  // 普通晚饭等真实排完景点再定（见 endOfDayDinner）：粗排会低估等待时间。
+  if (beforeNight && options.dinner) {
+    const suggestion = chooseMeal(
       foodPlaces,
       used,
-      target,
+      lastPlace,
       "meal",
       context.styles,
       3.6,
       "dinner",
     );
-    if (dinner) {
-      used.add(dinner.id);
-      insertions.push({
-        index: beforeNight ? Math.max(0, sights.length - 1) : sights.length,
-        order: 2,
-        seed: { place: dinner, kind: "meal", fixed: false, slot: "dinner" },
-      });
-    } else {
-      warnings.push("最后一段附近没有合适的晚饭点，回酒店附近再吃。");
-    }
-  };
-
-  // 夜市当天先定晚饭：晚饭就该落在夜市那片，
-  // 不能因为午饭先挑走了附近的小吃街，晚上再折返几公里去吃饭。
-  if (beforeNight) insertDinner();
+    if (suggestion) used.add(suggestion.id);
+    insertions.push({
+      index: Math.max(0, sights.length - 1),
+      order: 2,
+      seed: {
+        place: flexibleMealPlace("dinner", lastPlace, suggestion, true, context),
+        kind: "meal",
+        fixed: false,
+        slot: "dinner",
+        flexible: true,
+      },
+    });
+  }
 
   if (options.lunch) {
     const target = midpointTarget(sights, lunchIndex, context.hotel);
@@ -637,7 +674,7 @@ function insertMeals(
     const lunchPool = beforeNight
       ? foodPlaces.filter((place) => placeDistance(place, lastPlace) > 0.6)
       : foodPlaces;
-    const meal = chooseMeal(
+    const suggestion = chooseMeal(
       lunchPool,
       used,
       target,
@@ -646,16 +683,22 @@ function insertMeals(
       2.8,
       "lunch",
     );
-    if (meal) {
-      used.add(meal.id);
-      insertions.push({
-        index: lunchIndex,
-        order: 0,
-        seed: { place: meal, kind: "meal", fixed: false, slot: "lunch" },
-      });
-    } else if (context.startMin < 13 * 60) {
-      warnings.push("附近没有合适的午餐点，午饭时间留给你随走随吃。");
-    }
+    if (suggestion) used.add(suggestion.id);
+    const anchor =
+      lunchIndex > 0
+        ? sights[lunchIndex - 1]?.place ?? context.hotel
+        : context.hotel;
+    insertions.push({
+      index: lunchIndex,
+      order: 0,
+      seed: {
+        place: flexibleMealPlace("lunch", anchor, suggestion, false, context),
+        kind: "meal",
+        fixed: false,
+        slot: "lunch",
+        flexible: true,
+      },
+    });
   }
 
   if (options.cafe && cafeIndex >= 0) {
@@ -671,8 +714,6 @@ function insertMeals(
     }
   }
 
-  if (!beforeNight) insertDinner();
-
   const result: StopSeed[] = [];
   for (let index = 0; index <= sights.length; index++) {
     insertions
@@ -681,7 +722,83 @@ function insertMeals(
       .forEach((item) => result.push(item.seed));
     if (index < sights.length) result.push(sights[index]);
   }
-  return { stops: result, warnings };
+  return result;
+}
+
+// 晚饭排完真实景点再定：白天拖到几点，粗排常常算不准。
+function endOfDayDinner(
+  stops: StopPlan[],
+  ordered: StopSeed[],
+  context: BuildContext,
+  used: Set<string>,
+): { seed: StopSeed; atHotel: boolean } | null {
+  if (
+    ordered.some(
+      (stop) =>
+        stop.kind === "meal" && (!stop.flexible || stop.slot === "dinner"),
+    )
+  ) {
+    return null;
+  }
+  if (!stops.length) return null;
+  const lastEnd = stops[stops.length - 1].endMin;
+  if (lastEnd < 15 * 60 + 30) return null;
+  // 收得早就在酒店附近吃；还早就先回住处，晚点再出门。
+  const atHotel = lastEnd < 16 * 60;
+  const anchor = atHotel ? context.hotel : stops[stops.length - 1].place;
+  const foodPlaces = context.meals.filter((place) => place.category === "food");
+  const suggestion = chooseMeal(
+    foodPlaces,
+    used,
+    anchor,
+    "meal",
+    context.styles,
+    3.6,
+    "dinner",
+  );
+  if (suggestion) used.add(suggestion.id);
+  return {
+    seed: {
+      place: flexibleMealPlace("dinner", anchor, suggestion, false, context),
+      kind: "meal",
+      fixed: false,
+      slot: "dinner",
+      flexible: true,
+    },
+    atHotel,
+  };
+}
+
+function scheduleAppendedDinner(
+  seed: StopSeed,
+  arriveMin: number,
+  order: number,
+  atHotel: boolean,
+  context: BuildContext,
+): StopPlan {
+  const wait = arriveMin < DINNER_START ? DINNER_START - arriveMin : 0;
+  const startMin = Math.ceil((arriveMin + wait) / 5) * 5;
+  const dwellMin = roundToFive(
+    Math.max(55, 60 * PACES[context.pace].dwellScale),
+  );
+  const early =
+    wait > 0
+      ? atHotel
+        ? "还没到饭点，先回住处歇一会儿"
+        : "还没到饭点，先在附近逛逛"
+      : undefined;
+  return {
+    id: `${context.dayIndex}-${order}-${seed.place.id}`,
+    place: seed.place,
+    kind: "meal",
+    order,
+    startMin,
+    endMin: startMin + dwellMin,
+    dwellMin,
+    note: [seed.place.note, early].filter(Boolean).join(" · ") || undefined,
+    slot: "dinner",
+    flexible: true,
+  };
 }
 
 function fallbackRoute(
@@ -843,7 +960,7 @@ async function buildOnce(
 
   const hasMeal = sightStops.some((stop) => stop.kind === "meal");
   const hasCafe = sightStops.some((stop) => stop.kind === "cafe");
-  const { stops: ordered, warnings: mealWarnings } = insertMeals(
+  const ordered = insertMeals(
     sightStops,
     {
       lunch: !hasMeal && context.startMin < 13 * 60,
@@ -858,7 +975,6 @@ async function buildOnce(
     context,
     used,
   );
-  warnings.push(...mealWarnings);
 
   const nodes = [context.hotel, ...ordered.map((stop) => stop.place), context.hotel];
   const modes: TransportMode[] = [];
@@ -1017,6 +1133,8 @@ async function buildOnce(
       endMin,
       dwellMin: endMin - startMin,
       note: notes.length ? notes.join(" · ") : undefined,
+      slot: stop.slot,
+      flexible: stop.flexible,
       ticket:
         stop.kind === "sight" && stop.place.cost !== undefined
           ? stop.place.cost
@@ -1040,19 +1158,93 @@ async function buildOnce(
 
   const finalIndex = ordered.length;
   const finalDepart = Math.ceil(clock / 5) * 5;
-  const returnLeg = makeLeg(
-    finalIndex,
-    previous,
-    context.hotel,
-    modes[finalIndex],
-    routes[finalIndex],
-    finalDepart,
-    context.crowd,
-    context.city,
-  );
-  legs.push(returnLeg);
-
-  const endMin = returnLeg.arriveMin;
+  const dinner = endOfDayDinner(stops, ordered, context, used);
+  let endMin: number;
+  if (dinner && !dinner.atHotel) {
+    const mode = pickTransportMode(
+      previous,
+      dinner.seed.place,
+      context.transport,
+      context.styles,
+      context.city,
+    );
+    const route = await safeRoute(
+      context.provider,
+      previous,
+      dinner.seed.place,
+      mode,
+      context.city,
+    );
+    const leg = makeLeg(
+      finalIndex,
+      previous,
+      dinner.seed.place,
+      mode,
+      route,
+      finalDepart,
+      context.crowd,
+      context.city,
+    );
+    legs.push(leg);
+    const dinnerStop = scheduleAppendedDinner(
+      dinner.seed,
+      leg.arriveMin,
+      finalIndex + 1,
+      false,
+      context,
+    );
+    stops.push(dinnerStop);
+    const homeMode = pickTransportMode(
+      dinner.seed.place,
+      context.hotel,
+      context.transport,
+      context.styles,
+      context.city,
+    );
+    const homeRoute = await safeRoute(
+      context.provider,
+      dinner.seed.place,
+      context.hotel,
+      homeMode,
+      context.city,
+    );
+    const homeLeg = makeLeg(
+      finalIndex + 1,
+      dinner.seed.place,
+      context.hotel,
+      homeMode,
+      homeRoute,
+      Math.ceil(dinnerStop.endMin / 5) * 5,
+      context.crowd,
+      context.city,
+    );
+    legs.push(homeLeg);
+    endMin = homeLeg.arriveMin;
+  } else {
+    const returnLeg = makeLeg(
+      finalIndex,
+      previous,
+      context.hotel,
+      modes[finalIndex],
+      routes[finalIndex],
+      finalDepart,
+      context.crowd,
+      context.city,
+    );
+    legs.push(returnLeg);
+    endMin = returnLeg.arriveMin;
+    if (dinner) {
+      const dinnerStop = scheduleAppendedDinner(
+        dinner.seed,
+        returnLeg.arriveMin,
+        finalIndex + 1,
+        true,
+        context,
+      );
+      stops.push(dinnerStop);
+      endMin = dinnerStop.endMin;
+    }
+  }
   const ticket = stops.reduce(
     (sum, stop) => sum + (stop.kind === "sight" && stop.ticket ? stop.ticket : 0),
     0,
@@ -1107,10 +1299,12 @@ async function buildOnce(
     context.heroId,
   );
   const sightPlans = stops.filter((stop) => stop.kind === "sight");
-  const paidSights = sightPlans.filter(
-    (stop) => (stop.place.cost ?? 0) > 0,
-  );
-  if (paidSights.length >= 3) {
+  const paidSights = sightPlans.filter((stop) => {
+    if ((stop.place.cost ?? 0) <= 0) return false;
+    // 上岛轮渡是交通费，不是又一张门票；岛内买联票逛几个园子是正常玩法。
+    return !(stop.place.island && stop.place.name.includes(stop.place.island));
+  });
+  if (paidSights.length >= PAID_SIGHT_WARNING_LIMIT) {
     warnings.push(
       `今天有 ${paidSights.length} 个付费点，容易变成赶场，建议留一个主景，其余换成免费街区或公园。`,
     );
@@ -1140,7 +1334,7 @@ async function buildOnce(
     );
   }
   if (narrative.rhythm.sunrise) {
-    tips.push("看日出提前 20 分钟到位，海风凉，带件外套。");
+    tips.push("看日出提前 20 分钟到位，清晨风凉，带件外套。");
   } else if (narrative.rhythm.sunset) {
     tips.push("日落前 40 分钟到，看完天就黑了，回程留意末班车。");
   }
@@ -1173,8 +1367,8 @@ async function buildOnce(
   if (stats.walkKm >= 5) {
     tips.push("今天步行不少，穿一双好走的鞋。");
   }
-  if (endMin > 21 * 60) {
-    tips.push("回到酒店会比较晚，晚饭别拖太晚。");
+  if (endMin > (context.family ? 20 * 60 : 21 * 60)) {
+    tips.push("回到住处会比较晚，晚饭别拖太晚。");
   }
   if (context.crowd > 1.25) {
     tips.push("假期人多，热门点位尽量赶在开门前后到。");
@@ -1370,6 +1564,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     provider: input.provider,
     meals: input.meals,
     far,
+    family: input.family,
     heroId: input.seedDay.anchorIds?.[0],
     startMin: rainStart.startMin,
     weather,
@@ -1416,9 +1611,12 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     const profile = rhythmOf(input.city, place);
     return profile.nightStreet || profile.sunset;
   });
-  // 夜景日天然收得晚，别用普通日的回家时间砍掉白天的核心点位。
-  const overrunLimit = 90 + (closesLate ? 45 : 0);
-  const endLimit = PACES[input.pace].endMin + (farLong ? 75 : 0);
+  const { overrunLimit, endLimit } = lateReturnLimits({
+    paceEndMin: PACES[input.pace].endMin,
+    family: input.family,
+    closesLate,
+    farLong,
+  });
   let includeCafe = true;
   let drops = 0;
   let localUsed = new Set(input.usedMealIds);
@@ -1488,10 +1686,10 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
       continue;
     }
     if (drops >= maxDrops) {
-      warnings.push(`今日行程比较满，回到酒店约 ${minutesToTime(last.endMin)}。`);
+      warnings.push(`今日行程比较满，回到住处约 ${minutesToTime(last.endMin)}。`);
       break;
     }
-    // 主景、日落和夜市锚点是一天的骨架，宁可晚一点回酒店也不能砍掉。
+    // 主景、日落和夜市锚点是一天的骨架，宁可晚一点回住处也不能砍掉。
     const droppable = attempt.filter(
       (stop) =>
         stop.kind === "sight" &&
@@ -1499,7 +1697,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
         !anchorIds.has(stop.place.id),
     );
     if (!droppable.length) {
-      warnings.push(`今日行程比较满，回到酒店约 ${minutesToTime(last.endMin)}。`);
+      warnings.push(`今日行程比较满，回到住处约 ${minutesToTime(last.endMin)}。`);
       break;
     }
     const victim = droppable[droppable.length - 1];
@@ -1514,7 +1712,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     warnings.push(
       covered
         ? `「${victim.place.name}」和当天其他点位在同一片，吃完顺路逛即可，不再单独留一整段。`
-        : `为了不赶路，今天略过了「${victim.place.name}」（原计划回到酒店约 ${minutesToTime(last.endMin)}）。`,
+        : `为了不赶路，今天略过了「${victim.place.name}」（原计划回到住处约 ${minutesToTime(last.endMin)}）。`,
     );
     localUsed = new Set(input.usedMealIds);
     last = await buildOnce(attempt, context, localUsed, { cafe: includeCafe });

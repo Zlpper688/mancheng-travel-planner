@@ -21,6 +21,7 @@ export async function cached<T>(
   key: string,
   ttlMs: number,
   loader: () => Promise<T>,
+  options: { cacheIf?: (value: T) => boolean } = {},
 ): Promise<T> {
   const now = Date.now();
   const hit = cacheStore.get(key) as CacheEntry<T> | undefined;
@@ -31,7 +32,9 @@ export async function cached<T>(
 
   const promise = loader()
     .then((value) => {
-      cacheStore.set(key, { value, expiresAt: Date.now() + ttlMs });
+      if (!options.cacheIf || options.cacheIf(value)) {
+        cacheStore.set(key, { value, expiresAt: Date.now() + ttlMs });
+      }
       return value;
     })
     .finally(() => {

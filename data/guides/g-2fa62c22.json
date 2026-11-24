@@ -1,0 +1,47 @@
+{
+  "id": "g-2fa62c22",
+  "city": "鼓浪屿",
+  "cityAliases": [
+    "厦门"
+  ],
+  "region": "华东",
+  "title": "鼓浪屿",
+  "source": "华东地区/我是驴友-鼓浪屿旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "精华路线",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "日光岩",
+              "kind": "sight"
+            },
+            {
+              "name": "百鸟园",
+              "kind": "sight"
+            },
+            {
+              "name": "菽庄花园",
+              "kind": "sight"
+            },
+            {
+              "name": "皓月园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "TIPS 鼓浪屿联票：包括日光岩、百鸟园、菽庄花园、皓月园、",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "fallback",
+      "needsReview": true
+    }
+  ]
+}

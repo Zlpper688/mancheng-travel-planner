@@ -1,0 +1,159 @@
+{
+  "id": "g-a9a50e3e",
+  "city": "珠海",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "珠海",
+  "source": "华南地区/我是驴友-珠海旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "休闲三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "情侣路",
+              "kind": "sight"
+            },
+            {
+              "name": "海滨公园",
+              "kind": "sight"
+            },
+            {
+              "name": "野狸岛",
+              "kind": "sight"
+            },
+            {
+              "name": "石景山公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "情侣路-海滨公园-野狸岛-石景山公园",
+          "title": "休闲三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "观海听涛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上午首先参观珠海的标志——渔女像，拍照留念，观海听涛，感受珠",
+          "title": "快乐两日游"
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "快乐两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "石景山公园",
+              "kind": "sight"
+            },
+            {
+              "name": "澳门环岛游",
+              "kind": "sight"
+            }
+          ],
+          "raw": "渔女像-石景山公园-澳门环岛游",
+          "title": "快乐两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "观海听涛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上午首先参观珠海的标志——渔女像，拍照留念，观海听涛，感受珠",
+          "title": "快乐两日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达庙湾岛后可",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上午乘船前往庙湾岛，顺带感受大海的魅力，到达庙湾岛后可",
+          "title": null
+        }
+      ],
+      "stopCount": 1,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": "东澳岛两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达东澳岛",
+              "kind": "sight"
+            },
+            {
+              "name": "岛上铳城",
+              "kind": "sight"
+            },
+            {
+              "name": "烽火台",
+              "kind": "sight"
+            },
+            {
+              "name": "镇海将军台",
+              "kind": "sight"
+            },
+            {
+              "name": "摩崖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上午到达东澳岛，参观岛上铳城、烽火台、镇海将军台、摩崖",
+          "title": "东澳岛两日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

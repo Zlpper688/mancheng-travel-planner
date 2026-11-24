@@ -1,0 +1,242 @@
+{
+  "id": "g-ffafdd9f",
+  "city": "太原",
+  "cityAliases": [],
+  "region": "华北",
+  "title": "太原",
+  "source": "华北地区/我是驴友-太原.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "太原周边三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "晋祠",
+              "kind": "sight"
+            },
+            {
+              "name": "蒙山大佛",
+              "kind": "sight"
+            },
+            {
+              "name": "汾河公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晋祠-蒙山大佛-汾河公园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "山西博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "双塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "崇善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "山西博物院-双塔寺-崇善寺",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "榆次老城",
+              "kind": "sight"
+            },
+            {
+              "name": "后沟古村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "榆次老城-后沟古村",
+          "title": "太原周边三日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "太原周边三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "晋祠",
+              "kind": "sight"
+            },
+            {
+              "name": "店头古堡",
+              "kind": "sight"
+            },
+            {
+              "name": "蒙山大佛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晋祠-店头古堡-蒙山大佛",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "山西博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "双塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "崇善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "山西博物院-双塔寺-崇善寺",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "榆次老城",
+              "kind": "sight"
+            },
+            {
+              "name": "后沟古村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "榆次老城-后沟古村",
+          "title": "太原周边三日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "太原文化二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "晋祠",
+              "kind": "sight"
+            },
+            {
+              "name": "店头古堡",
+              "kind": "sight"
+            },
+            {
+              "name": "蒙山大佛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晋祠-店头古堡-蒙山大佛",
+          "title": "太原文化二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "山西博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "双塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "汾河公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "山西博物院-双塔寺-汾河公园",
+          "title": "太原深度三日游"
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": "太原周边三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "晋祠",
+              "kind": "sight"
+            },
+            {
+              "name": "双塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "汾河公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晋祠-双塔寺-汾河公园",
+          "title": "太原周边三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "山西博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "崇善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "山西博物院-崇善寺",
+          "title": "太原周边三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "榆次老城",
+              "kind": "sight"
+            },
+            {
+              "name": "后沟古村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "榆次老城-后沟古村",
+          "title": "太原周边三日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

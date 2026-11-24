@@ -1,0 +1,149 @@
+{
+  "id": "g-267f0ef3",
+  "city": "沈阳",
+  "cityAliases": [],
+  "region": "东北",
+  "title": "沈阳",
+  "source": "东北地区/我是驴友-沈阳旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "故宫",
+              "kind": "sight"
+            },
+            {
+              "name": "中街",
+              "kind": "sight"
+            },
+            {
+              "name": "大帅府",
+              "kind": "sight"
+            },
+            {
+              "name": "刘老根大舞台",
+              "kind": "sight"
+            }
+          ],
+          "raw": "故宫-中街-大帅府-刘老根大舞台",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北陵公园",
+              "kind": "sight"
+            },
+            {
+              "name": "辽宁省博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "太清宫",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北陵公园-辽宁省博物馆-太清宫",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "东陵公园",
+              "kind": "sight"
+            },
+            {
+              "name": "棋盘山",
+              "kind": "sight"
+            },
+            {
+              "name": "世博园",
+              "kind": "sight"
+            },
+            {
+              "name": "怪坡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东陵公园-棋盘山-世博园-怪坡",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "青年公园",
+              "kind": "sight"
+            },
+            {
+              "name": "彩电塔",
+              "kind": "sight"
+            },
+            {
+              "name": "万象城",
+              "kind": "sight"
+            },
+            {
+              "name": "五里河公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青年公园-彩电塔-万象城-五里河公园",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "方特欢乐世界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "方特欢乐世界",
+          "title": null
+        }
+      ],
+      "stopCount": 16,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北陵公园",
+              "kind": "sight"
+            },
+            {
+              "name": "故宫",
+              "kind": "sight"
+            },
+            {
+              "name": "大帅府",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北陵公园-故宫-大帅府",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

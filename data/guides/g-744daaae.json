@@ -1,0 +1,179 @@
+{
+  "id": "g-744daaae",
+  "city": "长白山",
+  "cityAliases": [],
+  "region": "东北",
+  "title": "长白山",
+  "source": "东北地区/我是驴友-长白山旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "伪满新皇宫",
+              "kind": "sight"
+            },
+            {
+              "name": "旧八大部",
+              "kind": "sight"
+            },
+            {
+              "name": "伪满洲国国务院旧址",
+              "kind": "sight"
+            },
+            {
+              "name": "重庆路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "伪满新皇宫- 旧八大部- 伪满洲国国务院旧址 -重庆路",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "长影世纪城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "长影世纪城",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "净月潭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "净月潭",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "西坡两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北坡",
+              "kind": "sight"
+            },
+            {
+              "name": "天池",
+              "kind": "sight"
+            },
+            {
+              "name": "搓河",
+              "kind": "sight"
+            },
+            {
+              "name": "长白瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "聚龙泉",
+              "kind": "sight"
+            },
+            {
+              "name": "小天池",
+              "kind": "sight"
+            },
+            {
+              "name": "绿渊潭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北坡一日游：天池-乘搓河-长白瀑布-聚龙泉-小天池-绿渊潭",
+          "title": "西坡两日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天池",
+              "kind": "sight"
+            },
+            {
+              "name": "长白瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "聚龙泉",
+              "kind": "sight"
+            },
+            {
+              "name": "小天池",
+              "kind": "sight"
+            },
+            {
+              "name": "绿渊潭",
+              "kind": "sight"
+            },
+            {
+              "name": "谷底森林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天池-长白瀑布-聚龙泉-小天池-绿渊潭-谷底森林",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "岳桦林带",
+              "kind": "sight"
+            },
+            {
+              "name": "鸭绿江大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "高山湿地",
+              "kind": "sight"
+            }
+          ],
+          "raw": "岳桦林带-鸭绿江大峡谷-高山湿地",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

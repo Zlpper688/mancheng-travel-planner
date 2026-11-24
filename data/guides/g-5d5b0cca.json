@@ -1,0 +1,95 @@
+{
+  "id": "g-5d5b0cca",
+  "city": "合肥",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "合肥",
+  "source": "华东地区/我是驴友-合肥旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "包公祠",
+              "kind": "sight"
+            },
+            {
+              "name": "李鸿章故居",
+              "kind": "sight"
+            },
+            {
+              "name": "三河镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "包公祠—李鸿章故居—三河镇",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "三河镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三河镇",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "徽园",
+              "kind": "sight"
+            },
+            {
+              "name": "包公祠",
+              "kind": "sight"
+            },
+            {
+              "name": "逍遥津",
+              "kind": "sight"
+            },
+            {
+              "name": "李鸿章故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "徽园—包公祠—逍遥津—李鸿章故居",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "三河镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三河镇",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

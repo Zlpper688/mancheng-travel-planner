@@ -1,0 +1,315 @@
+{
+  "id": "g-308896cb",
+  "city": "昆明",
+  "cityAliases": [],
+  "region": "云南",
+  "title": "昆明",
+  "source": "云南地区/我是驴友-昆明.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西山",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "大观公园",
+              "kind": "sight"
+            },
+            {
+              "name": "云南民族村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西山-滇池-大观公园-云南民族村",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西山",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "景新街花鸟市场",
+              "kind": "sight"
+            },
+            {
+              "name": "金马碧鸡坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西山-滇池-景新街花鸟市场-金马碧鸡坊",
+          "title": "自然生态三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "九乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九乡",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "石林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "石林",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "春城深度五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "云南民族村",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "翠湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "陆军讲武堂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "云南民族村-滇池-翠湖公园-陆军讲武堂",
+          "title": "春城深度五日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西山",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "景新街花鸟市场",
+              "kind": "sight"
+            },
+            {
+              "name": "金马碧鸡坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西山-滇池-景新街花鸟市场-金马碧鸡坊",
+          "title": "自然生态三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "九乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九乡",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "石林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "石林",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": "自然生态三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西山",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "景新街花鸟市场",
+              "kind": "sight"
+            },
+            {
+              "name": "金马碧鸡坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西山-滇池-景新街花鸟市场-金马碧鸡坊",
+          "title": "自然生态三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西山",
+              "kind": "sight"
+            },
+            {
+              "name": "滇池",
+              "kind": "sight"
+            },
+            {
+              "name": "景新街花鸟市场",
+              "kind": "sight"
+            },
+            {
+              "name": "金马碧鸡坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西山-滇池-景新街花鸟市场-金马碧鸡坊",
+          "title": "自然生态三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "九乡",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九乡",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "多研古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "多研古城",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "拉市海",
+              "kind": "sight"
+            },
+            {
+              "name": "束河古镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "拉市海→束河古镇",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "洱海",
+              "kind": "sight"
+            },
+            {
+              "name": "南诏风情岛",
+              "kind": "sight"
+            },
+            {
+              "name": "多理古城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "洱海→南诏风情岛→多理古城",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "蝴蝶泉",
+              "kind": "sight"
+            },
+            {
+              "name": "苍屏",
+              "kind": "sight"
+            },
+            {
+              "name": "崇圣寺三塔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "蝴蝶泉→苍屏→崇圣寺三塔",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "id": "g-0f743c21",
+  "city": "白洋淀",
+  "cityAliases": [],
+  "region": "河北",
+  "title": "白洋淀",
+  "source": "河北地区/我是驴友-白洋淀旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "安新",
+              "kind": "sight"
+            },
+            {
+              "name": "白洋淀烧车淀",
+              "kind": "sight"
+            },
+            {
+              "name": "农家院",
+              "kind": "sight"
+            }
+          ],
+          "raw": "安新-白洋淀烧车淀-农家院",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "白洋淀景区",
+              "kind": "sight"
+            },
+            {
+              "name": "当地集市",
+              "kind": "sight"
+            }
+          ],
+          "raw": "白洋淀景区-当地集市",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "随性一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "白洋淀景区慢逛",
+              "kind": "sight"
+            },
+            {
+              "name": "集市",
+              "kind": "sight"
+            },
+            {
+              "name": "农家院",
+              "kind": "sight"
+            }
+          ],
+          "raw": "白洋淀景区慢逛-集市—农家院",
+          "title": "随性一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "农家院",
+              "kind": "sight"
+            },
+            {
+              "name": "白洋淀景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "农家院—白洋淀景区",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "狼牙山",
+              "kind": "sight"
+            },
+            {
+              "name": "特色小吃",
+              "kind": "meal"
+            },
+            {
+              "name": "归程",
+              "kind": "sight"
+            }
+          ],
+          "raw": "狼牙山—特色小吃—归程",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

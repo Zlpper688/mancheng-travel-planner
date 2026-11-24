@@ -1,0 +1,189 @@
+{
+  "id": "g-158b36ff",
+  "city": "桂林",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "桂林",
+  "source": "华南地区/我是驴友-桂林旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "精华二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "阳朔",
+              "kind": "sight"
+            },
+            {
+              "name": "遇龙河",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阳朔-遇龙河-十里画廊",
+          "title": "精华二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "王城",
+              "kind": "sight"
+            },
+            {
+              "name": "象鼻山",
+              "kind": "sight"
+            },
+            {
+              "name": "漓江精华",
+              "kind": "sight"
+            },
+            {
+              "name": "兴坪古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "西街",
+              "kind": "sight"
+            },
+            {
+              "name": "印象刘三姐",
+              "kind": "sight"
+            }
+          ],
+          "raw": "王城-象鼻山-漓江精华-兴坪古镇-西街、印象刘三姐",
+          "title": "精华二日游"
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "尽情三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "三山两洞",
+              "kind": "sight"
+            },
+            {
+              "name": "王城",
+              "kind": "sight"
+            },
+            {
+              "name": "夜游两江四湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "“三山两洞”-王城-夜游两江四湖",
+          "title": "尽情三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "桂林坐车",
+              "kind": "sight"
+            },
+            {
+              "name": "杨堤路口",
+              "kind": "sight"
+            },
+            {
+              "name": "达杨堤",
+              "kind": "sight"
+            },
+            {
+              "name": "杨堤",
+              "kind": "sight"
+            }
+          ],
+          "raw": "从桂林坐车到杨堤路口，再乘坐杨堤的班车到达杨堤，从杨堤",
+          "title": "尽情三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "阳朔",
+              "kind": "sight"
+            },
+            {
+              "name": "遇龙河",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            },
+            {
+              "name": "印象刘三姐",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阳朔-遇龙河-十里画廊-晚上西街、印象刘三姐",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": "北海两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北海老街",
+              "kind": "sight"
+            },
+            {
+              "name": "北海银滩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海老街→北海银滩",
+          "title": "北海两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北海银滩",
+              "kind": "sight"
+            },
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "斜阳岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海银滩→涠洲岛→斜阳岛",
+          "title": "北海两日游"
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

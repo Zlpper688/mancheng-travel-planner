@@ -1,0 +1,148 @@
+{
+  "id": "g-09ef1c34",
+  "city": "康定",
+  "cityAliases": [],
+  "region": "西南",
+  "title": "康定",
+  "source": "西南地区/我是驴友-康定旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "当地人推荐三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定-木格措",
+          "title": "当地人推荐三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟景区",
+              "kind": "sight"
+            },
+            {
+              "name": "红石滩",
+              "kind": "sight"
+            },
+            {
+              "name": "康定",
+              "kind": "sight"
+            }
+          ],
+          "raw": "摩西古镇-海螺沟景区-红石滩-康定",
+          "title": "周边自驾四日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定-木格措-康定",
+          "title": "周边自驾四日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "周边自驾四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "出发-摩西古镇",
+          "title": "周边自驾四日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟景区",
+              "kind": "sight"
+            },
+            {
+              "name": "红石滩",
+              "kind": "sight"
+            },
+            {
+              "name": "康定",
+              "kind": "sight"
+            }
+          ],
+          "raw": "摩西古镇-海螺沟景区-红石滩-康定",
+          "title": "周边自驾四日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定-木格措-康定",
+          "title": "周边自驾四日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            },
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ],
+          "raw": "康定-木格措-康定",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

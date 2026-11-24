@@ -4,6 +4,7 @@ import { todayISOLocal } from "../geo";
 import type {
   BudgetTier,
   Category,
+  ExperienceId,
   FixedPlace,
   PaceId,
   Place,
@@ -11,6 +12,7 @@ import type {
   TransportPref,
   TripInput,
 } from "../types";
+import { EXPERIENCE_DEFS } from "./experience";
 
 const CATEGORIES: Category[] = [
   "attraction",
@@ -145,14 +147,9 @@ function tryPlace(raw: unknown, forceHotel = false): Place | null {
 export function sanitizeTripInput(raw: unknown): TripInput {
   const data = asRecord(raw);
   const city = readString(data.city, "目的地", { max: 40, required: true });
-  const hotel = tryPlace(data.hotel, true);
-  if (!hotel) {
-    throw new TravelError(
-      "落脚点信息不完整",
-      "INVALID_INPUT",
-      "请重新选择一个酒店，或在地图上点选酒店位置",
-    );
-  }
+  const rawHotel = tryPlace(data.hotel, true);
+  const hotelUndecided = data.hotelUndecided === true;
+  const hotel = hotelUndecided ? null : rawHotel;
 
   let center: [number, number] | undefined;
   if (Array.isArray(data.center) && data.center.length === 2) {
@@ -160,8 +157,16 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     const lat = Number(data.center[1]);
     if (Number.isFinite(lng) && Number.isFinite(lat)) center = [lng, lat];
   }
+  if (!center && rawHotel) center = [rawHotel.lng, rawHotel.lat];
+  if (!center) {
+    throw new TravelError(
+      "还不知道落脚方向",
+      "INVALID_INPUT",
+      "选择一个城市即可；住处可以之后再定，漫城会按景点分布推荐落脚片区。",
+    );
+  }
 
-  const days = Math.round(readNumber(data.days, "游玩天数", 1, 7, 3));
+  const days = Math.round(readNumber(data.days, "游玩天数", 1, 15, 3));
   const rawDate = typeof data.date === "string" ? data.date : "";
   const date = /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : todayISOLocal();
   const rawPace = typeof data.pace === "string" ? data.pace : "balanced";
@@ -176,12 +181,33 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     ),
   ).slice(0, 3);
   if (!styles.length) styles.push("classic");
+  const rawExperiences = Array.isArray(data.experiences) ? data.experiences : [];
+  const experiences = Array.from(
+    new Set(
+      rawExperiences.filter(
+        (id): id is ExperienceId =>
+          typeof id === "string" && id in EXPERIENCE_DEFS,
+      ),
+    ),
+  ).slice(0, 6);
   const rawTransport = typeof data.transport === "string" ? data.transport : "auto";
   const transport = (TRANSPORT_IDS.has(rawTransport) ? rawTransport : "auto") as TransportPref;
   const rawBudget = typeof data.budgetTier === "string" ? data.budgetTier : "comfort";
   const budgetTier = (BUDGET_IDS.has(rawBudget) ? rawBudget : "comfort") as BudgetTier;
-  const adults = Math.round(readNumber(data.adults, "成人数", 1, 10, 2));
+  const adults = Math.round(readNumber(data.adults, "成人数", 0, 10, 2));
   const children = Math.round(readNumber(data.children, "儿童数", 0, 10, 0));
+  const seniors = Math.round(readNumber(data.seniors, "老人数", 0, 10, 0));
+  if (adults + children + seniors < 1) {
+    throw new TravelError(
+      "同行人数至少 1 位",
+      "INVALID_PARTY",
+      "请把成人、儿童或老人数量补上再生成行程",
+    );
+  }
+  const notes =
+    typeof data.notes === "string" && data.notes.trim()
+      ? data.notes.trim().slice(0, 240)
+      : undefined;
   const seed = Math.floor(Math.abs(readNumber(data.seed, "随机种子", 0, 2147483646, 42)));
   const hotelPriceRaw = Number(data.hotelPrice);
   const hotelPrice =
@@ -192,7 +218,7 @@ export function sanitizeTripInput(raw: unknown): TripInput {
   if (data.farDays !== undefined && data.farDays !== null) {
     const parsedFar = Number(data.farDays);
     if (Number.isFinite(parsedFar)) {
-      farDays = Math.min(2, Math.max(0, Math.round(parsedFar)));
+      farDays = Math.min(3, Math.max(0, Math.round(parsedFar)));
     }
   }
 
@@ -208,28 +234,47 @@ export function sanitizeTripInput(raw: unknown): TripInput {
         place.category !== "hotel" &&
         Number.isInteger(day) &&
         day >= 1 &&
-        day <= 7
+        day <= 15
       ) {
         fixedPlaces.push({ place, day });
       }
     }
   }
 
+  const selectedPlaces: Place[] = [];
+  if (Array.isArray(data.selectedPlaces)) {
+    const seen = new Set<string>();
+    for (const item of data.selectedPlaces.slice(0, 60)) {
+      const place = tryPlace(item);
+      if (!place || place.category === "hotel") continue;
+      if (seen.has(place.id)) continue;
+      seen.add(place.id);
+      selectedPlaces.push(place);
+      if (selectedPlaces.length >= 40) break;
+    }
+  }
+
   return {
     city,
     center,
-    hotel,
+    hotel: hotel ?? undefined,
+    hotelUndecided: hotel ? undefined : true,
     days,
     date,
     pace,
     styles,
+    experiences: experiences.length ? experiences : undefined,
     transport,
     budgetTier,
     adults,
     children,
+    seniors,
+    avoidSteep: data.avoidSteep === true,
+    notes,
     seed,
     hotelPrice,
     fixedPlaces: fixedPlaces.length ? fixedPlaces : undefined,
+    selectedPlaces: selectedPlaces.length ? selectedPlaces : undefined,
     farDays,
   };
 }

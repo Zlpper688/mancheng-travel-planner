@@ -1,0 +1,507 @@
+{
+  "id": "g-11f809ef",
+  "city": "台湾",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "台湾12日",
+  "source": "港澳台/我是驴友-台湾12日旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "桃园",
+              "kind": "sight"
+            },
+            {
+              "name": "台北",
+              "kind": "sight"
+            }
+          ],
+          "raw": "桃园-台北",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "桃园",
+              "kind": "sight"
+            },
+            {
+              "name": "台北",
+              "kind": "sight"
+            }
+          ],
+          "raw": "桃园-台北",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "台北",
+              "kind": "sight"
+            },
+            {
+              "name": "台中",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台北-台中",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "台中",
+              "kind": "sight"
+            },
+            {
+              "name": "日月潭",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台中-日月潭",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "日月潭",
+              "kind": "sight"
+            },
+            {
+              "name": "阿里山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日月潭-阿里山",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "阿里山",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉义",
+              "kind": "sight"
+            },
+            {
+              "name": "台南",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阿里山-嘉义-台南",
+          "title": null
+        },
+        {
+          "day": 7,
+          "stops": [
+            {
+              "name": "阿里山",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉义",
+              "kind": "sight"
+            },
+            {
+              "name": "台南",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阿里山-嘉义-台南",
+          "title": null
+        },
+        {
+          "day": 8,
+          "stops": [
+            {
+              "name": "台南",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台南-高雄",
+          "title": null
+        },
+        {
+          "day": 9,
+          "stops": [
+            {
+              "name": "台南",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台南-高雄",
+          "title": null
+        },
+        {
+          "day": 10,
+          "stops": [
+            {
+              "name": "高雄",
+              "kind": "sight"
+            },
+            {
+              "name": "垦丁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "高雄-垦丁",
+          "title": null
+        },
+        {
+          "day": 11,
+          "stops": [
+            {
+              "name": "垦丁",
+              "kind": "sight"
+            },
+            {
+              "name": "花莲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "垦丁-花莲",
+          "title": null
+        }
+      ],
+      "stopCount": 24,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "澎湖北环",
+              "kind": "sight"
+            },
+            {
+              "name": "东卫石雕公园",
+              "kind": "sight"
+            },
+            {
+              "name": "中屯风车",
+              "kind": "sight"
+            },
+            {
+              "name": "岐头水族馆",
+              "kind": "sight"
+            },
+            {
+              "name": "通梁古榕",
+              "kind": "sight"
+            }
+          ],
+          "raw": "澎湖北环：东卫石雕公园→中屯风车→岐头水族馆→通梁古榕→跨",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "福寿山农场天池",
+              "kind": "sight"
+            },
+            {
+              "name": "赏云海",
+              "kind": "sight"
+            },
+            {
+              "name": "果园步道",
+              "kind": "sight"
+            },
+            {
+              "name": "露营区赏泉",
+              "kind": "sight"
+            },
+            {
+              "name": "天池及",
+              "kind": "sight"
+            }
+          ],
+          "raw": "福寿山农场天池观日出、赏云海→果园步道→露营区赏泉→天池及",
+          "title": "D1 清境农场一日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "武陵农场",
+              "kind": "sight"
+            },
+            {
+              "name": "多呆一日或返程",
+              "kind": "sight"
+            }
+          ],
+          "raw": "武陵农场→多呆一日或返程",
+          "title": "D1 清境农场一日游"
+        }
+      ],
+      "stopCount": 12,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "清境农场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "清境农场一日游",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "福寿山农场天池",
+              "kind": "sight"
+            },
+            {
+              "name": "赏云海",
+              "kind": "sight"
+            },
+            {
+              "name": "果园步道",
+              "kind": "sight"
+            },
+            {
+              "name": "露营区赏泉",
+              "kind": "sight"
+            },
+            {
+              "name": "天池及",
+              "kind": "sight"
+            }
+          ],
+          "raw": "福寿山农场天池观日出、赏云海→果园步道→露营区赏泉→天池及",
+          "title": "D1 清境农场一日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "武陵农场",
+              "kind": "sight"
+            },
+            {
+              "name": "多呆一日或返程",
+              "kind": "sight"
+            }
+          ],
+          "raw": "武陵农场→多呆一日或返程",
+          "title": "D1 清境农场一日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北都市风情",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台北都市风情",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "基隆北海岸",
+              "kind": "sight"
+            },
+            {
+              "name": "宜兰",
+              "kind": "sight"
+            },
+            {
+              "name": "花莲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "基隆北海岸、宜兰、花莲",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "浮潜",
+              "kind": "sight"
+            },
+            {
+              "name": "台东",
+              "kind": "sight"
+            },
+            {
+              "name": "知本温泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "浮潜→台东→知本温泉",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "台东",
+              "kind": "sight"
+            },
+            {
+              "name": "花东纵谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台东→花东纵谷",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "花东纵谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "花东纵谷→返程",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "富冈码头",
+              "kind": "sight"
+            },
+            {
+              "name": "兰屿",
+              "kind": "sight"
+            },
+            {
+              "name": "机车环岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "富冈码头→兰屿→机车环岛",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "兰屿日出",
+              "kind": "sight"
+            },
+            {
+              "name": "机车环岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "兰屿日出→乘船班前往绿岛→机车环岛",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "浮潜",
+              "kind": "sight"
+            },
+            {
+              "name": "台东",
+              "kind": "sight"
+            },
+            {
+              "name": "知本温泉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "浮潜→台东→知本温泉",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "台东",
+              "kind": "sight"
+            },
+            {
+              "name": "花东纵谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "台东→花东纵谷",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "花东纵谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "花东纵谷→返程",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

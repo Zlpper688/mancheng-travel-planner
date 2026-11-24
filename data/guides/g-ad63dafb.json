@@ -1,0 +1,73 @@
+{
+  "id": "g-ad63dafb",
+  "city": "横店",
+  "cityAliases": [],
+  "region": "浙江",
+  "title": "横店",
+  "source": "浙江地区/我是驴友-横店攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "横店穿越之旅一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "明清宫苑",
+              "kind": "sight"
+            },
+            {
+              "name": "广州街香港街",
+              "kind": "sight"
+            },
+            {
+              "name": "秦王宫",
+              "kind": "sight"
+            },
+            {
+              "name": "清明",
+              "kind": "sight"
+            }
+          ],
+          "raw": "明清宫苑-广州街香港街-秦王宫-清明",
+          "title": "横店穿越之旅一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "秦王宫",
+              "kind": "sight"
+            },
+            {
+              "name": "清明上河图",
+              "kind": "sight"
+            },
+            {
+              "name": "明清民居博览城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "秦王宫-清明上河图-明清民居博览城",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "id": "g-f2c5f313",
+  "city": "武夷山",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "武夷山",
+  "source": "华南地区/我是驴友-武夷山旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "武夷山全景三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "虎啸岩",
+              "kind": "sight"
+            },
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "一线天-虎啸岩-天游峰",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九曲溪-武夷宫-大红袍-水帘洞",
+          "title": "武夷山全景三日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "武夷山全景三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            },
+            {
+              "name": "桃源洞",
+              "kind": "sight"
+            },
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天游峰-桃源洞-九曲溪-武夷宫",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九曲溪-武夷宫-大红袍-水帘洞",
+          "title": "武夷山全景三日游"
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "田螺坑",
+              "kind": "sight"
+            },
+            {
+              "name": "裕昌楼",
+              "kind": "sight"
+            },
+            {
+              "name": "塔下村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "田螺坑-裕昌楼-塔下村",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "怀远楼",
+              "kind": "sight"
+            },
+            {
+              "name": "云水谣",
+              "kind": "sight"
+            }
+          ],
+          "raw": "怀远楼-云水谣",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "id": "g-efb8e128",
+  "city": "烟台",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "烟台",
+  "source": "华东地区/我是驴友-烟台旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "青岛海滨五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "烟台山景区",
+              "kind": "sight"
+            },
+            {
+              "name": "东炮台海滨风景区",
+              "kind": "sight"
+            },
+            {
+              "name": "张裕酒",
+              "kind": "sight"
+            }
+          ],
+          "raw": "烟台山景区-东炮台海滨风景区-张裕酒",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "蓬莱阁",
+              "kind": "sight"
+            },
+            {
+              "name": "田横山",
+              "kind": "sight"
+            },
+            {
+              "name": "戚继光故居",
+              "kind": "sight"
+            },
+            {
+              "name": "八仙过海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "蓬莱阁-田横山-戚继光故居-八仙过海-极",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "长岛",
+              "kind": "sight"
+            },
+            {
+              "name": "半月湾",
+              "kind": "sight"
+            },
+            {
+              "name": "九丈崖",
+              "kind": "sight"
+            },
+            {
+              "name": "望夫礁",
+              "kind": "sight"
+            },
+            {
+              "name": "海豹礁",
+              "kind": "sight"
+            }
+          ],
+          "raw": "长岛-半月湾-九丈崖-望夫礁-海豹礁-林",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "青岛",
+              "kind": "sight"
+            },
+            {
+              "name": "崂山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青岛-崂山",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "栈桥",
+              "kind": "sight"
+            },
+            {
+              "name": "八大关",
+              "kind": "sight"
+            },
+            {
+              "name": "五四广场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            },
+            {
+              "name": "第一海水浴",
+              "kind": "sight"
+            }
+          ],
+          "raw": "栈桥-八大关-五四广场-奥帆中心-第一海水浴",
+          "title": "青岛海滨五日游"
+        }
+      ],
+      "stopCount": 19,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "青岛海滨五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "养马岛",
+              "kind": "sight"
+            },
+            {
+              "name": "昆嵛山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "养马岛-昆嵛山",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "蓬莱阁",
+              "kind": "sight"
+            },
+            {
+              "name": "金沙滩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "蓬莱阁-金沙滩",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "威海",
+              "kind": "sight"
+            },
+            {
+              "name": "成山头",
+              "kind": "sight"
+            },
+            {
+              "name": "刘公岛青岛",
+              "kind": "sight"
+            },
+            {
+              "name": "崂山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "威海-成山头-刘公岛青岛-崂山",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "青岛",
+              "kind": "sight"
+            },
+            {
+              "name": "崂山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青岛-崂山",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "栈桥",
+              "kind": "sight"
+            },
+            {
+              "name": "八大关",
+              "kind": "sight"
+            },
+            {
+              "name": "五四广场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            },
+            {
+              "name": "第一海水浴",
+              "kind": "sight"
+            }
+          ],
+          "raw": "栈桥-八大关-五四广场-奥帆中心-第一海水浴",
+          "title": "青岛海滨五日游"
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

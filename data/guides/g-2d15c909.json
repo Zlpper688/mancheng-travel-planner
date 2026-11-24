@@ -1,0 +1,79 @@
+{
+  "id": "g-2d15c909",
+  "city": "故宫",
+  "cityAliases": [
+    "北京"
+  ],
+  "region": "华北",
+  "title": "故宫",
+  "source": "华北地区/我是驴友-故宫.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "精华路线",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "午门",
+              "kind": "sight"
+            },
+            {
+              "name": "内金水桥",
+              "kind": "sight"
+            },
+            {
+              "name": "协和门",
+              "kind": "sight"
+            },
+            {
+              "name": "熙和门",
+              "kind": "sight"
+            },
+            {
+              "name": "文华殿",
+              "kind": "sight"
+            },
+            {
+              "name": "武英殿",
+              "kind": "sight"
+            },
+            {
+              "name": "太和门",
+              "kind": "sight"
+            },
+            {
+              "name": "体仁阁",
+              "kind": "sight"
+            },
+            {
+              "name": "弘义阁",
+              "kind": "sight"
+            },
+            {
+              "name": "太和殿",
+              "kind": "sight"
+            },
+            {
+              "name": "中和殿",
+              "kind": "sight"
+            },
+            {
+              "name": "保和殿",
+              "kind": "sight"
+            }
+          ],
+          "raw": "午门—内金水桥—协和门、熙和门—文华殿—武英殿—太和门—体仁阁、弘义阁—太和殿—中和殿—保和殿—乾清门—乾清宫—交泰殿—坤宁宫—御花园—神武门",
+          "title": null
+        }
+      ],
+      "stopCount": 12,
+      "source": "fallback",
+      "needsReview": true
+    }
+  ]
+}

@@ -1,0 +1,579 @@
+{
+  "id": "g-971104ee",
+  "city": "北疆",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "北疆",
+  "source": "西北地区/我是驴友-北疆.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "那拉提草原",
+              "kind": "sight"
+            },
+            {
+              "name": "巴音布鲁克",
+              "kind": "sight"
+            }
+          ],
+          "raw": "那拉提草原-巴音布鲁克",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "乌鲁木齐",
+              "kind": "sight"
+            },
+            {
+              "name": "五彩池",
+              "kind": "sight"
+            },
+            {
+              "name": "布尔津",
+              "kind": "sight"
+            }
+          ],
+          "raw": "乌鲁木齐-五彩池-布尔津",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "布尔津",
+              "kind": "sight"
+            },
+            {
+              "name": "贾登峪",
+              "kind": "sight"
+            },
+            {
+              "name": "白哈巴",
+              "kind": "sight"
+            },
+            {
+              "name": "黄金大道",
+              "kind": "sight"
+            },
+            {
+              "name": "中哈界碑",
+              "kind": "sight"
+            },
+            {
+              "name": "中华林",
+              "kind": "sight"
+            },
+            {
+              "name": "喀纳斯/白哈巴",
+              "kind": "sight"
+            }
+          ],
+          "raw": "布尔津-贾登峪-白哈巴-黄金大道-中哈界碑-中华林-喀纳斯/白哈巴",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "喀纳斯",
+              "kind": "sight"
+            },
+            {
+              "name": "卧龙湾",
+              "kind": "sight"
+            },
+            {
+              "name": "月亮湾",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙湾",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀纳斯-卧龙湾-月亮湾-神仙湾-泰",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "喀纳斯",
+              "kind": "sight"
+            },
+            {
+              "name": "禾木村",
+              "kind": "sight"
+            },
+            {
+              "name": "和木桥",
+              "kind": "sight"
+            },
+            {
+              "name": "白桦林",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀纳斯-禾木村-和木桥-白桦林",
+          "title": null
+        }
+      ],
+      "stopCount": 20,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "喀拉峻",
+              "kind": "sight"
+            },
+            {
+              "name": "昭苏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀拉峻-昭苏",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "库车天山多峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "千佛洞",
+              "kind": "sight"
+            },
+            {
+              "name": "阿克苏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "库车天山多峡谷-千佛洞-阿克苏。",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "阿克苏",
+              "kind": "sight"
+            },
+            {
+              "name": "艾提尕尔清真寺",
+              "kind": "sight"
+            },
+            {
+              "name": "香妃墓",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阿克苏-艾提尕尔清真寺-香妃墓",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            },
+            {
+              "name": "慕士塔格峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什-慕士塔格峰",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "墓士塔格山",
+              "kind": "sight"
+            },
+            {
+              "name": "喀什各个老城区",
+              "kind": "sight"
+            },
+            {
+              "name": "多巴扎",
+              "kind": "sight"
+            },
+            {
+              "name": "民族工艺街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "墓士塔格山-喀什各个老城区-多巴扎-民族工艺街",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "帕米尔高原",
+              "kind": "sight"
+            }
+          ],
+          "raw": "帕米尔高原",
+          "title": null
+        },
+        {
+          "day": 7,
+          "stops": [
+            {
+              "name": "塔县",
+              "kind": "sight"
+            },
+            {
+              "name": "红关拉普口岸",
+              "kind": "sight"
+            },
+            {
+              "name": "中巴边境",
+              "kind": "sight"
+            },
+            {
+              "name": "石头城",
+              "kind": "sight"
+            },
+            {
+              "name": "喀什",
+              "kind": "sight"
+            }
+          ],
+          "raw": "塔县-红关拉普口岸-中巴边境-石头城-喀什",
+          "title": null
+        },
+        {
+          "day": 8,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            },
+            {
+              "name": "和田",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什-和田",
+          "title": null
+        },
+        {
+          "day": 9,
+          "stops": [
+            {
+              "name": "和田",
+              "kind": "sight"
+            },
+            {
+              "name": "民丰",
+              "kind": "sight"
+            },
+            {
+              "name": "塔克拉玛干沙漠公路",
+              "kind": "sight"
+            },
+            {
+              "name": "轮台",
+              "kind": "sight"
+            }
+          ],
+          "raw": "和田-民丰-塔克拉玛干沙漠公路-轮台",
+          "title": null
+        },
+        {
+          "day": 10,
+          "stops": [
+            {
+              "name": "轮台",
+              "kind": "sight"
+            },
+            {
+              "name": "库尔勒",
+              "kind": "sight"
+            }
+          ],
+          "raw": "轮台-库尔勒",
+          "title": null
+        },
+        {
+          "day": 11,
+          "stops": [
+            {
+              "name": "库尔勒",
+              "kind": "sight"
+            },
+            {
+              "name": "博斯腾湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "库尔勒-博斯腾湖",
+          "title": null
+        },
+        {
+          "day": 12,
+          "stops": [
+            {
+              "name": "博斯腾湖",
+              "kind": "sight"
+            },
+            {
+              "name": "乌鲁木齐",
+              "kind": "sight"
+            }
+          ],
+          "raw": "博斯腾湖-乌鲁木齐",
+          "title": null
+        }
+      ],
+      "stopCount": 32,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "乌鲁木齐",
+              "kind": "sight"
+            },
+            {
+              "name": "库车",
+              "kind": "sight"
+            }
+          ],
+          "raw": "乌鲁木齐-库车",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "库车天山多峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "千佛洞",
+              "kind": "sight"
+            },
+            {
+              "name": "阿克苏",
+              "kind": "sight"
+            }
+          ],
+          "raw": "库车天山多峡谷-千佛洞-阿克苏。",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "阿克苏",
+              "kind": "sight"
+            },
+            {
+              "name": "艾提尕尔清真寺",
+              "kind": "sight"
+            },
+            {
+              "name": "香妃墓",
+              "kind": "sight"
+            }
+          ],
+          "raw": "阿克苏-艾提尕尔清真寺-香妃墓",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            },
+            {
+              "name": "慕士塔格峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什-慕士塔格峰",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "墓士塔格山",
+              "kind": "sight"
+            },
+            {
+              "name": "喀什各个老城区",
+              "kind": "sight"
+            },
+            {
+              "name": "多巴扎",
+              "kind": "sight"
+            },
+            {
+              "name": "民族工艺街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "墓士塔格山-喀什各个老城区-多巴扎-民族工艺街",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "帕米尔高原",
+              "kind": "sight"
+            }
+          ],
+          "raw": "帕米尔高原",
+          "title": null
+        },
+        {
+          "day": 7,
+          "stops": [
+            {
+              "name": "塔县",
+              "kind": "sight"
+            },
+            {
+              "name": "红关拉普口岸",
+              "kind": "sight"
+            },
+            {
+              "name": "中巴边境",
+              "kind": "sight"
+            },
+            {
+              "name": "石头城",
+              "kind": "sight"
+            },
+            {
+              "name": "喀什",
+              "kind": "sight"
+            }
+          ],
+          "raw": "塔县-红关拉普口岸-中巴边境-石头城-喀什",
+          "title": null
+        },
+        {
+          "day": 8,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            },
+            {
+              "name": "和田",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什-和田",
+          "title": null
+        },
+        {
+          "day": 9,
+          "stops": [
+            {
+              "name": "和田",
+              "kind": "sight"
+            },
+            {
+              "name": "民丰",
+              "kind": "sight"
+            },
+            {
+              "name": "塔克拉玛干沙漠公路",
+              "kind": "sight"
+            },
+            {
+              "name": "轮台",
+              "kind": "sight"
+            }
+          ],
+          "raw": "和田-民丰-塔克拉玛干沙漠公路-轮台",
+          "title": null
+        },
+        {
+          "day": 10,
+          "stops": [
+            {
+              "name": "轮台",
+              "kind": "sight"
+            },
+            {
+              "name": "库尔勒",
+              "kind": "sight"
+            }
+          ],
+          "raw": "轮台-库尔勒",
+          "title": null
+        },
+        {
+          "day": 11,
+          "stops": [
+            {
+              "name": "库尔勒",
+              "kind": "sight"
+            },
+            {
+              "name": "博斯腾湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "库尔勒-博斯腾湖",
+          "title": null
+        },
+        {
+          "day": 12,
+          "stops": [
+            {
+              "name": "博斯腾湖",
+              "kind": "sight"
+            },
+            {
+              "name": "乌鲁木齐",
+              "kind": "sight"
+            }
+          ],
+          "raw": "博斯腾湖-乌鲁木齐",
+          "title": null
+        }
+      ],
+      "stopCount": 32,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

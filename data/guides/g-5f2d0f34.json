@@ -1,0 +1,193 @@
+{
+  "id": "g-5f2d0f34",
+  "city": "千岛湖",
+  "cityAliases": [
+    "杭州"
+  ],
+  "region": "浙江",
+  "title": "千岛湖",
+  "source": "浙江地区/我是驴友-千岛湖.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵隐寺—西湖—河坊街",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            },
+            {
+              "name": "慈光阁",
+              "kind": "sight"
+            },
+            {
+              "name": "温泉景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "光明顶—鳌鱼峰—莲花峰—迎客松—天都峰—慈光阁—温泉景区",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "精华一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "梅峰揽胜",
+              "kind": "sight"
+            },
+            {
+              "name": "龙山岛",
+              "kind": "sight"
+            },
+            {
+              "name": "黄山尖",
+              "kind": "sight"
+            },
+            {
+              "name": "蜜山岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "梅峰揽胜—龙山岛—黄山尖—蜜山岛",
+          "title": "精华一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "于谷寺",
+              "kind": "sight"
+            },
+            {
+              "name": "始信峰",
+              "kind": "sight"
+            },
+            {
+              "name": "猴子观海",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子峰",
+              "kind": "sight"
+            },
+            {
+              "name": "排于亭",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来石",
+              "kind": "sight"
+            },
+            {
+              "name": "西海大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            }
+          ],
+          "raw": "于谷寺—始信峰—猴子观海—狮子峰—排于亭—飞来石—西海大峡谷—光明顶",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "光明顶",
+              "kind": "sight"
+            },
+            {
+              "name": "鳌鱼峰",
+              "kind": "sight"
+            },
+            {
+              "name": "莲花峰",
+              "kind": "sight"
+            },
+            {
+              "name": "迎客松",
+              "kind": "sight"
+            },
+            {
+              "name": "天都峰",
+              "kind": "sight"
+            },
+            {
+              "name": "慈光阁",
+              "kind": "sight"
+            },
+            {
+              "name": "温泉景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "光明顶—鳌鱼峰—莲花峰—迎客松—天都峰—慈光阁—温泉景区",
+          "title": null
+        }
+      ],
+      "stopCount": 15,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "g-bb1ac9dd",
+  "city": "三亚",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "三亚",
+  "source": "华南地区/我是驴友-三亚旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "浪漫两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "三亚",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三亚",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南山",
+              "kind": "sight"
+            },
+            {
+              "name": "天涯海角",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南山-天涯海角",
+          "title": "浪漫两日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

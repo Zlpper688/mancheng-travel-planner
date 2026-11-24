@@ -1,4 +1,6 @@
+import { haversine } from "../geo";
 import type { Category, Place } from "../types";
+import { SCENIC_AREA } from "./fame";
 
 const CAFE_RE =
   /咖啡|茶室|茶馆|茶空间|甜品|烘焙|奶茶|coffee|caf[eé]|tea\s*house/i;
@@ -8,7 +10,7 @@ const MUSEUM_RE =
   /博物馆|博物院|美术馆|纪念馆|展览馆|艺术馆|科技馆|图书馆|书院|museum|gallery/i;
 const TEMPLE_RE =
   /寺|庙|庵|道观|教堂|礼拜堂|祠堂|清真寺|church|temple|shrine|cathedral/i;
-const BEACH_RE = /沙滩|海滩|海滨|浴场|海边|beach/i;
+const BEACH_RE = /沙滩|海滩|银滩|金滩|海滨|浴场|海边|滩|beach/i;
 const VIEW_RE =
   /观景|观景台|眺望|索道|天台|灯塔|观景平台|lookout|viewpoint/i;
 const PARK_RE =
@@ -43,6 +45,9 @@ export function classifyPlace(
     return typecode.startsWith("0505") || CAFE_RE.test(haystack) ? "cafe" : "food";
   }
   if (typecode.startsWith("050")) return "food";
+
+  // 文创园、皇家驿站常被 OSM 标成 leisure=park，但游客去的是街区/园区而非绿地。
+  if (/驿站|文创园|创意园|艺术区/.test(name)) return "street";
 
   if (tags.tourism === "museum" || tags.tourism === "gallery") return "museum";
   if (MUSEUM_RE.test(name)) return "museum";
@@ -124,6 +129,49 @@ export function dedupePlaces(places: Place[]): Place[] {
     if (!duplicate) out.push(place);
   }
   return out;
+}
+
+const SCENIC_PARENT = new RegExp(
+  `${SCENIC_AREA.source}|古镇|古城|驿站|文化园`,
+);
+
+const GATE_NAME = /(?:东|西|南|北|正|大)门$/;
+
+/** OSM 的 name:zh 偶尔是错别字或旧称；主 name 带中文时以主 name 为准。 */
+export function readOsmName(tags: Record<string, string>): string | undefined {
+  const primary = (tags.name ?? "").trim();
+  if (primary && /[\u4e00-\u9fa5]/.test(primary)) return primary;
+  return (
+    tags["name:zh-Hans"] ||
+    tags["name:zh"] ||
+    primary ||
+    tags["name:en"]
+  )?.trim();
+}
+
+/** 「嵖岈山东门」「嵖岈山南门」是同一片景区，统一回景区本体名。 */
+export function normalizePoiName(raw: string): string {
+  const match = raw.match(
+    /^(.{2,}(?:山|峰|景区|公园|古镇|古城|寺|湖|岛|峡谷|洞|园|陵|庙|宫))(?:(?:东|西|南|北|正|大)门)$/,
+  );
+  return match?.[1] ?? raw;
+}
+
+/** 景区内部的观景台、花海、某座峰不该和景区本体平级成候选。 */
+export function collapseScenicChildren(places: Place[]): Place[] {
+  const parents = places.filter((place) => SCENIC_PARENT.test(place.name));
+  if (!parents.length) return places;
+  return places.filter((place) => {
+    if (parents.includes(place)) return true;
+    if (place.category === "museum" || place.category === "temple") return true;
+    // 景区大门可能离游客中心几公里，单独作为候选没有意义。
+    const radius = GATE_NAME.test(place.name) ? 5 : 2;
+    return !parents.some(
+      (parent) =>
+        parent.id !== place.id &&
+        haversine([parent.lng, parent.lat], [place.lng, place.lat]) < radius,
+    );
+  });
 }
 
 export function isChainRestaurant(name: string): boolean {

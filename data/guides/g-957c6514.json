@@ -1,0 +1,130 @@
+{
+  "id": "g-957c6514",
+  "city": "新疆",
+  "cityAliases": [],
+  "region": "西北",
+  "title": "新疆",
+  "source": "西北地区/我是驴友-新疆.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什（宿喀什）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "喀什",
+              "kind": "sight"
+            },
+            {
+              "name": "博拉库里湖",
+              "kind": "sight"
+            },
+            {
+              "name": "慕士塔格峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "喀什-博拉库里湖-慕士塔格峰（野外扎营或宿喀什）",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "乌鲁木齐",
+              "kind": "sight"
+            },
+            {
+              "name": "天池",
+              "kind": "sight"
+            }
+          ],
+          "raw": "乌鲁木齐-天池-乌鲁木齐（宿火车上）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "那拉提",
+              "kind": "sight"
+            },
+            {
+              "name": "赛里木湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "那拉提-赛里木湖（400km，宿赛里木湖）",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "赛里木湖",
+              "kind": "sight"
+            },
+            {
+              "name": "克拉玛依",
+              "kind": "sight"
+            }
+          ],
+          "raw": "赛里木湖-克拉玛依（400km，宿克拉玛依）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "那拉提",
+              "kind": "sight"
+            },
+            {
+              "name": "赛里木湖",
+              "kind": "sight"
+            }
+          ],
+          "raw": "那拉提-赛里木湖（400km，宿赛里木湖）",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

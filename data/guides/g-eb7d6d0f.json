@@ -1,0 +1,165 @@
+{
+  "id": "g-eb7d6d0f",
+  "city": "云台山",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "云台山",
+  "source": "华中地区/我是驴友-云台山.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "云台山水三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "潭瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "泉瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "猕猴谷",
+              "kind": "sight"
+            },
+            {
+              "name": "红石峡",
+              "kind": "sight"
+            },
+            {
+              "name": "万善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "潭瀑峡-泉瀑峡-猕猴谷-红石峡-万善寺",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "茱萸峰",
+              "kind": "sight"
+            },
+            {
+              "name": "彩叠洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "茱萸峰-彩叠洞",
+          "title": "云台山水三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "青天河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青天河",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "云台山精华一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "潭瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "泉瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "红石峡",
+              "kind": "sight"
+            },
+            {
+              "name": "万善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "潭瀑峡-泉瀑峡-红石峡-万善寺",
+          "title": "云台山精华一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "云台山水三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "潭瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "泉瀑峡",
+              "kind": "sight"
+            },
+            {
+              "name": "红石峡",
+              "kind": "sight"
+            },
+            {
+              "name": "万善寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "潭瀑峡-泉瀑峡-红石峡-万善寺",
+          "title": "云台山水三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "茱萸峰",
+              "kind": "sight"
+            },
+            {
+              "name": "彩叠洞",
+              "kind": "sight"
+            }
+          ],
+          "raw": "茱萸峰-彩叠洞",
+          "title": "云台山水三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "青天河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青天河",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

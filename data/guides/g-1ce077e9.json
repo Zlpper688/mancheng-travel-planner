@@ -1,0 +1,124 @@
+{
+  "id": "g-1ce077e9",
+  "city": "雁荡山",
+  "cityAliases": [
+    "温州"
+  ],
+  "region": "浙江",
+  "title": "雁荡山",
+  "source": "浙江地区/我是驴友-雁荡山攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "浪漫二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵岩",
+              "kind": "sight"
+            },
+            {
+              "name": "大龙湫",
+              "kind": "sight"
+            },
+            {
+              "name": "灵峰夜景",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵岩-大龙湫-灵峰夜景",
+          "title": "浪漫二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "灵峰日景",
+              "kind": "sight"
+            },
+            {
+              "name": "三折瀑",
+              "kind": "sight"
+            },
+            {
+              "name": "显胜门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵峰日景-三折瀑-显胜门",
+          "title": "浪漫二日游"
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大龙湫",
+              "kind": "sight"
+            },
+            {
+              "name": "灵峰",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大龙湫-灵峰",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "灵峰",
+              "kind": "sight"
+            },
+            {
+              "name": "三折瀑",
+              "kind": "sight"
+            },
+            {
+              "name": "显胜门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵峰-三折瀑-显胜门",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "合掌峰",
+              "kind": "sight"
+            },
+            {
+              "name": "观音洞",
+              "kind": "sight"
+            },
+            {
+              "name": "中央领导人",
+              "kind": "sight"
+            }
+          ],
+          "raw": "早餐后游览灵峰景区日景（果盒三景、合掌峰、观音洞、中央领导人",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

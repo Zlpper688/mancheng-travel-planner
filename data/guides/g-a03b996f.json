@@ -1,0 +1,58 @@
+{
+  "id": "g-a03b996f",
+  "city": "西溪湿地",
+  "cityAliases": [
+    "杭州"
+  ],
+  "region": "浙江",
+  "title": "西溪湿地",
+  "source": "浙江地区/我是驴友-西溪湿地攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "神龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "猴岛",
+              "kind": "sight"
+            },
+            {
+              "name": "三潭岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五龙岛—神龙岛—猴岛—三潭岛",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "芹川村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "芹川村",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

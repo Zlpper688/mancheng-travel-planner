@@ -1,0 +1,153 @@
+{
+  "id": "g-ce1e8831",
+  "city": "宏村",
+  "cityAliases": [
+    "黄山"
+  ],
+  "region": "华东",
+  "title": "宏村",
+  "source": "华东地区/我是驴友-宏村旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "志堂",
+              "kind": "sight"
+            },
+            {
+              "name": "树人堂",
+              "kind": "sight"
+            },
+            {
+              "name": "桃园居",
+              "kind": "sight"
+            },
+            {
+              "name": "红白古树",
+              "kind": "sight"
+            }
+          ],
+          "raw": "志堂—树人堂—桃园居—红白古树",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "歙县—屯溪—宏村",
+          "title": "宏村徽派古建一日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村—西递",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "宏村徽派古建一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "歙县",
+              "kind": "sight"
+            }
+          ],
+          "raw": "屯溪—歙县",
+          "title": "宏村徽派古建一日游"
+        }
+      ],
+      "stopCount": 2,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": "宏村徽派古建一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达黄山市",
+              "kind": "sight"
+            }
+          ],
+          "raw": "晚上乘火车到达黄山市，早上出发，经歙县赶往棠樾，沿途的",
+          "title": "宏村徽派古建一日游"
+        }
+      ],
+      "stopCount": 1,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": "皖南古村落三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "塔川",
+              "kind": "sight"
+            },
+            {
+              "name": "木坑竹海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "宏村—塔川—木坑竹海",
+          "title": "皖南古村落三日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

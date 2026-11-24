@@ -1,0 +1,206 @@
+{
+  "id": "g-3f3b9187",
+  "city": "扬州",
+  "cityAliases": [],
+  "region": "江苏",
+  "title": "扬州",
+  "source": "江苏地区/我是驴友-扬州旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "冶春园",
+              "kind": "sight"
+            },
+            {
+              "name": "瘦西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "大明寺",
+              "kind": "sight"
+            },
+            {
+              "name": "何园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "冶春园-瘦西湖-大明寺-何园",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "个园",
+              "kind": "sight"
+            },
+            {
+              "name": "扬州民间收藏馆",
+              "kind": "sight"
+            },
+            {
+              "name": "双东街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "个园-扬州民间收藏馆-双东街",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "冶春园",
+              "kind": "sight"
+            },
+            {
+              "name": "瘦西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "大明寺",
+              "kind": "sight"
+            },
+            {
+              "name": "个园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "冶春园-瘦西湖-大明寺-个园",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "中山陵",
+              "kind": "sight"
+            },
+            {
+              "name": "玄武湖",
+              "kind": "sight"
+            },
+            {
+              "name": "秦淮河",
+              "kind": "sight"
+            },
+            {
+              "name": "夫子庙",
+              "kind": "sight"
+            }
+          ],
+          "raw": "中山陵-玄武湖-秦淮河-夫子庙",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "网师园",
+              "kind": "sight"
+            },
+            {
+              "name": "拙政园",
+              "kind": "sight"
+            },
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "金鸡湖夜游",
+              "kind": "sight"
+            }
+          ],
+          "raw": "网师园-拙政园-虎丘-金鸡湖夜游",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "苏州博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "平江路",
+              "kind": "sight"
+            },
+            {
+              "name": "山塘街",
+              "kind": "sight"
+            },
+            {
+              "name": "十全街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "苏州博物馆-平江路-山塘街-十全街",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "网师园",
+              "kind": "sight"
+            },
+            {
+              "name": "拙政园",
+              "kind": "sight"
+            },
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "金鸡湖夜游",
+              "kind": "sight"
+            }
+          ],
+          "raw": "网师园-拙政园-虎丘-金鸡湖夜游",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

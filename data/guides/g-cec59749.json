@@ -1,0 +1,77 @@
+{
+  "id": "g-cec59749",
+  "city": "福州",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "福州",
+  "source": "华东地区/我是驴友-福州旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "漫步福州一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "三坊七巷",
+              "kind": "sight"
+            },
+            {
+              "name": "南后街",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "五一广场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三坊七巷-南后街-西湖公园-五一广场",
+          "title": "漫步福州一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "漫步福州一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "三坊七巷",
+              "kind": "sight"
+            },
+            {
+              "name": "南后街",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西禅寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "三坊七巷—南后街—西湖公园—西禅寺",
+          "title": "漫步福州一日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "g-864ee46d",
+  "city": "黄果树",
+  "cityAliases": [],
+  "region": "贵州",
+  "title": "黄果树",
+  "source": "贵州地区/我是驴友-黄果树旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "黄果树自然人文两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天星桥",
+              "kind": "sight"
+            },
+            {
+              "name": "大瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "陡陂塘",
+              "kind": "sight"
+            },
+            {
+              "name": "龙宫",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天星桥-大瀑布-陡陂塘-龙宫",
+          "title": "黄果树自然人文两日游"
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

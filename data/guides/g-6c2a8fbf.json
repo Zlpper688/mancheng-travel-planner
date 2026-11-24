@@ -1,0 +1,169 @@
+{
+  "id": "g-6c2a8fbf",
+  "city": "高雄",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "高雄",
+  "source": "港澳台/我是驴友-高雄旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "深度观光五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "驳二艺术特区",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市立历史博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "爱河",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市电影馆",
+              "kind": "sight"
+            },
+            {
+              "name": "捷运美丽岛站",
+              "kind": "sight"
+            },
+            {
+              "name": "六合夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "驳二艺术特区-高雄市立历史博物馆-爱河-高雄市电影馆-捷运美丽岛站-六合夜市-城",
+          "title": "深度观光五日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "旗津岛",
+              "kind": "sight"
+            },
+            {
+              "name": "打狗英国领事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "国立中山大学",
+              "kind": "sight"
+            },
+            {
+              "name": "西子湾",
+              "kind": "sight"
+            },
+            {
+              "name": "苓雅夜市",
+              "kind": "meal"
+            },
+            {
+              "name": "85大楼",
+              "kind": "sight"
+            }
+          ],
+          "raw": "旗津岛-打狗英国领事馆-国立中山大学-西子湾-苓雅夜市-85大楼",
+          "title": "深度观光五日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "莲池潭",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市眷村文化馆",
+              "kind": "sight"
+            },
+            {
+              "name": "统一梦时代购",
+              "kind": "sight"
+            }
+          ],
+          "raw": "莲池潭-高雄市眷村文化馆-统一梦时代购",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "美浓",
+              "kind": "sight"
+            },
+            {
+              "name": "旗山",
+              "kind": "sight"
+            },
+            {
+              "name": "瑞丰夜市",
+              "kind": "meal"
+            }
+          ],
+          "raw": "美浓-旗山-瑞丰夜市",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "佛光山",
+              "kind": "sight"
+            },
+            {
+              "name": "邓丽君纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "二二八和平公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "佛光山-邓丽君纪念馆-二二八和平公园",
+          "title": null
+        }
+      ],
+      "stopCount": 21,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "佛光山",
+              "kind": "sight"
+            },
+            {
+              "name": "邓丽君纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "二二八和平公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "佛光山-邓丽君纪念馆-二二八和平公园",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

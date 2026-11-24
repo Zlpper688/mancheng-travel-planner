@@ -1,0 +1,122 @@
+{
+  "id": "g-239c7b2c",
+  "city": "九寨沟",
+  "cityAliases": [],
+  "region": "四川",
+  "title": "九寨沟",
+  "source": "四川地区/我是驴友-九寨沟.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "成都",
+              "kind": "sight"
+            },
+            {
+              "name": "九寨沟",
+              "kind": "sight"
+            }
+          ],
+          "raw": "成都-九寨沟",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "九寨沟",
+              "kind": "sight"
+            },
+            {
+              "name": "盆景滩",
+              "kind": "sight"
+            },
+            {
+              "name": "火花海",
+              "kind": "sight"
+            },
+            {
+              "name": "树正群海",
+              "kind": "sight"
+            },
+            {
+              "name": "老虎海",
+              "kind": "sight"
+            },
+            {
+              "name": "犀牛海",
+              "kind": "sight"
+            },
+            {
+              "name": "诺日朗瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "长海",
+              "kind": "sight"
+            },
+            {
+              "name": "珍珠滩",
+              "kind": "sight"
+            },
+            {
+              "name": "熊猫海",
+              "kind": "sight"
+            },
+            {
+              "name": "箭竹海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九寨沟：盆景滩-火花海-树正群海-老虎海-犀牛海-诺日朗瀑布-长海-珍珠滩-熊猫海-箭竹海",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "黄龙",
+              "kind": "sight"
+            },
+            {
+              "name": "黄龙寺",
+              "kind": "sight"
+            },
+            {
+              "name": "五彩池",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄龙：黄龙寺-五彩池",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "九寨沟",
+              "kind": "sight"
+            },
+            {
+              "name": "成都",
+              "kind": "sight"
+            }
+          ],
+          "raw": "九寨沟-成都",
+          "title": null
+        }
+      ],
+      "stopCount": 18,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

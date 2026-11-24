@@ -1,0 +1,56 @@
+{
+  "id": "g-b64d9f82",
+  "city": "北戴河",
+  "cityAliases": [],
+  "region": "河北",
+  "title": "北戴河",
+  "source": "河北地区/我是驴友-北戴河旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "海滨二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "老虎石公园",
+              "kind": "sight"
+            },
+            {
+              "name": "奥林匹克大道公园",
+              "kind": "sight"
+            },
+            {
+              "name": "石塘路市场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "老虎石公园-奥林匹克大道公园-石塘路市场",
+          "title": "海滨二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "鸽子窝公园",
+              "kind": "sight"
+            },
+            {
+              "name": "碧螺塔公园观光",
+              "kind": "sight"
+            }
+          ],
+          "raw": "前往鸽子窝公园看日出，下午至碧螺塔公园观光，有空还可以",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

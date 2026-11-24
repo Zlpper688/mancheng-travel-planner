@@ -1,0 +1,4995 @@
+{
+  "version": 1,
+  "count": 129,
+  "statusCount": {
+    "ok": 128,
+    "partial": 0,
+    "none": 1
+  },
+  "encodingCount": {
+    "clean": 47,
+    "repaired": 81,
+    "suspect": 1
+  },
+  "guides": [
+    {
+      "id": "g-ef868f5f",
+      "city": "哈尔滨",
+      "cityAliases": [],
+      "region": "东北",
+      "title": "哈尔滨",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 7,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "经典冰雪二日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 4,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-4d3d0dee",
+      "city": "大连",
+      "cityAliases": [],
+      "region": "东北",
+      "title": "大连",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 4,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-267f0ef3",
+      "city": "沈阳",
+      "cityAliases": [],
+      "region": "东北",
+      "title": "沈阳",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 5,
+      "stops": 16,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 5,
+          "stops": 16,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-744daaae",
+      "city": "长白山",
+      "cityAliases": [],
+      "region": "东北",
+      "title": "长白山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "西坡两日游",
+          "days": 1,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-a878ed9f",
+      "city": "丽江",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "丽江",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "慢生活三日游",
+      "days": 3,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "慢生活三日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 5,
+          "stops": 16,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 5,
+          "stops": 20,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-6ccb3eec",
+      "city": "云南",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "云南",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "香格里拉九日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "香格里拉九日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "云南全线十二日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-40815fae",
+      "city": "大理",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "大理",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "惬意二日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "惬意二日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "深度三日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-308896cb",
+      "city": "昆明",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "昆明",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 10,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "春城深度五日游",
+          "days": 4,
+          "stops": 10,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "自然生态三日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-9e77046c",
+      "city": "束河",
+      "cityAliases": [
+        "丽江"
+      ],
+      "region": "云南",
+      "title": "束河",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "慢生活三日游",
+      "days": 3,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "慢生活三日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "骑车1日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "骑行一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-150819e3",
+      "city": "泸沽湖",
+      "cityAliases": [
+        "丽江"
+      ],
+      "region": "云南",
+      "title": "泸沽湖",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 10,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "泸沽湖  古色古香三日游",
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-5bf7c92e",
+      "city": "西双版纳",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "西双版纳",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 4,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "风光三日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-56131eee",
+      "city": "香格里拉",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "香格里拉",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "精华一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-675be30b",
+      "city": "香格里拉",
+      "cityAliases": [],
+      "region": "云南",
+      "title": "香格里拉9日",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 9,
+      "stops": 21,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 9,
+          "stops": 21,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4",
+      "city": "上海",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "上海",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 6,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "文化两日游",
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "文化两日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "悠闲三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r6",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-800ee5d3",
+      "city": "南昌",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "南昌",
+      "status": "ok",
+      "encoding": "suspect",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典两日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "市内一日游",
+          "days": 1,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "周边六日游",
+          "days": 6,
+          "stops": 25,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-999b150c",
+      "city": "厦门",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "厦门",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "休闲三日游",
+      "days": 3,
+      "stops": 11,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "休闲三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 4,
+          "stops": 14,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 17,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-be93dc33",
+      "city": "厦门",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "厦门八日",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 8,
+      "stops": 23,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 8,
+          "stops": 23,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 17,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-5d5b0cca",
+      "city": "合肥",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "合肥",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ce1e8831",
+      "city": "宏村",
+      "cityAliases": [
+        "黄山"
+      ],
+      "region": "华东",
+      "title": "宏村",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "宏村徽派古建一日游",
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "宏村徽派古建一日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": "皖南古村落三日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-4afce6f6",
+      "city": "日照",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "日照",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "悠闲周末二日游",
+      "days": 2,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "悠闲周末二日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "悠闲周末二日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "日照精心三日游",
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "青岛 大海之旅二日游",
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-efb8e128",
+      "city": "烟台",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "烟台",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "青岛海滨五日游",
+      "days": 5,
+      "stops": 19,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "青岛海滨五日游",
+          "days": 5,
+          "stops": 19,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "青岛海滨五日游",
+          "days": 5,
+          "stops": 15,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-cec59749",
+      "city": "福州",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "福州",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "漫步福州一日游",
+      "days": 1,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "漫步福州一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "漫步福州一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-581d386c",
+      "city": "连云港",
+      "cityAliases": [],
+      "region": "华东",
+      "title": "连云港",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "休闲放松三日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-2fa62c22",
+      "city": "鼓浪屿",
+      "cityAliases": [
+        "厦门"
+      ],
+      "region": "华东",
+      "title": "鼓浪屿",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "精华路线",
+      "days": 1,
+      "stops": 4,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "精华路线",
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-86c776e1",
+      "city": "三清山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "三清山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典一日游",
+      "days": 1,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-eb7d6d0f",
+      "city": "云台山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "云台山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "云台山水三日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "云台山水三日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "云台山精华一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "云台山水三日游",
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-8509d566",
+      "city": "凤凰",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "凤凰",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "湘西风情三日游",
+      "days": 2,
+      "stops": 5,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "湘西风情三日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "城内城外两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "城内城外两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-a1d3a728",
+      "city": "婺源",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "婺源",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 6,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度探索三日游",
+      "days": 3,
+      "stops": 11,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度探索三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "春天花花一日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "登山一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "景区两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 17,
+          "needsReview": false
+        },
+        {
+          "id": "r6",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-74cfcde2",
+      "city": "庐山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "庐山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 22,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 22,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "精华一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-f289fa0f",
+      "city": "张家界",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "张家界",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "尽情五日游",
+      "days": 3,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "尽情五日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "精华三日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-80c1ccec",
+      "city": "武当山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "武当山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 15,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 15,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-88d6a86f",
+      "city": "武汉",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "武汉",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 15,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 15,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "深度三日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-7df5e22f",
+      "city": "洛阳",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "洛阳",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "洛阳文化之旅一日游",
+      "days": 1,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "洛阳文化之旅一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-fbd4df9f",
+      "city": "衡山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "衡山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "舒适两日游",
+      "days": 2,
+      "stops": 11,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "舒适两日游",
+          "days": 2,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "湖南六日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-b19d67cd",
+      "city": "长沙",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "长沙",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-3dccadeb",
+      "city": "黄山",
+      "cityAliases": [],
+      "region": "华中",
+      "title": "黄山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 6,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 17,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 17,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r6",
+          "title": null,
+          "days": 2,
+          "stops": 11,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-479fafdd",
+      "city": "五台山",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "五台山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "朝台三日游",
+      "days": 3,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "朝台三日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "朝台三日游",
+          "days": 3,
+          "stops": 12,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "礼佛三日游",
+          "days": 3,
+          "stops": 14,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "大同两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-5c908257",
+      "city": "北京",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "北京",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "休闲一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-2479b96e",
+      "city": "呼伦贝尔",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "呼伦贝尔",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 7,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-c782ded5",
+      "city": "大同",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "大同",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "大同精华一日游",
+      "days": 1,
+      "stops": 3,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "大同精华一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "大同精华一日游",
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-2dd7c6a7",
+      "city": "天津",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "天津",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ffafdd9f",
+      "city": "太原",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "太原",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "太原周边三日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "太原周边三日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "太原周边三日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "太原文化二日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "太原周边三日游",
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-47238aba",
+      "city": "平遥",
+      "cityAliases": [],
+      "region": "华北",
+      "title": "平遥",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "精华路线",
+      "days": 1,
+      "stops": 12,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "精华路线",
+          "days": 1,
+          "stops": 12,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-2d15c909",
+      "city": "故宫",
+      "cityAliases": [
+        "北京"
+      ],
+      "region": "华北",
+      "title": "故宫",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "精华路线",
+      "days": 1,
+      "stops": 12,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "精华路线",
+          "days": 1,
+          "stops": 12,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-bb1ac9dd",
+      "city": "三亚",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "三亚",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "浪漫两日游",
+      "days": 2,
+      "stops": 3,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "浪漫两日游",
+          "days": 2,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-0326c85b",
+      "city": "北海",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "北海",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "走马观“海”两日游",
+      "days": 2,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "走马观“海”两日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 4,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 5,
+          "stops": 11,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": "南宁5日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-424d8fd5",
+      "city": "南宁",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "南宁",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "绿城南宁二日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "绿城南宁二日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "南宁北海涠洲岛四日游",
+          "days": 4,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "南宁北海涠洲岛四日游",
+          "days": 4,
+          "stops": 13,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-c7d42840",
+      "city": "广州",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "广州",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 6,
+      "stops": 20,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 6,
+          "stops": 20,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b1a02045",
+      "city": "广西",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "广西",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "桂林南宁八日游",
+      "days": 7,
+      "stops": 17,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "桂林南宁八日游",
+          "days": 7,
+          "stops": 17,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "北海一日游",
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "桂林南宁八日游",
+          "days": 7,
+          "stops": 15,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-97528369",
+      "city": "惠州",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "惠州",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-158b36ff",
+      "city": "桂林",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "桂林",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "精华二日游",
+      "days": 2,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "精华二日游",
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "尽情三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "北海两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-f2c5f313",
+      "city": "武夷山",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "武夷山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "武夷山全景三日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "武夷山全景三日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "武夷山全景三日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-8465391d",
+      "city": "海口",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "海口",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-c654cd56",
+      "city": "深圳",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "深圳",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 5,
+      "stops": 10,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 5,
+          "stops": 10,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 5,
+          "stops": 8,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-a9a50e3e",
+      "city": "珠海",
+      "cityAliases": [],
+      "region": "华南",
+      "title": "珠海",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "休闲三日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "休闲三日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "快乐两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": "东澳岛两日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-239c7b2c",
+      "city": "九寨沟",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "九寨沟",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 18,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 18,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-5e77abb9",
+      "city": "四姑娘山",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "四姑娘山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典四日游",
+      "days": 4,
+      "stops": 9,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典四日游",
+          "days": 4,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "精华一日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "周边六日游",
+          "days": 6,
+          "stops": 12,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 4,
+          "stops": 15,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 4,
+          "stops": 9,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f",
+      "city": "成都",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "成都",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 6,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 11,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 12,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r6",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-bb85afe2",
+      "city": "海螺沟",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "海螺沟",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "探险怀古两日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "探险怀古两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "康巴全境四日游",
+          "days": 4,
+          "stops": 10,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-ce4ce2c8",
+      "city": "稻城亚丁",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "稻城亚丁",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-c0c7d26c",
+      "city": "蜀南竹海",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "蜀南竹海",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "蜀南竹海常规一日游",
+      "days": 1,
+      "stops": 3,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "蜀南竹海常规一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "竹海古镇两日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-28e060b5",
+      "city": "都江堰",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "都江堰",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-74b95526",
+      "city": "青城山",
+      "cityAliases": [],
+      "region": "四川",
+      "title": "青城山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 14,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 14,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-81f3c1b8",
+      "city": "威海",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "威海",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "夏日惬意海滩三日游",
+      "days": 3,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "夏日惬意海滩三日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "冬日泡温泉赏天鹅二日游",
+          "days": 2,
+          "stops": 3,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-e8c3ab46",
+      "city": "日照",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "日照",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "悠闲周末二日游",
+      "days": 2,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "悠闲周末二日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "悠闲周末二日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "日照精心三日游",
+          "days": 3,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "青岛 大海之旅二日游",
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b1dd6d30",
+      "city": "曲阜",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "曲阜",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 14,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 14,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "台儿庄三日游",
+          "days": 3,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "曲阜轻松二日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-fab2e792",
+      "city": "泰山",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "泰山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 11,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 11,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "经典路线一日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-cfffbc92",
+      "city": "济南",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "济南",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 15,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 15,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-cf756fdf",
+      "city": "烟台",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "烟台",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "青岛海滨五日游",
+      "days": 5,
+      "stops": 19,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "青岛海滨五日游",
+          "days": 5,
+          "stops": 19,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "青岛海滨五日游",
+          "days": 5,
+          "stops": 15,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-c9e3471c",
+      "city": "蓬莱",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "蓬莱",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 4,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-2fb39b46",
+      "city": "长岛",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "长岛",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "长岛三日游",
+      "days": 3,
+      "stops": 19,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "长岛三日游",
+          "days": 3,
+          "stops": 19,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "神秘海岛之旅二日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b4d3d3bd",
+      "city": "青岛",
+      "cityAliases": [],
+      "region": "山东",
+      "title": "青岛",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "啤酒美食一日游",
+          "days": 1,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "自驾一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-e0dbd2a8",
+      "city": "南京",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "南京",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 15,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-8c364f96",
+      "city": "同里",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "同里",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "江南水乡六日游",
+      "days": 6,
+      "stops": 25,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "江南水乡六日游",
+          "days": 6,
+          "stops": 25,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "同里精华一日游",
+          "days": 1,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "江南水乡六日游",
+          "days": 6,
+          "stops": 24,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-110cb26b",
+      "city": "周庄",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "周庄",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "专线二日游",
+      "days": 2,
+      "stops": 10,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "专线二日游",
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "休闲一日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 6,
+          "stops": 27,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-cb77aace",
+      "city": "常州",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "常州",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "苏南六日游",
+      "days": 6,
+      "stops": 24,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "苏南六日游",
+          "days": 6,
+          "stops": 24,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "苏南六日游",
+          "days": 6,
+          "stops": 27,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "古城两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-3f3b9187",
+      "city": "扬州",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "扬州",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b3108782",
+      "city": "无锡",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "无锡",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典三日游",
+      "days": 3,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典三日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-362070f2",
+      "city": "苏州",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "苏州",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "园林二日游",
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "园林二日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "全景三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "全景三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-2e0bc1f3",
+      "city": "连云港",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "连云港",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "休闲放松三日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-efac0f97",
+      "city": "镇江",
+      "cityAliases": [],
+      "region": "江苏",
+      "title": "镇江",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "悠闲二日游",
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "悠闲二日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "精品一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "周边四日游",
+          "days": 4,
+          "stops": 19,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b64d9f82",
+      "city": "北戴河",
+      "cityAliases": [],
+      "region": "河北",
+      "title": "北戴河",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "海滨二日游",
+      "days": 2,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "海滨二日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-66587af5",
+      "city": "山海关",
+      "cityAliases": [],
+      "region": "河北",
+      "title": "山海关",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "山水生态两日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "山水生态两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "山水生态两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-0f743c21",
+      "city": "白洋淀",
+      "cityAliases": [],
+      "region": "河北",
+      "title": "白洋淀",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 5,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "随性一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-d32b43e0",
+      "city": "秦皇岛",
+      "cityAliases": [],
+      "region": "河北",
+      "title": "秦皇岛",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "海滨休闲两日游",
+      "days": 2,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "海滨休闲两日游",
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "深度三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-00c926e3",
+      "city": "野三坡",
+      "cityAliases": [],
+      "region": "河北",
+      "title": "野三坡",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度三日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度三日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "经典一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "经典一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-d5894d41",
+      "city": "乌镇",
+      "cityAliases": [
+        "嘉兴"
+      ],
+      "region": "浙江",
+      "title": "乌镇",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "东栅景区一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-5f2d0f34",
+      "city": "千岛湖",
+      "cityAliases": [
+        "杭州"
+      ],
+      "region": "浙江",
+      "title": "千岛湖",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 10,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "精华一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 15,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-f11b4e82",
+      "city": "宁波",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "宁波",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度四日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度四日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 13,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-545725d7",
+      "city": "普陀山",
+      "cityAliases": [
+        "舟山"
+      ],
+      "region": "浙江",
+      "title": "普陀山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 13,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "拜佛一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "静心二日游",
+          "days": 2,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-0313d9c7",
+      "city": "杭州",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "杭州",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 13,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 4,
+          "stops": 13,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 4,
+          "stops": 12,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ad63dafb",
+      "city": "横店",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "横店",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "横店穿越之旅一日游",
+      "days": 1,
+      "stops": 4,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "横店穿越之旅一日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ea2f6d02",
+      "city": "浙江",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "浙江",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "浙江魅力城市4日游",
+      "days": 3,
+      "stops": 15,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "浙江魅力城市4日游",
+          "days": 3,
+          "stops": 15,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 15,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "浙江休闲9日游",
+          "days": 3,
+          "stops": 12,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": "浙江浪漫6日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-7de9fbaf",
+      "city": "绍兴",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "绍兴",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度四日游",
+      "days": 3,
+      "stops": 9,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度四日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "文化一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "经典二日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-6cee9b47",
+      "city": "舟山",
+      "cityAliases": [],
+      "region": "浙江",
+      "title": "舟山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "群岛五日游",
+      "days": 5,
+      "stops": 16,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "群岛五日游",
+          "days": 5,
+          "stops": 16,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 6,
+          "stops": 33,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-4ccb4d27",
+      "city": "西塘",
+      "cityAliases": [
+        "嘉兴"
+      ],
+      "region": "浙江",
+      "title": "西塘",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 17,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 17,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "High翻二日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 1,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-a03b996f",
+      "city": "西溪湿地",
+      "cityAliases": [
+        "杭州"
+      ],
+      "region": "浙江",
+      "title": "西溪湿地",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-1ce077e9",
+      "city": "雁荡山",
+      "cityAliases": [
+        "温州"
+      ],
+      "region": "浙江",
+      "title": "雁荡山",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "浪漫二日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "浪漫二日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-847ad75f",
+      "city": "台北",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "台北",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 5,
+      "stops": 18,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 5,
+          "stops": 18,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 5,
+          "stops": 16,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-11f809ef",
+      "city": "台湾",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "台湾12日",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 11,
+      "stops": 24,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 11,
+          "stops": 24,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 12,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 5,
+          "stops": 10,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 5,
+          "stops": 11,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-a67d9997",
+      "city": "澳门",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "澳门",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-af78d778",
+      "city": "香港",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "香港",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "香港经典五日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "香港经典五日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-8725f80c",
+      "city": "香港",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "香港购物",
+      "status": "none",
+      "encoding": "repaired",
+      "routeCount": 0,
+      "canonicalRouteId": null,
+      "canonicalTitle": null,
+      "days": 0,
+      "stops": 0,
+      "needsReview": false,
+      "routes": []
+    },
+    {
+      "id": "g-a2aae043",
+      "city": "香港离岛",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "香港离岛",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-6c2a8fbf",
+      "city": "高雄",
+      "cityAliases": [],
+      "region": "港澳台",
+      "title": "高雄",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度观光五日游",
+      "days": 5,
+      "stops": 21,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度观光五日游",
+          "days": 5,
+          "stops": 21,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-61e5eeac",
+      "city": "乌鲁木齐",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "乌鲁木齐",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "乌鲁木齐市内及周边五日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "乌鲁木齐市内及周边五日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-95e56c75",
+      "city": "兰州",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "兰州",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典一日游",
+      "days": 1,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典一日游",
+          "days": 1,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-971104ee",
+      "city": "北疆",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "北疆",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 5,
+      "stops": 20,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 5,
+          "stops": 20,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 12,
+          "stops": 32,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 12,
+          "stops": 32,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-c2ea9972",
+      "city": "华山",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "华山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "华山徒步二日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "华山徒步二日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "华山徒步二日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-616832c2",
+      "city": "敦煌",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "敦煌",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "艺术两日游",
+      "days": 2,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "艺术两日游",
+          "days": 2,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "品味三日游",
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-957c6514",
+      "city": "新疆",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "新疆",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 4,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-71950d1d",
+      "city": "甘南",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "甘南",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 11,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-5aa29c8a",
+      "city": "西安",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "西安",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "延安壶口两日游",
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-b296dcf7",
+      "city": "青海",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "青海",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 8,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-4067898b",
+      "city": "青海湖",
+      "cityAliases": [],
+      "region": "西北",
+      "title": "青海湖",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 6,
+      "stops": 20,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 6,
+          "stops": 20,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "自驾二日游",
+          "days": 2,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-1eebcb9d",
+      "city": "峨眉山",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "峨眉山",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "徒步三日游",
+      "days": 3,
+      "stops": 19,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "徒步三日游",
+          "days": 3,
+          "stops": 19,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "精华一日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 2,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-4c6ce57c",
+      "city": "川藏",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "川藏",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 7,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 10,
+      "stops": 30,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 10,
+          "stops": 30,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 10,
+          "stops": 31,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 10,
+          "stops": 31,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r6",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r7",
+          "title": null,
+          "days": 6,
+          "stops": 8,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-09ef1c34",
+      "city": "康定",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "康定",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "当地人推荐三日游",
+      "days": 3,
+      "stops": 8,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "当地人推荐三日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "周边自驾四日游",
+          "days": 4,
+          "stops": 9,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-817a1590",
+      "city": "拉萨",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "拉萨",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 4,
+      "stops": 12,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 4,
+          "stops": 12,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "拉萨周边五日游",
+          "days": 4,
+          "stops": 15,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-d800f7e0",
+      "city": "林芝",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "林芝",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "深度四日游",
+      "days": 4,
+      "stops": 11,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "深度四日游",
+          "days": 4,
+          "stops": 11,
+          "needsReview": true
+        },
+        {
+          "id": "r2",
+          "title": "318进藏二日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 6,
+          "stops": 8,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-8717dbed",
+      "city": "纳木错",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "纳木错",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "经典两日游",
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "经典两日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa",
+      "city": "西藏",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "西藏",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 16,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 3,
+          "stops": 7,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": null,
+          "days": 1,
+          "stops": 2,
+          "needsReview": true
+        },
+        {
+          "id": "r4",
+          "title": "西藏经典八日游",
+          "days": 3,
+          "stops": 8,
+          "needsReview": true
+        },
+        {
+          "id": "r5",
+          "title": "日喀则三日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r6",
+          "title": "日喀则三日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r7",
+          "title": "西藏经典八日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r8",
+          "title": "日喀则三日游",
+          "days": 2,
+          "stops": 4,
+          "needsReview": true
+        },
+        {
+          "id": "r9",
+          "title": "日喀则三日游",
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        },
+        {
+          "id": "r10",
+          "title": "山南四日游",
+          "days": 3,
+          "stops": 9,
+          "needsReview": true
+        },
+        {
+          "id": "r11",
+          "title": null,
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r12",
+          "title": "那曲亲临无人区三日游",
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r13",
+          "title": "那曲亲临无人区三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        },
+        {
+          "id": "r14",
+          "title": "阿里三日游",
+          "days": 3,
+          "stops": 15,
+          "needsReview": false
+        },
+        {
+          "id": "r15",
+          "title": null,
+          "days": 3,
+          "stops": 15,
+          "needsReview": false
+        },
+        {
+          "id": "r16",
+          "title": null,
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-03ae6668",
+      "city": "重庆",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "重庆",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 5,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 5,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "山水都市两日游",
+          "days": 2,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "大足石刻一日游",
+          "days": 1,
+          "stops": 3,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": null,
+          "days": 3,
+          "stops": 8,
+          "needsReview": false
+        },
+        {
+          "id": "r5",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-2f62e002",
+      "city": "黔东南",
+      "cityAliases": [],
+      "region": "西南",
+      "title": "黔东南",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-86fce143",
+      "city": "荔波",
+      "cityAliases": [],
+      "region": "贵州",
+      "title": "荔波",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 4,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "荔波洗肺两日游",
+      "days": 2,
+      "stops": 7,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "荔波洗肺两日游",
+          "days": 2,
+          "stops": 7,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": null,
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        },
+        {
+          "id": "r3",
+          "title": "休闲亲水三日游",
+          "days": 3,
+          "stops": 10,
+          "needsReview": false
+        },
+        {
+          "id": "r4",
+          "title": "休闲亲水三日游",
+          "days": 3,
+          "stops": 11,
+          "needsReview": false
+        }
+      ]
+    },
+    {
+      "id": "g-ee57b827",
+      "city": "贵阳",
+      "cityAliases": [],
+      "region": "贵州",
+      "title": "贵阳",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 2,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "周边三日游",
+      "days": 3,
+      "stops": 6,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "周边三日游",
+          "days": 3,
+          "stops": 6,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "清凉二日游",
+          "days": 2,
+          "stops": 2,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-10e04bf5",
+      "city": "镇远",
+      "cityAliases": [],
+      "region": "贵州",
+      "title": "镇远",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 3,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 3,
+      "stops": 9,
+      "needsReview": false,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 3,
+          "stops": 9,
+          "needsReview": false
+        },
+        {
+          "id": "r2",
+          "title": "第一日安排同一日游",
+          "days": 1,
+          "stops": 5,
+          "needsReview": false
+        },
+        {
+          "id": "r3",
+          "title": "第一日安排同一日游",
+          "days": 1,
+          "stops": 1,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-864ee46d",
+      "city": "黄果树",
+      "cityAliases": [],
+      "region": "贵州",
+      "title": "黄果树",
+      "status": "ok",
+      "encoding": "clean",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": "黄果树自然人文两日游",
+      "days": 1,
+      "stops": 4,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": "黄果树自然人文两日游",
+          "days": 1,
+          "stops": 4,
+          "needsReview": true
+        }
+      ]
+    },
+    {
+      "id": "g-70e56d53",
+      "city": "黔东南",
+      "cityAliases": [],
+      "region": "贵州",
+      "title": "黔东南",
+      "status": "ok",
+      "encoding": "repaired",
+      "routeCount": 1,
+      "canonicalRouteId": "r1",
+      "canonicalTitle": null,
+      "days": 2,
+      "stops": 6,
+      "needsReview": true,
+      "routes": [
+        {
+          "id": "r1",
+          "title": null,
+          "days": 2,
+          "stops": 6,
+          "needsReview": true
+        }
+      ]
+    }
+  ]
+}

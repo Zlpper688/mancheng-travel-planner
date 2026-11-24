@@ -1,0 +1,121 @@
+{
+  "id": "g-f289fa0f",
+  "city": "张家界",
+  "cityAliases": [],
+  "region": "华中",
+  "title": "张家界",
+  "source": "华中地区/我是驴友-张家界.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "尽情五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "金鞭溪",
+              "kind": "sight"
+            },
+            {
+              "name": "袁家界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "金鞭溪-袁家界",
+          "title": "尽情五日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天子山",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天子山-十里画廊",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "袁家界",
+              "kind": "sight"
+            },
+            {
+              "name": "金鞭溪",
+              "kind": "sight"
+            }
+          ],
+          "raw": "袁家界-金鞭溪",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": "精华三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大观台",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家界",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大观台-杨家界",
+          "title": "精华三日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天子山",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天子山-十里画廊",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "袁家界",
+              "kind": "sight"
+            },
+            {
+              "name": "金鞭溪",
+              "kind": "sight"
+            }
+          ],
+          "raw": "袁家界-金鞭溪",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "g-af78d778",
+  "city": "香港",
+  "cityAliases": [],
+  "region": "港澳台",
+  "title": "香港",
+  "source": "港澳台/我是驴友-香港旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "香港经典五日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "迪士尼",
+              "kind": "sight"
+            }
+          ],
+          "raw": "迪士尼",
+          "title": "香港经典五日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "海洋公园",
+              "kind": "sight"
+            },
+            {
+              "name": "杜莎夫人蜡像馆",
+              "kind": "sight"
+            },
+            {
+              "name": "太平山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海洋公园—杜莎夫人蜡像馆—太平山",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "尖沙咀",
+              "kind": "sight"
+            },
+            {
+              "name": "星光大道",
+              "kind": "sight"
+            },
+            {
+              "name": "维多利亚港",
+              "kind": "sight"
+            },
+            {
+              "name": "兰桂坊",
+              "kind": "sight"
+            }
+          ],
+          "raw": "尖沙咀—星光大道—维多利亚港—兰桂坊",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "新马路",
+              "kind": "sight"
+            },
+            {
+              "name": "议事亭前地",
+              "kind": "sight"
+            },
+            {
+              "name": "玫瑰圣母堂",
+              "kind": "sight"
+            },
+            {
+              "name": "大三巴牌坊",
+              "kind": "sight"
+            },
+            {
+              "name": "福隆新街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "新马路-议事亭前地-玫瑰圣母堂-大三巴牌坊-福隆新街",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "牌坊",
+              "kind": "sight"
+            },
+            {
+              "name": "福隆新街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "牌坊-福隆新街",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

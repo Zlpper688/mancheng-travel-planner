@@ -1,0 +1,355 @@
+{
+  "id": "g-8c364f96",
+  "city": "同里",
+  "cityAliases": [],
+  "region": "江苏",
+  "title": "同里",
+  "source": "江苏地区/我是驴友-同里旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "江南水乡六日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "丽则女校",
+              "kind": "sight"
+            },
+            {
+              "name": "历史文物陈列馆",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "退思园-丽则女校-历史文物陈列馆-崇本堂",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "留园",
+              "kind": "sight"
+            },
+            {
+              "name": "寒山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "铁岭关",
+              "kind": "sight"
+            }
+          ],
+          "raw": "虎丘-留园-寒山寺-铁岭关",
+          "title": "江南水乡六日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "沧浪亭",
+              "kind": "sight"
+            },
+            {
+              "name": "盘门",
+              "kind": "sight"
+            },
+            {
+              "name": "网师园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "沧浪亭-盘门-网师园",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "周庄双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "张厅",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈万三故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "周庄双桥-张厅-沈厅-南湖-沈万三故居",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "同里退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            },
+            {
+              "name": "珍珠塔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "同里退思园-嘉荫堂-三桥-崇本堂-珍珠塔",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "木渎太湖",
+              "kind": "sight"
+            },
+            {
+              "name": "严家花园",
+              "kind": "sight"
+            },
+            {
+              "name": "虹饮山房",
+              "kind": "sight"
+            },
+            {
+              "name": "灵岩寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "木渎太湖-严家花园-虹饮山房-灵岩寺",
+          "title": null
+        }
+      ],
+      "stopCount": 25,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "同里精华一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "罗星洲",
+              "kind": "sight"
+            },
+            {
+              "name": "陈去病故居",
+              "kind": "sight"
+            },
+            {
+              "name": "五鹤门楼",
+              "kind": "sight"
+            },
+            {
+              "name": "穿心弄",
+              "kind": "sight"
+            },
+            {
+              "name": "耕乐堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            }
+          ],
+          "raw": "罗星洲-陈去病故居-五鹤门楼-穿心弄-耕乐堂-三桥-嘉荫堂",
+          "title": "同里精华一日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "江南水乡六日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "苏州",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子林",
+              "kind": "sight"
+            },
+            {
+              "name": "拙政园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "苏州（北塔寺-狮子林-拙政园）",
+          "title": "江南水乡六日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "留园",
+              "kind": "sight"
+            },
+            {
+              "name": "寒山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "铁岭关",
+              "kind": "sight"
+            }
+          ],
+          "raw": "虎丘-留园-寒山寺-铁岭关",
+          "title": "江南水乡六日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "沧浪亭",
+              "kind": "sight"
+            },
+            {
+              "name": "盘门",
+              "kind": "sight"
+            },
+            {
+              "name": "网师园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "沧浪亭-盘门-网师园",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "周庄双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "张厅",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈万三故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "周庄双桥-张厅-沈厅-南湖-沈万三故居",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "同里退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            },
+            {
+              "name": "珍珠塔",
+              "kind": "sight"
+            }
+          ],
+          "raw": "同里退思园-嘉荫堂-三桥-崇本堂-珍珠塔",
+          "title": null
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "木渎太湖",
+              "kind": "sight"
+            },
+            {
+              "name": "严家花园",
+              "kind": "sight"
+            },
+            {
+              "name": "虹饮山房",
+              "kind": "sight"
+            },
+            {
+              "name": "灵岩寺",
+              "kind": "sight"
+            }
+          ],
+          "raw": "木渎太湖-严家花园-虹饮山房-灵岩寺",
+          "title": null
+        }
+      ],
+      "stopCount": 24,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "id": "g-424d8fd5",
+  "city": "南宁",
+  "cityAliases": [],
+  "region": "华南",
+  "title": "南宁",
+  "source": "华南地区/我是驴友-南宁旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "绿城南宁二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "青秀山风景区",
+              "kind": "sight"
+            },
+            {
+              "name": "广西民族博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "民族大道",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "中山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青秀山风景区-广西民族博物馆-民族大道-南湖公园-中山路",
+          "title": "绿城南宁二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南宁",
+              "kind": "sight"
+            },
+            {
+              "name": "德天瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南宁-德天瀑布",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "南宁北海涠洲岛四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "青秀山风景区",
+              "kind": "sight"
+            },
+            {
+              "name": "广西民族博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "民族大道",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "中山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青秀山风景区-广西民族博物馆-民族大道-南湖公园-中山路",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南宁",
+              "kind": "sight"
+            },
+            {
+              "name": "德天瀑布",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南宁-德天瀑布",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "岛上沙滩",
+              "kind": "sight"
+            },
+            {
+              "name": "林木",
+              "kind": "sight"
+            }
+          ],
+          "raw": "钟），登上“南国蓬莱”——涠洲岛，选好住处后，漫步岛上沙滩，林木",
+          "title": "南宁北海涠洲岛四日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "下龙",
+              "kind": "sight"
+            },
+            {
+              "name": "东兴",
+              "kind": "sight"
+            },
+            {
+              "name": "北海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "下龙-东兴-北海",
+          "title": null
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "南宁北海涠洲岛四日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "青秀山风景区",
+              "kind": "sight"
+            },
+            {
+              "name": "广西民族博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "民族大道",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "中山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青秀山风景区-广西民族博物馆-民族大道-南湖公园-中山路",
+          "title": "南宁北海涠洲岛四日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南宁",
+              "kind": "sight"
+            },
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "南宁-涠洲岛",
+          "title": "南宁北海涠洲岛四日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "涠洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "岛上沙滩",
+              "kind": "sight"
+            },
+            {
+              "name": "林木",
+              "kind": "sight"
+            }
+          ],
+          "raw": "钟），登上“南国蓬莱”——涠洲岛，选好住处后，漫步岛上沙滩，林木",
+          "title": "南宁北海涠洲岛四日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "下龙",
+              "kind": "sight"
+            },
+            {
+              "name": "东兴",
+              "kind": "sight"
+            },
+            {
+              "name": "北海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "下龙-东兴-北海",
+          "title": null
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

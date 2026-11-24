@@ -1,0 +1,146 @@
+{
+  "id": "g-d32b43e0",
+  "city": "秦皇岛",
+  "cityAliases": [],
+  "region": "河北",
+  "title": "秦皇岛",
+  "source": "河北地区/我是驴友-秦皇岛旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "海滨休闲两日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天下第一关",
+              "kind": "sight"
+            },
+            {
+              "name": "老龙头",
+              "kind": "sight"
+            },
+            {
+              "name": "孟姜女庙",
+              "kind": "sight"
+            },
+            {
+              "name": "碧螺塔公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天下第一关-老龙头-孟姜女庙-碧螺塔公园",
+          "title": "海滨休闲两日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "鸽子窝公园",
+              "kind": "sight"
+            },
+            {
+              "name": "老虎石公园",
+              "kind": "sight"
+            },
+            {
+              "name": "奥林匹克大道公园",
+              "kind": "sight"
+            },
+            {
+              "name": "石塘路市场",
+              "kind": "sight"
+            },
+            {
+              "name": "碧螺塔公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鸽子窝公园-老虎石公园-奥林匹克大道公园-石塘路市场-碧螺塔公园",
+          "title": "深度三日游"
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "深度三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天下第一关",
+              "kind": "sight"
+            },
+            {
+              "name": "老龙头",
+              "kind": "sight"
+            },
+            {
+              "name": "孟姜女庙",
+              "kind": "sight"
+            },
+            {
+              "name": "角山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天下第一关-老龙头-孟姜女庙-角山",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "鸽子窝公园",
+              "kind": "sight"
+            },
+            {
+              "name": "老虎石公园",
+              "kind": "sight"
+            },
+            {
+              "name": "奥林匹克大道公园",
+              "kind": "sight"
+            },
+            {
+              "name": "石塘路市场",
+              "kind": "sight"
+            },
+            {
+              "name": "碧螺塔公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鸽子窝公园-老虎石公园-奥林匹克大道公园-石塘路市场-碧螺塔公园",
+          "title": "深度三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "黄金海岸",
+              "kind": "sight"
+            },
+            {
+              "name": "翡翠岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黄金海岸-翡翠岛",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

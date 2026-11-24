@@ -71,7 +71,9 @@ export function estimateModeMinutes(
   if (mode === "transit") {
     return Math.max(5, Math.round((routed / 17) * 60 + 7));
   }
-  return Math.max(4, Math.round((routed / 24) * 60 + 3));
+  // 小城市 30 km 外的景区多走快速路，不能按市区 24 km/h 估成 100 分钟。
+  const speed = direct <= 8 ? 22 : direct <= 25 ? 32 : 42;
+  return Math.max(4, Math.round((routed / speed) * 60 + 3));
 }
 
 export function estimateTaxiFare(

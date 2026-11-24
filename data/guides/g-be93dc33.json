@@ -1,0 +1,289 @@
+{
+  "id": "g-be93dc33",
+  "city": "厦门",
+  "cityAliases": [],
+  "region": "华东",
+  "title": "厦门八日",
+  "source": "华东地区/我是驴友-厦门八日旅游攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "厦门",
+              "kind": "sight"
+            }
+          ],
+          "raw": "到达：厦门",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "厦大",
+              "kind": "sight"
+            },
+            {
+              "name": "海湾公园",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "漫步：南普陀-厦大-海湾公园-环岛路",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "渔家乐",
+              "kind": "sight"
+            },
+            {
+              "name": "植物园爬山",
+              "kind": "sight"
+            },
+            {
+              "name": "西海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "疯狂：出海渔家乐-植物园爬山-西海",
+          "title": null
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "集美",
+              "kind": "sight"
+            }
+          ],
+          "raw": "休整：集美一日游",
+          "title": null
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "南靖土楼群",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上路：南靖土楼群",
+          "title": "集美一日游"
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "鼓浪屿轮渡码头",
+              "kind": "sight"
+            },
+            {
+              "name": "头万国建筑",
+              "kind": "sight"
+            },
+            {
+              "name": "毓园",
+              "kind": "sight"
+            },
+            {
+              "name": "海洋天堂构",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "回归：鼓浪屿轮渡码头-头万国建筑-毓园-海洋天堂构-郑成功纪念馆",
+          "title": "集美一日游"
+        },
+        {
+          "day": 7,
+          "stops": [
+            {
+              "name": "海洋天堂构",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海洋天堂构-郑成功纪念馆",
+          "title": "集美一日游"
+        },
+        {
+          "day": 8,
+          "stops": [
+            {
+              "name": "鼓浪屿",
+              "kind": "sight"
+            },
+            {
+              "name": "皓月园",
+              "kind": "sight"
+            },
+            {
+              "name": "林氏府",
+              "kind": "sight"
+            },
+            {
+              "name": "菽庄花园",
+              "kind": "sight"
+            },
+            {
+              "name": "钢琴博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "日光岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "定格：鼓浪屿-皓月园-林氏府-菽庄花园-钢琴博物馆-日光岩",
+          "title": "集美一日游"
+        }
+      ],
+      "stopCount": 23,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            },
+            {
+              "name": "茶洞",
+              "kind": "sight"
+            },
+            {
+              "name": "云窝",
+              "kind": "sight"
+            },
+            {
+              "name": "隐屏峰",
+              "kind": "sight"
+            },
+            {
+              "name": "仙掌峰",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天游峰——茶洞——云窝——隐屏峰——仙掌峰——一线天——风洞——神仙楼——阁虎啸岩",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "鹰嘴岩",
+              "kind": "sight"
+            },
+            {
+              "name": "天车架",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            },
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "宋街",
+              "kind": "sight"
+            },
+            {
+              "name": "万春园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大红袍——鹰嘴岩——天车架——水帘洞——九曲溪——武夷宫——宋街——万春园",
+          "title": null
+        }
+      ],
+      "stopCount": 17,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天——风洞——神仙楼——阁虎啸岩",
+          "title": null
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

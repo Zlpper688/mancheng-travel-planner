@@ -1,0 +1,213 @@
+{
+  "id": "g-5c908257",
+  "city": "北京",
+  "cityAliases": [],
+  "region": "华北",
+  "title": "北京",
+  "source": "华北地区/我是驴友-北京.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天安门广场",
+              "kind": "sight"
+            },
+            {
+              "name": "故宫",
+              "kind": "sight"
+            },
+            {
+              "name": "南锣鼓巷",
+              "kind": "sight"
+            },
+            {
+              "name": "后海",
+              "kind": "sight"
+            }
+          ],
+          "raw": "天安门广场—故宫—南锣鼓巷—后海",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "慕田峪长城",
+              "kind": "sight"
+            },
+            {
+              "name": "王府井",
+              "kind": "sight"
+            },
+            {
+              "name": "三里屯",
+              "kind": "sight"
+            }
+          ],
+          "raw": "慕田峪长城—王府井—三里屯",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "休闲一日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "故宫",
+              "kind": "sight"
+            },
+            {
+              "name": "后海",
+              "kind": "sight"
+            },
+            {
+              "name": "三里屯",
+              "kind": "sight"
+            }
+          ],
+          "raw": "故宫—后海—三里屯",
+          "title": "休闲一日游"
+        }
+      ],
+      "stopCount": 3,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "机械林场",
+              "kind": "sight"
+            },
+            {
+              "name": "滦河源头",
+              "kind": "sight"
+            },
+            {
+              "name": "桦木沟",
+              "kind": "sight"
+            },
+            {
+              "name": "蛤蟆坝",
+              "kind": "sight"
+            }
+          ],
+          "raw": "机械林场→滦河源头→桦木沟→蛤蟆坝",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "泰丰湖",
+              "kind": "sight"
+            },
+            {
+              "name": "红山军马场",
+              "kind": "sight"
+            },
+            {
+              "name": "野鸭湖",
+              "kind": "sight"
+            },
+            {
+              "name": "将军泡子",
+              "kind": "sight"
+            }
+          ],
+          "raw": "泰丰湖→红山军马场→野鸭湖→将军泡子",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "月亮湖",
+              "kind": "sight"
+            },
+            {
+              "name": "七星湖",
+              "kind": "sight"
+            },
+            {
+              "name": "大峡谷",
+              "kind": "sight"
+            }
+          ],
+          "raw": "月亮湖→七星湖→大峡谷",
+          "title": null
+        }
+      ],
+      "stopCount": 11,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "北京",
+              "kind": "sight"
+            },
+            {
+              "name": "金山岭",
+              "kind": "sight"
+            },
+            {
+              "name": "密云水库",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北京→金山岭→密云水库",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "密云水库",
+              "kind": "sight"
+            },
+            {
+              "name": "黑龙潭",
+              "kind": "sight"
+            },
+            {
+              "name": "北京",
+              "kind": "sight"
+            }
+          ],
+          "raw": "密云水库→黑龙潭→北京",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": true
+    }
+  ]
+}

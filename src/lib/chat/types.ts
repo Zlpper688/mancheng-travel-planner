@@ -1,0 +1,120 @@
+import type {
+  BudgetTier,
+  CityOption,
+  ExperienceId,
+  PaceId,
+  Place,
+  StyleId,
+  TransportPref,
+} from "@/lib/types";
+
+// 对话层只负责把旅行约束收齐；坐标、路线、耗时一律由排线引擎给。
+export interface ChatConfirmed {
+  city: boolean;
+  date: boolean;
+  party: boolean;
+  style: boolean;
+  pace: boolean;
+  transport: boolean;
+  hotel: boolean;
+}
+
+export interface ChatDraft {
+  city: CityOption;
+  hotel: Place;
+  hotelUndecided: boolean;
+  days: number;
+  date: string;
+  pace: PaceId;
+  styles: StyleId[];
+  experiences: ExperienceId[];
+  transport: TransportPref;
+  budgetTier: BudgetTier;
+  adults: number;
+  children: number;
+  seniors: number;
+  avoidSteep: boolean;
+  notes: string;
+  selectedPlaces: Place[];
+  confirmed: ChatConfirmed;
+}
+
+export type ChatCardKind =
+  | "city"
+  | "date"
+  | "party"
+  | "style"
+  | "pace"
+  | "transport"
+  | "budget"
+  | "hotel"
+  | "confirm";
+
+export interface ChatCard {
+  id: string;
+  kind: ChatCardKind;
+  title: string;
+  hint?: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+  cards?: ChatCard[];
+}
+
+// 模型只能给“名字”和枚举值，真正的坐标由服务端查。
+export interface ChatPatch {
+  city?: string;
+  days?: number;
+  date?: string;
+  pace?: PaceId;
+  styles?: StyleId[];
+  experiences?: ExperienceId[];
+  transport?: TransportPref;
+  budgetTier?: BudgetTier;
+  adults?: number;
+  children?: number;
+  seniors?: number;
+  avoidSteep?: boolean;
+  notes?: string;
+  hotelQuery?: string;
+  hotelUndecided?: boolean;
+  selectedNames?: string[];
+}
+
+// 服务端解析后的补丁，客户端可以直接写进草稿。
+export interface ResolvedPatch {
+  city?: CityOption;
+  hotel?: Place;
+  hotelUndecided?: boolean;
+  days?: number;
+  date?: string;
+  pace?: PaceId;
+  styles?: StyleId[];
+  experiences?: ExperienceId[];
+  transport?: TransportPref;
+  budgetTier?: BudgetTier;
+  adults?: number;
+  children?: number;
+  seniors?: number;
+  avoidSteep?: boolean;
+  notes?: string;
+  selectedPlaces?: Place[];
+}
+
+export interface ChatReply {
+  say: string;
+  patch?: ResolvedPatch;
+  cards?: ChatCard[];
+  action?: "plan" | "none";
+}
+
+export interface ChatApiResponse {
+  ai: boolean;
+  configured: boolean;
+  model?: string;
+  reply?: ChatReply;
+  reason?: string;
+}

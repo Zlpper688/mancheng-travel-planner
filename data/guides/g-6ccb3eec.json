@@ -1,0 +1,232 @@
+{
+  "id": "g-6ccb3eec",
+  "city": "云南",
+  "cityAliases": [],
+  "region": "云南",
+  "title": "云南",
+  "source": "云南地区/我是驴友-云南.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "香格里拉九日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "香格里拉",
+              "kind": "sight"
+            }
+          ],
+          "raw": "香格里拉",
+          "title": "香格里拉九日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "丽江",
+              "kind": "sight"
+            },
+            {
+              "name": "虎跳峡",
+              "kind": "sight"
+            },
+            {
+              "name": "泸沽湖",
+              "kind": "sight"
+            },
+            {
+              "name": "里格村或大落水村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "丽江-虎跳峡-泸沽湖（宿：里格村或大落水村）",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "丽江",
+              "kind": "sight"
+            },
+            {
+              "name": "拉市海",
+              "kind": "sight"
+            },
+            {
+              "name": "束河古镇",
+              "kind": "sight"
+            }
+          ],
+          "raw": "丽江-拉市海-束河古镇（宿：束河古镇）",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大落水村",
+              "kind": "sight"
+            },
+            {
+              "name": "丽江",
+              "kind": "sight"
+            }
+          ],
+          "raw": "大落水村-丽江",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北海湿地",
+              "kind": "sight"
+            },
+            {
+              "name": "热海",
+              "kind": "sight"
+            },
+            {
+              "name": "叠水河瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "国殇墓园",
+              "kind": "sight"
+            },
+            {
+              "name": "腾冲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海湿地-热海-叠水河瀑布-国殇墓园（宿：腾冲）",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "云南全线十二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "黑龙潭",
+              "kind": "sight"
+            },
+            {
+              "name": "玉龙雪山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "黑龙潭-玉龙雪山",
+          "title": "云南全线十二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北海湿地",
+              "kind": "sight"
+            },
+            {
+              "name": "热海",
+              "kind": "sight"
+            },
+            {
+              "name": "叠水河瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "国殇墓园",
+              "kind": "sight"
+            },
+            {
+              "name": "腾冲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海湿地-热海-叠水河瀑布-国殇墓园（宿：腾冲）",
+          "title": null
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "腾冲",
+              "kind": "sight"
+            },
+            {
+              "name": "和顺古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "高黎贡山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "腾冲-和顺古镇-高黎贡山（宿：和顺古镇）",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "北海湿地",
+              "kind": "sight"
+            },
+            {
+              "name": "热海",
+              "kind": "sight"
+            },
+            {
+              "name": "叠水河瀑布",
+              "kind": "sight"
+            },
+            {
+              "name": "国殇墓园",
+              "kind": "sight"
+            },
+            {
+              "name": "腾冲",
+              "kind": "sight"
+            }
+          ],
+          "raw": "北海湿地-热海-叠水河瀑布-国殇墓园（宿：腾冲）",
+          "title": null
+        }
+      ],
+      "stopCount": 8,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

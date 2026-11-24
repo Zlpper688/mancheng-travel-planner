@@ -3,7 +3,9 @@ import type {
   Category,
   CityOption,
   PaceId,
+  StopKind,
   StyleId,
+  TipKind,
   TransportMode,
   TransportPref,
 } from "./types";
@@ -237,6 +239,28 @@ export const CATEGORY_ICONS: Record<Category, string> = {
   other: "map-pin",
 };
 
+export const TIP_ICONS: Record<TipKind, string> = {
+  booking: "ticket",
+  family: "baby",
+  weather: "rain",
+  crowd: "users",
+  ferry: "waves",
+  island: "footprints",
+  food: "utensils",
+  photo: "binoculars",
+  temple: "church",
+  slow: "clock",
+  transit: "bus",
+  city: "landmark",
+  safety: "alert",
+};
+
+export const STOP_KIND_LABELS: Record<StopKind, string> = {
+  sight: "景点",
+  meal: "正餐",
+  cafe: "咖啡 / 茶歇",
+};
+
 export const CATEGORY_DWELL: Record<Category, number> = {
   attraction: 85,
   museum: 80,
@@ -311,6 +335,6 @@ Day 2｜鼓浪屿慢慢走
 Day 3｜环岛路看海
 上午去南普陀寺，然后逛厦门大学，记得提前预约。
 下午沿环岛路去胡里山炮台、曾厝垵，找一家咖啡馆坐一会儿。
-傍晚在黄厝海滩看日落，回酒店。`;
+傍晚在黄厝海滩看日落，回住处。`;
 
 export const DEMO_CITY = "厦门";

@@ -1,0 +1,378 @@
+{
+  "id": "g-0313d9c7",
+  "city": "杭州",
+  "cityAliases": [],
+  "region": "浙江",
+  "title": "杭州",
+  "source": "浙江地区/我是驴友-杭州攻略.pdf",
+  "encoding": "clean",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵隐寺-西湖-河坊街",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "清河坊",
+              "kind": "sight"
+            },
+            {
+              "name": "南宋御街",
+              "kind": "sight"
+            },
+            {
+              "name": "钱江新城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村—清河坊—南宋御街—钱江新城",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "杭州乐园—鼓楼—河坊街",
+          "title": "来一个杭州乐园一日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村—保俶塔—京杭大运河（杭州段）",
+          "title": "合肥赴杭州四日游"
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "南山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "灵隐寺—西湖—南山路",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "清河坊",
+              "kind": "sight"
+            },
+            {
+              "name": "南宋御街",
+              "kind": "sight"
+            },
+            {
+              "name": "钱江新城",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村—清河坊—南宋御街—钱江新城",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "杭州乐园—鼓楼—河坊街",
+          "title": "来一个杭州乐园一日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村—保俶塔—京杭大运河（杭州段）",
+          "title": "合肥赴杭州四日游"
+        }
+      ],
+      "stopCount": 13,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "飞来峰",
+              "kind": "sight"
+            },
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "宋城 中国美术学院 南山路",
+              "kind": "sight"
+            }
+          ],
+          "raw": "飞来峰—灵隐寺—宋城 中国美术学院 南山路",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "净慈寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西溪湿地",
+              "kind": "sight"
+            }
+          ],
+          "raw": "西湖—净慈寺—西溪湿地",
+          "title": null
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ],
+          "raw": "杭州乐园—鼓楼—河坊街",
+          "title": "来一个杭州乐园一日游"
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ],
+          "raw": "龙井村—保俶塔—京杭大运河（杭州段）",
+          "title": "合肥赴杭州四日游"
+        }
+      ],
+      "stopCount": 12,
+      "source": "day-headers",
+      "needsReview": true
+    },
+    {
+      "id": "r4",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "神龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "猴岛",
+              "kind": "sight"
+            },
+            {
+              "name": "三潭岛",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五龙岛—神龙岛—猴岛—三潭岛",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "芹川村",
+              "kind": "sight"
+            }
+          ],
+          "raw": "芹川村",
+          "title": null
+        }
+      ],
+      "stopCount": 5,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r5",
+      "title": null,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "鲁镇",
+              "kind": "sight"
+            },
+            {
+              "name": "咸亨酒店",
+              "kind": "stay"
+            },
+            {
+              "name": "百草园",
+              "kind": "sight"
+            },
+            {
+              "name": "三味书屋",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故居",
+              "kind": "sight"
+            }
+          ],
+          "raw": "鲁镇-咸亨酒店-百草园-三味书屋-鲁迅纪念馆-鲁迅故居",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "东湖-兰亭-沈园",
+          "title": null
+        }
+      ],
+      "stopCount": 9,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}

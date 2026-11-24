@@ -1,0 +1,220 @@
+{
+  "id": "g-e8c3ab46",
+  "city": "日照",
+  "cityAliases": [],
+  "region": "山东",
+  "title": "日照",
+  "source": "山东地区/我是驴友-日照旅游攻略.pdf",
+  "encoding": "repaired",
+  "status": "ok",
+  "canonicalRouteId": "r1",
+  "routes": [
+    {
+      "id": "r1",
+      "title": "悠闲周末二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "万平口生态广",
+              "kind": "sight"
+            }
+          ],
+          "raw": "上午到日照入住酒店，可以游日照会客厅——万平口生态广",
+          "title": "悠闲周末二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔港码头",
+              "kind": "sight"
+            },
+            {
+              "name": "奥林匹克水上公园",
+              "kind": "sight"
+            },
+            {
+              "name": "灯塔景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "渔港码头-奥林匹克水上公园-灯塔景区",
+          "title": null
+        }
+      ],
+      "stopCount": 4,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r2",
+      "title": "悠闲周末二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "山海天度假区",
+              "kind": "sight"
+            },
+            {
+              "name": "万平口",
+              "kind": "sight"
+            },
+            {
+              "name": "太公岛海水浴场",
+              "kind": "sight"
+            }
+          ],
+          "raw": "山海天度假区-万平口-太公岛海水浴场",
+          "title": "悠闲周末二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔港码头",
+              "kind": "sight"
+            },
+            {
+              "name": "奥林匹克水上公园",
+              "kind": "sight"
+            },
+            {
+              "name": "灯塔景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "渔港码头-奥林匹克水上公园-灯塔景区",
+          "title": null
+        }
+      ],
+      "stopCount": 6,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r3",
+      "title": "日照精心三日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "海滨森林公园",
+              "kind": "sight"
+            },
+            {
+              "name": "第三海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "万平口景区",
+              "kind": "sight"
+            }
+          ],
+          "raw": "海滨森林公园-第三海水浴场-万平口景区",
+          "title": null
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "五莲山",
+              "kind": "sight"
+            },
+            {
+              "name": "九仙山",
+              "kind": "sight"
+            }
+          ],
+          "raw": "五莲山-九仙山",
+          "title": "日照精心三日游"
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "竹洞天",
+              "kind": "sight"
+            },
+            {
+              "name": "赶海园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "竹洞天-赶海园",
+          "title": "日照精心三日游"
+        }
+      ],
+      "stopCount": 7,
+      "source": "day-headers",
+      "needsReview": false
+    },
+    {
+      "id": "r4",
+      "title": "青岛 大海之旅二日游",
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "日照",
+              "kind": "sight"
+            },
+            {
+              "name": "万平口",
+              "kind": "sight"
+            },
+            {
+              "name": "海滨森林公园",
+              "kind": "sight"
+            }
+          ],
+          "raw": "日照-万平口-海滨森林公园",
+          "title": "青岛 大海之旅二日游"
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "青岛",
+              "kind": "sight"
+            },
+            {
+              "name": "栈桥",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅公园",
+              "kind": "sight"
+            },
+            {
+              "name": "第一海水浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "八大关",
+              "kind": "sight"
+            },
+            {
+              "name": "五四广场",
+              "kind": "sight"
+            },
+            {
+              "name": "奥帆中心",
+              "kind": "sight"
+            }
+          ],
+          "raw": "青岛-栈桥-鲁迅公园-第一海水浴场-八大关-五四广场-奥帆中心",
+          "title": null
+        }
+      ],
+      "stopCount": 10,
+      "source": "day-headers",
+      "needsReview": false
+    }
+  ]
+}
