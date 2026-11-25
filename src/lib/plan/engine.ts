@@ -172,7 +172,7 @@ function buildMeta(
     );
   }
   if (input.notes) {
-    dataNotes.push(`按你的补充要求排线：${input.notes.slice(0, 120)}`);
+    dataNotes.push(`按你的补充要求安排：${input.notes.slice(0, 120)}`);
   }
   if (selectedCount) {
     dataNotes.push(
@@ -182,10 +182,10 @@ function buildMeta(
     );
   }
   if (fixedKind === "guide") {
-    dataNotes.push("导入攻略的日期按攻略站点顺序规划，其余日期由漫城自动排线。");
+    dataNotes.push("导入攻略的日期按攻略站点顺序规划，其余日期由漫城自动安排。");
   }
   if (fixedKind === "mixed") {
-    dataNotes.push("攻略固定点与自选景点已合并，优先占用不同日期，其余日期自动排线。");
+    dataNotes.push("攻略固定点与自选景点已合并，优先占用不同日期，其余日期自动安排。");
   }
   if (archetype) {
     dataNotes.push(`${archetype.label}：${archetype.summary}`);
@@ -343,6 +343,8 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     city: input.city,
     fixedPlaces,
     fixedSource,
+    lockedPlaces: input.lockedPlaces,
+    slimDays: input.slimDays,
     farDays: input.farDays,
     farCap: archetype.maxFarDays,
     experiences: input.experiences,

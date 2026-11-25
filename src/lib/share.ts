@@ -149,7 +149,8 @@ export function decodeRecipe(
     };
   }
 
-  const days = readInt(params.get("d"), 1, 7);
+  // 我方上限是 15 天（组员版是 7），链接要让 10 天的行程也能原样恢复。
+  const days = readInt(params.get("d"), 1, 15);
   if (days !== null) next.days = days;
 
   const date = params.get("dt");
@@ -182,7 +183,7 @@ export function decodeRecipe(
   const seed = readInt(params.get("sd"), 1, MAX_SEED);
   if (seed !== null) next.seed = seed;
 
-  const farDays = readInt(params.get("f"), 1, 7);
+  const farDays = readInt(params.get("f"), 1, 15);
   next.farDays = farDays;
 
   return next;

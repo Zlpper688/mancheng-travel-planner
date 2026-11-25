@@ -18,6 +18,14 @@ import type {
   TripInput,
 } from "@/lib/types";
 import { Icon } from "./Icon";
+import {
+  buildShareUrl,
+  copyText,
+  decodeRecipe,
+  encodeRecipe,
+  formatPlanText,
+  type TripRecipe,
+} from "@/lib/share";
 import PlaceCatalog from "./PlaceCatalog";
 import PlanPanel from "./PlanPanel";
 import SetupPanel from "./SetupPanel";
@@ -47,6 +55,9 @@ type PlanOverrides = Partial<{
   farDays: number | null;
   selectedPlaces: Place[];
   experiences: ExperienceId[];
+  lockedPlaces: FixedPlace[];
+  excludeIds: string[];
+  slimDays: Record<number, number>;
 }>;
 
 function pickedHotel(lng: number, lat: number): Place {
@@ -62,6 +73,53 @@ function pickedHotel(lng: number, lat: number): Place {
 }
 
 const INITIAL_CITY = QUICK_CITIES[0];
+
+/** 首次 3 步向导只出现一次：排出行程或点「跳过」后就不再打扰。 */
+const GUIDE_KEY = "mc-guide-v1";
+
+function guideDone(): boolean {
+  // SSR 与水合阶段一律当作「已完成」，避免首屏闪一下向导。
+  if (typeof window === "undefined") return true;
+  try {
+    return window.localStorage.getItem(GUIDE_KEY) === "done";
+  } catch {
+    return true;
+  }
+}
+
+function markGuideDone() {
+  try {
+    window.localStorage.setItem(GUIDE_KEY, "done");
+  } catch {
+    // 隐私模式写不进去就每次重新引导，不影响主流程。
+  }
+}
+
+/** 与各 useState 的初始值保持一致，用作分享链接的兜底值。 */
+function defaultRecipe(date: string): TripRecipe {
+  return {
+    city: INITIAL_CITY,
+    hotel: {
+      id: `center-${INITIAL_CITY.name}`,
+      name: `${INITIAL_CITY.name}市中心`,
+      category: "hotel",
+      lat: INITIAL_CITY.lat,
+      lng: INITIAL_CITY.lng,
+      city: INITIAL_CITY.name,
+      source: "demo",
+    },
+    days: 3,
+    date,
+    pace: "balanced",
+    styles: ["citywalk", "coastal"],
+    transport: "auto",
+    budgetTier: "comfort",
+    adults: 2,
+    children: 0,
+    seed: 42,
+    farDays: null,
+  };
+}
 
 export default function PlannerApp({
   initialDate,
@@ -85,6 +143,12 @@ export default function PlannerApp({
   const [seed, setSeed] = useState(42);
   const [farDays, setFarDays] = useState<number | null>(null);
   const [fixedPlaces, setFixedPlaces] = useState<FixedPlace[]>([]);
+  /** 单点锁定：重排时这些点必须留在原定的那天。 */
+  const [lockedPlaces, setLockedPlaces] = useState<FixedPlace[]>([]);
+  /** 用户移除或替换掉的点位，后续重排不得再出现。 */
+  const [excludeIds, setExcludeIds] = useState<string[]>([]);
+  /** 某天少排几个点位，让「移除」不被自动补位抵消。 */
+  const [slimDays, setSlimDays] = useState<Record<number, number>>({});
   const [guideResetKey, setGuideResetKey] = useState(0);
 
   const [view, setView] = useState<"plan" | "catalog">("plan");
@@ -100,6 +164,8 @@ export default function PlannerApp({
   const [selectedPlaces, setSelectedPlaces] = useState<Place[]>([]);
 
   const [plan, setPlan] = useState<PlanResult | null>(null);
+  /** 首次 3 步向导：1 选目的地 → 2 调玩法 → 3 生成。null 表示不再引导。 */
+  const [guideStep, setGuideStep] = useState<1 | 2 | 3 | null>(null);
   const [loading, setLoading] = useState(false);
   const [reverseLoading, setReverseLoading] = useState(false);
   const [error, setError] = useState<{ message: string; hint?: string } | null>(
@@ -272,6 +338,50 @@ export default function PlannerApp({
     return () => desktop.removeEventListener("change", onChange);
   }, []);
 
+  /** 当前这一版行程的配方，用于分享与地址栏同步。 */
+  function currentRecipe(overrides: PlanOverrides = {}): TripRecipe {
+    return {
+      city: overrides.city ?? city,
+      hotel: overrides.hotel ?? hotel ?? mapHotel,
+      days: overrides.days ?? days,
+      date: overrides.date ?? date,
+      pace: overrides.pace ?? pace,
+      styles: overrides.styles ?? styles,
+      transport: overrides.transport ?? transport,
+      budgetTier: overrides.budgetTier ?? budgetTier,
+      adults: overrides.adults ?? adults,
+      children: overrides.children ?? children,
+      seed: overrides.seed ?? seed,
+      farDays: overrides.farDays !== undefined ? overrides.farDays : farDays,
+    };
+  }
+
+  /**
+   * 把配方写回地址栏。用 replaceState 而不是 pushState：这只是一份
+   * 「当前视图」的快照，不该在浏览器历史里堆成几十条。
+   * 刷新能恢复、链接能直接发给别人，都靠这一步。
+   */
+  function syncUrl(recipe: TripRecipe) {
+    if (typeof window === "undefined") return;
+    const next = `?${encodeRecipe(recipe)}`;
+    if (window.location.search === next) return;
+    window.history.replaceState(null, "", next);
+  }
+
+  const guideActive = guideStep !== null && !plan;
+
+  function finishGuide() {
+    setGuideStep(null);
+    markGuideDone();
+  }
+
+  /** 引导进行中，改偏好只落到本地状态——选个城市就立刻排线的话，
+   *  结果页会把向导顶掉，用户反而没机会把三件事选完。 */
+  function commitChange(overrides: PlanOverrides = {}) {
+    if (guideActive) return;
+    void requestPlan(overrides);
+  }
+
   async function requestPlan(overrides: PlanOverrides = {}) {
     const nextCity = overrides.city ?? city;
     const nextHotel =
@@ -289,6 +399,9 @@ export default function PlannerApp({
     const nextSeed = overrides.seed ?? seed;
     const nextFixed = overrides.fixedPlaces ?? fixedPlaces;
     const nextSelected = overrides.selectedPlaces ?? selectedPlaces;
+    const nextLocked = overrides.lockedPlaces ?? lockedPlaces;
+    const nextExclude = overrides.excludeIds ?? excludeIds;
+    const nextSlim = overrides.slimDays ?? slimDays;
     const nextFarDays =
       overrides.farDays !== undefined ? overrides.farDays : farDays;
 
@@ -311,6 +424,9 @@ export default function PlannerApp({
       hotelPrice: nextHotel?.cost,
       fixedPlaces: nextFixed.length ? nextFixed : undefined,
       selectedPlaces: nextSelected.length ? nextSelected : undefined,
+      lockedPlaces: nextLocked.length ? nextLocked : undefined,
+      excludeIds: nextExclude.length ? nextExclude : undefined,
+      slimDays: Object.keys(nextSlim).length ? nextSlim : undefined,
       farDays: nextFarDays ?? undefined,
     };
 
@@ -339,6 +455,9 @@ export default function PlannerApp({
       }
       const nextPlan = data.plan;
       setPlan(nextPlan);
+      finishGuide();
+      // 只有真的排出来了才认这一版：中途失败时地址栏应停留在上一版。
+      syncUrl(currentRecipe(overrides));
       setFocus(null);
       setActiveDay((previous) =>
         previous === "all" ||
@@ -361,18 +480,51 @@ export default function PlannerApp({
   useEffect(() => {
     if (autoRef.current) return;
     autoRef.current = true;
-    void requestPlan();
+    const shared =
+      typeof window === "undefined"
+        ? null
+        : decodeRecipe(window.location.search, defaultRecipe(initialDate));
+    if (!guideDone()) {
+      // 分享链接里已经有别人的一版行程，直接照着排；否则先让用户自己选三件事。
+      if (shared) markGuideDone();
+      else {
+        setGuideStep(1);
+        return;
+      }
+    }
+    if (!shared) {
+      void requestPlan();
+      return;
+    }
+    // 这条链接带着别人的一版行程，先把界面状态对齐，再照着排一次。
+    setCity(shared.city);
+    setHotel(shared.hotel);
+    setDays(shared.days);
+    setDate(shared.date);
+    setPace(shared.pace);
+    setStyles(shared.styles);
+    setTransport(shared.transport);
+    setBudgetTier(shared.budgetTier);
+    setAdults(shared.adults);
+    setChildren(shared.children);
+    setSeed(shared.seed);
+    setFarDays(shared.farDays);
+    setToast("已按分享链接恢复这一版行程。");
+    void requestPlan(shared);
     // Only the first load should auto-plan; later changes call requestPlan directly.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleCityChange(next: CityOption) {
-    // 换城市后旧住处已经失效，直接交给排线引擎按景点分布重新推荐落脚片区。
+    // 换城市后旧住处已经失效，直接交给行程引擎按景点分布重新推荐落脚片区。
     setCity(next);
     setHotel(null);
     setPicking(false);
     setFixedPlaces([]);
     setSelectedPlaces([]);
+    setLockedPlaces([]);
+    setExcludeIds([]);
+    setSlimDays({});
     setGuideResetKey((value) => value + 1);
     catalogAbortRef.current?.abort();
     catalogCityRef.current = "";
@@ -383,39 +535,59 @@ export default function PlannerApp({
     setCatalogLoading(false);
     setCatalogScanning(false);
     setCatalogScanNote(null);
-    void requestPlan({
+    commitChange({
       city: next,
       hotel: null,
       fixedPlaces: [],
       selectedPlaces: [],
+      lockedPlaces: [],
+      excludeIds: [],
+      slimDays: {},
     });
   }
 
   function handleHotelChange(next: Place) {
     setHotel(next);
     setPicking(false);
-    void requestPlan({ hotel: next });
+    // 换住处等于换了一天的起点，旧的锁定与排除都失去参照。
+    setLockedPlaces([]);
+    setExcludeIds([]);
+    setSlimDays({});
+    commitChange({
+      hotel: next,
+      lockedPlaces: [],
+      excludeIds: [],
+      slimDays: {},
+    });
   }
 
   function handleHotelUndecided() {
     setHotel(null);
     setPicking(false);
-    void requestPlan({ hotel: null });
+    setLockedPlaces([]);
+    setExcludeIds([]);
+    setSlimDays({});
+    commitChange({
+      hotel: null,
+      lockedPlaces: [],
+      excludeIds: [],
+      slimDays: {},
+    });
   }
 
   function handleDaysChange(next: number) {
     setDays(next);
-    void requestPlan({ days: next });
+    commitChange({ days: next });
   }
 
   function handleDateChange(next: string) {
     setDate(next);
-    void requestPlan({ date: next });
+    commitChange({ date: next });
   }
 
   function handlePaceChange(next: PaceId) {
     setPace(next);
-    void requestPlan({ pace: next });
+    commitChange({ pace: next });
   }
 
   function handleStyleToggle(id: StyleId) {
@@ -432,7 +604,7 @@ export default function PlannerApp({
       next = [...styles, id];
     }
     setStyles(next);
-    void requestPlan({ styles: next });
+    commitChange({ styles: next });
   }
 
   function handleExperienceToggle(id: ExperienceId) {
@@ -445,37 +617,37 @@ export default function PlannerApp({
       next = [...experiences, id];
     }
     setExperiences(next);
-    void requestPlan({ experiences: next });
+    commitChange({ experiences: next });
   }
 
   function handleTransportChange(next: TransportPref) {
     setTransport(next);
-    void requestPlan({ transport: next });
+    commitChange({ transport: next });
   }
 
   function handleFarDaysChange(next: number | null) {
     setFarDays(next);
-    void requestPlan({ farDays: next });
+    commitChange({ farDays: next });
   }
 
   function handleBudgetChange(next: BudgetTier) {
     setBudgetTier(next);
-    void requestPlan({ budgetTier: next });
+    commitChange({ budgetTier: next });
   }
 
   function handleAdultsChange(next: number) {
     setAdults(next);
-    void requestPlan({ adults: next });
+    commitChange({ adults: next });
   }
 
   function handleChildrenChange(next: number) {
     setChildren(next);
-    void requestPlan({ children: next });
+    commitChange({ children: next });
   }
 
   function handleSeniorsChange(next: number) {
     setSeniors(next);
-    void requestPlan({ seniors: next });
+    commitChange({ seniors: next });
   }
 
   function handleTogglePick() {
@@ -504,12 +676,28 @@ export default function PlannerApp({
           ? { ...(data.place as Place), category: "hotel" }
           : pickedHotel(lng, lat);
       setHotel(nextHotel);
-      void requestPlan({ hotel: nextHotel });
+      setLockedPlaces([]);
+      setExcludeIds([]);
+      setSlimDays({});
+      commitChange({
+        hotel: nextHotel,
+        lockedPlaces: [],
+        excludeIds: [],
+        slimDays: {},
+      });
     } catch {
       const nextHotel = pickedHotel(lng, lat);
       setHotel(nextHotel);
+      setLockedPlaces([]);
+      setExcludeIds([]);
+      setSlimDays({});
       setToast("没能识别地名，已用坐标作为落脚点。");
-      void requestPlan({ hotel: nextHotel });
+      commitChange({
+        hotel: nextHotel,
+        lockedPlaces: [],
+        excludeIds: [],
+        slimDays: {},
+      });
     } finally {
       setReverseLoading(false);
     }
@@ -519,14 +707,14 @@ export default function PlannerApp({
     const nextDays = Math.min(15, Math.max(days, guideDays));
     setFixedPlaces(fixed);
     setDays(nextDays);
-    setToast("已按攻略锁定停靠点与顺序，正在重排路线。");
-    void requestPlan({ fixedPlaces: fixed, days: nextDays });
+    setToast("已按攻略锁定停靠点与顺序，正在重新安排路线。");
+    commitChange({ fixedPlaces: fixed, days: nextDays });
   }
 
   function handleGuideClear() {
     setFixedPlaces([]);
-    setToast("已取消攻略复刻，恢复自动排线。");
-    void requestPlan({ fixedPlaces: [] });
+    setToast("已取消攻略复刻，恢复自动安排。");
+    commitChange({ fixedPlaces: [] });
   }
 
   function handleViewChange(next: "plan" | "catalog") {
@@ -553,20 +741,20 @@ export default function PlannerApp({
   function handleClearSelected() {
     if (!selectedPlaces.length) return;
     setSelectedPlaces([]);
-    setToast("已清空自选景点，下次排线会恢复自动选点。");
+    setToast("已清空自选景点，下次安排会恢复自动选点。");
   }
 
   function handlePlanSelected() {
     if (!selectedPlaces.length) return;
     const count = selectedPlaces.length;
     setView("plan");
-    setToast(`已锁定 ${count} 个自选景点，正在按位置分组排线。`);
+    setToast(`已锁定 ${count} 个自选景点，正在按位置分组安排。`);
     window.setTimeout(() => {
       document
         .getElementById("trip-map")
         ?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 80);
-    void requestPlan({ selectedPlaces });
+    commitChange({ selectedPlaces });
   }
 
   function handleCatalogRefresh() {
@@ -580,7 +768,7 @@ export default function PlannerApp({
   function handleShuffle() {
     const nextSeed = (seed + 1 + Math.floor(Math.random() * 997)) % 2147483646;
     setSeed(nextSeed);
-    void requestPlan({ seed: nextSeed });
+    commitChange({ seed: nextSeed });
   }
 
   function focusStop(placeId: string) {
@@ -588,6 +776,103 @@ export default function PlannerApp({
       placeId,
       nonce: (previous?.nonce ?? 0) + 1,
     }));
+  }
+
+  async function handleShare() {
+    const url = buildShareUrl(currentRecipe());
+    const ok = await copyText(url);
+    setToast(
+      ok
+        ? "链接已复制。朋友打开就是这一版，刷新也不会丢。"
+        : "复制失败，可以从地址栏手动复制。",
+    );
+  }
+
+  async function handleCopyGuide() {
+    if (!plan) return;
+    const text = formatPlanText(
+      plan,
+      hotel?.name ?? mapHotel.name,
+      buildShareUrl(currentRecipe()),
+    );
+    const ok = await copyText(text);
+    setToast(
+      ok
+        ? "行程已复制成文字，可以直接粘到微信或备忘录。"
+        : "复制失败，请换个浏览器再试。",
+    );
+  }
+
+  /** 从当前行程里取出某个点位的完整对象，供锁定与替换使用。 */
+  function placeOf(dayIndex: number, placeId: string): Place | undefined {
+    return plan?.days
+      .find((item) => item.index === dayIndex)
+      ?.stops.find((stop) => stop.place.id === placeId)?.place;
+  }
+
+  function handleToggleLock(dayIndex: number, placeId: string) {
+    const already = lockedPlaces.some(
+      (item) => item.day === dayIndex && item.place.id === placeId,
+    );
+    if (already) {
+      setLockedPlaces((previous) =>
+        previous.filter(
+          (item) => !(item.day === dayIndex && item.place.id === placeId),
+        ),
+      );
+      setToast("已解除锁定，下次重排可能会换掉这个点。");
+      return;
+    }
+    const place = placeOf(dayIndex, placeId);
+    if (!place) return;
+    setLockedPlaces((previous) => [...previous, { place, day: dayIndex }]);
+    // 解锁和上锁都不立刻重排：用户看到的是「标记」，真正的重排发生在换一版或改偏好时。
+    setToast(`已锁定「${place.name}」，换一版时会留在第 ${dayIndex} 天。`);
+  }
+
+  function handleReplaceStop(dayIndex: number, placeId: string) {
+    const place = placeOf(dayIndex, placeId);
+    const nextExclude = excludeIds.includes(placeId)
+      ? excludeIds
+      : [...excludeIds, placeId];
+    const nextLocked = lockedPlaces.filter(
+      (item) => item.place.id !== placeId,
+    );
+    setExcludeIds(nextExclude);
+    setLockedPlaces(nextLocked);
+    setToast(place ? `正在换掉「${place.name}」…` : "正在换一个点位…");
+    void requestPlan({
+      excludeIds: nextExclude,
+      lockedPlaces: nextLocked,
+      slimDays,
+    });
+  }
+
+  function handleRemoveStop(dayIndex: number, placeId: string) {
+    const place = placeOf(dayIndex, placeId);
+    const nextExclude = excludeIds.includes(placeId)
+      ? excludeIds
+      : [...excludeIds, placeId];
+    const nextLocked = lockedPlaces.filter(
+      (item) => item.place.id !== placeId,
+    );
+    const nextSlim: Record<number, number> = {
+      ...slimDays,
+      [dayIndex]: Math.min(4, (slimDays[dayIndex] ?? 0) + 1),
+    };
+    setExcludeIds(nextExclude);
+    setLockedPlaces(nextLocked);
+    setSlimDays(nextSlim);
+    setToast(
+      place
+        ? `已移除「${place.name}」，第 ${dayIndex} 天会少排一个点。`
+        : "已移除这个点位。",
+    );
+    void requestPlan({
+      excludeIds: nextExclude,
+      lockedPlaces: nextLocked,
+      slimDays: nextSlim,
+    });
   }
 
   function handleFocusStop(_dayIndex: number, placeId: string) {
@@ -668,12 +953,15 @@ export default function PlannerApp({
 
       <main className="mx-auto w-full max-w-[1560px] px-3 pb-24 pt-3 sm:px-4 lg:px-6 lg:pb-8">
         <div className="grid grid-cols-1 gap-3.5 lg:grid-cols-[392px_minmax(0,1fr)] lg:items-start">
+          {/* 手机上首次向导放在最前面：地图这时还是空的，先让人把三件事选完。 */}
           <aside
             className={cn(
               "order-3 lg:order-none lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-stretch",
-              prefsOpen
-                ? "max-lg:fixed max-lg:inset-0 max-lg:z-50 max-lg:overflow-y-auto max-lg:overscroll-contain max-lg:bg-paper max-lg:px-3 max-lg:pb-28"
-                : "max-lg:hidden",
+              guideActive
+                ? "order-1 max-lg:block"
+                : prefsOpen
+                  ? "max-lg:fixed max-lg:inset-0 max-lg:z-50 max-lg:overflow-y-auto max-lg:overscroll-contain max-lg:bg-paper max-lg:px-3 max-lg:pb-28"
+                  : "max-lg:hidden",
             )}
           >
             <div className="scroll-thin lg:sticky lg:top-[68px] lg:max-h-[calc(100vh-84px)] lg:overflow-y-auto lg:pr-1">
@@ -714,6 +1002,9 @@ export default function PlannerApp({
                 picking={picking}
                 liveData={liveData}
                 hasPlan={Boolean(plan)}
+                guideStep={guideActive ? guideStep : null}
+                onGuideStep={setGuideStep}
+                onGuideDone={finishGuide}
                 fixedCount={fixedPlaces.length}
                 guideResetKey={guideResetKey}
                 onCityChange={handleCityChange}
@@ -740,7 +1031,10 @@ export default function PlannerApp({
 
           <div
             id="trip-map"
-            className="order-1 h-[50vh] min-h-[340px] max-h-[560px] scroll-mt-[62px] lg:order-none lg:col-start-2 lg:row-start-1 lg:h-[460px] lg:max-h-none"
+            className={cn(
+              "h-[50vh] min-h-[340px] max-h-[560px] scroll-mt-[62px] lg:order-none lg:col-start-2 lg:row-start-1 lg:h-[460px] lg:max-h-none",
+              guideActive ? "order-2" : "order-1",
+            )}
           >
             <MapView
               hotel={mapHotel}
@@ -760,7 +1054,12 @@ export default function PlannerApp({
             />
           </div>
 
-          <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-2">
+          <div
+            className={cn(
+              "lg:order-none lg:col-start-2 lg:row-start-2",
+              guideActive ? "order-3" : "order-2",
+            )}
+          >
             <div className="mb-2 flex w-fit items-center gap-1 rounded-full border border-line/70 bg-card/70 p-1">
               <button
                 type="button"
@@ -825,6 +1124,12 @@ export default function PlannerApp({
                 onFocusStop={handleFocusStop}
                 onShuffle={handleShuffle}
                 onGenerate={() => void requestPlan()}
+                lockedIds={lockedPlaces.map((item) => item.place.id)}
+                onToggleLock={handleToggleLock}
+                onReplaceStop={handleReplaceStop}
+                onRemoveStop={handleRemoveStop}
+                onShare={handleShare}
+                onCopyGuide={handleCopyGuide}
               />
             ) : (
               <PlaceCatalog
@@ -871,7 +1176,7 @@ export default function PlannerApp({
             >
               <Icon name="route" size={14} />
               {busy
-                ? "排线中…"
+                ? "安排中…"
                 : selectedPlaces.length
                   ? `排已选 ${selectedPlaces.length} 个`
                   : "先选几个景点"}

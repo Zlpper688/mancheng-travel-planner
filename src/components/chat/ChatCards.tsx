@@ -280,7 +280,7 @@ function PartyCard({
       {stepper("儿童", children, 0, 9, setChildren)}
       {stepper("老人（60 岁以上）", seniors, 0, 9, setSeniors)}
       {total < 1 ? (
-        <p className="text-[11px] text-ink-faint">至少要有 1 位同行者才能排线。</p>
+        <p className="text-[11px] text-ink-faint">至少要有 1 位同行者才能开始安排。</p>
       ) : null}
       <button
         type="button"
@@ -516,7 +516,7 @@ function HotelCard({
       ) : null}
       <p className="text-[10.5px] leading-relaxed text-ink-faint">
         {draft.hotelUndecided
-          ? "当前：还没定，排线时会按景点分布推荐落脚片区"
+          ? "当前：还没定，安排时会按景点分布推荐落脚片区"
           : `当前：${draft.hotel.name}${
               draft.hotel.name.includes("市中心") ? "（默认落脚点）" : ""
             }`}
@@ -594,7 +594,7 @@ function ConfirmCard({
         onClick={onPlan}
         className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-2.5 text-[12.5px] text-paper transition hover:bg-ink/90 disabled:opacity-40"
       >
-        {planning ? "正在排线…" : "开始排线"}
+        {planning ? "正在安排…" : "开始安排"}
         {planning ? null : <Icon name="route" size={13} />}
       </button>
     </div>

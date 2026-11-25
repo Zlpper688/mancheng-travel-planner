@@ -192,7 +192,8 @@ export const QUICK_CITIES: CityOption[] = [
   { name: "厦门", lat: 24.456, lng: 118.073, address: "福建省厦门市" },
   { name: "杭州", lat: 30.274, lng: 120.155, address: "浙江省杭州市" },
   { name: "青岛", lat: 36.067, lng: 120.383, address: "山东省青岛市" },
-  { name: "成都", lat: 30.573, lng: 104.067, address: "四川省成都市" },
+  // 30.573 偏双流方向，比天府广场南移约 9 km，地图与检索会整体往南偏。
+  { name: "成都", lat: 30.657, lng: 104.066, address: "四川省成都市" },
   { name: "三亚", lat: 18.253, lng: 109.512, address: "海南省三亚市" },
   { name: "北京", lat: 39.904, lng: 116.407, address: "北京市" },
 ];

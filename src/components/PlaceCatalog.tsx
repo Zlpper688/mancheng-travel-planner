@@ -263,7 +263,7 @@ export default function PlaceCatalog({
               </span>
             </>
           ) : (
-            "勾选想去的景点，再让漫城为它们排线"
+            "勾选想去的景点，再让漫城为它们安排路线"
           )}
         </p>
         <div className="ml-auto flex items-center gap-1.5">
@@ -283,7 +283,7 @@ export default function PlaceCatalog({
             className="flex items-center gap-1.5 rounded-full bg-accent px-3.5 py-1.5 text-[12px] font-medium text-paper transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Icon name="route" size={12} />
-            用这些景点排线
+            用这些景点安排路线
           </button>
         </div>
       </div>

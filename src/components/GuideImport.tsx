@@ -578,7 +578,7 @@ export default function GuideImport({
                   className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-[12px] text-paper transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Icon name="route" size={12} />
-                  {appliedCount > 0 ? "重新采用" : "按攻略排线"}
+                  {appliedCount > 0 ? "重新采用" : "按攻略安排"}
                 </button>
               </div>
             </div>

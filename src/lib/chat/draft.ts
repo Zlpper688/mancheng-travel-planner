@@ -208,7 +208,7 @@ const STEP_CARDS: Record<
   party: {
     kind: "party",
     title: "几个人一起？",
-    hint: "有孩子或老人请一并勾上，排线会自动少走路、多留休息",
+    hint: "有孩子或老人请一并勾上，安排会自动少走路、多留休息",
   },
   style: {
     kind: "style",
@@ -232,7 +232,7 @@ const STEP_CARDS: Record<
   },
   confirm: {
     kind: "confirm",
-    title: "信息齐了，开始排线？",
+    title: "信息齐了，开始安排？",
     hint: "排好后地图按天着色，手册里有图文",
   },
 };

@@ -8,7 +8,7 @@ import type {
   TransportPref,
 } from "@/lib/types";
 
-// 对话层只负责把旅行约束收齐；坐标、路线、耗时一律由排线引擎给。
+// 对话层只负责把旅行约束收齐；坐标、路线、耗时一律由行程引擎给。
 export interface ChatConfirmed {
   city: boolean;
   date: boolean;

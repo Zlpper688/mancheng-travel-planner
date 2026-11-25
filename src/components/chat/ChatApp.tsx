@@ -175,7 +175,7 @@ function stepPrompt(draft: ChatDraft): { text: string; cards: ChatCard[] } {
       cards: [card],
     };
   }
-  return { text: "信息齐了，确认后我就开始排线。", cards: [card] };
+  return { text: "信息齐了，确认后我就开始安排。", cards: [card] };
 }
 
 const INITIAL_MESSAGES: ChatMessage[] = [
@@ -325,7 +325,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         setAiReason(reason);
         const prompt = stepPrompt(next);
         appendAssistant(
-          `模型暂时没接通（${reason}），先切到向导模式，不影响排线。\n把可用的模型 Key 填进 .env.local 后重启服务，就能切回对话。`,
+          `模型暂时没接通（${reason}），先切到向导模式，不影响安排。\n把可用的模型 Key 填进 .env.local 后重启服务，就能切回对话。`,
           prompt.cards,
         );
         return;
@@ -349,7 +349,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         const step = wizardStep(resolved);
         if (step === "confirm") {
           appendAssistant(
-            "信息齐了。有必去或不想去的地方吗？没有就直接开始排线。",
+            "信息齐了。有必去或不想去的地方吗？没有就直接开始安排。",
             [cardForStep("confirm", nextId("card"))],
           );
         } else {
@@ -363,7 +363,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       setMode("wizard");
       const prompt = stepPrompt(next);
       appendAssistant(
-        "模型网络没有接通，先切到向导模式，不影响排线。",
+        "模型网络没有接通，先切到向导模式，不影响安排。",
         prompt.cards,
       );
     } finally {
@@ -398,7 +398,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
     }
     if (missing.length) {
       const prompt = stepPrompt(source);
-      appendAssistant(`${missing.join("、")}还没确认，补齐后我再排线。`, prompt.cards);
+      appendAssistant(`${missing.join("、")}还没确认，补齐后我再安排。`, prompt.cards);
       return;
     }
     planAbortRef.current?.abort();
@@ -421,7 +421,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         const message = data.error ?? "生成失败，请稍后再试。";
         setPlanError({ message, hint: data.hint });
         appendAssistant(
-          `排线没有成功：${message}${data.hint ? `（${data.hint}）` : ""}`,
+          `安排没有成功：${message}${data.hint ? `（${data.hint}）` : ""}`,
           [cardForStep("confirm", nextId("card"))],
         );
         return;
@@ -453,7 +453,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
 
   function startPlan() {
     if (planning) return;
-    appendUser("开始排线");
+    appendUser("开始安排");
     void runPlan(draftRef.current);
   }
 
@@ -532,7 +532,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       const data = (await response.json()) as { place?: Place | null };
       if (data.place) hotel = { ...data.place, category: "hotel" };
     } catch {
-      // 识别不了地名就用坐标，不影响排线。
+      // 识别不了地名就用坐标，不影响安排。
     }
     const previous = draftRef.current;
     const next = applyResolvedPatch(previous, { hotel });
@@ -615,7 +615,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       <div className="pointer-events-none absolute left-4 top-4 z-20 lg:hidden">
         <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-line/70 bg-card/92 px-3.5 py-2 shadow-lift backdrop-blur">
           <span className="font-serif text-[15px] tracking-wide text-ink">漫城</span>
-          <span className="text-[10.5px] text-ink-faint">对话排线</span>
+          <span className="text-[10.5px] text-ink-faint">对话定制</span>
           <a
             href="/"
             className="ml-1 rounded-full border border-line px-2.5 py-1 text-[10.5px] text-ink-soft transition hover:border-ink/25 hover:text-ink"
@@ -741,7 +741,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
           {planning ? (
             <div className="flex items-center gap-2 px-1 text-[11px] text-ink-faint">
               <span className="h-1.5 w-1.5 animate-soft-pulse rounded-full bg-amber" />
-              正在排线，第一次会多等一会儿…
+              正在安排，第一次会多等一会儿…
             </div>
           ) : null}
         </div>

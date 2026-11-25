@@ -353,7 +353,8 @@ function genericGuide(
     add(
       "monday",
       "booking",
-      "闭馆日",
+      // 非周一时顶着「闭馆日」标题读起来像 bug，改成中性的预约提示。
+      weekdayOf(day.date) === 1 ? "闭馆日" : "预约与闭馆",
       weekdayOf(day.date) === 1
         ? "今天是周一，多数博物馆闭馆；出发前先看官方公告。"
         : "多数博物馆周一闭馆，热门馆要实名预约，先约再排行程。",

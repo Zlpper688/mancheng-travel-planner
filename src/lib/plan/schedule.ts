@@ -225,12 +225,14 @@ function planRainStart(
     return { startMin: baseStart };
   }
   const morning = rainLoad(weather, baseStart, baseStart + 120);
+  // 1mm 是毛毛雨，不值得把出发推到 11 点——原来只要 0.8mm 就触发，
+  // 一版「充实」行程会因为一场小雨直接从上午十一点开始。
   const wetMorning =
-    morning.mm >= 0.8 || (morning.peakProb >= 65 && morning.mm >= 0.2);
+    morning.mm >= 2.5 || (morning.peakProb >= 70 && morning.mm >= 1.2);
   if (!wetMorning) return { startMin: baseStart };
 
   for (let minute = baseStart + 30; minute <= 13 * 60; minute += 15) {
-    if (minute - baseStart > 90) break;
+    if (minute - baseStart > 60) break;
     const load = rainLoad(weather, minute, minute + 120);
     const drier =
       load.mm <= 0.2 && load.peakProb <= Math.max(35, morning.peakProb - 20);
@@ -651,7 +653,7 @@ function insertMeals(
       lastPlace,
       "meal",
       context.styles,
-      3.6,
+      5.2,
       "dinner",
     );
     if (suggestion) used.add(suggestion.id);
@@ -680,7 +682,7 @@ function insertMeals(
       target,
       "meal",
       context.styles,
-      2.8,
+      4.2,
       "lunch",
     );
     if (suggestion) used.add(suggestion.id);
@@ -703,7 +705,7 @@ function insertMeals(
 
   if (options.cafe && cafeIndex >= 0) {
     const target = midpointTarget(sights, cafeIndex, context.hotel);
-    const cafe = chooseMeal(cafePlaces, used, target, "cafe", context.styles, 2.2);
+    const cafe = chooseMeal(cafePlaces, used, target, "cafe", context.styles, 3.2);
     if (cafe) {
       used.add(cafe.id);
       insertions.push({
@@ -753,7 +755,7 @@ function endOfDayDinner(
     anchor,
     "meal",
     context.styles,
-    3.6,
+    5.2,
     "dinner",
   );
   if (suggestion) used.add(suggestion.id);
@@ -1607,6 +1609,8 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
   let attempt = sightStops;
   const anchorIds = new Set(input.seedDay.anchorIds ?? []);
   const maxDrops = input.seedDay.fixed ? 0 : 2;
+  /** 没有任何一天该在午夜后才回到酒店，哪怕为此再少看一个点。 */
+  const HARD_CEIL = 23 * 60 + 15;
   const closesLate = input.seedDay.places.some((place) => {
     const profile = rhythmOf(input.city, place);
     return profile.nightStreet || profile.sunset;
@@ -1677,7 +1681,8 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
       }
     }
     const overrun = last.endMin - endLimit;
-    if (overrun <= overrunLimit) break;
+    // 远足日原来给到 endMin + 75 + 90 的余量，等于默许过午夜才回酒店。
+    if (overrun <= overrunLimit && last.endMin <= HARD_CEIL) break;
     // 咖啡馆是加分项，不能因为它砍掉景点或拖到很晚，先把它收回来再看。
     if (includeCafe && last.stops.some((stop) => stop.kind === "cafe")) {
       includeCafe = false;
@@ -1685,7 +1690,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
       last = await buildOnce(attempt, context, localUsed, { cafe: false });
       continue;
     }
-    if (drops >= maxDrops) {
+    if (drops >= maxDrops && last.endMin <= HARD_CEIL) {
       warnings.push(`今日行程比较满，回到住处约 ${minutesToTime(last.endMin)}。`);
       break;
     }

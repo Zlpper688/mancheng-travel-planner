@@ -3,7 +3,7 @@ import ChatApp from "@/components/chat/ChatApp";
 import { addDaysISO, todayISOLocal } from "@/lib/geo";
 
 export const metadata: Metadata = {
-  title: "漫城 · 对话排线",
+  title: "漫城 · 对话定制",
 };
 
 export default function ChatPage() {

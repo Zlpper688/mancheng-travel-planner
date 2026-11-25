@@ -18,6 +18,7 @@ import {
   weekdayCN,
 } from "@/lib/geo";
 import type {
+  BudgetItem,
   DayPlan,
   DayWeather,
   HourlyPoint,
@@ -47,6 +48,16 @@ export interface PlanPanelProps {
   onActiveDay: (day: number | "all") => void;
   onFocusStop: (day: number, placeId: string) => void;
   onShuffle: () => void;
+  /** 已锁定的点位 id，重排时这些点必须留在原定的那一天。 */
+  lockedIds?: string[];
+  /** 单点操作是可选的：对话里的手册视图不提供编辑，就不显示按钮。 */
+  onToggleLock?: (day: number, placeId: string) => void;
+  onReplaceStop?: (day: number, placeId: string) => void;
+  onRemoveStop?: (day: number, placeId: string) => void;
+  /** 复制当前这一版的分享链接。 */
+  onShare?: () => void;
+  /** 把行程复制成可直接粘贴的纯文本。 */
+  onCopyGuide?: () => void;
   onGenerate: () => void;
 }
 
@@ -248,13 +259,21 @@ function StopRow({
   day,
   number,
   active,
+  locked,
   onFocus,
+  onToggleLock,
+  onReplace,
+  onRemove,
 }: {
   stop: StopPlan;
   day: DayPlan;
   number?: number;
   active: boolean;
+  locked: boolean;
   onFocus: (placeId: string) => void;
+  onToggleLock?: () => void;
+  onReplace?: () => void;
+  onRemove?: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const meal = stop.kind !== "sight";
@@ -275,6 +294,7 @@ function StopRow({
       className={cn(
         "group w-full cursor-pointer rounded-xl border border-line/60 bg-card px-3.5 py-3 text-left transition hover:border-ink/20 hover:shadow-[0_10px_24px_-20px_rgba(35,42,36,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40",
         hero && !active && "border-amber/40 bg-amber-soft/15",
+        locked && !active && "border-jade/45 ring-1 ring-jade/15",
         active && "border-accent/55 bg-accent-soft/20 ring-1 ring-accent/20",
       )}
     >
@@ -309,6 +329,12 @@ function StopRow({
               <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
                 <Icon name="star" size={8} />
                 主景
+              </span>
+            ) : null}
+            {locked ? (
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[9.5px] text-jade">
+                <Icon name="lock" size={8} />
+                锁定
               </span>
             ) : null}
           </span>
@@ -392,6 +418,59 @@ function StopRow({
             </button>
           ) : null}
         </div>
+      ) : null}
+      {/* 常驻显示：藏在悬停背后的操作等于没有，用户要先看见「能改」才敢改。
+          对话里的只读手册不给按钮，免得点了没反应。 */}
+      {onReplace && onRemove ? (
+      <div className="mt-2 flex flex-wrap items-center gap-1 pl-8">
+        {stop.kind === "sight" && onToggleLock ? (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onToggleLock();
+            }}
+            className={cn(
+              "inline-flex items-center gap-1 rounded-full border px-2 py-1 text-[11px] transition",
+              locked
+                ? "border-jade/45 bg-jade-soft text-jade"
+                : "border-line bg-card text-ink-faint hover:border-ink/25 hover:text-ink",
+            )}
+            title={
+              locked
+                ? "解除锁定，之后重排可能会换掉它"
+                : "锁定这个点，换一版时保留在原定那天"
+            }
+          >
+            <Icon name={locked ? "lock" : "unlock"} size={10} />
+            {locked ? "已锁定" : "锁定"}
+          </button>
+        ) : null}
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onReplace();
+          }}
+          className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2 py-1 text-[11px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+          title="换一个同类点位，其余行程尽量不动"
+        >
+          <Icon name="shuffle" size={10} />
+          换一个
+        </button>
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            onRemove();
+          }}
+          className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2 py-1 text-[11px] text-ink-faint transition hover:border-amber/50 hover:text-amber"
+          title="从行程里移除，当天会少排一个点"
+        >
+          <Icon name="x" size={10} />
+          移除
+        </button>
+      </div>
       ) : null}
     </div>
   );
@@ -617,12 +696,20 @@ function DayTimeline({
   day,
   focusPlaceId,
   hotelName,
+  lockedIds,
   onFocusStop,
+  onToggleLock,
+  onReplaceStop,
+  onRemoveStop,
 }: {
   day: DayPlan;
   focusPlaceId?: string | null;
   hotelName: string;
+  lockedIds: string[];
   onFocusStop: (day: number, placeId: string) => void;
+  onToggleLock?: (day: number, placeId: string) => void;
+  onReplaceStop?: (day: number, placeId: string) => void;
+  onRemoveStop?: (day: number, placeId: string) => void;
 }) {
   const firstLeg = day.legs[0];
   const returnLeg = day.legs[day.legs.length - 1];
@@ -688,7 +775,23 @@ function DayTimeline({
                   day={day}
                   number={numbers.get(stop.id)}
                   active={focusPlaceId === stop.place.id}
+                  locked={lockedIds.includes(stop.place.id)}
                   onFocus={(placeId) => onFocusStop(day.index, placeId)}
+                  onToggleLock={
+                    onToggleLock
+                      ? () => onToggleLock(day.index, stop.place.id)
+                      : undefined
+                  }
+                  onReplace={
+                    onReplaceStop
+                      ? () => onReplaceStop(day.index, stop.place.id)
+                      : undefined
+                  }
+                  onRemove={
+                    onRemoveStop
+                      ? () => onRemoveStop(day.index, stop.place.id)
+                      : undefined
+                  }
                 />
               </div>
             </div>
@@ -880,6 +983,96 @@ function DayCard({
   );
 }
 
+/** 预算一项一行：收起只给总额，展开才给人均、每天折算与算法口径。
+ *  一屏塞满注释反而没人看，所以默认收起。 */
+function BudgetRow({
+  item,
+  travelers,
+  days,
+  nights,
+  totalMax,
+  open,
+  onToggle,
+}: {
+  item: BudgetItem;
+  travelers: number;
+  days: number;
+  nights: number;
+  totalMax: number;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  const share = Math.min(
+    100,
+    Math.round((item.max / Math.max(1, totalMax)) * 100),
+  );
+  const perPerson = moneyRange(
+    item.min / Math.max(1, travelers),
+    item.max / Math.max(1, travelers),
+  );
+  // 住宿按晚摊，其余按天摊，否则「每天 ¥347」会让人以为三晚只要一千。
+  const hotelUnit = item.key === "hotel" && nights > 0;
+  const unitDays = hotelUnit ? nights : Math.max(1, days);
+  const perDay = moneyRange(item.min / unitDays, item.max / unitDays);
+  const color = BUDGET_COLORS[item.key] ?? "#8b9187";
+  return (
+    <div className="rounded-xl transition hover:bg-paper/40">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="w-full rounded-xl px-1.5 py-1.5 text-left"
+      >
+        <span className="flex items-baseline gap-2 text-[12px]">
+          <span className="shrink-0 font-medium text-ink">{item.label}</span>
+          <span className="truncate text-[10.5px] text-ink-faint">
+            {item.detail}
+          </span>
+          <span className="ml-auto shrink-0 tabular-nums text-ink-soft">
+            {moneyRange(item.min, item.max)}
+          </span>
+          <Icon
+            name="chevron-down"
+            size={13}
+            className={cn(
+              "shrink-0 self-center text-ink-faint transition",
+              open && "rotate-180",
+            )}
+          />
+        </span>
+        <span className="mt-1 block h-1 overflow-hidden rounded-full bg-paper">
+          <span
+            className="block h-full rounded-full"
+            style={{ width: `${Math.max(4, share)}%`, background: color }}
+          />
+        </span>
+      </button>
+      {open ? (
+        <div
+          className="mb-1 ml-1.5 space-y-1 border-l-2 pl-2.5 text-[11px] leading-relaxed text-ink-soft"
+          style={{ borderColor: color }}
+        >
+          <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+            <span>
+              占总额约{" "}
+              <span className="tabular-nums text-ink">{share}%</span>
+            </span>
+            <span>
+              人均{" "}
+              <span className="tabular-nums text-ink">{perPerson}</span>
+            </span>
+            <span>
+              {hotelUnit ? "每晚" : "每天"}{" "}
+              <span className="tabular-nums text-ink">{perDay}</span>
+            </span>
+          </p>
+          {item.note ? <p className="text-ink-faint">{item.note}</p> : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function PlanPanel({
   plan,
   loading,
@@ -891,8 +1084,16 @@ export default function PlanPanel({
   onFocusStop,
   onShuffle,
   onGenerate,
+  lockedIds = [],
+  onToggleLock,
+  onReplaceStop,
+  onRemoveStop,
+  onShare,
+  onCopyGuide,
 }: PlanPanelProps) {
   const [tab, setTab] = useState<Tab>("guide");
+  /** 展开的预算条目：一次只看一项细节，避免把面板塞满。 */
+  const [openBudget, setOpenBudget] = useState<string | null>(null);
 
   useEffect(() => {
     if (!plan) setTab("guide");
@@ -978,7 +1179,7 @@ export default function PlanPanel({
         ) : null}
 
         {plan ? (
-          <div className="mt-3 flex gap-1">
+          <div className="mt-3 flex items-center gap-1">
             {TABS.map((item) => (
               <button
                 key={item.id}
@@ -997,12 +1198,36 @@ export default function PlanPanel({
                 ) : null}
               </button>
             ))}
-            {loading ? (
-              <span className="ml-auto inline-flex items-center gap-1.5 pb-2 text-[11.5px] text-ink-faint">
-                <Spinner className="h-3 w-3 text-accent" />
-                重排中
-              </span>
-            ) : null}
+            <div className="ml-auto flex items-center gap-1.5 pb-1.5">
+              {onShare ? (
+              <button
+                type="button"
+                onClick={onShare}
+                title="复制这一版的链接，朋友打开就是同样的行程"
+                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[11px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+              >
+                <Icon name="link" size={11} />
+                分享
+              </button>
+              ) : null}
+              {onCopyGuide ? (
+              <button
+                type="button"
+                onClick={onCopyGuide}
+                title="把行程复制成文字，直接粘到微信或备忘录"
+                className="inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[11px] text-ink-faint transition hover:border-ink/25 hover:text-ink"
+              >
+                <Icon name="copy" size={11} />
+                复制
+              </button>
+              ) : null}
+              {loading ? (
+                <span className="inline-flex items-center gap-1 text-[11px] text-ink-faint">
+                  <Spinner className="h-3 w-3 text-accent" />
+                  重排中
+                </span>
+              ) : null}
+            </div>
           </div>
         ) : null}
       </div>
@@ -1148,7 +1373,11 @@ export default function PlanPanel({
                 day={day}
                 focusPlaceId={focus?.placeId ?? null}
                 hotelName={stayName}
+                lockedIds={lockedIds}
                 onFocusStop={onFocusStop}
+                onToggleLock={onToggleLock}
+                onReplaceStop={onReplaceStop}
+                onRemoveStop={onRemoveStop}
               />
             )}
           </div>
@@ -1172,43 +1401,31 @@ export default function PlanPanel({
               </span>
             </div>
 
-            <div className="mt-4 space-y-3">
+            <p className="mt-3 text-[10.5px] text-ink-faint">
+              点任意一项，展开看人均、每天折算和算法口径
+            </p>
+
+            <div className="mt-2 space-y-1">
               {plan.budget.items.map((item) => (
-                <div key={item.key}>
-                  <div className="flex items-baseline gap-2 text-[12px]">
-                    <span className="shrink-0 font-medium text-ink">
-                      {item.label}
-                    </span>
-                    <span className="truncate text-[10.5px] text-ink-faint">
-                      {item.detail}
-                    </span>
-                    <span className="ml-auto shrink-0 tabular-nums text-ink-soft">
-                      {moneyRange(item.min, item.max)}
-                    </span>
-                  </div>
-                  <div className="mt-1 h-1 overflow-hidden rounded-full bg-paper">
-                    <span
-                      className="block h-full rounded-full"
-                      style={{
-                        width: `${Math.max(
-                          4,
-                          Math.round((item.max / Math.max(1, plan.budget.totalMax)) * 100),
-                        )}%`,
-                        background: BUDGET_COLORS[item.key] ?? "#8b9187",
-                      }}
-                    />
-                  </div>
-                  {item.note ? (
-                    <p className="mt-1 text-[10.5px] leading-relaxed text-ink-faint">
-                      {item.note}
-                    </p>
-                  ) : null}
-                </div>
+                <BudgetRow
+                  key={item.key}
+                  item={item}
+                  travelers={plan.budget.travelers}
+                  days={plan.meta.days}
+                  nights={Math.max(0, plan.meta.days - 1)}
+                  totalMax={plan.budget.totalMax}
+                  open={openBudget === item.key}
+                  onToggle={() =>
+                    setOpenBudget((previous) =>
+                      previous === item.key ? null : item.key,
+                    )
+                  }
+                />
               ))}
             </div>
 
             <p className="mt-4 rounded-lg bg-paper/70 px-2.5 py-2 text-[10.5px] leading-relaxed text-ink-faint">
-              预算按{plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前
+              预算按 {plan.meta.travelers} 人、{plan.meta.days} 天计算。住宿按出发前{" "}
               {Math.max(0, plan.meta.days - 1)} 晚计
               {plan.meta.holiday ? "，已计入假期酒店上浮" : ""}
               ；没有真实标价的餐食与门票按同档中位数补齐，因此给出区间。

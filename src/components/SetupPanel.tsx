@@ -6,6 +6,7 @@ import {
   PACES,
   QUICK_CITIES,
   STYLES,
+  STYLE_LABELS,
   TRANSPORT_OPTIONS,
 } from "@/lib/constants";
 import { DEMO_HOTELS } from "@/content/demo-xiamen";
@@ -46,6 +47,10 @@ export interface SetupPanelProps {
   picking: boolean;
   liveData: boolean;
   hasPlan: boolean;
+  /** 首次 3 步向导当前步；null 表示不引导，显示全部区块。 */
+  guideStep: 1 | 2 | 3 | null;
+  onGuideStep: (step: 1 | 2 | 3) => void;
+  onGuideDone: () => void;
   fixedCount: number;
   guideResetKey: number;
   onCityChange: (city: CityOption) => void;
@@ -120,6 +125,68 @@ function SearchList({
   );
 }
 
+const GUIDE_COPY: Record<1 | 2 | 3, { title: string; hint: string }> = {
+  1: {
+    title: "去哪、住哪",
+    hint: "先定城市和落脚点。住处还没定也没关系，漫城会按景点分布推荐片区。",
+  },
+  2: {
+    title: "怎么玩",
+    hint: "玩几天、什么节奏、想逛什么。这里的每个选择都能事后再改。",
+  },
+  3: {
+    title: "确认生成",
+    hint: "有现成游记可以粘贴复刻；没有就直接生成，第一版只是起点。",
+  },
+};
+
+function GuideBar({
+  step,
+  onStep,
+  onDone,
+}: {
+  step: 1 | 2 | 3;
+  onStep: (step: 1 | 2 | 3) => void;
+  onDone: () => void;
+}) {
+  const copy = GUIDE_COPY[step];
+  return (
+    <div className="rounded-2xl border border-accent/25 bg-accent-soft/40 p-3">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-[11px] tracking-[0.12em] text-accent">
+            第 {step} 步 / 3 · {copy.title}
+          </p>
+          <p className="mt-1 text-[12px] leading-relaxed text-ink-soft">
+            {copy.hint}
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onDone}
+          className="shrink-0 whitespace-nowrap text-[11px] text-ink-faint underline-offset-2 transition hover:text-ink hover:underline"
+        >
+          跳过
+        </button>
+      </div>
+      <div className="mt-2.5 flex items-center gap-1.5">
+        {([1, 2, 3] as const).map((item) => (
+          <button
+            key={item}
+            type="button"
+            aria-label={`回到第 ${item} 步`}
+            onClick={() => onStep(item)}
+            className={cn(
+              "h-1 flex-1 rounded-full transition",
+              item <= step ? "bg-accent/70" : "bg-line",
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function SetupPanel({
   city,
   hotel,
@@ -138,6 +205,9 @@ export default function SetupPanel({
   picking,
   liveData,
   hasPlan,
+  guideStep,
+  onGuideStep,
+  onGuideDone,
   fixedCount,
   guideResetKey,
   onCityChange,
@@ -170,6 +240,9 @@ export default function SetupPanel({
   const [hotelError, setHotelError] = useState<string | null>(null);
   const [hotelOpen, setHotelOpen] = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
+
+  const guided = guideStep !== null;
+  const show = (step: 1 | 2 | 3) => !guided || guideStep === step;
 
   useEffect(() => {
     const query = cityQuery.trim();
@@ -253,7 +326,7 @@ export default function SetupPanel({
   const weekend = isWeekend(date);
   const demoCity = isDemoCity(city.name);
   const minDate = todayISOLocal();
-  // 攻略解析需要一个地理锚点；住处未定时用城市中心，不影响排线用的落脚推荐。
+  // 攻略解析需要一个地理锚点；住处未定时用城市中心，不影响安排用的落脚推荐。
   const guideHotel = useMemo<Place>(
     () =>
       hotel ?? {
@@ -297,7 +370,16 @@ export default function SetupPanel({
 
   return (
     <div className="space-y-5 rounded-[26px] border border-line/70 bg-card/60 p-4 shadow-soft backdrop-blur-sm sm:p-5">
-      <Section no="01" title="目的地" hint="任意城市">
+      {guideStep !== null ? (
+        <GuideBar step={guideStep} onStep={onGuideStep} onDone={onGuideDone} />
+      ) : null}
+
+      <Section
+        no="01"
+        title="目的地"
+        hint="任意城市"
+        className={cn(!show(1) && "hidden")}
+      >
         <div className="rounded-2xl border border-line bg-card p-3.5">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
@@ -358,9 +440,14 @@ export default function SetupPanel({
         </div>
       </Section>
 
-      <div className="h-px bg-line/60" />
+      <div className={cn("h-px bg-line/60", !show(1) && "hidden")} />
 
-      <Section no="02" title="落脚点" hint="没定也可以先排">
+      <Section
+        no="02"
+        title="落脚点"
+        hint="没定也可以先排"
+        className={cn(!show(1) && "hidden")}
+      >
         {hotel ? (
           <div className="rounded-xl border border-line bg-card px-3 py-2.5">
             <div className="flex items-start gap-2.5">
@@ -482,9 +569,14 @@ export default function SetupPanel({
         ) : null}
       </Section>
 
-      <div className="h-px bg-line/60" />
+      <div className={cn("h-px bg-line/60", !show(2) && "hidden")} />
 
-      <Section no="03" title="怎么玩" hint="自动重排">
+      <Section
+        no="03"
+        title="怎么玩"
+        hint={guided ? "选完再生成" : "自动重排"}
+        className={cn(!show(2) && "hidden")}
+      >
         <div className="space-y-1.5">
           <Stepper
             label="游玩天数"
@@ -518,7 +610,7 @@ export default function SetupPanel({
             </div>
           ) : weekend ? (
             <p className="px-1 text-[10.5px] leading-relaxed text-ink-faint">
-              周末热门点位会排队，排线已按人流系数放宽路上的时间。
+              周末热门点位会排队，行程已按人流系数放宽路上的时间。
             </p>
           ) : null}
         </div>
@@ -769,9 +861,14 @@ export default function SetupPanel({
         ) : null}
       </Section>
 
-      <div className="h-px bg-line/60" />
+      <div className={cn("h-px bg-line/60", !show(3) && "hidden")} />
 
-      <Section no="04" title="现成攻略" hint={fixedCount ? `已锁 ${fixedCount} 点` : "可选"}>
+      <Section
+        no="04"
+        title="现成攻略"
+        hint={fixedCount ? `已锁 ${fixedCount} 点` : "可选"}
+        className={cn(!show(3) && "hidden")}
+      >
         <GuideImport
           city={city.name}
           hotel={guideHotel}
@@ -783,26 +880,90 @@ export default function SetupPanel({
         />
       </Section>
 
+      {guided && guideStep === 3 ? (
+        <div className="rounded-xl border border-line bg-card/70 px-3 py-2.5">
+          <p className="text-[10.5px] tracking-[0.12em] text-ink-faint">
+            这一版的前提
+          </p>
+          <ul className="mt-1 space-y-0.5 text-[12px] leading-relaxed text-ink-soft">
+            <li>
+              {city.name} · {hotel ? hotel.name : "落脚点待推荐"}
+            </li>
+            <li>
+              {days} 天 · {date} 起 · {PACES[pace].label}节奏 ·{" "}
+              {adults + children} 人
+            </li>
+            <li className="truncate">
+              {styles.map((style) => STYLE_LABELS[style]).join("、")}
+              {" · "}
+              {BUDGET_TIERS[budgetTier].label}预算
+            </li>
+          </ul>
+        </div>
+      ) : null}
+
       <div className="space-y-2 pt-1">
-        <button
-          type="button"
-          onClick={onGenerate}
-          disabled={busy}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3.5 text-[14px] font-medium tracking-wide text-paper shadow-lift transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {busy ? (
-            <Spinner className="h-3.5 w-3.5" />
-          ) : (
-            <Icon name="sparkles" size={15} />
-          )}
-          {busy
-            ? "正在重新排线…"
-            : hasPlan
-              ? "按当前偏好重新生成"
-              : "生成我的行程"}
-        </button>
+        {guided ? (
+          <div className="flex items-center gap-2">
+            {guideStep > 1 ? (
+              <button
+                type="button"
+                onClick={() => onGuideStep((guideStep - 1) as 1 | 2)}
+                className="shrink-0 rounded-2xl border border-line bg-card px-4 py-3.5 text-[13px] text-ink-soft transition hover:border-ink/25 hover:text-ink"
+              >
+                上一步
+              </button>
+            ) : null}
+            {guideStep < 3 ? (
+              <button
+                type="button"
+                onClick={() => onGuideStep((guideStep + 1) as 2 | 3)}
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-2xl bg-accent px-4 py-3.5 text-[14px] font-medium tracking-wide text-paper shadow-lift transition hover:bg-accent-deep"
+              >
+                {guideStep === 1 ? "下一步：怎么玩" : "下一步：确认"}
+                <Icon name="chevron-right" size={13} />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={onGenerate}
+                disabled={busy}
+                className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3.5 text-[14px] font-medium tracking-wide text-paper shadow-lift transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {busy ? (
+                  <Spinner className="h-3.5 w-3.5" />
+                ) : (
+                  <Icon name="sparkles" size={15} />
+                )}
+                {busy ? "正在安排…" : "生成我的行程"}
+              </button>
+            )}
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={onGenerate}
+            disabled={busy}
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3.5 text-[14px] font-medium tracking-wide text-paper shadow-lift transition hover:bg-accent-deep disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {busy ? (
+              <Spinner className="h-3.5 w-3.5" />
+            ) : (
+              <Icon name="sparkles" size={15} />
+            )}
+            {busy
+              ? "正在重新安排…"
+              : hasPlan
+                ? "按当前偏好重新生成"
+                : "生成我的行程"}
+          </button>
+        )}
         <p className="text-center text-[10.5px] leading-relaxed text-ink-faint">
-          改动任一偏好都会自动重排；想保留设置时，也可以手动再生成一次。
+          {guided
+            ? guideStep === 3
+              ? "生成后每一站都能锁定、替换或移除，改完会立刻重排。"
+              : "只有三步。跳过也没关系，完整设置一直都在这里。"
+            : "改动任一偏好都会自动重排；想保留设置时，也可以手动再生成一次。"}
         </p>
       </div>
 

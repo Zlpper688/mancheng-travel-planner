@@ -437,6 +437,14 @@ export function rhythmTravelMinutes(
   );
 }
 
+/** 一天最晚几点该出门。再晚就不是「充实」，是把整个上午扔掉。
+ *  这里只约束「算法为了少等待而主动推迟」，不约束点位本身开门晚。 */
+export const LATEST_START: Record<PaceId, number> = {
+  chill: 10 * 60 + 30,
+  balanced: 10 * 60,
+  packed: 9 * 60 + 30,
+};
+
 export function startForFirst(
   profile: RhythmProfile,
   pace: PaceId,
@@ -452,7 +460,13 @@ export function startForFirst(
   if (best !== undefined) {
     if (best >= 15 * 60) return Math.max(baseStart, 14 * 60);
     if (best >= 13 * 60) return Math.max(baseStart, 13 * 60);
-    if (best >= 10 * 60 + 30) return Math.max(baseStart, 10 * 60 + 45);
+    if (best >= 10 * 60 + 30) {
+      // 开门偏晚可以等一等，但不能等到午后：等 40 分钟好过丢掉整个上午。
+      return Math.min(
+        Math.max(baseStart, 10 * 60 + 45),
+        Math.max(baseStart, LATEST_START[pace]),
+      );
+    }
   }
   return baseStart;
 }
