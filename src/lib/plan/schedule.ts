@@ -573,10 +573,14 @@ function flexibleMealPlace(
           : suggestion
             ? `这一段留给晚饭：可以先看「${spot}」，吃完再回住处，不必为某家店绕路。`
             : `这一段留给晚饭：在「${spot}」附近挑一家，吃完再回住处，不必为某家店绕路。`;
+  // 标题要说清「这顿在哪吃」，否则四个餐点都叫「午餐」，用户会以为没数据。
+  // 仍然保留「不绑定某一家」的语义：店名只作首选参考，备注里写了可以同片区另挑。
+  const slotLabel = slot === "lunch" ? "午饭" : "晚饭";
+  const where = suggestion?.name ?? (atHotel ? "住处附近" : `${anchor.name}一带`);
   return {
     ...(suggestion ?? anchor),
     id: `flex-${slot}-${context.dayIndex}`,
-    name: slot === "lunch" ? "午餐" : "晚餐",
+    name: `${slotLabel} · ${where}`,
     // 占位用餐点跟着锚点坐标走，但类别必须是餐饮，不能继承酒店/景点类别。
     category: "food",
     note,

@@ -34,8 +34,8 @@ import {
 } from "./select/far";
 import { describeArea, describeTheme } from "./select/narrative";
 import {
-  FAR_MAX_ONE_WAY_MIN,
   closingOnly,
+  farOneWayCapFor,
   isFamous,
   sunTooFar,
   type ScoredPlace,
@@ -550,7 +550,8 @@ export function selectDays(input: SelectInput): SelectResult {
     (item) =>
       item.distance > nearKm &&
       item.distance <= farReachKm(styles, item.place) &&
-      estimateModeMinutes(hotel, item.place, "taxi") <= FAR_MAX_ONE_WAY_MIN,
+      estimateModeMinutes(hotel, item.place, "taxi") <=
+        farOneWayCapFor(input.days, item.place),
   );
   const farAnchors = farCandidates.filter((item) => isFamous(item.place));
   // 普通 OSM attraction 不能算“主城有真景点”：一个环岛、两棵树也会被标成 attraction，
@@ -559,6 +560,12 @@ export function selectDays(input: SelectInput): SelectResult {
   const nearStrong = nearCandidates.filter(
     (item) =>
       (item.place.popularity ?? 0) >= 4.4 || (item.place.rating ?? 0) >= 4.5,
+  ).length;
+  // 只看高分点会误判开放数据城市：OSM 没有高德那套评分，灵隐寺这类真景点
+  // popularity 也就 4.0 上下，全城会被判成「城里没得玩」而被塞一个远足日。
+  // 所以再数一遍城区里到底有多少个可玩点，两个条件都不满足才算稀疏。
+  const nearSights = nearCandidates.filter(
+    (item) => !["food", "cafe", "hotel", "other"].includes(item.place.category),
   ).length;
 
   // 用户手动指定远足日时，把“同城外围、车程够远”的著名点位也纳入锚点，
@@ -577,7 +584,8 @@ export function selectDays(input: SelectInput): SelectResult {
 
   // 3 天经典路线默认只给 1 个远足日；但像驻马店这样主城几乎没有真景点、
   // 名气全在城外的城市，再死守 1 天会把嵖岈山、南海禅寺整批丢掉。
-  const sparseNear = nearStrong < autoDays.length;
+  const sparseNear =
+    nearStrong < autoDays.length && nearSights < autoDays.length * 3;
   // 慢节奏也要给稀疏城市留第二个远足方向：主城只有两座馆时，
   // 硬压成 1 个远足日只会把另一座名寺塞进“就近”日、变成长途折返。
   const farCap =
@@ -593,6 +601,7 @@ export function selectDays(input: SelectInput): SelectResult {
     farAnchors,
     farCap,
     nearStrong,
+    sparseNear,
   );
   const farGroups =
     farCount > 0

@@ -7,6 +7,44 @@ export type ScoredPlace = { place: Place; score: number; distance: number };
 export const FAR_MIN_POPULARITY = 4.15;
 export const FAR_MAX_ONE_WAY_MIN = 110;
 
+/**
+ * 远足日能容忍的单程车程，按行程长度收口。
+ *
+ * 110 分钟是为「专程去黄山」这类长线留的余量，但两天行程里塞一个单程 80 分钟的
+ * 城郊点，等于把半个白天交给公路：实际排出来会变成「一天主城、一天赶路」。
+ * 短行程只在车程可控的范围内找远足点，找不到就老老实实待在城里。
+ */
+export function farOneWayCap(days: number): number {
+  if (days <= 2) return 65;
+  if (days === 3) return 90;
+  return FAR_MAX_ONE_WAY_MIN;
+}
+
+/**
+ * 顶级名录：值得为它专程跑一趟的那种。比 isFlagship 更严——
+ * 「XX国家森林公园」「XX国家湿地公园」在开放数据里满地都是，两天的城市行程
+ * 不该为一个 20 公里外的森林公园把一天交给公路；但黄山、九寨沟这种必须去。
+ *
+ * 只认名录关键词和真实评分：开放数据的 popularity 是「有没有 wikidata」推出来的，
+ * 拿它当名气用会把一堆县级景区也抬成顶级。
+ */
+const PREMIER =
+  /国家风景名胜|世界遗产|世界自然遗产|世界文化遗产|国家公园|5A|五A|全国重点/;
+
+export function isPremier(place: Place): boolean {
+  return PREMIER.test(place.name) || (place.rating ?? 0) >= 4.7;
+}
+
+/**
+ * 单个点位能容忍的单程上限。顶级景区（黄山、九寨沟这类）值得为它多开一段，
+ * 否则「去黄山却不上山」会成为短行程里最荒谬的结果。
+ */
+export function farOneWayCapFor(days: number, place: Place): number {
+  const base = farOneWayCap(days);
+  if (!isPremier(place)) return base;
+  return Math.max(base, 90);
+}
+
 export function isFamous(place: Place): boolean {
   return (
     (place.popularity ?? 0) >= FAR_MIN_POPULARITY ||

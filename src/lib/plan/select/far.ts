@@ -11,6 +11,7 @@ import {
   closingOnly,
   isFamous,
   isFlagship,
+  isPremier,
   sunTooFar,
   type ScoredPlace,
 } from "./shared";
@@ -36,6 +37,7 @@ export function decideFarDays(
   anchors: ScoredPlace[],
   cap = 2,
   nearStrong = autoCount,
+  sparseOverride?: boolean,
 ): number {
   if (autoCount < 1) return 0;
   const hardCap = Math.min(
@@ -48,7 +50,13 @@ export function decideFarDays(
   if (autoCount < 2 || anchors.length === 0) return 0;
   // 市中心只剩社区公园时，宁可把 3 天里的 2 天给城外的名山古寺；
   // 近处本身有足够真景点就只保留 1 个远足日。
-  const sparseNear = nearStrong < autoCount;
+  const sparseNear = sparseOverride ?? nearStrong < autoCount;
+  // 两天以内的短行程：城区景点够玩就不排远足日。
+  // 两天本来只够逛一片，把其中一天交给单程一小时的车程，结果就是「一天主城、一天赶路」。
+  // 反过来，黄山这种名气全在山上的城市 sparseNear 为真，仍然会保留远足日。
+  if (autoCount <= 2 && !sparseNear && !anchors.some((item) => isPremier(item.place))) {
+    return 0;
+  }
   const want =
     anchors.length >= 3 &&
     farPool.length >= capacity * 1.5 &&
