@@ -710,13 +710,17 @@ async function discoverOpen(options: DiscoverOptions): Promise<DiscoverResult> {
 (
   nwr(${bboxText})[tourism~"^(attraction|museum|viewpoint|gallery)$"];
   nwr(${bboxText})[leisure=nature_reserve];
+  nwr(${bboxText})[highway=pedestrian][name];
+  nwr(${bboxText})[place=square][name];
+  nwr(${bboxText})[shop=mall][name];
+  nwr(${bboxText})[historic~"^(monument|memorial|city_gate|archaeological_site)$"][name];
 );
 out center tags 240;`;
   const foodBox = bboxForRadius(center, Math.min(8, radiusKm));
   const foodQuery = `[out:json][timeout:20];
 nwr(${foodBox.south},${foodBox.west},${foodBox.north},${foodBox.east})[amenity~"^(restaurant|cafe|food_court|marketplace)$"];
 out center tags 120;`;
-  const scenicKey = `overpass:scenic:v3:${options.city}:${box.south.toFixed(2)},${box.west.toFixed(2)},${box.north.toFixed(2)},${box.east.toFixed(2)}`;
+  const scenicKey = `overpass:scenic:v4:${options.city}:${box.south.toFixed(2)},${box.west.toFixed(2)},${box.north.toFixed(2)},${box.east.toFixed(2)}`;
 
   const [scenicResult, foodResult, boundary] = await Promise.all([
     cached(

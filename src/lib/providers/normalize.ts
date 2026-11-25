@@ -49,6 +49,13 @@ export function classifyPlace(
   // 文创园、皇家驿站常被 OSM 标成 leisure=park，但游客去的是街区/园区而非绿地。
   if (/驿站|文创园|创意园|艺术区/.test(name)) return "street";
 
+  // 步行街 / 广场 / 商场：「春熙路」「宽窄巷子」「南锣鼓巷」「王府井」「天安门广场」
+  // 在 OSM 里都不是 tourism=attraction，而是 highway=pedestrian / place=square，
+  // 只按 tourism 取点会把一整类城市地标漏掉。
+  if (tags.highway === "pedestrian" || tags.place === "square" || tags.shop === "mall") {
+    return "street";
+  }
+
   if (tags.tourism === "museum" || tags.tourism === "gallery") return "museum";
   if (MUSEUM_RE.test(name)) return "museum";
 

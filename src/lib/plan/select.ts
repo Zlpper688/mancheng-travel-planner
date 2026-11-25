@@ -56,6 +56,11 @@ export interface DaySeed {
 export interface SelectInput {
   sights: Place[];
   hotel: Place;
+  /**
+   * 城市中心。住处未定时用它做「近处 / 远郊」的划分基准——
+   * 拿一个推荐片区当圆心，会把城市另一侧的招牌景点直接判成「远郊」甚至排除。
+   */
+  center?: [number, number];
   days: number;
   pace: PaceId;
   styles: StyleId[];
@@ -519,6 +524,13 @@ export function selectDays(input: SelectInput): SelectResult {
     }
   }
 
+  // 近处 / 远郊的划分基准：住处定了就以住处为圆心（用户真实约束），
+  // 没定住处时改用城市中心——否则一个偏在城西的推荐片区，会把城东的招牌景点
+  // 判成「远郊」，甚至因为超出半径直接排除。
+  const reference: Place = input.center
+    ? { ...hotel, lat: input.center[1], lng: input.center[0] }
+    : hotel;
+
   const scored: ScoredPlace[] = baseSights
     .map((place) => ({
       place,
@@ -536,7 +548,7 @@ export function selectDays(input: SelectInput): SelectResult {
         skipSteep,
         coastal,
       ),
-      distance: placeDistance(hotel, place),
+      distance: placeDistance(reference, place),
     }))
     .filter((item) => Number.isFinite(item.place.lat) && Number.isFinite(item.place.lng))
     .sort((a, b) => b.score - a.score);
@@ -550,7 +562,7 @@ export function selectDays(input: SelectInput): SelectResult {
     (item) =>
       item.distance > nearKm &&
       item.distance <= farReachKm(styles, item.place) &&
-      estimateModeMinutes(hotel, item.place, "taxi") <=
+      estimateModeMinutes(reference, item.place, "taxi") <=
         farOneWayCapFor(input.days, item.place),
   );
   const farAnchors = farCandidates.filter((item) => isFamous(item.place));

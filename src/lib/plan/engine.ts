@@ -97,7 +97,7 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
   };
   const key = [
     "discover",
-    "v8",
+    "v9",
     provider.source,
     input.city,
     center[0].toFixed(3),
@@ -334,6 +334,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const selection = selectDays({
     sights: planSights,
     hotel: base,
+    center: input.center,
     days: input.days,
     pace,
     styles: input.styles,
@@ -363,6 +364,32 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     ),
   );
 
+  // 路线优先：住宿是排线的结果，不该反过来把选点锁在一个点上。
+  // 每天的行程从「离当天点位最近的住宿片区」出发，而不是所有天共用一个基地。
+  const lodgingBases =
+    lodging.plan.status === "recommended" ? lodging.plan.bases : [];
+  const pickDayBase = (anchor: Place): Place => {
+    if (lodgingBases.length < 2) return base;
+    let best = base;
+    let bestKm = Number.POSITIVE_INFINITY;
+    for (const candidate of lodgingBases) {
+      const spot: Place = {
+        ...base,
+        id: `lodging-${candidate.id}`,
+        name: candidate.name,
+        lat: candidate.lat,
+        lng: candidate.lng,
+        category: "hotel",
+      };
+      const km = placeDistance(anchor, spot);
+      if (km < bestKm) {
+        bestKm = km;
+        best = spot;
+      }
+    }
+    return best;
+  };
+
   const weather = await fetchTripWeather(
     selection.days.map((seedDay) => {
       const anchor =
@@ -384,7 +411,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     weatherByDay.set(seedDay.index, core);
     const result = await scheduleDay({
       seedDay,
-      hotel: base,
+      hotel: pickDayBase(anchor),
       meals: planMeals,
       city: input.city,
       family:
