@@ -9,6 +9,14 @@ import {
   TRANSPORT_ICONS,
   TRANSPORT_LABELS,
 } from "@/lib/constants";
+import {
+  bookingSummary,
+  collectBookings,
+  hasTicketInfo,
+  navUrl,
+  reservationCount,
+  ticketSearchUrl,
+} from "@/lib/booking";
 import { clockRange, moneyRange } from "@/lib/format";
 import {
   formatDateCN,
@@ -264,6 +272,7 @@ function LegRow({ leg }: { leg: RouteLeg }) {
 function StopRow({
   stop,
   day,
+  city,
   number,
   active,
   locked,
@@ -274,6 +283,7 @@ function StopRow({
 }: {
   stop: StopPlan;
   day: DayPlan;
+  city: string;
   number?: number;
   active: boolean;
   locked: boolean;
@@ -373,6 +383,34 @@ function StopRow({
           {stop.place.rating ? <span>★ {stop.place.rating.toFixed(1)}</span> : null}
           {stop.place.openHours ? (
             <span className="truncate">· {stop.place.openHours}</span>
+          ) : null}
+        </div>
+      ) : null}
+      {!meal ? (
+        // 落地支持：导航到点 + 查票入口。只跳转，不碰支付（宪法第 11 节）。
+        // stopPropagation 避免点链接时父级 onFocus 把地图也拽过去。
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5 pl-8">
+          <a
+            href={navUrl(stop.place)}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(event) => event.stopPropagation()}
+            className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-2 py-0.5 text-micro text-ink-soft transition hover:border-jade/40 hover:text-jade"
+          >
+            <Icon name="route" size={9} />
+            导航
+          </a>
+          {hasTicketInfo(stop, city) ? (
+            <a
+              href={ticketSearchUrl(stop.place, city)}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => event.stopPropagation()}
+              className="inline-flex items-center gap-1 rounded-full border border-line bg-paper px-2 py-0.5 text-micro text-ink-soft transition hover:border-accent/40 hover:text-accent"
+            >
+              <Icon name="ticket" size={9} />
+              查票
+            </a>
           ) : null}
         </div>
       ) : null}
@@ -741,8 +779,68 @@ function SlotStrip({ slots }: { slots?: DaySlot[] }) {
   );
 }
 
+/**
+ * 行前待办（宪法 B 块）：把散在各点位上的预约/票务汇总成一张清单。
+ * 不新造数据，只做聚合——免得用户翻完整个行程才发现鼓浪屿要实名船票。
+ */
+function BookingCard({ plan, city }: { plan: PlanResult; city: string }) {
+  const [open, setOpen] = useState(false);
+  const items = collectBookings(plan, city);
+  if (!items.length) return null;
+  const must = reservationCount(items);
+  const visible = open ? items : items.slice(0, 3);
+  return (
+    <div className="mt-2 rounded-xl border border-amber/30 bg-amber-soft/40 px-3 py-2">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-center justify-between gap-2 text-left"
+      >
+        <span className="inline-flex items-center gap-1.5 text-meta font-medium text-amber">
+          <Icon name="ticket" size={10} />
+          行前待办 · {must ? `${must} 件要提前约` : `${items.length} 处要买票`}
+        </span>
+        <span className="text-micro text-amber/80">{open ? "收起" : "展开"}</span>
+      </button>
+      <p className="mt-1 text-micro leading-relaxed text-ink-soft">
+        {bookingSummary(items)}
+      </p>
+      <ul className="mt-1.5 space-y-1">
+        {visible.map((item) => (
+          <li key={`${item.placeId}-${item.day}`} className="flex gap-1.5 text-micro">
+            <span className="shrink-0 tabular-nums text-ink-faint">
+              D{item.day}
+            </span>
+            <span className="min-w-0">
+              <span className="font-medium text-ink">{item.placeName}</span>
+              <span className="text-ink-faint"> · </span>
+              <span className="text-ink-soft">{item.booking}</span>
+              {item.note ? (
+                <span className="text-ink-faint">（{item.note}）</span>
+              ) : null}
+            </span>
+          </li>
+        ))}
+      </ul>
+      {items.length > 3 ? (
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="mt-1 text-micro text-amber underline-offset-2 hover:underline"
+        >
+          {open ? "只看前 3 条" : `还有 ${items.length - 3} 条`}
+        </button>
+      ) : null}
+      <p className="mt-1.5 text-micro text-ink-faint">
+        票务与放票规则以官方最新公告为准；这里只做提醒和跳转，不代办购买。
+      </p>
+    </div>
+  );
+}
+
 function DayTimeline({
   day,
+  city,
   focusPlaceId,
   hotelName,
   lockedIds,
@@ -752,6 +850,7 @@ function DayTimeline({
   onRemoveStop,
 }: {
   day: DayPlan;
+  city: string;
   focusPlaceId?: string | null;
   hotelName: string;
   lockedIds: string[];
@@ -823,6 +922,7 @@ function DayTimeline({
                 <StopRow
                   stop={stop}
                   day={day}
+                  city={city}
                   number={numbers.get(stop.id)}
                   active={focusPlaceId === stop.place.id}
                   locked={lockedIds.includes(stop.place.id)}
@@ -1236,6 +1336,8 @@ export default function PlanPanel({
           </div>
         ) : null}
 
+        {plan ? <BookingCard plan={plan} city={plan.meta.city} /> : null}
+
         {plan?.lodging &&
         (plan.lodging.status === "recommended" ||
           plan.lodging.bases.length > 1) ? (
@@ -1435,6 +1537,7 @@ export default function PlanPanel({
             ) : (
               <DayTimeline
                 day={day}
+                city={plan.meta.city}
                 focusPlaceId={focus?.placeId ?? null}
                 hotelName={stayName}
                 lockedIds={lockedIds}
