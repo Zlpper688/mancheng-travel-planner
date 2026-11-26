@@ -83,6 +83,8 @@ export interface SelectInput {
   notes?: string;
   /** 软参数覆盖层；不传时与现有行为完全一致。 */
   params?: PlanParams;
+  /** 片区聚类半径覆盖（km）：区域环线段内选点时放大，避免跨 100km 的点被当成不同片区。 */
+  clusterRadiusKm?: number;
 }
 
 export interface SelectResult {
@@ -698,12 +700,9 @@ export function selectDays(input: SelectInput): SelectResult {
       }
     }
 
-    const clusterRadius = clusterRadiusFor(
-      styles,
-      pace,
-      transport,
-      input.seniors ?? 0,
-    );
+    const clusterRadius =
+      input.clusterRadiusKm ??
+      clusterRadiusFor(styles, pace, transport, input.seniors ?? 0);
     const anchors = pickNearAnchors(
       nearPool,
       nearPositions.length,

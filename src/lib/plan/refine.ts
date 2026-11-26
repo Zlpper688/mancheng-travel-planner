@@ -119,13 +119,22 @@ function collectIssues(
   plan: PlanResult,
   input: TripInput,
   params: PlanParams,
+  isRegion: boolean,
 ): RefineIssue[] {
   const pace: PaceId = input.pace;
-  const audit = auditPlan(plan, {
+  let auditIssues = auditPlan(plan, {
     pace,
     isFixed: plan.meta.isFixed,
     params,
   });
+  // 区域游一天跨百公里是常态，城市尺度的「单段 90 分钟 / 跨度 22km」不适用。
+  // 这些误报会让 refine 徒劳调参、越调越差（实测把点数从 4 压到 2）。
+  if (isRegion) {
+    auditIssues = auditIssues.filter(
+      (i) =>
+        !["LEG_TOO_LONG", "DAY_SPAN_WIDE", "DAY_TRAVEL_LONG"].includes(i.code),
+    );
+  }
   const critique = critiquePlan(plan.days, {
     pace,
     family:
@@ -134,9 +143,16 @@ function collectIssues(
       input.styles.includes("family"),
     styles: input.styles,
   });
+  let criticIssues = critique.phenomena;
+  if (isRegion) {
+    // 跨片区移动是区域游的定义，不算折返/长日；但太赶、空档仍要报。
+    criticIssues = criticIssues.filter(
+      (p) => p.id !== "backtrack" && p.id !== "long-day",
+    );
+  }
   return [
-    ...audit.map(fromAudit),
-    ...critique.phenomena.map(fromCritic),
+    ...auditIssues.map(fromAudit),
+    ...criticIssues.map(fromCritic),
     ...fromSlots(plan),
   ];
 }
@@ -251,6 +267,16 @@ export async function refinePlan(
   input: TripInput,
   maxRounds = 3,
 ): Promise<RefineResult> {
+  // 区域游用不同的体检尺子（见 collectIssues）。
+  let isRegion = false;
+  try {
+    const { readLocalKnowledge } = await import("../providers/knowledge");
+    const kb = await readLocalKnowledge(input.city);
+    isRegion = kb.form === "region-loop";
+  } catch {
+    isRegion = false;
+  }
+
   let params = input.planParams ?? DEFAULT_PARAMS;
   let best: { plan: PlanResult; score: number; issues: RefineIssue[]; params: PlanParams } | null = null;
   const adjustments: string[] = [];
@@ -260,7 +286,7 @@ export async function refinePlan(
   for (let round = 1; round <= Math.max(1, Math.min(4, maxRounds)); round += 1) {
     rounds = round;
     const plan = await planTrip({ ...input, planParams: params });
-    const issues = collectIssues(plan, input, params);
+    const issues = collectIssues(plan, input, params, isRegion);
     const score = scoreOf(issues);
     const improved = !best || isStrictlyBetter(issues, best.issues);
     if (improved) {

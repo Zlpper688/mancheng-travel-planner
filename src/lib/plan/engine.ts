@@ -15,6 +15,8 @@ import {
 } from "../providers/knowledge";
 import { DEFAULT_PARAMS } from "./params";
 import { withSlots } from "./slots";
+import { selectRegionDays } from "./select-region";
+import { isRegionSpan } from "./segments";
 import type { DiscoverOptions, DiscoverResult } from "../providers/types";
 import { cityShortName } from "../providers/normalize";
 import {
@@ -41,7 +43,7 @@ import { alignLodgingNights, planLodging } from "./lodging";
 import { routeArchetypeOf, type RouteArchetype } from "./route-archetype";
 import { scheduleDay } from "./schedule";
 import { distributeSelectedPlaces } from "./selected";
-import { selectDays } from "./select";
+import { selectDays, type SelectInput } from "./select";
 import { farLimitKm } from "./select/far";
 import { avoidSteepFor, steepnessOf } from "./strenuous";
 import { explainDay } from "./why";
@@ -382,7 +384,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
           ? "guide"
           : undefined;
 
-  const selection = selectDays({
+  const selectionInput: SelectInput = {
     sights: planSights,
     hotel: base,
     center: input.center,
@@ -404,7 +406,20 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     seniors: input.seniors ?? 0,
     avoidSteep,
     notes: input.notes,
-  });
+  };
+
+  // 区域环线（北疆/川藏/广西）：景点跨几百到上千公里，单中心会被 farReachKm 全裁掉。
+  // 改为按地理分段，每段一个基地独立选点，最后合并成同样的 SelectResult。
+  let isRegion = false;
+  try {
+    const kb = await readLocalKnowledge(input.city);
+    isRegion = kb.form === "region-loop" || isRegionSpan(planSights);
+  } catch {
+    isRegion = isRegionSpan(planSights);
+  }
+  const selection = isRegion
+    ? selectRegionDays(selectionInput, params)
+    : selectDays(selectionInput);
 
   const warnings: string[] = [];
   if (selectedPlan?.warnings.length) warnings.push(...selectedPlan.warnings);
