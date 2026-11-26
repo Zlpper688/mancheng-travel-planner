@@ -13,6 +13,7 @@ import type {
   TripInput,
 } from "../types";
 import { EXPERIENCE_DEFS } from "./experience";
+import { sanitizeParams } from "./params";
 
 const CATEGORIES: Category[] = [
   "attraction",
@@ -310,5 +311,9 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     slimDays,
     selectedPlaces: selectedPlaces.length ? selectedPlaces : undefined,
     farDays,
+    // LLM 只能改软参数，且每个值都经过范围收敛；不传时保持原有行为。
+    planParams: data.planParams !== undefined
+      ? sanitizeParams(data.planParams, data.avoidSteep === true)
+      : undefined,
   };
 }

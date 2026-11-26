@@ -6,6 +6,7 @@ import {
   seededJitter,
 } from "../../geo";
 import type { Category, Place, StyleId } from "../../types";
+import { DEFAULT_PARAMS, type PlanParams } from "../params";
 import { rhythmOf } from "../rhythm";
 import {
   closingOnly,
@@ -16,16 +17,28 @@ import {
   type ScoredPlace,
 } from "./shared";
 
-export function farLimitKm(styles: StyleId[]): number {
-  let limit = 45;
-  if (styles.includes("family")) limit = 32;
-  else if (styles.includes("citywalk")) limit = 38;
+export function farLimitKm(
+  styles: StyleId[],
+  params: PlanParams = DEFAULT_PARAMS,
+): number {
+  let limit = params.farLimitKm;
+  if (styles.includes("family")) limit = Math.min(limit, 32);
+  else if (styles.includes("citywalk")) limit = Math.min(limit, 38);
   return limit;
 }
 
 // 旗舰景点比普通远郊点多给 15 km 余量（最多 58 km），仍要满足单程 110 分钟。
-export function farReachKm(styles: StyleId[], place: Place): number {
-  const base = farLimitKm(styles);
+export function farReachKm(
+  styles: StyleId[],
+  place: Place,
+  params: PlanParams = DEFAULT_PARAMS,
+): number {
+  const base = farLimitKm(styles, params);
+  // 区域环线/小城大景点的必去点带 reachMin：按 60km/h 折算成搜索半径，
+  // 否则北疆的喀纳斯（150km）、芜湖的黄山（49km）在进池前就被 45km 裁掉。
+  if (place.reachMin) {
+    return Math.max(base, Math.min(320, place.reachMin * 0.9));
+  }
   return isFlagship(place) ? Math.min(58, base + 15) : base;
 }
 
@@ -105,10 +118,13 @@ export function pickFarGroups(
         [hotel.lng, hotel.lat],
         [item.place.lng, item.place.lat],
       );
+      // 区域环线的锚点（如喀纳斯）周边 16km 内常常没有第二个点，
+      // 用形态给出的 reachMin 放宽成团半径，否则一天只能排一个点、被 thinFar 丢掉。
+      const companyKm = (item.place.reachMin ?? 0) > 150 ? 40 : 16;
       const company = candidates.filter(
         (other) =>
           other.place.id !== item.place.id &&
-          placeDistance(other.place, item.place) <= 16,
+          placeDistance(other.place, item.place) <= companyKm,
       ).length;
       let value =
         item.score +
@@ -142,6 +158,8 @@ export function pickFarGroups(
     used.add(anchor.place.id);
     // 车程近的外围城区可以排满；真正 1–2 小时的远足日少排一个点，留出路上时间。
     const oneWay = estimateModeMinutes(hotel, anchor.place, "taxi");
+    // 区域环线的锚点周边可成团的半径更大（喀纳斯/禾木之间就 30–40km）。
+    const groupRadiusKm = (anchor.place.reachMin ?? 0) > 150 ? 40 : 16;
     const groupCap =
       oneWay <= 45 ? capacity : Math.max(2, capacity - 1);
     const anchorDir = bearing(
@@ -163,10 +181,11 @@ export function pickFarGroups(
       }))
       .filter(
         (entry) =>
-          entry.km <= 16 &&
+          entry.km <= groupRadiusKm &&
           (entry.km <= 6 ||
             angleDistance(entry.dir, anchorDir) <= 55) &&
-          estimateModeMinutes(anchor.place, entry.item.place, "taxi") <= 30,
+          estimateModeMinutes(anchor.place, entry.item.place, "taxi") <=
+            (groupRadiusKm > 16 ? 60 : 30),
       )
       .sort(
         (a, b) =>

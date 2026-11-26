@@ -113,6 +113,12 @@ export interface Place {
   commons?: string;
   wikipedia?: string;
   website?: string;
+  /**
+   * 从住处出发，值得为这个点单独跑的单程分钟上限。
+   * 区域环线/小城大景点的必去点会带较大值，城市漫游不设（走默认收口）。
+   * 由本地知识库按目的地形态写入，远足日选点与审计读它放宽硬上限。
+   */
+  reachMin?: number;
 }
 
 export interface FixedPlace {
@@ -148,6 +154,11 @@ export interface TripInput {
   slimDays?: Record<number, number>;
   farDays?: number;
   experiences?: ExperienceId[];
+  /**
+   * 排线软参数覆盖层（LLM 唯一能改的部分）。不传时引擎行为与以前完全一致。
+   * 硬约束不在这里：日期/天数/人数/点名必去点/已订酒店/排除点仍由用户决定。
+   */
+  planParams?: import("./plan/params").PlanParams;
 }
 
 export interface WishlistGoal {

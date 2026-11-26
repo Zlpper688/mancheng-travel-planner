@@ -4,14 +4,10 @@ import {
   EARLY_END_MIN,
   HARD_CEIL_MIN,
   LATEST_START,
-  MAX_DAY_SPAN_KM,
-  MAX_DAY_TRAVEL_MIN,
   MAX_GAP_MIN,
-  MAX_LEG_MIN,
   MAX_SAME_CATEGORY_RUN,
-  MEAL_WINDOW,
-  SIGHT_BAND,
 } from "./limits";
+import { DEFAULT_PARAMS, type PlanParams } from "./params";
 
 /**
  * 行程体检。
@@ -41,6 +37,8 @@ export interface AuditOptions {
   pace: PaceId;
   /** 攻略复刻：出发时间由用户指定的顺序决定，不当成算法缺陷。 */
   isFixed?: boolean;
+  /** 软参数覆盖；不传时等价于 DEFAULT_PARAMS，体检尺子与以前完全一致。 */
+  params?: PlanParams;
 }
 
 function mm(value: number): string {
@@ -64,6 +62,7 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   const issues: AuditIssue[] = [];
   const push = (code: string, severity: AuditSeverity, detail: string) =>
     issues.push({ code, severity, day: day.index, detail });
+  const params = options.params ?? DEFAULT_PARAMS;
 
   const sights = day.stops.filter((stop) => stop.kind === "sight");
   const meals = day.stops.filter((stop) => stop.kind === "meal");
@@ -118,13 +117,13 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   }
 
   // ---------- 吃饭 ----------
-  const lunch = meals.filter((stop) => inWindow(stop.startMin, MEAL_WINDOW.lunch));
-  const dinner = meals.filter((stop) => inWindow(stop.startMin, MEAL_WINDOW.dinner));
+  const lunch = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.lunch));
+  const dinner = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.dinner));
   // 出发早、收工早的半日行程可以没有晚饭，但只要有午饭需求就该有午饭。
-  if (!restDay && !lunch.length && day.endMin >= MEAL_WINDOW.lunch[1]) {
+  if (!restDay && !lunch.length && day.endMin >= params.mealWindow.lunch[1]) {
     push("NO_LUNCH", "warn", "午饭时段没有安排吃饭");
   }
-  if (!restDay && !dinner.length && day.endMin >= MEAL_WINDOW.dinner[0] + 30) {
+  if (!restDay && !dinner.length && day.endMin >= params.mealWindow.dinner[0] + 30) {
     push("NO_DINNER", "warn", "晚饭时段没有安排吃饭");
   }
   if (lunch.length && dinner.length && lunch[0].place.id === dinner[0].place.id) {
@@ -133,7 +132,7 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
 
   // ---------- 通勤 ----------
   for (const leg of day.legs) {
-    const limit = day.far ? MAX_LEG_MIN + 60 : MAX_LEG_MIN;
+    const limit = day.far ? params.maxLegMin + 60 : params.maxLegMin;
     if (leg.durationMin > limit) {
       push(
         "LEG_TOO_LONG",
@@ -142,7 +141,7 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
       );
     }
   }
-  if (day.stats.travelMin > MAX_DAY_TRAVEL_MIN) {
+  if (day.stats.travelMin > params.maxDayTravelMin) {
     push("DAY_TRAVEL_LONG", "warn", `一天在路上 ${day.stats.travelMin} 分钟`);
   }
 
@@ -153,7 +152,7 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
         span = Math.max(span, placeDistance(sights[i].place, sights[j].place));
       }
     }
-    if (span > MAX_DAY_SPAN_KM) {
+    if (span > params.maxDaySpanKm) {
       push("DAY_SPAN_WIDE", "warn", `当天点位跨度 ${span.toFixed(1)} 公里，来回横跳`);
     }
   }
@@ -172,7 +171,7 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   }
 
   if (!restDay) {
-    const [lo, hi] = SIGHT_BAND[options.pace];
+    const [lo, hi] = params.sightsPerDay[options.pace];
     if (sights.length < lo || sights.length > hi) {
       push(
         "SIGHT_COUNT",

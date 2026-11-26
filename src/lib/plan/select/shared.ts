@@ -1,5 +1,6 @@
 import { placeDistance } from "../../geo";
 import type { Place } from "../../types";
+import { DEFAULT_PARAMS, type PlanParams } from "../params";
 import type { RhythmProfile } from "../rhythm/profile";
 
 export type ScoredPlace = { place: Place; score: number; distance: number };
@@ -14,10 +15,13 @@ export const FAR_MAX_ONE_WAY_MIN = 110;
  * 城郊点，等于把半个白天交给公路：实际排出来会变成「一天主城、一天赶路」。
  * 短行程只在车程可控的范围内找远足点，找不到就老老实实待在城里。
  */
-export function farOneWayCap(days: number): number {
-  if (days <= 2) return 65;
-  if (days === 3) return 90;
-  return FAR_MAX_ONE_WAY_MIN;
+export function farOneWayCap(
+  days: number,
+  params: PlanParams = DEFAULT_PARAMS,
+): number {
+  if (days <= 2) return params.farOneWayCapByDays.twoOrLess;
+  if (days === 3) return params.farOneWayCapByDays.three;
+  return params.farOneWayCapByDays.longer;
 }
 
 /**
@@ -39,8 +43,16 @@ export function isPremier(place: Place): boolean {
  * 单个点位能容忍的单程上限。顶级景区（黄山、九寨沟这类）值得为它多开一段，
  * 否则「去黄山却不上山」会成为短行程里最荒谬的结果。
  */
-export function farOneWayCapFor(days: number, place: Place): number {
-  const base = farOneWayCap(days);
+export function farOneWayCapFor(
+  days: number,
+  place: Place,
+  params: PlanParams = DEFAULT_PARAMS,
+): number {
+  const base = farOneWayCap(days, params);
+  // 本地知识库按目的地形态标了 reachMin（区域环线 300、小城大景点 150…）。
+  // 这些点不是「顺路远郊」，而是这趟行程的主角，值得为它跑更久；
+  // 仍受单日路程总时长与审计约束，不会无限放宽。
+  if (place.reachMin && place.reachMin > base) return place.reachMin;
   if (!isPremier(place)) return base;
   return Math.max(base, 90);
 }

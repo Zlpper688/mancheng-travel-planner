@@ -89,6 +89,14 @@ export const PHOTON_SIGHT_INCLUDES = [
   "osm.amenity.place_of_worship",
   "osm.natural.peak",
   "osm.natural.beach",
+  // 攻略里的城市必去点大量不是 tourism=attraction：春熙路/宽巷子是
+  // highway=pedestrian，中山广场是 place=square，太古里是 shop=mall。
+  // 漏掉这些类别，就算 Photon 明明查得到，路线也排不进去。
+  "osm.highway.pedestrian",
+  "osm.place.square",
+  "osm.shop.mall",
+  "osm.historic.memorial",
+  "osm.historic.city_gate",
 ] as const;
 
 export const PHOTON_DEEP_SIGHT_INCLUDES = [
@@ -168,13 +176,13 @@ export async function photonCategorySearch(options: {
 }): Promise<Place[]> {
   const { center, radiusKm, categories, limit = 100 } = options;
   const bbox = bboxFor(center, radiusKm);
-  const batches = await mapLimit([...categories], 3, async (category) => {
+  const batches = await mapLimit([...categories], 6, async (category) => {
     const params = new URLSearchParams({
       bbox,
       limit: String(limit),
       include: category,
     });
-    const key = `photon:category:${category}:${bbox}:${limit}`;
+    const key = `photon:category:v2:${category}:${bbox}:${limit}`;
     return cached(
       key,
       10 * 60 * 1000,
@@ -183,7 +191,7 @@ export async function photonCategorySearch(options: {
           const data = await fetchJson<PhotonResponse>(
             `https://photon.komoot.io/api/?${params.toString()}`,
             {},
-            10_000,
+            15_000,
           );
           const places: Place[] = [];
           for (const feature of data.features ?? []) {

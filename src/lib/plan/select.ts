@@ -19,6 +19,7 @@ import type {
   TransportPref,
 } from "../types";
 import { buildWishlist, experienceAffinity } from "./experience";
+import { DEFAULT_PARAMS, type PlanParams } from "./params";
 import {
   composeDay,
   rhythmBudgetMinutes,
@@ -80,6 +81,8 @@ export interface SelectInput {
   seniors?: number;
   avoidSteep?: boolean;
   notes?: string;
+  /** 软参数覆盖层；不传时与现有行为完全一致。 */
+  params?: PlanParams;
 }
 
 export interface SelectResult {
@@ -423,6 +426,7 @@ export function selectDays(input: SelectInput): SelectResult {
     city,
     fixedPlaces = [],
     lockedPlaces = [],
+    params = DEFAULT_PARAMS,
   } = input;
   const warnings: string[] = [];
 
@@ -553,17 +557,17 @@ export function selectDays(input: SelectInput): SelectResult {
     .filter((item) => Number.isFinite(item.place.lat) && Number.isFinite(item.place.lng))
     .sort((a, b) => b.score - a.score);
 
-  const capacity = PACES[pace].sights;
+  const capacity = Math.max(1, params.sightsPerDay[pace][1] - 1);
   const nearKm = input.radiusKm;
-  const farKm = farLimitKm(styles);
+  const farKm = farLimitKm(styles, params);
 
   const nearCandidates = scored.filter((item) => item.distance <= nearKm);
   const farCandidates = scored.filter(
     (item) =>
       item.distance > nearKm &&
-      item.distance <= farReachKm(styles, item.place) &&
+      item.distance <= farReachKm(styles, item.place, params) &&
       estimateModeMinutes(reference, item.place, "taxi") <=
-        farOneWayCapFor(input.days, item.place),
+        farOneWayCapFor(input.days, item.place, params),
   );
   const farAnchors = farCandidates.filter((item) => isFamous(item.place));
   // 普通 OSM attraction 不能算“主城有真景点”：一个环岛、两棵树也会被标成 attraction，
@@ -731,7 +735,7 @@ export function selectDays(input: SelectInput): SelectResult {
           ? 90
           : 0;
       return dayMinuteBudget({
-        sights: PACES[pace].sights,
+        sights: capacity,
         edge: isDepartureDay(days, day),
         closingBonus,
       });

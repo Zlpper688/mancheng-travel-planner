@@ -13,13 +13,10 @@ import type {
   Place,
   TripInput,
 } from "../types";
+import { DEFAULT_PARAMS, type PlanParams } from "./params";
 import type { DaySeed } from "./select";
 import { isFamous } from "./select/shared";
 
-const CLUSTER_KM = 12;
-const CITY_KM = 12;
-const GATEWAY_MIN_ONE_WAY = 35;
-const OPTIONAL_ONE_WAY_MIN = 48;
 const OLDTOWN = /古城|古镇|老街|古街|老城|巷|胡同/;
 const OLDTOWN_NAME = /([\u4e00-\u9fa5]{2,6}(?:古城|古镇|老街|古街|老城))/;
 const OLDTOWN_BASE_CATEGORIES = new Set([
@@ -71,7 +68,7 @@ function clusterCentroid(places: Place[]): [number, number] {
   return [lng / weight, lat / weight];
 }
 
-function buildClusters(sights: Place[], center: [number, number]): Cluster[] {
+function buildClusters(sights: Place[], center: [number, number], params: PlanParams = DEFAULT_PARAMS): Cluster[] {
   const candidates = sights
     .filter(
       (place) => !["food", "cafe", "hotel", "other"].includes(place.category),
@@ -85,7 +82,7 @@ function buildClusters(sights: Place[], center: [number, number]): Cluster[] {
   const groups: Place[][] = [];
   for (const place of candidates) {
     let best: Place[] | null = null;
-    let bestDistance = CLUSTER_KM;
+    let bestDistance = params.lodgingClusterKm;
     for (const group of groups) {
       const [lng, lat] = clusterCentroid(group);
       const km = pointPlaceDistance(place, [lng, lat]);
@@ -166,13 +163,14 @@ function findOldTown(
 function clusterNear(
   clusters: Cluster[],
   place: Place,
+  params: PlanParams = DEFAULT_PARAMS,
 ): Cluster | undefined {
   const best = clusters
     .map((cluster) => ({
       cluster,
       km: pointPlaceDistance(place, [cluster.lng, cluster.lat]),
     }))
-    .filter((entry) => entry.km <= CLUSTER_KM)
+    .filter((entry) => entry.km <= params.lodgingClusterKm)
     .sort((a, b) => a.km - b.km)[0];
   return best?.cluster;
 }
@@ -217,14 +215,15 @@ function nameFor(
 function cityBaseCluster(
   clusters: Cluster[],
   center: [number, number],
+  params: PlanParams = DEFAULT_PARAMS,
 ): Cluster | undefined {
   return (
     clusters
-      .filter((cluster) => cluster.distanceKm <= CITY_KM)
+      .filter((cluster) => cluster.distanceKm <= params.cityKm)
       .sort((a, b) => b.value - a.value)[0] ??
     clusters
       .filter(
-        (cluster) => pointPlaceDistance(cluster.top, center) <= CITY_KM + 4,
+        (cluster) => pointPlaceDistance(cluster.top, center) <= params.cityKm + 4,
       )
       .sort((a, b) => b.value - a.value)[0]
   );
@@ -284,10 +283,11 @@ function optionalForCluster(
   cluster: Cluster,
   mainBase: Place,
   isCity: boolean,
+  params: PlanParams = DEFAULT_PARAMS,
 ): LodgingBase | null {
   const anchor = cluster.top;
   const oneWay = estimateModeMinutes(mainBase, anchor, "taxi");
-  if (oneWay < OPTIONAL_ONE_WAY_MIN) return null;
+  if (oneWay < params.optionalOneWayMin) return null;
   const kind = isCity ? "city" : kindFor(anchor, true);
   return {
     id: `opt-${Math.round(anchor.lat * 1000)}-${Math.round(anchor.lng * 1000)}`,
@@ -338,6 +338,7 @@ export interface LodgingResult {
 }
 
 export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
+  const params = input.planParams ?? DEFAULT_PARAMS;
   const center: [number, number] =
     input.center ??
     (input.hotel
@@ -349,27 +350,27 @@ export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
   );
   const holiday = getHoliday(input.date);
   const notes: string[] = [];
-  const clusters = buildClusters(sights, center);
+  const clusters = buildClusters(sights, center, params);
   const oldTown = findOldTown(sights, center);
-  const oldTownCluster = oldTown ? clusterNear(clusters, oldTown.place) : undefined;
+  const oldTownCluster = oldTown ? clusterNear(clusters, oldTown.place, params) : undefined;
 
   if (input.hotel) {
     const base = input.hotel;
     const cityClusters = clusters.filter(
-      (cluster) => cluster.distanceKm <= CITY_KM,
+      (cluster) => cluster.distanceKm <= params.cityKm,
     );
     const far = clusters
       .filter(
         (cluster) =>
-          cluster.distanceKm > CITY_KM &&
+          cluster.distanceKm > params.cityKm &&
           estimateModeMinutes(base, cluster.top, "taxi") >=
-            OPTIONAL_ONE_WAY_MIN &&
+            params.optionalOneWayMin &&
           (isFamous(cluster.top) || cluster.value >= 1.6),
       )
       .sort((a, b) => b.value - a.value)[0];
     const optional: LodgingBase[] = [];
     if (far) {
-      const candidate = optionalForCluster(input, far, base, false);
+      const candidate = optionalForCluster(input, far, base, false, params);
       if (candidate) optional.push(candidate);
     }
     const island = islandOption(
@@ -405,15 +406,15 @@ export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
     };
   }
 
-  const cityCluster = cityBaseCluster(clusters, center);
+  const cityCluster = cityBaseCluster(clusters, center, params);
   const farClusters = clusters
     .filter((cluster) => cluster !== cityCluster)
-    .filter((cluster) => cluster.oneWay >= 25 && cluster.distanceKm > CITY_KM);
+    .filter((cluster) => cluster.oneWay >= 25 && cluster.distanceKm > params.cityKm);
   const far = farClusters[0];
   const cityValue = cityCluster?.value ?? 0;
   const dominantFar =
     far &&
-    far.oneWay >= GATEWAY_MIN_ONE_WAY &&
+    far.oneWay >= params.gatewayMinOneWayMin &&
     far.value >= (cityValue === 0 ? 1.2 : Math.max(2.2, cityValue * 1.25)) &&
     (far.places.length >= 2 ||
       input.days <= 2 ||
@@ -425,7 +426,7 @@ export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
     oldTown &&
     oldTownCluster &&
     oldTownCluster !== cityCluster &&
-    oldTownCluster.oneWay < GATEWAY_MIN_ONE_WAY &&
+    oldTownCluster.oneWay < params.gatewayMinOneWayMin &&
     oldTownCluster.value >= Math.max(1.2, cityValue * 0.5)
       ? { cluster: oldTownCluster, old: oldTown }
       : undefined;
@@ -513,6 +514,7 @@ export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
         cluster,
         main.base,
         cluster === cityCluster,
+        params,
       ),
     }))
     .filter((entry): entry is { cluster: Cluster; item: LodgingBase } =>
@@ -576,6 +578,7 @@ export function planLodging(input: TripInput, sights: Place[]): LodgingResult {
 export function alignLodgingNights(
   plan: LodgingPlan,
   seeds: DaySeed[],
+  params: PlanParams = DEFAULT_PARAMS,
 ): LodgingPlan {
   if (!plan.bases.some((base) => base.role === "optional")) return plan;
   const lastNight = Math.max(0, seeds.length - 1);
@@ -588,7 +591,7 @@ export function alignLodgingNights(
             seed.places.some(
               (place) =>
                 !["food", "cafe", "hotel"].includes(place.category) &&
-                pointPlaceDistance(place, [base.lng, base.lat]) <= CLUSTER_KM,
+                pointPlaceDistance(place, [base.lng, base.lat]) <= params.lodgingClusterKm,
             ),
         )
         .map((seed) => seed.index)

@@ -758,7 +758,7 @@ out center tags 120;`;
           categories: PHOTON_SIGHT_INCLUDES,
           limit: 120,
         }).catch(() => []),
-        18_000,
+        90_000,
         [],
       ),
       sights.length < 6

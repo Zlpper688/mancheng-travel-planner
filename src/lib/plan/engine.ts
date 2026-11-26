@@ -8,6 +8,12 @@ import { TravelError } from "../errors";
 import { addDaysISO, formatDateRange, placeDistance } from "../geo";
 import { crowdFactor, getHoliday } from "../holidays";
 import { getProvider } from "../providers";
+import {
+  FORM_LABELS,
+  mergeLocalKnowledge,
+  readLocalKnowledge,
+} from "../providers/knowledge";
+import { DEFAULT_PARAMS } from "./params";
 import type { DiscoverOptions, DiscoverResult } from "../providers/types";
 import { cityShortName } from "../providers/normalize";
 import {
@@ -86,7 +92,11 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
     city: input.city,
     source: "demo",
   };
-  const radiusKm = discoverReach(input);
+  // 目的地形态先于实时搜索确定：区域环线/小城大景点的实时候选池也要放大，
+  // 否则喀纳斯、黄山这类主角在进池前就被 45km 的默认半径裁掉。
+  const local = await readLocalKnowledge(input.city).catch(() => null);
+  const formReachKm = local?.reachMin ? Math.min(400, Math.round(local.reachMin * 0.9)) : 0;
+  const radiusKm = Math.max(discoverReach(input), formReachKm);
   const options: DiscoverOptions = {
     city: input.city,
     center,
@@ -97,7 +107,7 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
   };
   const key = [
     "discover",
-    "v9",
+    "v11",
     provider.source,
     input.city,
     center[0].toFixed(3),
@@ -107,7 +117,7 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
     input.styles.join(","),
     input.farDays ?? "auto",
   ].join(":");
-  return cached(
+  const discovered = await cached(
     key,
     10 * 60 * 1000,
     () => provider.discover(options),
@@ -115,6 +125,44 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
     // 否则一次网络抖动就会让整座城市在缓存期内都排不出行程。
     { cacheIf: (value) => value.sights.length > 0 },
   );
+
+  // 本地知识库（攻略建模 + agent 联网核实的真坐标）作为保底与必去点优先层：
+  // 实时地图不稳或候选池为空时，已核实的城市仍能排出含春熙路等必去点的行程。
+  try {
+    if (local?.places.length) {
+      const merged = mergeLocalKnowledge(discovered.sights, local.places);
+      const notes = [...discovered.notes];
+      if (merged.added > 0) {
+        notes.push(
+          `已并入 ${merged.added} 个本地核实的必去/知名景点（攻略语料 + 联网查证坐标）。`,
+        );
+      }
+      if (discovered.sights.length === 0) {
+        notes.push("实时地图这次没返回点位，行程由本地核实知识库支撑。");
+      }
+      // 明确告诉用户这是哪种玩法，而不是让所有目的地都长成「从酒店出发玩全城」。
+      const formTip: Record<typeof local.form, string> = {
+        "city-hub": "景点集中在城区，建议住一片、白天分方向出门。",
+        "outskirt-day": "主城之外有一个值得专程的点，会单独留一天往返。",
+        "small-town-big-sight": "城区不大，主角是城外的大景区，可能建议住到景区门口。",
+        "scenic-base": "这趟以景区为核心，落脚点会贴近景区而不是行政区中心。",
+        "multi-city": "必去点分布在相邻几座城，会按城分段安排、必要时换宿。",
+        "region-loop": "这是跨区域的环线玩法，会按基地分段推进、每天路程更长。",
+      };
+      notes.push(
+        `本次按「${FORM_LABELS[local.form]}」组织行程：${formTip[local.form]}`,
+      );
+      return {
+        ...discovered,
+        sights: merged.places,
+        notes,
+        sourceNote: `${discovered.sourceNote} · 本地知识库兜底`,
+      };
+    }
+  } catch {
+    // 本地包读取失败时维持原实时结果，不让演示整城崩掉。
+  }
+  return discovered;
 }
 
 function buildMeta(
@@ -281,6 +329,8 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const crowd = crowdFactor(input.date);
   const pace = seniorPace(input);
   const avoidSteep = avoidSteepFor(input);
+  // LLM 只改这一层软参数；不传时 DEFAULT_PARAMS 与原有硬编码行为完全一致。
+  const params = input.planParams ?? DEFAULT_PARAMS;
   // 自动选点、心愿单、备选和空档补位共用同一套“避开爬坡”口径，
   // 否则手册里仍会推荐爬山点，和行程自相矛盾。
   // 用户手动移除 / 替换掉的点位，在进入选点与餐食插入之前就剔掉，
@@ -344,6 +394,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     city: input.city,
     fixedPlaces,
     fixedSource,
+    params,
     lockedPlaces: input.lockedPlaces,
     slimDays: input.slimDays,
     farDays: input.farDays,
@@ -623,7 +674,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   }
 
   const budget = buildBudget(days, trip, holiday?.hotelFactor ?? 1);
-  const lodgingPlan = alignLodgingNights(lodging.plan, selection.days);
+  const lodgingPlan = alignLodgingNights(lodging.plan, selection.days, params);
   const meta = buildMeta(
     input,
     discovered,
@@ -656,6 +707,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     const issues = auditPlan(plan, {
       pace,
       isFixed: meta.isFixed,
+      params,
     });
     const errors = issues.filter((issue) => issue.severity === "error");
     if (errors.length) {

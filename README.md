@@ -24,6 +24,9 @@ npm start
 | `AMAP_KEY` | 否 | 高德开放平台「Web 服务」Key。配置后启用任意城市的真实 POI、商户评分/营业信息、公交/地铁换乘与驾车路线。 |
 | `PHOTO_PROXY_BASE` | 否 | 维基图片反向代理前缀，默认 `https://i0.wp.com`（WordPress Photon）。直连 `upload.wikimedia.org` 不通时用它把共享资源图取回来；换成自有反代时填自己的域名。 |
 | `PHOTO_PROXY` | 否 | 设为 `none` 关闭图片代理，直接使用维基原始地址（仅适合能直连维基媒体的网络）。 |
+| `AI_BASE_URL` | 否 | OpenAI 兼容的对话模型端点（国内可用 `https://api.agnes-ai.cn/v1`）。不配则走向导模式。 |
+| `AI_API_KEY` | 否 | 对话模型 Key。模型只负责收齐旅行约束并翻译成参数，**不排线、不编坐标**。 |
+| `AI_MODEL` | 否 | 默认 `gpt-4o-mini`；Agnes 可用 `agnes-2.5-flash`（快，实测单轮 2 秒）。 |
 
 未配置 `AMAP_KEY` 时会自动进入免 Key 模式：
 
@@ -114,6 +117,30 @@ python scripts/guide-corpus/build_guides.py --root "D:/国内旅游攻略pdf" --
 - `routes.py` 识别 `D1 / DAY1 / 第N天` 与 `- → ~ 、` 等分隔符，过滤菜单、票价、公交线路等非路线行；散文片段（「找个地方住下来」「为第二天储备体力」）和多点散文行不再被当成停靠点；支持「路线名在日期之前」的表格排版，并按路线名里的「两日游 / 五日游」限制天数。
 - 每份攻略按「先天的完整多日路线 → 3 点以上路线 → 最长路线」选 canonical，路线 ID `r1..rN` 稳定可引用；不写时间戳，保证 diff 可复现。
 - 自动抽取的路线用 `needsReview` 标记（含「路线名天数与实际天数对不上」），界面上会提示核对顺序；完全没有可靠路线的香港购物 PDF 状态为 `none`，纯叙事型 PDF（如平遥）退化为一天「精华路线」，同样标待核对。
+
+### 本地景点知识库（本地优先，实时源降级为更新通道）
+
+实时地图 API（OSM/Overpass/高德）在国内网络下不稳定，为了演示可用，把攻略语料建成**本地知识库**，
+由引擎优先读取，实时源只作为候选池补充；地图这次返回空时，已核实城市照样能排线。
+
+```
+data/knowledge/
+  index.json                    城市清单 + 统计
+  cities/<city>.json            建模产物：必去点(must) / 景点聚合 / 路线模板
+  enrichment/<city>.json        联网核实：真实经纬度 / 评分 / 门票 / 简介
+  enrichment/README.md          核实数据格式规范（agent 照此填写）
+```
+
+生成与校验：
+
+```bash
+node scripts/learn-guides.mjs       # 攻略语料 -> cities/ + index.json（纯本地）
+node scripts/check-knowledge.mjs    # 结构回归：坐标合法性 / 经纬度不写反 / must 对齐
+```
+
+`enrichment/` 由 agent 逐城联网核实填入（见 `enrichment/README.md`），**坐标必须有出处、查不到就留白**，
+绝不编造。引擎侧 `src/lib/providers/knowledge.ts` 读取本地包，必去点给高热度和优先级；
+接入点在 `discoverForTrip`：先取地图源结果，再并入本地必去点，地图返回空时由本地包兜底。
 
 ## API
 
