@@ -136,7 +136,17 @@ data/knowledge/
 ```bash
 node scripts/learn-guides.mjs       # 攻略语料 -> cities/ + index.json（纯本地）
 node scripts/check-knowledge.mjs    # 结构回归：坐标合法性 / 经纬度不写反 / must 对齐
+node scripts/build-photo-index.mjs  # 1012 个已核实景点 -> 本地实景图库 + 静态索引
+npx tsx scripts/check-photos.ts     # 图片回归：全量覆盖 / 文件可解码 / 前端识别
 ```
+
+### 全量景点图片库
+
+`data/photo-index.json` 记录 1012 个已核实景点各自的本地图片（`/photos/*.jpg`）、
+图源与原图页面；`src/content/place-photos.generated.ts` 是同一份数据的前端可 import 版本。
+`src/lib/photos.ts` 解析顺序：**人工核对的维基图 → 本地图库 → 高德/OSM/Wikidata/维基检索**，
+所以演示时不再依赖外网图库。图源为人工核对的维基共享资源图 + 搜狗/360 图片搜索的实景图，
+每张都能追溯到原图页面，版权归原作者；换图只需重跑 `build-photo-index.mjs`。
 
 `enrichment/` 由 agent 逐城联网核实填入（见 `enrichment/README.md`），**坐标必须有出处、查不到就留白**，
 绝不编造。引擎侧 `src/lib/providers/knowledge.ts` 读取本地包，必去点给高热度和优先级；

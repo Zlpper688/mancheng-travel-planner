@@ -1,11 +1,12 @@
 import { CURATED_PHOTOS } from "../content/place-photos";
 import { fetchJson } from "./cache";
+import { localPhotoFor } from "./photo-hints";
 import { nameSimilarity } from "./providers/normalize";
 import { lookupWikidataByName, wikidataImageFileByQid } from "./wikidata";
 
 export interface PlacePhoto {
   url: string;
-  source: "高德" | "维基百科" | "维基共享资源";
+  source: "高德" | "维基百科" | "维基共享资源" | "搜狗图片" | "360图片";
   sourceUrl?: string;
   author?: string;
   license?: string;
@@ -469,6 +470,18 @@ async function resolveUncached(input: {
   image?: string;
   commons?: string;
 }): Promise<PlacePhoto | null> {
+  // 本地静态图库最优先：演示零外网依赖，且每张图都能追溯到原图页面。
+  const local = localPhotoFor(input.name, input.city);
+  if (local) {
+    return {
+      url: local.url,
+      source: local.source as PlacePhoto["source"],
+      sourceUrl: local.sourceUrl,
+      author: local.title,
+      license: local.source === "维基共享资源" ? undefined : "版权归原作者",
+    };
+  }
+
   const amap = await amapPhoto(input.name, input.city);
   if (amap) return amap;
 
