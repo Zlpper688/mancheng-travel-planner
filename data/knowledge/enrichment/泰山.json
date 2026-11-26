@@ -1,0 +1,124 @@
+{
+  "city": "泰山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    117.08,
+    36.11
+  ],
+  "places": {
+    "斗母宫": {
+      "name": "斗母宫",
+      "lng": 117.122739,
+      "lat": 36.222105,
+      "category": "temple",
+      "rating": 4.6,
+      "hours": "07:00-18:00",
+      "intro": "泰山斗母宫，泰山中路古道上的道教宫观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中天门": {
+      "name": "中天门",
+      "lng": 117.114859,
+      "lat": 36.239899,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "泰山中天门，登泰山中路与西路交汇处，可乘索道上山。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "十八盘": {
+      "name": "十八盘",
+      "lng": 117.10798,
+      "lat": 36.25125,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "05:00-24:00",
+      "intro": "泰山十八盘，从中天门至南天门的陡峭石阶，是泰山最险峻路段。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南天门": {
+      "name": "南天门",
+      "lng": 117.1044,
+      "lat": 36.25579,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "05:00-24:00",
+      "intro": "泰山南天门，位于十八盘尽头，登顶门户。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天街": {
+      "name": "天街",
+      "lng": 117.108202,
+      "lat": 36.255468,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "泰山天街，南天门之上的山顶商业街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "玉皇顶": {
+      "name": "玉皇顶",
+      "lng": 117.109193,
+      "lat": 36.257533,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "05:00-23:00",
+      "intro": "泰山玉皇顶，泰山最高峰顶，可俯瞰群山。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "后石坞": {
+      "name": "后石坞",
+      "lng": 117.115633,
+      "lat": 36.261984,
+      "category": "nature",
+      "rating": 4.3,
+      "intro": "泰山后石坞，泰山北麓景区，以奇松幽谷著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "桃花源": {
+      "name": "桃花源",
+      "lng": 117.081159,
+      "lat": 36.255261,
+      "category": "nature",
+      "rating": 4.6,
+      "hours": "全天开放",
+      "intro": "泰山桃花源景区，位于泰山西麓，可乘索道登顶。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "扇子崖": {
+      "name": "扇子崖",
+      "lng": 117.092575,
+      "lat": 36.224353,
+      "category": "viewpoint",
+      "rating": 4.3,
+      "hours": "00:00-24:00",
+      "intro": "泰山扇子崖，泰山西麓险峰，形如扇面。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黑龙潭": {
+      "name": "黑龙潭",
+      "lng": 117.102265,
+      "lat": 36.221308,
+      "category": "nature",
+      "intro": "泰山黑龙潭，泰山西麓溪潭景观。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "红门"
+  ]
+}

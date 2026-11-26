@@ -1,0 +1,99 @@
+{
+  "city": "秦皇岛",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "places": {
+    "天下第一关": {
+      "name": "天下第一关景区",
+      "lng": 119.757628,
+      "lat": 40.009973,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "11月1日-12月31日 08:00-17:00（17:00停止入园）;旺季另行公示",
+      "intro": "山海关古城核心景区，明长城东端重要关隘，有“天下第一关”匾额。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老龙头": {
+      "name": "山海关景区·老龙头",
+      "lng": 119.797249,
+      "lat": 39.968254,
+      "category": "attraction",
+      "intro": "明长城入海处，观海石城与入海石城所在。",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "孟姜女庙": {
+      "name": "孟姜女庙",
+      "lng": 119.823217,
+      "lat": 40.037283,
+      "category": "temple",
+      "rating": 4.7,
+      "hours": "07:30-18:00",
+      "intro": "为纪念孟姜女而建，位于山海关凤凰山，哭长城故事流传至今。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "碧螺塔公园": {
+      "name": "北戴河碧螺塔海上酒吧公园",
+      "lng": 119.535251,
+      "lat": 39.820462,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "5月6日-5月31日 04:00-22:00;6月1日-10月7日 04:00-24:00",
+      "intro": "主建筑碧螺塔是世界独一无二的海螺形螺旋观光塔。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鸽子窝公园": {
+      "name": "鸽子窝公园",
+      "lng": 119.526363,
+      "lat": 39.836417,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "04:10-22:00（21:00停止入园）",
+      "intro": "有礁石、湿地，树木丛生，是观日出和休闲放松的好去处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老虎石公园": {
+      "name": "老虎石海上公园",
+      "lng": 119.48925,
+      "lat": 39.813553,
+      "category": "beach",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "奥林匹克大道公园": {
+      "name": "奥林匹克大道公园",
+      "lng": 119.51465,
+      "lat": 39.82781,
+      "category": "park",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "北戴河景区内的奥林匹克主题公园，建有轮滑场地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "石塘路市场": {
+      "name": "石塘路市场",
+      "lng": 119.487335,
+      "lat": 39.821058,
+      "category": "market",
+      "rating": 4.4,
+      "hours": "09:00-17:00",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    119.6,
+    39.94
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

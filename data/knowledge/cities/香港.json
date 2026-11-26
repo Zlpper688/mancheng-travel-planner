@@ -1,0 +1,303 @@
+{
+  "city": "香港",
+  "region": "港澳台",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-8725f80c",
+      "source": "港澳台/我是驴友-香港购物旅游攻略.pdf",
+      "status": "none",
+      "routeCount": 0
+    },
+    {
+      "id": "g-af78d778",
+      "source": "港澳台/我是驴友-香港旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "迪士尼",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "海洋公园",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "杜莎夫人蜡像馆",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "太平山",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "尖沙咀",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "星光大道",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "维多利亚港",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "兰桂坊",
+      "kind": "sight",
+      "order": 7
+    }
+  ],
+  "places": [
+    {
+      "name": "福隆新街",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "大三巴牌坊",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "迪士尼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "杜莎夫人蜡像馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "海洋公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "尖沙咀",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "兰桂坊",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "玫瑰圣母堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "牌坊",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "太平山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "维多利亚港",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "新马路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "星光大道",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "议事亭前地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-af78d778:r1",
+      "title": "香港经典五日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "迪士尼",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "海洋公园",
+              "kind": "sight"
+            },
+            {
+              "name": "杜莎夫人蜡像馆",
+              "kind": "sight"
+            },
+            {
+              "name": "太平山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "尖沙咀",
+              "kind": "sight"
+            },
+            {
+              "name": "星光大道",
+              "kind": "sight"
+            },
+            {
+              "name": "维多利亚港",
+              "kind": "sight"
+            },
+            {
+              "name": "兰桂坊",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-af78d778:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "新马路",
+              "kind": "sight"
+            },
+            {
+              "name": "议事亭前地",
+              "kind": "sight"
+            },
+            {
+              "name": "玫瑰圣母堂",
+              "kind": "sight"
+            },
+            {
+              "name": "大三巴牌坊",
+              "kind": "sight"
+            },
+            {
+              "name": "福隆新街",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "牌坊",
+              "kind": "sight"
+            },
+            {
+              "name": "福隆新街",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 2,
+    "routeCount": 2,
+    "placeCount": 14,
+    "mustCount": 8
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

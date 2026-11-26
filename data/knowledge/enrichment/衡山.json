@@ -1,0 +1,110 @@
+{
+  "city": "衡山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "BIGEMAP", "360百科"],
+  "center": [112.7155, 27.2693],
+  "places": {
+    "南岳庙": {
+      "name": "南岳大庙",
+      "lng": 112.73426,
+      "lat": 27.24529,
+      "category": "temple",
+      "rating": 4.8,
+      "ticket": "旺季58元/淡季40元",
+      "hours": "08:00-17:30（17:00停止入园）",
+      "intro": "南岳衡山山脚的宫殿式庙宇，五岳中规模最大、最完整的古建筑群，有“南国故宫”之称。",
+      "source": "腾讯地图/360百科",
+      "verified": true
+    },
+    "祝圣寺": {
+      "name": "衡阳市衡山旅游区-祝圣寺",
+      "lng": 112.737737,
+      "lat": 27.243481,
+      "category": "temple",
+      "rating": 4.4,
+      "hours": "07:00-17:30",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "忠烈祠": {
+      "name": "南岳忠烈祠",
+      "lng": 112.717962,
+      "lat": 27.265321,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "淡季08:30-17:30；旺季08:00-18:00",
+      "intro": "南岳衡山风景区内纪念抗日阵亡将士的祠庙。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "半山亭": {
+      "name": "南岳衡山风景名胜区-半山亭",
+      "lng": 112.706433,
+      "lat": 27.269282,
+      "category": "viewpoint",
+      "rating": 4.3,
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南天门": {
+      "name": "南天门",
+      "lng": 112.701813,
+      "lat": 27.287366,
+      "category": "viewpoint",
+      "intro": "位于祝融峰附近，为登衡山山顶的重要关口。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "祝融峰": {
+      "name": "祝融峰",
+      "lng": 112.694625,
+      "lat": 27.29402,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "南岳衡山最高峰，海拔1300.2米，可观日出、云海、雪景，为衡山四绝之首。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "藏经殿": {
+      "name": "衡阳市衡山旅游区-藏经殿",
+      "lng": 112.678607,
+      "lat": 27.274058,
+      "category": "temple",
+      "hours": "06:00-19:00",
+      "intro": "位于祥光峰下，始建于南朝，与祝融峰、水帘洞、方广寺并称“南岳四绝”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "磨镜台": {
+      "name": "南岳衡山风景名胜区-磨镜台",
+      "lng": 112.703172,
+      "lat": 27.266933,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "07:30-17:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南台寺": {
+      "name": "南岳衡山风景名胜区-南台寺",
+      "lng": 112.710347,
+      "lat": 27.259537,
+      "category": "temple",
+      "rating": 4.2,
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "水帘洞": {
+      "name": "南岳衡山水帘洞",
+      "lng": 112.75089,
+      "lat": 27.2699,
+      "category": "nature",
+      "intro": "位于紫盖峰下，古称朱陵洞，瀑布高约60米形似水帘，为“南岳四绝”之奇景。",
+      "source": "BIGEMAP",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

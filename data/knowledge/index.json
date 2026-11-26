@@ -1,0 +1,1164 @@
+{
+  "generatedAt": "2026-11-25T10:03:36.538Z",
+  "description": "攻略语料本地知识库：必去点 / 全景点聚合 / 路线模板（坐标与详情待 agent 上网核实）",
+  "cityCount": 122,
+  "placeCount": 1706,
+  "mustCount": 1052,
+  "cities": [
+    {
+      "city": "澳门",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/澳门.json"
+    },
+    {
+      "city": "白洋淀",
+      "region": "河北",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 10,
+      "guideCount": 1,
+      "file": "cities/白洋淀.json"
+    },
+    {
+      "city": "北戴河",
+      "region": "河北",
+      "center": [
+        119.4354,
+        39.8606
+      ],
+      "mustCount": 5,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/北戴河.json"
+    },
+    {
+      "city": "北海",
+      "region": "华南",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 4,
+      "guideCount": 1,
+      "file": "cities/北海.json"
+    },
+    {
+      "city": "北疆",
+      "region": "西北",
+      "center": null,
+      "mustCount": 18,
+      "placeCount": 18,
+      "guideCount": 1,
+      "file": "cities/北疆.json"
+    },
+    {
+      "city": "北京",
+      "region": "华北",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 21,
+      "guideCount": 1,
+      "file": "cities/北京.json"
+    },
+    {
+      "city": "常州",
+      "region": "江苏",
+      "center": [
+        119.9692,
+        31.8123
+      ],
+      "mustCount": 23,
+      "placeCount": 26,
+      "guideCount": 1,
+      "file": "cities/常州.json"
+    },
+    {
+      "city": "成都",
+      "region": "四川",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/成都.json"
+    },
+    {
+      "city": "重庆",
+      "region": "西南",
+      "center": null,
+      "mustCount": 2,
+      "placeCount": 18,
+      "guideCount": 1,
+      "file": "cities/重庆.json"
+    },
+    {
+      "city": "川藏",
+      "region": "西南",
+      "center": null,
+      "mustCount": 21,
+      "placeCount": 30,
+      "guideCount": 1,
+      "file": "cities/川藏.json"
+    },
+    {
+      "city": "大理",
+      "region": "云南",
+      "center": [
+        100.2652,
+        25.6075
+      ],
+      "mustCount": 6,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/大理.json"
+    },
+    {
+      "city": "大连",
+      "region": "东北",
+      "center": [
+        110.1051,
+        19.8551
+      ],
+      "mustCount": 4,
+      "placeCount": 7,
+      "guideCount": 1,
+      "file": "cities/大连.json"
+    },
+    {
+      "city": "大同",
+      "region": "华北",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 3,
+      "guideCount": 1,
+      "file": "cities/大同.json"
+    },
+    {
+      "city": "稻城亚丁",
+      "region": "四川",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/稻城亚丁.json"
+    },
+    {
+      "city": "都江堰",
+      "region": "四川",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/都江堰.json"
+    },
+    {
+      "city": "敦煌",
+      "region": "西北",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/敦煌.json"
+    },
+    {
+      "city": "峨眉山",
+      "region": "西南",
+      "center": null,
+      "mustCount": 19,
+      "placeCount": 31,
+      "guideCount": 1,
+      "file": "cities/峨眉山.json"
+    },
+    {
+      "city": "凤凰",
+      "region": "华中",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/凤凰.json"
+    },
+    {
+      "city": "福州",
+      "region": "华东",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/福州.json"
+    },
+    {
+      "city": "甘南",
+      "region": "西北",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 10,
+      "guideCount": 1,
+      "file": "cities/甘南.json"
+    },
+    {
+      "city": "高雄",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 21,
+      "placeCount": 21,
+      "guideCount": 1,
+      "file": "cities/高雄.json"
+    },
+    {
+      "city": "鼓浪屿",
+      "region": "华东",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 4,
+      "guideCount": 1,
+      "file": "cities/鼓浪屿.json"
+    },
+    {
+      "city": "故宫",
+      "region": "华北",
+      "center": null,
+      "mustCount": 12,
+      "placeCount": 12,
+      "guideCount": 1,
+      "file": "cities/故宫.json"
+    },
+    {
+      "city": "广西",
+      "region": "华南",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/广西.json"
+    },
+    {
+      "city": "广州",
+      "region": "华南",
+      "center": null,
+      "mustCount": 18,
+      "placeCount": 20,
+      "guideCount": 1,
+      "file": "cities/广州.json"
+    },
+    {
+      "city": "贵阳",
+      "region": "贵州",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 7,
+      "guideCount": 1,
+      "file": "cities/贵阳.json"
+    },
+    {
+      "city": "桂林",
+      "region": "华南",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 15,
+      "guideCount": 1,
+      "file": "cities/桂林.json"
+    },
+    {
+      "city": "哈尔滨",
+      "region": "东北",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/哈尔滨.json"
+    },
+    {
+      "city": "海口",
+      "region": "华南",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 11,
+      "guideCount": 1,
+      "file": "cities/海口.json"
+    },
+    {
+      "city": "海螺沟",
+      "region": "四川",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/海螺沟.json"
+    },
+    {
+      "city": "杭州",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 11,
+      "placeCount": 26,
+      "guideCount": 1,
+      "file": "cities/杭州.json"
+    },
+    {
+      "city": "合肥",
+      "region": "华东",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/合肥.json"
+    },
+    {
+      "city": "横店",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/横店.json"
+    },
+    {
+      "city": "衡山",
+      "region": "华中",
+      "center": null,
+      "mustCount": 10,
+      "placeCount": 19,
+      "guideCount": 1,
+      "file": "cities/衡山.json"
+    },
+    {
+      "city": "宏村",
+      "region": "华东",
+      "center": [
+        117.9847,
+        30.0048
+      ],
+      "mustCount": 7,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/宏村.json"
+    },
+    {
+      "city": "呼伦贝尔",
+      "region": "华北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 15,
+      "guideCount": 1,
+      "file": "cities/呼伦贝尔.json"
+    },
+    {
+      "city": "华山",
+      "region": "西北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 7,
+      "guideCount": 1,
+      "file": "cities/华山.json"
+    },
+    {
+      "city": "黄果树",
+      "region": "贵州",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 4,
+      "guideCount": 1,
+      "file": "cities/黄果树.json"
+    },
+    {
+      "city": "黄山",
+      "region": "华中",
+      "center": null,
+      "mustCount": 12,
+      "placeCount": 21,
+      "guideCount": 1,
+      "file": "cities/黄山.json"
+    },
+    {
+      "city": "惠州",
+      "region": "华南",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/惠州.json"
+    },
+    {
+      "city": "济南",
+      "region": "山东",
+      "center": null,
+      "mustCount": 15,
+      "placeCount": 19,
+      "guideCount": 1,
+      "file": "cities/济南.json"
+    },
+    {
+      "city": "九寨沟",
+      "region": "四川",
+      "center": [
+        103.9326,
+        33.3072
+      ],
+      "mustCount": 14,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/九寨沟.json"
+    },
+    {
+      "city": "康定",
+      "region": "西南",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 4,
+      "guideCount": 1,
+      "file": "cities/康定.json"
+    },
+    {
+      "city": "昆明",
+      "region": "云南",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/昆明.json"
+    },
+    {
+      "city": "拉萨",
+      "region": "西南",
+      "center": null,
+      "mustCount": 12,
+      "placeCount": 15,
+      "guideCount": 1,
+      "file": "cities/拉萨.json"
+    },
+    {
+      "city": "兰州",
+      "region": "西北",
+      "center": [
+        103.6323,
+        36.2859
+      ],
+      "mustCount": 6,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/兰州.json"
+    },
+    {
+      "city": "丽江",
+      "region": "云南",
+      "center": [
+        100.225,
+        26.8596
+      ],
+      "mustCount": 6,
+      "placeCount": 40,
+      "guideCount": 1,
+      "file": "cities/丽江.json"
+    },
+    {
+      "city": "荔波",
+      "region": "贵州",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 12,
+      "guideCount": 1,
+      "file": "cities/荔波.json"
+    },
+    {
+      "city": "连云港",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 11,
+      "guideCount": 2,
+      "file": "cities/连云港.json"
+    },
+    {
+      "city": "林芝",
+      "region": "西南",
+      "center": null,
+      "mustCount": 11,
+      "placeCount": 18,
+      "guideCount": 1,
+      "file": "cities/林芝.json"
+    },
+    {
+      "city": "庐山",
+      "region": "华中",
+      "center": null,
+      "mustCount": 20,
+      "placeCount": 20,
+      "guideCount": 1,
+      "file": "cities/庐山.json"
+    },
+    {
+      "city": "泸沽湖",
+      "region": "云南",
+      "center": null,
+      "mustCount": 10,
+      "placeCount": 10,
+      "guideCount": 1,
+      "file": "cities/泸沽湖.json"
+    },
+    {
+      "city": "洛阳",
+      "region": "华中",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/洛阳.json"
+    },
+    {
+      "city": "纳木错",
+      "region": "西南",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 3,
+      "guideCount": 1,
+      "file": "cities/纳木错.json"
+    },
+    {
+      "city": "南昌",
+      "region": "华东",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 11,
+      "guideCount": 1,
+      "file": "cities/南昌.json"
+    },
+    {
+      "city": "南京",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 24,
+      "guideCount": 1,
+      "file": "cities/南京.json"
+    },
+    {
+      "city": "南宁",
+      "region": "华南",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/南宁.json"
+    },
+    {
+      "city": "宁波",
+      "region": "浙江",
+      "center": [
+        121.55,
+        29.872
+      ],
+      "mustCount": 8,
+      "placeCount": 30,
+      "guideCount": 1,
+      "file": "cities/宁波.json"
+    },
+    {
+      "city": "蓬莱",
+      "region": "山东",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/蓬莱.json"
+    },
+    {
+      "city": "平遥",
+      "region": "华北",
+      "center": null,
+      "mustCount": 12,
+      "placeCount": 12,
+      "guideCount": 1,
+      "file": "cities/平遥.json"
+    },
+    {
+      "city": "普陀山",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 19,
+      "guideCount": 1,
+      "file": "cities/普陀山.json"
+    },
+    {
+      "city": "千岛湖",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 10,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/千岛湖.json"
+    },
+    {
+      "city": "黔东南",
+      "region": "西南",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 5,
+      "guideCount": 2,
+      "file": "cities/黔东南.json"
+    },
+    {
+      "city": "秦皇岛",
+      "region": "河北",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 11,
+      "guideCount": 1,
+      "file": "cities/秦皇岛.json"
+    },
+    {
+      "city": "青城山",
+      "region": "四川",
+      "center": null,
+      "mustCount": 14,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/青城山.json"
+    },
+    {
+      "city": "青岛",
+      "region": "山东",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 22,
+      "guideCount": 1,
+      "file": "cities/青岛.json"
+    },
+    {
+      "city": "青海",
+      "region": "西北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/青海.json"
+    },
+    {
+      "city": "青海湖",
+      "region": "西北",
+      "center": null,
+      "mustCount": 15,
+      "placeCount": 22,
+      "guideCount": 1,
+      "file": "cities/青海湖.json"
+    },
+    {
+      "city": "曲阜",
+      "region": "山东",
+      "center": null,
+      "mustCount": 14,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/曲阜.json"
+    },
+    {
+      "city": "日照",
+      "region": "华东",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 14,
+      "guideCount": 2,
+      "file": "cities/日照.json"
+    },
+    {
+      "city": "三清山",
+      "region": "华中",
+      "center": [
+        118.0585,
+        28.9329
+      ],
+      "mustCount": 4,
+      "placeCount": 4,
+      "guideCount": 1,
+      "file": "cities/三清山.json"
+    },
+    {
+      "city": "三亚",
+      "region": "华南",
+      "center": [
+        111.9938,
+        23.7336
+      ],
+      "mustCount": 2,
+      "placeCount": 2,
+      "guideCount": 1,
+      "file": "cities/三亚.json"
+    },
+    {
+      "city": "厦门",
+      "region": "华东",
+      "center": null,
+      "mustCount": 24,
+      "placeCount": 41,
+      "guideCount": 2,
+      "file": "cities/厦门.json"
+    },
+    {
+      "city": "山海关",
+      "region": "河北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/山海关.json"
+    },
+    {
+      "city": "上海",
+      "region": "华东",
+      "center": [
+        121.47,
+        31.2313
+      ],
+      "mustCount": 8,
+      "placeCount": 13,
+      "guideCount": 1,
+      "file": "cities/上海.json"
+    },
+    {
+      "city": "绍兴",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/绍兴.json"
+    },
+    {
+      "city": "深圳",
+      "region": "华南",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/深圳.json"
+    },
+    {
+      "city": "沈阳",
+      "region": "东北",
+      "center": null,
+      "mustCount": 16,
+      "placeCount": 16,
+      "guideCount": 1,
+      "file": "cities/沈阳.json"
+    },
+    {
+      "city": "蜀南竹海",
+      "region": "四川",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 3,
+      "guideCount": 1,
+      "file": "cities/蜀南竹海.json"
+    },
+    {
+      "city": "束河",
+      "region": "云南",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/束河.json"
+    },
+    {
+      "city": "四姑娘山",
+      "region": "四川",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 7,
+      "guideCount": 1,
+      "file": "cities/四姑娘山.json"
+    },
+    {
+      "city": "苏州",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/苏州.json"
+    },
+    {
+      "city": "台北",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 13,
+      "placeCount": 13,
+      "guideCount": 1,
+      "file": "cities/台北.json"
+    },
+    {
+      "city": "台湾",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 10,
+      "placeCount": 31,
+      "guideCount": 1,
+      "file": "cities/台湾.json"
+    },
+    {
+      "city": "太原",
+      "region": "华北",
+      "center": [
+        112.5437,
+        37.87
+      ],
+      "mustCount": 8,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/太原.json"
+    },
+    {
+      "city": "泰山",
+      "region": "山东",
+      "center": null,
+      "mustCount": 11,
+      "placeCount": 13,
+      "guideCount": 1,
+      "file": "cities/泰山.json"
+    },
+    {
+      "city": "天津",
+      "region": "华北",
+      "center": [
+        117.4164,
+        39.3033
+      ],
+      "mustCount": 7,
+      "placeCount": 15,
+      "guideCount": 1,
+      "file": "cities/天津.json"
+    },
+    {
+      "city": "同里",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 24,
+      "placeCount": 29,
+      "guideCount": 1,
+      "file": "cities/同里.json"
+    },
+    {
+      "city": "威海",
+      "region": "山东",
+      "center": [
+        122.1153,
+        37.5121
+      ],
+      "mustCount": 9,
+      "placeCount": 11,
+      "guideCount": 1,
+      "file": "cities/威海.json"
+    },
+    {
+      "city": "乌鲁木齐",
+      "region": "西北",
+      "center": [
+        87.6139,
+        43.8244
+      ],
+      "mustCount": 7,
+      "placeCount": 11,
+      "guideCount": 1,
+      "file": "cities/乌鲁木齐.json"
+    },
+    {
+      "city": "乌镇",
+      "region": "浙江",
+      "center": [
+        110.3612,
+        37.9343
+      ],
+      "mustCount": 5,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/乌镇.json"
+    },
+    {
+      "city": "无锡",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/无锡.json"
+    },
+    {
+      "city": "五台山",
+      "region": "华北",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 30,
+      "guideCount": 1,
+      "file": "cities/五台山.json"
+    },
+    {
+      "city": "武当山",
+      "region": "华中",
+      "center": null,
+      "mustCount": 15,
+      "placeCount": 23,
+      "guideCount": 1,
+      "file": "cities/武当山.json"
+    },
+    {
+      "city": "武汉",
+      "region": "华中",
+      "center": null,
+      "mustCount": 14,
+      "placeCount": 26,
+      "guideCount": 1,
+      "file": "cities/武汉.json"
+    },
+    {
+      "city": "武夷山",
+      "region": "华南",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 13,
+      "guideCount": 1,
+      "file": "cities/武夷山.json"
+    },
+    {
+      "city": "婺源",
+      "region": "华中",
+      "center": [
+        117.7543,
+        29.3234
+      ],
+      "mustCount": 10,
+      "placeCount": 36,
+      "guideCount": 1,
+      "file": "cities/婺源.json"
+    },
+    {
+      "city": "西安",
+      "region": "西北",
+      "center": null,
+      "mustCount": 9,
+      "placeCount": 20,
+      "guideCount": 1,
+      "file": "cities/西安.json"
+    },
+    {
+      "city": "西藏",
+      "region": "西南",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 43,
+      "guideCount": 1,
+      "file": "cities/西藏.json"
+    },
+    {
+      "city": "西双版纳",
+      "region": "云南",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/西双版纳.json"
+    },
+    {
+      "city": "西塘",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 12,
+      "placeCount": 22,
+      "guideCount": 1,
+      "file": "cities/西塘.json"
+    },
+    {
+      "city": "西溪湿地",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/西溪湿地.json"
+    },
+    {
+      "city": "香港",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 14,
+      "guideCount": 2,
+      "file": "cities/香港.json"
+    },
+    {
+      "city": "香港离岛",
+      "region": "港澳台",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/香港离岛.json"
+    },
+    {
+      "city": "香格里拉",
+      "region": "云南",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 19,
+      "guideCount": 2,
+      "file": "cities/香格里拉.json"
+    },
+    {
+      "city": "新疆",
+      "region": "西北",
+      "center": null,
+      "mustCount": 3,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/新疆.json"
+    },
+    {
+      "city": "烟台",
+      "region": "山东",
+      "center": null,
+      "mustCount": 19,
+      "placeCount": 19,
+      "guideCount": 2,
+      "file": "cities/烟台.json"
+    },
+    {
+      "city": "雁荡山",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 10,
+      "guideCount": 1,
+      "file": "cities/雁荡山.json"
+    },
+    {
+      "city": "扬州",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 7,
+      "placeCount": 15,
+      "guideCount": 1,
+      "file": "cities/扬州.json"
+    },
+    {
+      "city": "野三坡",
+      "region": "河北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/野三坡.json"
+    },
+    {
+      "city": "云南",
+      "region": "云南",
+      "center": [
+        102.6276,
+        26.7804
+      ],
+      "mustCount": 7,
+      "placeCount": 7,
+      "guideCount": 1,
+      "file": "cities/云南.json"
+    },
+    {
+      "city": "云台山",
+      "region": "华中",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 8,
+      "guideCount": 1,
+      "file": "cities/云台山.json"
+    },
+    {
+      "city": "张家界",
+      "region": "华中",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 6,
+      "guideCount": 1,
+      "file": "cities/张家界.json"
+    },
+    {
+      "city": "长白山",
+      "region": "东北",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/长白山.json"
+    },
+    {
+      "city": "长岛",
+      "region": "山东",
+      "center": null,
+      "mustCount": 14,
+      "placeCount": 14,
+      "guideCount": 1,
+      "file": "cities/长岛.json"
+    },
+    {
+      "city": "长沙",
+      "region": "华中",
+      "center": null,
+      "mustCount": 5,
+      "placeCount": 16,
+      "guideCount": 1,
+      "file": "cities/长沙.json"
+    },
+    {
+      "city": "浙江",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 14,
+      "placeCount": 36,
+      "guideCount": 1,
+      "file": "cities/浙江.json"
+    },
+    {
+      "city": "镇江",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 4,
+      "placeCount": 5,
+      "guideCount": 1,
+      "file": "cities/镇江.json"
+    },
+    {
+      "city": "镇远",
+      "region": "贵州",
+      "center": null,
+      "mustCount": 8,
+      "placeCount": 9,
+      "guideCount": 1,
+      "file": "cities/镇远.json"
+    },
+    {
+      "city": "舟山",
+      "region": "浙江",
+      "center": null,
+      "mustCount": 16,
+      "placeCount": 17,
+      "guideCount": 1,
+      "file": "cities/舟山.json"
+    },
+    {
+      "city": "周庄",
+      "region": "江苏",
+      "center": null,
+      "mustCount": 10,
+      "placeCount": 12,
+      "guideCount": 1,
+      "file": "cities/周庄.json"
+    },
+    {
+      "city": "珠海",
+      "region": "华南",
+      "center": null,
+      "mustCount": 6,
+      "placeCount": 12,
+      "guideCount": 1,
+      "file": "cities/珠海.json"
+    }
+  ]
+}

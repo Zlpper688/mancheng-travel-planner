@@ -1,0 +1,204 @@
+{
+  "city": "广州",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据",
+    "BIGEMAP"
+  ],
+  "center": [
+    113.27,
+    23.13
+  ],
+  "places": {
+    "越秀公园": {
+      "name": "越秀公园",
+      "lng": 113.265621,
+      "lat": 23.140152,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "06:00-22:00(21:30停止入园)",
+      "intro": "羊城八景之一，内有五羊石雕、中山纪念碑等古迹。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北京路": {
+      "name": "北京路",
+      "lng": 113.270481,
+      "lat": 23.11687,
+      "category": "street",
+      "intro": "广州著名商业步行街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沙面": {
+      "name": "沙面旅游区",
+      "lng": 113.244707,
+      "lat": 23.106802,
+      "category": "street",
+      "rating": 4.7,
+      "hours": "全年全天开放",
+      "intro": "珠江边的欧陆建筑历史街区，可深度体验广州历史文化。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "珠江夜游": {
+      "name": "珠江夜游·广州塔中大码头",
+      "lng": 113.299103,
+      "lat": 23.103848,
+      "category": "viewpoint",
+      "intro": "乘船夜游珠江，欣赏两岸灯光与广州塔夜景。",
+      "source": "POI数据",
+      "verified": true
+    },
+    "花城广场": {
+      "name": "花城广场",
+      "lng": 113.324662,
+      "lat": 23.120434,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "珠江新城CBD中心区的大型城市广场。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长隆欢乐世界": {
+      "name": "长隆欢乐世界",
+      "lng": 113.330389,
+      "lat": 22.998989,
+      "category": "attraction",
+      "rating": 4.8,
+      "ticket": "约222元",
+      "intro": "国内首屈一指的主题乐园，拥有众多惊险游乐设施。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长隆水上": {
+      "name": "长隆水上乐园",
+      "lng": 113.324409,
+      "lat": 23.001724,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "10:00-22:00",
+      "intro": "占地约20万平方米，是亚洲大型水上乐园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "荔枝湾涌": {
+      "name": "荔枝湾涌",
+      "lng": 113.236179,
+      "lat": 23.121119,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "09:00-17:00",
+      "intro": "荔湾湖内的岭南水乡景观，可赏岭南特色建筑。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "文昌庙": {
+      "name": "文昌庙",
+      "lng": 113.577464,
+      "lat": 23.094164,
+      "category": "temple",
+      "rating": 4,
+      "intro": "位于增城区新塘镇的寺庙道观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "上下九": {
+      "name": "上下九商业步行街",
+      "lng": 113.246776,
+      "lat": 23.114031,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "00:00-24:00",
+      "intro": "中西合璧的西关风情商业步行街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "佛山祖庙": {
+      "name": "祖庙",
+      "lng": 113.11355,
+      "lat": 23.029011,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "08:30-18:00",
+      "intro": "佛山必游景点，黄飞鸿和叶问馆都在此，岭南古建筑三大瑰宝之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "广州黄大仙祠": {
+      "name": "黄大仙祠",
+      "lng": 113.227142,
+      "lat": 23.095575,
+      "category": "temple",
+      "intro": "位于芳村花地的道观。",
+      "source": "POI数据",
+      "verified": true
+    },
+    "陈家祠": {
+      "name": "陈家祠堂",
+      "lng": 113.245217,
+      "lat": 23.126458,
+      "category": "museum",
+      "rating": 4.7,
+      "hours": "09:00-18:00(17:30停止入园)",
+      "intro": "岭南建筑艺术的明珠，可感受精美建筑与家族文化。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄埔军校": {
+      "name": "黄埔军校旧址纪念馆",
+      "lng": 113.425741,
+      "lat": 23.086212,
+      "category": "museum",
+      "hours": "周二至周日09:00-17:00(16:30停止入园)；周一不开放",
+      "intro": "孙中山1924年创办的军校旧址，世界历史上四大军校之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "辛亥革命馆": {
+      "name": "辛亥革命纪念馆",
+      "lng": 113.420306,
+      "lat": 23.072077,
+      "category": "museum",
+      "hours": "周二至周日09:00-17:00(16:15停止入馆)；周一闭馆",
+      "intro": "长洲岛上的辛亥革命主题纪念馆。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "广州国际生物岛": {
+      "name": "广州国际生物岛",
+      "lng": 113.375814,
+      "lat": 23.065906,
+      "category": "other",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "珠江上的生态岛屿，生物产业园区与休闲绿道。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "岭南印象园": {
+      "name": "岭南印象园",
+      "lng": 113.406191,
+      "lat": 23.036675,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "09:30-18:00（暑期延长至21:30）",
+      "intro": "体验岭南乡土风情和民俗文化的好去处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "海珠湖": {
+      "name": "海珠湖",
+      "lng": 113.322684,
+      "lat": 23.076688,
+      "category": "park",
+      "intro": "位于广州新中轴线南端的生态湖公园。",
+      "source": "BIGEMAP",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

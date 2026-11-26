@@ -1,0 +1,54 @@
+{
+  "city": "三清山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "维基百科"
+  ],
+  "center": [
+    118.06444,
+    28.91583
+  ],
+  "places": {
+    "万寿园": {
+      "name": "三清山-万寿园",
+      "lng": 118.06836,
+      "lat": 28.899277,
+      "category": "attraction",
+      "intro": "三清山万寿园景区，以长寿主题石景为特色。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南清园": {
+      "name": "三清山-南清园",
+      "lng": 118.070215,
+      "lat": 28.905285,
+      "category": "attraction",
+      "intro": "三清山南清园景区，集中了花岗岩峰林精华景观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西海岸": {
+      "name": "三清山-西海岸",
+      "lng": 118.064351,
+      "lat": 28.907378,
+      "category": "viewpoint",
+      "intro": "三清山西海岸高空栈道，可远眺群峰与云海。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三清宫": {
+      "name": "三清山-三清宫",
+      "lng": 118.059225,
+      "lat": 28.915827,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "三清山香火最旺的道教宫观，明代石构建筑群的核心。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

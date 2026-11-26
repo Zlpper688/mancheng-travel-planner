@@ -1,0 +1,36 @@
+{
+  "city": "白洋淀",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [115.935688, 38.936102],
+  "places": {
+    "安新": {
+      "name": "安新县",
+      "lng": 115.935688,
+      "lat": 38.936102,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "白洋淀烧车淀": {
+      "name": "烧车淀",
+      "lng": 115.991458,
+      "lat": 38.962979,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "白洋淀景区": {
+      "name": "白洋淀景区",
+      "lng": 115.969753,
+      "lat": 38.940823,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "5月1日-10月14日 07:30-18:30（16:00停止入园）；10月15日-次年4月30日 不开放",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": ["农家院", "当地集市"]
+}

@@ -1,0 +1,363 @@
+{
+  "city": "南昌",
+  "region": "华东",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-800ee5d3",
+      "source": "华东地区/我是驴友-南昌旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "庐山",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "锦绣谷",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "大天池",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "龙首崖",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "石门涧",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "八一广场",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    },
+    {
+      "name": "百花洲",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    },
+    {
+      "name": "大天池",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "锦绣谷",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "龙首崖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "庐山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南昌起义纪念馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    },
+    {
+      "name": "绳金塔",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    },
+    {
+      "name": "石门涧",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "滕王阁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    },
+    {
+      "name": "佑民寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "市内一日游"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-800ee5d3:r1",
+      "title": "经典两日游",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": []
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "庐山",
+              "kind": "sight"
+            },
+            {
+              "name": "锦绣谷",
+              "kind": "sight"
+            },
+            {
+              "name": "大天池",
+              "kind": "sight"
+            },
+            {
+              "name": "龙首崖",
+              "kind": "sight"
+            },
+            {
+              "name": "石门涧",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-800ee5d3:r2",
+      "title": "市内一日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "滕王阁",
+              "kind": "sight"
+            },
+            {
+              "name": "佑民寺",
+              "kind": "sight"
+            },
+            {
+              "name": "百花洲",
+              "kind": "sight"
+            },
+            {
+              "name": "南昌起义纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "八一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "绳金塔",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-800ee5d3:r3",
+      "title": "周边六日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "滕王阁",
+              "kind": "sight"
+            },
+            {
+              "name": "百花洲",
+              "kind": "sight"
+            },
+            {
+              "name": "八一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "绳金塔",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "庐山",
+              "kind": "sight"
+            },
+            {
+              "name": "锦绣谷",
+              "kind": "sight"
+            },
+            {
+              "name": "大天池",
+              "kind": "sight"
+            },
+            {
+              "name": "龙首崖",
+              "kind": "sight"
+            },
+            {
+              "name": "石门涧",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "庐山",
+              "kind": "sight"
+            },
+            {
+              "name": "含鄱口",
+              "kind": "sight"
+            },
+            {
+              "name": "五老峰",
+              "kind": "sight"
+            },
+            {
+              "name": "三叠泉",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "景德镇",
+              "kind": "sight"
+            },
+            {
+              "name": "陶瓷历史博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "古窑民俗博物馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "婺源",
+              "kind": "sight"
+            },
+            {
+              "name": "月亮湾",
+              "kind": "sight"
+            },
+            {
+              "name": "李坑",
+              "kind": "sight"
+            },
+            {
+              "name": "汪口村",
+              "kind": "sight"
+            },
+            {
+              "name": "江岭",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "婺源",
+              "kind": "sight"
+            },
+            {
+              "name": "思溪延村",
+              "kind": "sight"
+            },
+            {
+              "name": "彩虹桥",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 3,
+    "placeCount": 11,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

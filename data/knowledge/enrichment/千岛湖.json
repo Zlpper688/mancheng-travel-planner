@@ -1,0 +1,121 @@
+{
+  "city": "千岛湖",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "BIGEMAP在线地图"
+  ],
+  "places": {
+    "灵隐寺": {
+      "name": "灵隐寺",
+      "lng": 120.101379,
+      "lat": 30.240852,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:30-17:30（17:00停止入园）",
+      "intro": "创建于东晋年间，杭州最早的古寺名刹，济公出家之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西湖": {
+      "name": "西湖风景名胜区",
+      "lng": 120.121431,
+      "lat": 30.221378,
+      "category": "nature",
+      "intro": "杭州最著名的景点，“西湖十景”是其精华所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "河坊街": {
+      "name": "河坊街步行街（高银美食街）",
+      "lng": 120.168328,
+      "lat": 30.240521,
+      "category": "street",
+      "rating": 4.5,
+      "hours": "09:00-21:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "光明顶": {
+      "name": "光明顶",
+      "lng": 118.169101,
+      "lat": 30.132112,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "周一至周五、周日 06:30-16:30;周六 06:00-16:30",
+      "intro": "黄山第二高峰，看日出、观云海的最佳地点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鳌鱼峰": {
+      "name": "鳌鱼峰",
+      "lng": 118.167148,
+      "lat": 30.128557,
+      "category": "viewpoint",
+      "rating": 4.4,
+      "hours": "07:00-17:00",
+      "intro": "山峰犹如巨大高昂的鲸首，是观赏日落的最佳地点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "莲花峰": {
+      "name": "莲花峰",
+      "lng": 118.170472,
+      "lat": 30.126557,
+      "category": "viewpoint",
+      "intro": "黄山主峰，海拔1864米，与光明顶、天都峰并称黄山三大主峰。",
+      "source": "BIGEMAP在线地图",
+      "verified": true
+    },
+    "迎客松": {
+      "name": "黄山-迎客松",
+      "lng": 118.175958,
+      "lat": 30.122347,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "周一至周五、周日 06:30-16:30;周六 06:00-16:30",
+      "intro": "黄山的标志性景点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天都峰": {
+      "name": "天都峰",
+      "lng": 118.17958,
+      "lat": 30.11827,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "07:00-17:10",
+      "intro": "黄山三大主峰之一，气势磅礴，险峭雄奇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "慈光阁": {
+      "name": "慈光阁",
+      "lng": 118.172702,
+      "lat": 30.105403,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "07:30-16:30",
+      "intro": "进入黄山的第一个重要景点，周围群峰环绕，景色幽雅。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "温泉景区": {
+      "name": "黄山-温泉景区",
+      "lng": 118.172826,
+      "lat": 30.104965,
+      "category": "attraction",
+      "rating": 4.1,
+      "hours": "15:00-21:30（21:00停止入园）",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    119.078,
+    29.607
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

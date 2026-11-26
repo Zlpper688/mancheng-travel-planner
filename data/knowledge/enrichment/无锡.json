@@ -1,0 +1,112 @@
+{
+  "city": "无锡",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    120.311889,
+    31.491064
+  ],
+  "places": {
+    "灵山": {
+      "name": "灵山",
+      "lng": 120.10069,
+      "lat": 31.42686,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "灵山胜境，无锡太湖之滨佛教文化景区，有灵山大佛。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南长街": {
+      "name": "南长街",
+      "lng": 120.311521,
+      "lat": 31.561898,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "南长街，无锡古运河畔历史街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三国城": {
+      "name": "三国城",
+      "lng": 120.233956,
+      "lat": 31.47516,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "中央电视台无锡影视基地三国城，《三国演义》拍摄地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "水浒城": {
+      "name": "水浒城",
+      "lng": 120.234201,
+      "lat": 31.480032,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "08:00-17:30",
+      "intro": "中央电视台无锡影视基地水浒城，与三国城同址，《水浒传》拍摄地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鼋头渚": {
+      "name": "鼋头渚",
+      "lng": 120.22656,
+      "lat": 31.52328,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:30-16:30",
+      "intro": "无锡太湖鼋头渚风景区，太湖第一名胜，以樱花著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "蠡园": {
+      "name": "蠡园",
+      "lng": 120.2593,
+      "lat": 31.51797,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "3月1日-11月30日 07:00-18:30;12月1日-次年2月28日 07:00-17:00",
+      "intro": "蠡园，无锡太湖之滨园林，相传范蠡与西施游居之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "梅园": {
+      "name": "梅园",
+      "lng": 120.224633,
+      "lat": 31.554694,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "07:00-17:00(16:30停止入园)",
+      "intro": "无锡梅园，以梅花著称的园林。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "锡惠公园": {
+      "name": "锡惠公园",
+      "lng": 120.27493,
+      "lat": 31.57772,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "周一至周五 08:00-17:00;周六至周日 08:00-17:30",
+      "intro": "锡惠公园，无锡市区名园，含惠山泉与寄畅园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "惠山古镇": {
+      "name": "惠山古镇",
+      "lng": 120.274111,
+      "lat": 31.578923,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "2月17日-12月31日 周一至周五 08:00-17:00;周六至周日 08:00-17:30",
+      "intro": "惠山古镇，无锡历史文化街区，祠堂群密集。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

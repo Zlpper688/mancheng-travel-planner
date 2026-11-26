@@ -1,0 +1,476 @@
+{
+  "city": "周庄",
+  "region": "江苏",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-110cb26b",
+      "source": "江苏地区/我是驴友-周庄旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 4
+    }
+  ],
+  "must": [
+    {
+      "name": "古戏台",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "双桥",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "张厅",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "沈厅",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "叶楚伧故居",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "退思园",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "崇本堂",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "三桥",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "嘉荫堂",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "罗星洲",
+      "kind": "sight",
+      "order": 9
+    }
+  ],
+  "places": [
+    {
+      "name": "古戏台",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "休闲一日游"
+      ]
+    },
+    {
+      "name": "沈厅",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "休闲一日游"
+      ]
+    },
+    {
+      "name": "张厅",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "休闲一日游"
+      ]
+    },
+    {
+      "name": "澄虚道院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "休闲一日游"
+      ]
+    },
+    {
+      "name": "崇本堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "嘉荫堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "罗星洲",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "全福讲寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "休闲一日游"
+      ]
+    },
+    {
+      "name": "三桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "双桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "退思园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "叶楚伧故居",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-110cb26b:r1",
+      "title": "专线二日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "古戏台",
+              "kind": "sight"
+            },
+            {
+              "name": "双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "张厅",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "叶楚伧故居",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            },
+            {
+              "name": "罗星洲",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-110cb26b:r2",
+      "title": "休闲一日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "张厅",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "澄虚道院",
+              "kind": "sight"
+            },
+            {
+              "name": "全福讲寺",
+              "kind": "sight"
+            },
+            {
+              "name": "古戏台",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-110cb26b:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "迷楼",
+              "kind": "sight"
+            },
+            {
+              "name": "棋苑",
+              "kind": "sight"
+            },
+            {
+              "name": "叶楚伧故居",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            },
+            {
+              "name": "罗星洲",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "周庄双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "张厅",
+              "kind": "sight"
+            },
+            {
+              "name": "沈厅",
+              "kind": "sight"
+            },
+            {
+              "name": "南湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈万三故居",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "沧浪亭",
+              "kind": "sight"
+            },
+            {
+              "name": "盘门",
+              "kind": "sight"
+            },
+            {
+              "name": "网师园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "同里退思园",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉荫堂",
+              "kind": "sight"
+            },
+            {
+              "name": "三桥",
+              "kind": "sight"
+            },
+            {
+              "name": "崇本堂",
+              "kind": "sight"
+            },
+            {
+              "name": "珍珠塔",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "木渎太湖",
+              "kind": "sight"
+            },
+            {
+              "name": "镇严家花园",
+              "kind": "sight"
+            },
+            {
+              "name": "虹饮山房",
+              "kind": "sight"
+            },
+            {
+              "name": "灵岩山",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-110cb26b:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "苏州",
+              "kind": "sight"
+            },
+            {
+              "name": "狮子林",
+              "kind": "sight"
+            },
+            {
+              "name": "拙政园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "虎丘",
+              "kind": "sight"
+            },
+            {
+              "name": "留园",
+              "kind": "sight"
+            },
+            {
+              "name": "寒山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "铁岭关",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 4,
+    "placeCount": 12,
+    "mustCount": 10
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

@@ -1,0 +1,432 @@
+{
+  "city": "林芝",
+  "region": "西南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-d800f7e0",
+      "source": "西南地区/我是驴友-林芝旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "拉萨",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "巴松措",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "尼洋河",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "卡定沟",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "八一",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "雅鲁藏布大峡谷",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "南迦巴瓦峰",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "鲁朗",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "鲁朗林海",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "南伊沟",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "喇嘛岭寺",
+      "kind": "sight",
+      "order": 10
+    }
+  ],
+  "places": [
+    {
+      "name": "八一",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "318进藏二日游",
+        "r3"
+      ]
+    },
+    {
+      "name": "波密",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "318进藏二日游",
+        "r3"
+      ]
+    },
+    {
+      "name": "鲁朗",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "318进藏二日游"
+      ]
+    },
+    {
+      "name": "派乡",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "巴松措",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "背崩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "汉密",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "卡定沟",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "拉格",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "拉萨",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "喇嘛岭寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "鲁朗林海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "米堆冰川",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "318进藏二日游"
+      ]
+    },
+    {
+      "name": "墨脱",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "南迦巴瓦峰",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南伊沟",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "尼洋河",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "雅鲁藏布大峡谷",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-d800f7e0:r1",
+      "title": "深度四日游",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "拉萨",
+              "kind": "sight"
+            },
+            {
+              "name": "巴松措",
+              "kind": "sight"
+            },
+            {
+              "name": "尼洋河",
+              "kind": "sight"
+            },
+            {
+              "name": "卡定沟",
+              "kind": "sight"
+            },
+            {
+              "name": "八一",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "雅鲁藏布大峡谷",
+              "kind": "sight"
+            },
+            {
+              "name": "南迦巴瓦峰",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "鲁朗",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁朗林海",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "南伊沟",
+              "kind": "sight"
+            },
+            {
+              "name": "喇嘛岭寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d800f7e0:r2",
+      "title": "318进藏二日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "波密",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁朗",
+              "kind": "sight"
+            },
+            {
+              "name": "八一",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "米堆冰川",
+              "kind": "sight"
+            },
+            {
+              "name": "波密",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d800f7e0:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "八一",
+              "kind": "sight"
+            },
+            {
+              "name": "派乡",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "派乡",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "拉格",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "汉密",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "背崩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "墨脱",
+              "kind": "sight"
+            },
+            {
+              "name": "波密",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 3,
+    "placeCount": 18,
+    "mustCount": 11
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

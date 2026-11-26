@@ -1,0 +1,469 @@
+{
+  "city": "高雄",
+  "region": "港澳台",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-6c2a8fbf",
+      "source": "港澳台/我是驴友-高雄旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "驳二艺术特区",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "高雄市立历史博物馆",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "爱河",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "高雄市电影馆",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "捷运美丽岛站",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "六合夜市",
+      "kind": "meal",
+      "order": 5
+    },
+    {
+      "name": "旗津岛",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "打狗英国领事馆",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "国立中山大学",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "西子湾",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "苓雅夜市",
+      "kind": "meal",
+      "order": 10
+    },
+    {
+      "name": "85大楼",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "莲池潭",
+      "kind": "sight",
+      "order": 12
+    },
+    {
+      "name": "高雄市眷村文化馆",
+      "kind": "sight",
+      "order": 13
+    },
+    {
+      "name": "统一梦时代购",
+      "kind": "sight",
+      "order": 14
+    },
+    {
+      "name": "美浓",
+      "kind": "sight",
+      "order": 15
+    },
+    {
+      "name": "旗山",
+      "kind": "sight",
+      "order": 16
+    },
+    {
+      "name": "瑞丰夜市",
+      "kind": "meal",
+      "order": 17
+    },
+    {
+      "name": "佛光山",
+      "kind": "sight",
+      "order": 18
+    },
+    {
+      "name": "邓丽君纪念馆",
+      "kind": "sight",
+      "order": 19
+    },
+    {
+      "name": "二二八和平公园",
+      "kind": "sight",
+      "order": 20
+    }
+  ],
+  "places": [
+    {
+      "name": "邓丽君纪念馆",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "二二八和平公园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "佛光山",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "85大楼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "爱河",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "驳二艺术特区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "打狗英国领事馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "高雄市电影馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "高雄市眷村文化馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "高雄市立历史博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "国立中山大学",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "捷运美丽岛站",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "莲池潭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "苓雅夜市",
+      "kind": "meal",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "六合夜市",
+      "kind": "meal",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "美浓",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "旗津岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "旗山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "瑞丰夜市",
+      "kind": "meal",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "统一梦时代购",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "西子湾",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-6c2a8fbf:r1",
+      "title": "深度观光五日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "驳二艺术特区",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市立历史博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "爱河",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市电影馆",
+              "kind": "sight"
+            },
+            {
+              "name": "捷运美丽岛站",
+              "kind": "sight"
+            },
+            {
+              "name": "六合夜市",
+              "kind": "meal"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "旗津岛",
+              "kind": "sight"
+            },
+            {
+              "name": "打狗英国领事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "国立中山大学",
+              "kind": "sight"
+            },
+            {
+              "name": "西子湾",
+              "kind": "sight"
+            },
+            {
+              "name": "苓雅夜市",
+              "kind": "meal"
+            },
+            {
+              "name": "85大楼",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "莲池潭",
+              "kind": "sight"
+            },
+            {
+              "name": "高雄市眷村文化馆",
+              "kind": "sight"
+            },
+            {
+              "name": "统一梦时代购",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "美浓",
+              "kind": "sight"
+            },
+            {
+              "name": "旗山",
+              "kind": "sight"
+            },
+            {
+              "name": "瑞丰夜市",
+              "kind": "meal"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "佛光山",
+              "kind": "sight"
+            },
+            {
+              "name": "邓丽君纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "二二八和平公园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-6c2a8fbf:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "佛光山",
+              "kind": "sight"
+            },
+            {
+              "name": "邓丽君纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "二二八和平公园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 21,
+    "mustCount": 21
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

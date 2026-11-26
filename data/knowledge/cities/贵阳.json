@@ -1,0 +1,197 @@
+{
+  "city": "贵阳",
+  "region": "贵州",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-ee57b827",
+      "source": "贵州地区/我是驴友-贵阳旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "天河潭",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "青岩",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "花溪",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "红军烈士陵园",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "龙宫",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "黄果树瀑布",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "天河潭",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "清凉二日游"
+      ]
+    },
+    {
+      "name": "红军烈士陵园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "花溪",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "黄果树瀑布",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "龙宫",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "黔粹行",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "清凉二日游"
+      ]
+    },
+    {
+      "name": "青岩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-ee57b827:r1",
+      "title": "周边三日游",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天河潭",
+              "kind": "sight"
+            },
+            {
+              "name": "青岩",
+              "kind": "sight"
+            },
+            {
+              "name": "花溪",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "红军烈士陵园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "龙宫",
+              "kind": "sight"
+            },
+            {
+              "name": "黄果树瀑布",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee57b827:r2",
+      "title": "清凉二日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "黔粹行",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天河潭",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 7,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

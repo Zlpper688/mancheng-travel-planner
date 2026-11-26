@@ -1,0 +1,260 @@
+{
+  "city": "故宫",
+  "region": "华北",
+  "aliases": [
+    "北京"
+  ],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-2d15c909",
+      "source": "华北地区/我是驴友-故宫.pdf",
+      "status": "ok",
+      "routeCount": 1
+    }
+  ],
+  "must": [
+    {
+      "name": "午门",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "内金水桥",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "协和门",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "熙和门",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "文华殿",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "武英殿",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "太和门",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "体仁阁",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "弘义阁",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "太和殿",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "中和殿",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "保和殿",
+      "kind": "sight",
+      "order": 11
+    }
+  ],
+  "places": [
+    {
+      "name": "保和殿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "弘义阁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "内金水桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "太和殿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "太和门",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "体仁阁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "文华殿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "午门",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "武英殿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "熙和门",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "协和门",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "中和殿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-2d15c909:r1",
+      "title": "精华路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "午门",
+              "kind": "sight"
+            },
+            {
+              "name": "内金水桥",
+              "kind": "sight"
+            },
+            {
+              "name": "协和门",
+              "kind": "sight"
+            },
+            {
+              "name": "熙和门",
+              "kind": "sight"
+            },
+            {
+              "name": "文华殿",
+              "kind": "sight"
+            },
+            {
+              "name": "武英殿",
+              "kind": "sight"
+            },
+            {
+              "name": "太和门",
+              "kind": "sight"
+            },
+            {
+              "name": "体仁阁",
+              "kind": "sight"
+            },
+            {
+              "name": "弘义阁",
+              "kind": "sight"
+            },
+            {
+              "name": "太和殿",
+              "kind": "sight"
+            },
+            {
+              "name": "中和殿",
+              "kind": "sight"
+            },
+            {
+              "name": "保和殿",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 1,
+    "placeCount": 12,
+    "mustCount": 12
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

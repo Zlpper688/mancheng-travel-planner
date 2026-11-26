@@ -1,0 +1,69 @@
+{
+  "city": "呼伦贝尔",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [119.82462, 49.234929],
+  "places": {
+    "海拉尔": {
+      "name": "海拉尔区",
+      "lng": 119.82462,
+      "lat": 49.234929,
+      "category": "other",
+      "intro": "呼伦贝尔市政府所在地，呼伦贝尔草原旅游的门户城市。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "奇乾": {
+      "name": "奇乾村",
+      "lng": 120.771026,
+      "lat": 52.19082,
+      "category": "other",
+      "intro": "位于额尔古纳河畔、大兴安岭北部原始森林腹地的中国传统村落，仅有数户村民。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "莫尔道嘎": {
+      "name": "莫尔道嘎国家森林公园",
+      "lng": 120.673541,
+      "lat": 51.337523,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "08:30-17:30",
+      "intro": "目前国内面积最大的森林公园，森林覆盖率93.3%，有“南有西双版纳、北有莫尔道嘎”之誉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "额尔古纳": {
+      "name": "额尔古纳湿地景区",
+      "lng": 120.149805,
+      "lat": 50.249696,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "07:30-17:30，19:00-22:00",
+      "intro": "号称亚洲第一湿地，根河河谷湿地景观，覆盖面积非常大。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "恩和": {
+      "name": "恩和俄罗斯族民族乡",
+      "lng": 119.91379,
+      "lat": 50.822878,
+      "category": "other",
+      "intro": "中国唯一的俄罗斯族民族乡，木刻楞房屋与俄式风情浓郁的边陲村庄。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "室韦": {
+      "name": "室韦口岸景区",
+      "lng": 119.89147,
+      "lat": 51.335421,
+      "category": "attraction",
+      "rating": 4.4,
+      "intro": "中俄边境口岸，隔额尔古纳河与俄罗斯相望，曾获CCTV“中国十佳魅力名镇”。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

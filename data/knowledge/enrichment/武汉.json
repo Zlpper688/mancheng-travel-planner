@@ -1,0 +1,154 @@
+{
+  "city": "武汉",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    114.304569,
+    30.593354
+  ],
+  "places": {
+    "阅马场": {
+      "name": "阅马场",
+      "lng": 114.30607,
+      "lat": 30.54055,
+      "category": "other",
+      "intro": "阅马场，武昌起义相关历史地点，位于黄鹤楼附近。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长江大桥": {
+      "name": "长江大桥",
+      "lng": 114.292937,
+      "lat": 30.547191,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "武汉长江大桥，万里长江第一桥，连接武昌与汉阳。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "江大道武汉关": {
+      "name": "江大道武汉关",
+      "lng": 114.297435,
+      "lat": 30.576057,
+      "category": "museum",
+      "rating": 4.7,
+      "hours": "周二至周日 09:00-17:00(16:00停止入园);周一不开放",
+      "intro": "江汉关博物馆，位于沿江大道，原江汉关税务司署大楼。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "兰陵路": {
+      "name": "兰陵路",
+      "lng": 114.299004,
+      "lat": 30.586216,
+      "category": "street",
+      "intro": "兰陵路，汉口历史街区，近黎黄陂路。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洞庭街": {
+      "name": "洞庭街",
+      "lng": 114.30035,
+      "lat": 30.58674,
+      "category": "street",
+      "rating": 4.3,
+      "hours": "00:00-24:00",
+      "intro": "洞庭街，汉口俄租界历史街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鄱阳街": {
+      "name": "鄱阳街",
+      "lng": 114.296942,
+      "lat": 30.583037,
+      "category": "street",
+      "intro": "鄱阳街，汉口历史街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "珞珈山街": {
+      "name": "珞珈山街",
+      "lng": 114.29927,
+      "lat": 30.586921,
+      "category": "street",
+      "rating": 4.3,
+      "hours": "00:00-24:00",
+      "intro": "珞珈山街，汉口历史街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黎黄陂路": {
+      "name": "黎黄陂路",
+      "lng": 114.298007,
+      "lat": 30.588677,
+      "category": "street",
+      "intro": "黎黄陂路，汉口\"慢生活\"历史街区，巴公房子所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "京汉大道": {
+      "name": "京汉大道",
+      "lng": 114.283202,
+      "lat": 30.582994,
+      "category": "street",
+      "intro": "京汉大道，汉口主干道，沿原京汉铁路。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芦沟桥路": {
+      "name": "芦沟桥路",
+      "lng": 114.309876,
+      "lat": 30.607305,
+      "category": "street",
+      "intro": "芦沟桥路，汉口江岸区道路。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长江二桥": {
+      "name": "长江二桥",
+      "lng": 114.325631,
+      "lat": 30.602671,
+      "category": "attraction",
+      "intro": "武汉长江二桥，跨越长江连接汉口与武昌。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄鹤楼": {
+      "name": "黄鹤楼",
+      "lng": 114.302376,
+      "lat": 30.544547,
+      "category": "attraction",
+      "rating": 4.4,
+      "ticket": "70元",
+      "hours": "日场 08:30-18:00(17:15停止售票);夜场 19:30-22:30",
+      "intro": "黄鹤楼，江南三大名楼之一，有\"天下江山第一楼\"之誉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "武汉大学": {
+      "name": "武汉大学",
+      "lng": 114.36444,
+      "lat": 30.536286,
+      "category": "other",
+      "intro": "武汉大学，珞珈山下的著名高校，以樱花著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "磨山": {
+      "name": "磨山",
+      "lng": 114.41222,
+      "lat": 30.546451,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "东湖磨山景区，武汉东湖风景区核心，赏樱梅荷花之地。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

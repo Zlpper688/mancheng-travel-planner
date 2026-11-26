@@ -1,0 +1,189 @@
+{
+  "city": "香港离岛",
+  "region": "港澳台",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-a2aae043",
+      "source": "港澳台/我是驴友-香港离岛旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "长洲岛",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "榕树湾天后庙",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "洪圣爷湾泳滩",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "索罟湾海鲜食肆",
+      "kind": "sight",
+      "order": 3
+    }
+  ],
+  "places": [
+    {
+      "name": "索罟湾海鲜食肆",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "昂坪缆车",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "大澳",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "大屿山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "洪圣爷湾泳滩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "榕树湾天后庙",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "天坛大佛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "长洲岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-a2aae043:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "长洲岛",
+              "kind": "sight"
+            },
+            {
+              "name": "榕树湾天后庙",
+              "kind": "sight"
+            },
+            {
+              "name": "洪圣爷湾泳滩",
+              "kind": "sight"
+            },
+            {
+              "name": "索罟湾海鲜食肆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "索罟湾海鲜食肆",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a2aae043:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大屿山",
+              "kind": "sight"
+            },
+            {
+              "name": "昂坪缆车",
+              "kind": "sight"
+            },
+            {
+              "name": "天坛大佛",
+              "kind": "sight"
+            },
+            {
+              "name": "大澳",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 8,
+    "mustCount": 4
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

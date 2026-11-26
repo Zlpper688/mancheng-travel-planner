@@ -1,0 +1,94 @@
+{
+  "city": "广西",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "center": [
+    108.37,
+    22.82
+  ],
+  "places": {
+    "桂林": {
+      "name": "桂林市",
+      "lng": 110.28,
+      "lat": 25.28,
+      "category": "other",
+      "intro": "广西旅游名城，以漓江山水甲天下闻名。",
+      "source": "省会经纬度表",
+      "verified": true
+    },
+    "象鼻山": {
+      "name": "象鼻山",
+      "lng": 110.296577,
+      "lat": 25.267551,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "07:00-21:00(21:00停止入园)",
+      "intro": "桂林城徽，山形如大象饮水，位于漓江与桃花江汇流处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "两江四湖": {
+      "name": "桂林两江四湖景区",
+      "lng": 110.30088,
+      "lat": 25.290501,
+      "category": "viewpoint",
+      "intro": "由漓江、桃花江与杉湖、榕湖、桂湖、木龙湖构成的水上游览环线。",
+      "source": "POI数据",
+      "verified": true
+    },
+    "阳朔": {
+      "name": "阳朔县",
+      "lng": 110.489874,
+      "lat": 24.774308,
+      "category": "other",
+      "intro": "桂林下辖县，以喀斯特山水与西街闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "遇龙河漂流": {
+      "name": "遇龙河风景区",
+      "lng": 110.399199,
+      "lat": 24.811217,
+      "category": "nature",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "阳朔最美的漂流线路之一，人称\"小漓江\"。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南宁": {
+      "name": "南宁市",
+      "lng": 108.366407,
+      "lat": 22.8177,
+      "category": "other",
+      "intro": "广西壮族自治区首府。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北海": {
+      "name": "北海市",
+      "lng": 109.120454,
+      "lat": 21.481859,
+      "category": "other",
+      "intro": "广西沿海城市，以银滩与海上丝路历史闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "涠洲岛": {
+      "name": "涠洲岛",
+      "lng": 109.116141,
+      "lat": 21.042513,
+      "category": "nature",
+      "rating": 4.8,
+      "ticket": "上岛门票约98元起",
+      "intro": "中国地质年龄最年轻的火山岛，广西最大海岛。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

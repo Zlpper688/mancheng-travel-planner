@@ -1,0 +1,72 @@
+{
+  "city": "长白山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [125.324661, 43.886871],
+  "places": {
+    "伪满新皇宫": {
+      "name": "伪满皇宫博物院",
+      "lng": 125.34879,
+      "lat": 43.905621,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "9月7日-12月31日 08:30-17:30（16:30停止入园）",
+      "intro": "在末代皇帝溥仪曾经的宫殿感知历史，中国现存三大宫廷遗址之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "旧八大部": {
+      "name": "伪满洲国国务院旧址-旧八大部",
+      "lng": 125.309525,
+      "lat": 43.876691,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "08:00-18:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "伪满洲国国务院旧址": {
+      "name": "伪满洲国国务院旧址",
+      "lng": 125.309544,
+      "lat": 43.876694,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-18:00",
+      "intro": "建筑仿日本国会大楼。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "重庆路": {
+      "name": "重庆路",
+      "lng": 125.325778,
+      "lat": 43.8914,
+      "category": "street",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长影世纪城": {
+      "name": "长影世纪城",
+      "lng": 125.446178,
+      "lat": 43.772486,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "09:30-16:00（周一不开放）",
+      "intro": "特效与电影完美结合，适合亲子游。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "净月潭": {
+      "name": "净月潭国家森林公园",
+      "lng": 125.47779,
+      "lat": 43.77893,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "夏季 05:00-20:00；冬季 06:00-19:00",
+      "intro": "公园内有最大的人工湖和大面积森林覆盖，是休闲放松的好去处。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,300 @@
+{
+  "city": "珠海",
+  "region": "华南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-a9a50e3e",
+      "source": "华南地区/我是驴友-珠海旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 4
+    }
+  ],
+  "must": [
+    {
+      "name": "情侣路",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "海滨公园",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "野狸岛",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "石景山公园",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "渔女像",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "观海听涛",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "达东澳岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东澳岛两日游"
+      ]
+    },
+    {
+      "name": "达庙湾岛后可",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "岛上铳城",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东澳岛两日游"
+      ]
+    },
+    {
+      "name": "烽火台",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东澳岛两日游"
+      ]
+    },
+    {
+      "name": "观海听涛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "海滨公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "摩崖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东澳岛两日游"
+      ]
+    },
+    {
+      "name": "情侣路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "石景山公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "野狸岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "渔女像",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "镇海将军台",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东澳岛两日游"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-a9a50e3e:r1",
+      "title": "休闲三日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "情侣路",
+              "kind": "sight"
+            },
+            {
+              "name": "海滨公园",
+              "kind": "sight"
+            },
+            {
+              "name": "野狸岛",
+              "kind": "sight"
+            },
+            {
+              "name": "石景山公园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "观海听涛",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a9a50e3e:r2",
+      "title": "快乐两日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "石景山公园",
+              "kind": "sight"
+            },
+            {
+              "name": "澳门环岛游",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "渔女像",
+              "kind": "sight"
+            },
+            {
+              "name": "观海听涛",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a9a50e3e:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达庙湾岛后可",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a9a50e3e:r4",
+      "title": "东澳岛两日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达东澳岛",
+              "kind": "sight"
+            },
+            {
+              "name": "岛上铳城",
+              "kind": "sight"
+            },
+            {
+              "name": "烽火台",
+              "kind": "sight"
+            },
+            {
+              "name": "镇海将军台",
+              "kind": "sight"
+            },
+            {
+              "name": "摩崖",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 4,
+    "placeCount": 12,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

@@ -1,0 +1,49 @@
+{
+  "city": "镇江",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "高德(POI数据)"],
+  "center": [119.452753, 32.204402],
+  "places": {
+    "西津渡": {
+      "name": "西津渡古街",
+      "lng": 119.430538,
+      "lat": 32.214496,
+      "category": "street",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "镇江最值得一去的历史街区，也是镇江夜生活的集中地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金山": {
+      "name": "金山风景区",
+      "lng": 119.415902,
+      "lat": 32.219682,
+      "category": "attraction",
+      "intro": "免费公园，有完美的金山寺景观，白娘子传说发生地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "焦山": {
+      "name": "焦山风景区",
+      "lng": 119.487411,
+      "lat": 32.238037,
+      "category": "nature",
+      "source": "高德(POI数据)",
+      "verified": true
+    },
+    "北固山": {
+      "name": "北固山景区",
+      "lng": 119.457323,
+      "lat": 32.21684,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "08:00-17:30（16:30停止入园）",
+      "intro": "以险峻著称，因三国故事而名扬千古。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

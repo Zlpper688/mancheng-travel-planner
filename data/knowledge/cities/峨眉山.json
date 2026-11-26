@@ -1,0 +1,602 @@
+{
+  "city": "峨眉山",
+  "region": "西南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-1eebcb9d",
+      "source": "西南地区/我是驴友-峨眉山旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 4
+    }
+  ],
+  "must": [
+    {
+      "name": "报国寺",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "圣积晚钟",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "第一山亭",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "迎宾广场",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "峨眉山博物馆",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "伏虎寺",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "清音阁",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "一线天",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "自然生态猴区",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "洪椿坪",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "仙峰寺",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "九老洞",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "遇仙寺",
+      "kind": "sight",
+      "order": 12
+    },
+    {
+      "name": "洗象池",
+      "kind": "sight",
+      "order": 13
+    },
+    {
+      "name": "雷洞烟云",
+      "kind": "sight",
+      "order": 14
+    },
+    {
+      "name": "金顶",
+      "kind": "sight",
+      "order": 15
+    },
+    {
+      "name": "四面十方普贤金像",
+      "kind": "sight",
+      "order": 16
+    },
+    {
+      "name": "华藏寺",
+      "kind": "sight",
+      "order": 17
+    },
+    {
+      "name": "华严顶",
+      "kind": "sight",
+      "order": 18
+    }
+  ],
+  "places": [
+    {
+      "name": "圣积晚钟",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "精华一日游"
+      ]
+    },
+    {
+      "name": "报国寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "春熙路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "大熊猫基地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "第一山亭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "杜甫草堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "峨眉山博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "伏虎寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "洪椿坪",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "华藏寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "华严顶",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金顶",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "锦里",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "九老洞",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "宽窄巷子",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "乐山大佛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "乐山睡佛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "雷洞烟云",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "青羊宫",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "清音阁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "四面十方普贤金像",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "望江楼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "文殊院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "乌尤寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "武侯祠",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "洗象池",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "仙峰寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "一线天",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "迎宾广场",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "遇仙寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "自然生态猴区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-1eebcb9d:r1",
+      "title": "徒步三日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "报国寺",
+              "kind": "sight"
+            },
+            {
+              "name": "圣积晚钟",
+              "kind": "sight"
+            },
+            {
+              "name": "第一山亭",
+              "kind": "sight"
+            },
+            {
+              "name": "迎宾广场",
+              "kind": "sight"
+            },
+            {
+              "name": "峨眉山博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "伏虎寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "清音阁",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "自然生态猴区",
+              "kind": "sight"
+            },
+            {
+              "name": "洪椿坪",
+              "kind": "sight"
+            },
+            {
+              "name": "仙峰寺",
+              "kind": "sight"
+            },
+            {
+              "name": "九老洞",
+              "kind": "sight"
+            },
+            {
+              "name": "遇仙寺",
+              "kind": "sight"
+            },
+            {
+              "name": "洗象池",
+              "kind": "sight"
+            },
+            {
+              "name": "雷洞烟云",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "金顶",
+              "kind": "sight"
+            },
+            {
+              "name": "四面十方普贤金像",
+              "kind": "sight"
+            },
+            {
+              "name": "华藏寺",
+              "kind": "sight"
+            },
+            {
+              "name": "华严顶",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-1eebcb9d:r2",
+      "title": "精华一日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "圣积晚钟",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-1eebcb9d:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "乐山睡佛",
+              "kind": "sight"
+            },
+            {
+              "name": "乐山大佛",
+              "kind": "sight"
+            },
+            {
+              "name": "乌尤寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-1eebcb9d:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "杜甫草堂",
+              "kind": "sight"
+            },
+            {
+              "name": "武侯祠",
+              "kind": "sight"
+            },
+            {
+              "name": "锦里",
+              "kind": "sight"
+            },
+            {
+              "name": "望江楼",
+              "kind": "sight"
+            },
+            {
+              "name": "宽窄巷子",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大熊猫基地",
+              "kind": "sight"
+            },
+            {
+              "name": "文殊院",
+              "kind": "sight"
+            },
+            {
+              "name": "青羊宫",
+              "kind": "sight"
+            },
+            {
+              "name": "春熙路",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 4,
+    "placeCount": 31,
+    "mustCount": 19
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

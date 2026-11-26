@@ -1,0 +1,92 @@
+{
+  "city": "泸沽湖",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "中国国家地理", "国家公园网"],
+  "center": [100.78, 27.7],
+  "places": {
+    "里格村": {
+      "name": "里格村",
+      "lng": 100.749248,
+      "lat": 27.728831,
+      "category": "other",
+      "intro": "位于泸沽湖西北角的里格半岛，三面临水。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "小洛水村": {
+      "name": "小洛水村码头",
+      "lng": 100.774072,
+      "lat": 27.741624,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洛洼码头": {
+      "name": "泸沽湖爱情码头（原洛洼码头）",
+      "lng": 100.841518,
+      "lat": 27.686847,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "草海": {
+      "name": "泸沽湖草海",
+      "lng": 100.814495,
+      "lat": 27.692952,
+      "category": "nature",
+      "intro": "泸沽湖东南岸长满水草的浅水湿地。",
+      "source": "中国国家地理",
+      "verified": true
+    },
+    "走婚桥": {
+      "name": "走婚桥",
+      "lng": 100.877202,
+      "lat": 27.709187,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "深入泸沽湖草海拍照的绝佳场所。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "落水村": {
+      "name": "大洛水村",
+      "lng": 100.769337,
+      "lat": 27.679353,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大落水": {
+      "name": "大洛水村",
+      "lng": 100.769337,
+      "lat": 27.679353,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "里务比寺": {
+      "name": "里务比岛-里务比寺",
+      "lng": 100.786541,
+      "lat": 27.683408,
+      "category": "temple",
+      "rating": 4.1,
+      "hours": "08:00-18:00（17:00停止入场）",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "女神山": {
+      "name": "格姆女神山",
+      "lng": 100.764316,
+      "lat": 27.741073,
+      "category": "nature",
+      "rating": 4.4,
+      "hours": "08:30-17:30",
+      "intro": "泸沽湖四周最高的山峰，摩梭传说中格姆女神的化身。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": ["小草海"]
+}

@@ -1,0 +1,199 @@
+{
+  "city": "高雄",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "台湾观光局",
+    "维基百科"
+  ],
+  "center": [
+    120.3,
+    22.63
+  ],
+  "places": {
+    "驳二艺术特区": {
+      "name": "驳二艺术特区",
+      "lng": 120.28174,
+      "lat": 22.61984,
+      "category": "attraction",
+      "rating": 3.6,
+      "intro": "盐埕埔旧仓库改造的文创园区，亚洲新湾区北岸的艺术聚落。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "高雄市立历史博物馆": {
+      "name": "高雄市立历史博物馆",
+      "lng": 120.28704,
+      "lat": 22.62642,
+      "category": "museum",
+      "intro": "位于盐埕区中正四路，濒临爱河，展示高雄历史文物。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "爱河": {
+      "name": "爱河",
+      "lng": 120.29039,
+      "lat": 22.62391,
+      "category": "viewpoint",
+      "rating": 3.7,
+      "intro": "高雄的母亲河，夜晚沿岸灯光与河畔步道是著名的休闲景点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "高雄市电影馆": {
+      "name": "高雄市电影馆",
+      "lng": 120.28781,
+      "lat": 22.62084,
+      "category": "museum",
+      "intro": "位于盐埕区大成街的电影主题展馆。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "捷运美丽岛站": {
+      "name": "美丽岛捷运站",
+      "lng": 120.30206,
+      "lat": 22.6313,
+      "category": "other",
+      "intro": "高雄捷运红线与橘线交会站，以\"光之穹顶\"玻璃镶嵌艺术闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "六合夜市": {
+      "name": "六合夜市",
+      "lng": 120.30212,
+      "lat": 22.63384,
+      "category": "market",
+      "rating": 3.7,
+      "intro": "台湾著名的观光夜市，白天为马路、入夜后成为美食街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "旗津岛": {
+      "name": "旗津岛",
+      "lng": 120.28319,
+      "lat": 22.590551,
+      "category": "other",
+      "intro": "高雄港西侧的狭长半岛，有灯塔、天后宫与海岸公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "打狗英国领事馆": {
+      "name": "打狗英国领事馆",
+      "lng": 120.26617,
+      "lat": 22.61931,
+      "category": "museum",
+      "rating": 3.8,
+      "intro": "位于西子湾的清代英式领事馆建筑，可俯瞰高雄港。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "国立中山大学": {
+      "name": "国立中山大学(西子湾校区)",
+      "lng": 120.26611,
+      "lat": 22.62472,
+      "category": "other",
+      "intro": "位于西子湾、倚寿山傍海的台湾中山大学校本部。",
+      "source": "维基百科",
+      "verified": true
+    },
+    "西子湾": {
+      "name": "西子湾",
+      "lng": 120.26374,
+      "lat": 22.625731,
+      "category": "beach",
+      "ticket": "免费",
+      "hours": "全天",
+      "intro": "以夕阳美景与天然礁石闻名的湾澳，\"西子湾落日\"为高雄八景之一。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "苓雅夜市": {
+      "name": "苓雅夜市(兴中夜市)",
+      "lng": 120.30655,
+      "lat": 22.61572,
+      "category": "market",
+      "intro": "位于苓雅区的夜市街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "85大楼": {
+      "name": "高雄85大楼",
+      "lng": 120.29922,
+      "lat": 22.61168,
+      "category": "viewpoint",
+      "intro": "高雄地标高层建筑，74楼设有360度观景台。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "莲池潭": {
+      "name": "莲池潭",
+      "lng": 120.300545,
+      "lat": 22.676877,
+      "category": "viewpoint",
+      "intro": "左营区的湖泊，潭西岸庙宇林立，以\"莲潭夕照\"闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "统一梦时代购": {
+      "name": "统一梦时代购物中心",
+      "lng": 120.30512,
+      "lat": 22.59493,
+      "category": "other",
+      "intro": "前镇区大型购物中心，顶层设有\"高雄之眼\"摩天轮。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "美浓": {
+      "name": "美浓区",
+      "lng": 120.567456,
+      "lat": 22.928206,
+      "category": "other",
+      "intro": "高雄客家文化重镇，以油纸伞、烟楼等客家风情闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "旗山": {
+      "name": "旗山区",
+      "lng": 120.480903,
+      "lat": 22.89424,
+      "category": "other",
+      "intro": "高雄旗山地区，以旗山老街与香蕉产业闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "瑞丰夜市": {
+      "name": "瑞丰夜市",
+      "lng": 120.29978,
+      "lat": 22.666113,
+      "category": "market",
+      "intro": "左营区裕诚路与南屏路口的大型夜市，摊位逾千。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "佛光山": {
+      "name": "佛光山",
+      "lng": 120.44624,
+      "lat": 22.75154,
+      "category": "temple",
+      "rating": 4.1,
+      "intro": "大树区的佛教道场，台湾著名佛寺与宗教胜地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "高雄市眷村文化馆": {
+      "name": "再見捌捌陸-臺灣眷村文化園區(原高雄市眷村文化館)",
+      "lng": 120.289,
+      "lat": 22.69249,
+      "category": "museum",
+      "hours": "11:00-17:00，周一休息",
+      "intro": "左营明德新村的台湾眷村文化园区，展示军眷生活历史与文物。",
+      "source": "台湾观光局",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "邓丽君纪念馆",
+    "二二八和平公园"
+  ]
+}

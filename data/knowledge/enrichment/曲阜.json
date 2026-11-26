@@ -1,0 +1,144 @@
+{
+  "city": "曲阜",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "维基导游"
+  ],
+  "center": [
+    116.96704,
+    35.599669
+  ],
+  "places": {
+    "趵突泉": {
+      "name": "趵突泉",
+      "lng": 117.016158,
+      "lat": 36.660958,
+      "category": "park",
+      "intro": "济南趵突泉公园，被誉为“天下第一泉”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "泉城广场": {
+      "name": "泉城广场",
+      "lng": 117.022195,
+      "lat": 36.661304,
+      "category": "park",
+      "intro": "济南市中心城市广场，毗邻趵突泉与黑虎泉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黑虎泉": {
+      "name": "黑虎泉",
+      "lng": 117.033593,
+      "lat": 36.662435,
+      "category": "attraction",
+      "intro": "济南黑虎泉泉群，市民可取泉水之处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芙蓉街": {
+      "name": "芙蓉街",
+      "lng": 117.02378,
+      "lat": 36.667007,
+      "category": "street",
+      "intro": "济南老城著名小吃街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大明湖": {
+      "name": "大明湖",
+      "lng": 117.02608162,
+      "lat": 36.67438,
+      "category": "park",
+      "intro": "济南大明湖公园，“四面荷花三面柳”的城中湖。",
+      "source": "维基导游",
+      "verified": true
+    },
+    "红门": {
+      "name": "泰山-红门",
+      "lng": 117.12789,
+      "lat": 36.21103,
+      "category": "attraction",
+      "intro": "泰山中路登山的起点，古称红门宫。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "斗母宫": {
+      "name": "泰山-斗母宫",
+      "lng": 117.122739,
+      "lat": 36.222105,
+      "category": "temple",
+      "intro": "泰山登山道上的古道观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中天门": {
+      "name": "泰山-中天门",
+      "lng": 117.114859,
+      "lat": 36.239899,
+      "category": "viewpoint",
+      "intro": "泰山登山中段的山门，索道起点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "十八盘": {
+      "name": "泰山风景名胜区-十八盘",
+      "lng": 117.10798,
+      "lat": 36.25125,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "05:00-24:00",
+      "intro": "泰山最险要的登山盘路，位于对松山与南天门之间，共1633级石阶。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南天门": {
+      "name": "泰山-南天门",
+      "lng": 117.1044,
+      "lat": 36.25579,
+      "category": "attraction",
+      "intro": "泰山十八盘尽头的山门，登顶泰山的标志。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天街": {
+      "name": "泰山-天街",
+      "lng": 117.108202,
+      "lat": 36.255468,
+      "category": "street",
+      "intro": "泰山山顶的仿古商业街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "孔庙": {
+      "name": "曲阜孔庙",
+      "lng": 116.990021,
+      "lat": 35.594752,
+      "category": "temple",
+      "intro": "祭祀孔子的庙宇，世界文化遗产“三孔”之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "孔府": {
+      "name": "曲阜孔府",
+      "lng": 116.99196,
+      "lat": 35.597081,
+      "category": "museum",
+      "intro": "孔子后裔衍圣公府邸，世界文化遗产“三孔”之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "孔林": {
+      "name": "曲阜孔林",
+      "lng": 116.991814,
+      "lat": 35.620722,
+      "category": "park",
+      "intro": "孔子及其后裔的家族墓地，世界文化遗产“三孔”之一。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

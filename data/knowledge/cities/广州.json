@@ -1,0 +1,444 @@
+{
+  "city": "广州",
+  "region": "华南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-c7d42840",
+      "source": "华南地区/我是驴友-广州旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "越秀公园",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "北京路",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "沙面",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "珠江夜游",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "花城广场",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "长隆欢乐世界",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "长隆水上",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "荔枝湾涌",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "文昌庙",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "上下九",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "佛山祖庙",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "广州黄大仙祠",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "陈家祠",
+      "kind": "sight",
+      "order": 12
+    },
+    {
+      "name": "黄埔军校",
+      "kind": "sight",
+      "order": 13
+    },
+    {
+      "name": "辛亥革命馆",
+      "kind": "sight",
+      "order": 14
+    },
+    {
+      "name": "广州国际生物岛",
+      "kind": "sight",
+      "order": 15
+    },
+    {
+      "name": "岭南印象园",
+      "kind": "sight",
+      "order": 16
+    },
+    {
+      "name": "海珠湖",
+      "kind": "sight",
+      "order": 17
+    }
+  ],
+  "places": [
+    {
+      "name": "北京路",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "越秀公园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "珠江夜游",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "白云山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "陈家祠",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "佛山祖庙",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "广州国际生物岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "广州黄大仙祠",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "广州塔",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "海珠湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "花城广场",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "黄埔军校",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "荔枝湾涌",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "岭南印象园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "沙面",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "上下九",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "文昌庙",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "辛亥革命馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "长隆欢乐世界",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "长隆水上",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-c7d42840:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "越秀公园",
+              "kind": "sight"
+            },
+            {
+              "name": "北京路",
+              "kind": "sight"
+            },
+            {
+              "name": "沙面",
+              "kind": "sight"
+            },
+            {
+              "name": "珠江夜游",
+              "kind": "sight"
+            },
+            {
+              "name": "花城广场",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "长隆欢乐世界",
+              "kind": "sight"
+            },
+            {
+              "name": "长隆水上",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "荔枝湾涌",
+              "kind": "sight"
+            },
+            {
+              "name": "文昌庙",
+              "kind": "sight"
+            },
+            {
+              "name": "上下九",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "佛山祖庙",
+              "kind": "sight"
+            },
+            {
+              "name": "广州黄大仙祠",
+              "kind": "sight"
+            },
+            {
+              "name": "陈家祠",
+              "kind": "sight"
+            },
+            {
+              "name": "北京路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "黄埔军校",
+              "kind": "sight"
+            },
+            {
+              "name": "辛亥革命馆",
+              "kind": "sight"
+            },
+            {
+              "name": "广州国际生物岛",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "岭南印象园",
+              "kind": "sight"
+            },
+            {
+              "name": "海珠湖",
+              "kind": "sight"
+            },
+            {
+              "name": "珠江夜游",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-c7d42840:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "白云山",
+              "kind": "sight"
+            },
+            {
+              "name": "越秀公园",
+              "kind": "sight"
+            },
+            {
+              "name": "广州塔",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 20,
+    "mustCount": 18
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

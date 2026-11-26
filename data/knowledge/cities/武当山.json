@@ -1,0 +1,469 @@
+{
+  "city": "武当山",
+  "region": "华中",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-80c1ccec",
+      "source": "华中地区/我是驴友-武当山.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "琼台",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "金顶",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "朝天宫",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "黄龙洞",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "榔梅祠",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "南岩宫",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "乌鸦岭",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "紫霄宫",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "逍遥谷",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "武术表演",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "太子坡",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "磨针井",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "玄岳门",
+      "kind": "sight",
+      "order": 12
+    },
+    {
+      "name": "太极湖水上游",
+      "kind": "sight",
+      "order": 13
+    },
+    {
+      "name": "武当博物馆",
+      "kind": "sight",
+      "order": 14
+    }
+  ],
+  "places": [
+    {
+      "name": "神农架红坪景区",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "燕子洞",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "板壁岩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "板壁岩上下箭竹林漫山遍野",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "朝天宫",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "风景垭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "黄龙洞",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金顶",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金猴岭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "榔梅祠",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "磨针井",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南岩宫",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "琼台",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "去板壁岩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "时见怪石突兀而起",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "太极湖水上游",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "太子坡",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "乌鸦岭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "武当博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "武术表演",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "逍遥谷",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "玄岳门",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "紫霄宫",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-80c1ccec:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "琼台",
+              "kind": "sight"
+            },
+            {
+              "name": "金顶",
+              "kind": "sight"
+            },
+            {
+              "name": "朝天宫",
+              "kind": "sight"
+            },
+            {
+              "name": "黄龙洞",
+              "kind": "sight"
+            },
+            {
+              "name": "榔梅祠",
+              "kind": "sight"
+            },
+            {
+              "name": "南岩宫",
+              "kind": "sight"
+            },
+            {
+              "name": "乌鸦岭",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "紫霄宫",
+              "kind": "sight"
+            },
+            {
+              "name": "逍遥谷",
+              "kind": "sight"
+            },
+            {
+              "name": "武术表演",
+              "kind": "sight"
+            },
+            {
+              "name": "太子坡",
+              "kind": "sight"
+            },
+            {
+              "name": "磨针井",
+              "kind": "sight"
+            },
+            {
+              "name": "玄岳门",
+              "kind": "sight"
+            },
+            {
+              "name": "太极湖水上游",
+              "kind": "sight"
+            },
+            {
+              "name": "武当博物馆",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-80c1ccec:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "板壁岩",
+              "kind": "sight"
+            },
+            {
+              "name": "风景垭",
+              "kind": "sight"
+            },
+            {
+              "name": "金猴岭",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "神农架红坪景区",
+              "kind": "sight"
+            },
+            {
+              "name": "燕子洞",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-80c1ccec:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "去板壁岩",
+              "kind": "sight"
+            },
+            {
+              "name": "板壁岩上下箭竹林漫山遍野",
+              "kind": "sight"
+            },
+            {
+              "name": "时见怪石突兀而起",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "神农架红坪景区",
+              "kind": "sight"
+            },
+            {
+              "name": "燕子洞",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 3,
+    "placeCount": 23,
+    "mustCount": 15
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

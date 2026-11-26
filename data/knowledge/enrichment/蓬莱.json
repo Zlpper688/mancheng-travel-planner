@@ -1,0 +1,88 @@
+{
+  "city": "蓬莱",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "places": {
+    "蓬莱阁": {
+      "name": "蓬莱阁景区",
+      "lng": 120.75287,
+      "lat": 37.825401,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "旺季（5月1日-10月10日）08:00-18:00（17:00停止入园）;淡季（10月11日-次年4月30日）08:00-17:00",
+      "intro": "运气好的话能看到“海市蜃楼”景象，国家级景点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三仙山": {
+      "name": "三仙山风景区",
+      "lng": 120.78392,
+      "lat": 37.821823,
+      "category": "attraction",
+      "intro": "以蓬莱、方丈、瀛洲三座仙山为主题的国家5A级景区。",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "蓬莱海洋极地世界": {
+      "name": "蓬莱海洋极地世界",
+      "lng": 120.74763,
+      "lat": 37.826421,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "09:00-17:30（17:30停止入园）",
+      "intro": "亚洲最大的海洋世界，国家4A级景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芝罘岛": {
+      "name": "芝罘岛",
+      "lng": 121.387214,
+      "lat": 37.607491,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "中国最大的陆连岛，日落拍照佳地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "青岛": {
+      "name": "青岛市",
+      "lng": 120.382665,
+      "lat": 36.066938,
+      "category": "other",
+      "intro": "山东省青岛市中心参考坐标。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "威海": {
+      "name": "威海市",
+      "lng": 122.120519,
+      "lat": 37.513315,
+      "category": "other",
+      "intro": "山东省威海市中心参考坐标。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "烟台": {
+      "name": "烟台市",
+      "lng": 121.447755,
+      "lat": 37.464551,
+      "category": "other",
+      "intro": "山东省烟台市中心参考坐标。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "蓬莱烟台"
+  ],
+  "center": [
+    120.829,
+    37.796
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

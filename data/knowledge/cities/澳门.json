@@ -1,0 +1,155 @@
+{
+  "city": "澳门",
+  "region": "港澳台",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-a67d9997",
+      "source": "港澳台/我是驴友-澳门旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 1
+    }
+  ],
+  "must": [
+    {
+      "name": "威尼斯人度假村",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "龙环葡韵住宅式博物馆",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "新马路",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "议事亭前地",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "玫瑰圣母堂",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "大三",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "大三",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "龙环葡韵住宅式博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "玫瑰圣母堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "威尼斯人度假村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "新马路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "议事亭前地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-a67d9997:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "威尼斯人度假村",
+              "kind": "sight"
+            },
+            {
+              "name": "龙环葡韵住宅式博物馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "新马路",
+              "kind": "sight"
+            },
+            {
+              "name": "议事亭前地",
+              "kind": "sight"
+            },
+            {
+              "name": "玫瑰圣母堂",
+              "kind": "sight"
+            },
+            {
+              "name": "大三",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 1,
+    "placeCount": 6,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

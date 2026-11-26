@@ -1,0 +1,50 @@
+{
+  "city": "北海",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [109.11335, 21.47208],
+  "places": {
+    "涠洲岛": {
+      "name": "涠洲岛",
+      "lng": 109.116141,
+      "lat": 21.042513,
+      "category": "nature",
+      "rating": 4.8,
+      "intro": "中国地质年龄最年轻的火山岛，推荐滴水丹屏的日落。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "银滩": {
+      "name": "北海银滩国家旅游度假区",
+      "lng": 109.148631,
+      "lat": 21.405443,
+      "category": "beach",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "滩缓水清，日落时分更是美丽。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北部湾广场": {
+      "name": "北部湾广场",
+      "lng": 109.11335,
+      "lat": 21.47208,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "喷泉相辉交映，景象十分宏伟瑰丽。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "冠头岭": {
+      "name": "冠头岭",
+      "lng": 109.055395,
+      "lat": 21.451878,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

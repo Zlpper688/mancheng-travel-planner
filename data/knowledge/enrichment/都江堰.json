@@ -1,0 +1,97 @@
+{
+  "city": "都江堰",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [103.609571, 31.001522],
+  "places": {
+    "都江堰景区": {
+      "name": "都江堰景区",
+      "lng": 103.609571,
+      "lat": 31.001522,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "11月1日-次年3月1日 08:00-17:30（17:00停止售票）；3月2日-10月31日 08:00-18:00（17:30停止售票）",
+      "intro": "南桥边上夜景值得欣赏。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "飞沙堰": {
+      "name": "都江堰景区-飞沙堰",
+      "lng": 103.611478,
+      "lat": 30.998738,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "12月1日-次年3月1日 08:00-17:30；3月2日-11月30日 08:00-18:00",
+      "intro": "利用弯道环流原理二次排沙，守护宝瓶口。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鱼嘴": {
+      "name": "都江堰景区鱼嘴分水堤",
+      "lng": 103.608986,
+      "lat": 31.002667,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "08:00-17:00（17:00停止入园）",
+      "intro": "都江堰的精髓，都江堰水利工程中最壮观最值得一看的地方。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "安澜索桥": {
+      "name": "都江堰景区-安澜桥",
+      "lng": 103.60814,
+      "lat": 31.005682,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-17:30",
+      "intro": "全长261米，横跨岷江两岸。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "步于廊大扶梯": {
+      "name": "步云廊扶梯",
+      "lng": 103.613977,
+      "lat": 31.002839,
+      "category": "other",
+      "rating": 3.9,
+      "hours": "08:00-17:30",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "玉垒": {
+      "name": "都江堰景区-玉垒阁",
+      "lng": 103.614358,
+      "lat": 31.00193,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "3月1日-11月30日 08:00-17:30；12月1日-次年2月28日 08:30-17:00（具体开放时间以景区为准）",
+      "intro": "登顶可俯瞰都江堰水利工程和城区全景。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "青城山景区": {
+      "name": "青城山风景区",
+      "lng": 103.51669,
+      "lat": 30.890721,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:30-17:30（17:00停止售票）",
+      "intro": "巴蜀文化旅游走廊新地标。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "虹口观光": {
+      "name": "虹口漂流",
+      "lng": 103.632815,
+      "lat": 31.092839,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "09:00-17:30（17:00停止入场）",
+      "intro": "全程约10公里，漂流四五十分钟。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

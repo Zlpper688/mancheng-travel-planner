@@ -1,0 +1,41 @@
+{
+  "city": "纳木错",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [90.665115, 30.741583],
+  "places": {
+    "拉萨": {
+      "name": "拉萨市（布达拉宫参考坐标）",
+      "lng": 91.118224,
+      "lat": 29.655339,
+      "category": "other",
+      "intro": "拉萨市中心地标布达拉宫所在，作为拉萨市参考定位点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "那根拉山口": {
+      "name": "那根拉山口",
+      "lng": 91.099302,
+      "lat": 30.679317,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "海拔5190米，翻越念青唐古拉山前往纳木错的必经垭口。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "扎西半岛": {
+      "name": "纳木措国家风景区-扎西半岛",
+      "lng": 90.892689,
+      "lat": 30.750283,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "06:00-18:00（18:00停止入园）",
+      "intro": "纳木错最大半岛，景区核心游览区。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

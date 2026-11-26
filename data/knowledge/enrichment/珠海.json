@@ -1,0 +1,74 @@
+{
+  "city": "珠海",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "爱查询(行政区划中心)"],
+  "center": [113.552724, 22.255899],
+  "places": {
+    "情侣路": {
+      "name": "情侣路",
+      "lng": 113.578913,
+      "lat": 22.283894,
+      "category": "street",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "沿路景色秀丽，是珠海标志性的海滨休闲散步景观带。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "海滨公园": {
+      "name": "海滨公园",
+      "lng": 113.585651,
+      "lat": 22.258467,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "珠海标志“珠海渔女”雕塑所在地，林荫夹道，山景海景浑然一体。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "野狸岛": {
+      "name": "野狸岛",
+      "lng": 113.59212,
+      "lat": 22.280301,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "离珠海市区最近的海岛，珠海歌剧院“日月贝”坐落于此，适合环岛散步看灯光秀。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "石景山公园": {
+      "name": "景山公园（石景山公园）",
+      "lng": 113.57083,
+      "lat": 22.26101,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "依山傍水，山顶观景区可俯瞰香炉湾、渔女像及澳门、珠海全貌，是珠海最佳观光点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "渔女像": {
+      "name": "珠海渔女",
+      "lng": 113.58838,
+      "lat": 22.26148,
+      "category": "attraction",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "珠海城市象征，位于香炉湾畔的花岗岩雕像，手擎明珠向世界昭示光明。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "观海听涛": {
+      "name": "渔女观景台（观海听涛）",
+      "lng": 113.58838,
+      "lat": 22.26148,
+      "category": "viewpoint",
+      "intro": "位于海滨公园东北角香炉湾畔，可近观珠海渔女雕像、凭栏听涛看海。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

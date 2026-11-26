@@ -1,0 +1,112 @@
+{
+  "city": "周庄",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "高德(POI数据)", "维基百科"],
+  "center": [120.849966, 31.114163],
+  "places": {
+    "古戏台": {
+      "name": "周庄古戏台",
+      "lng": 120.849707,
+      "lat": 31.115264,
+      "category": "attraction",
+      "rating": 4.5,
+      "hours": "08:00-22:00",
+      "intro": "昆曲和古镇两大文化瑰宝交相辉映，中心木雕凤凰藻井为天然音响。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "双桥": {
+      "name": "周庄古镇景区-双桥（钥匙桥）",
+      "lng": 120.849966,
+      "lat": 31.114163,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:30-21:00",
+      "intro": "世德桥与永安桥一横一竖、桥洞一方一圆，形似古钥匙，陈逸飞油画《故乡的回忆》题材。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "张厅": {
+      "name": "周庄张厅",
+      "lng": 120.850547,
+      "lat": 31.113787,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:30-21:00",
+      "intro": "周庄仅存的少量明代建筑之一，有“轿从前门进，船从家中过”之说。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沈厅": {
+      "name": "周庄沈厅",
+      "lng": 120.850745,
+      "lat": 31.112752,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "沈万三后裔所建，七进五门楼，松茂堂为主要看点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "叶楚伧故居": {
+      "name": "周庄古镇景区-叶楚伧故居",
+      "lng": 120.849741,
+      "lat": 31.112089,
+      "category": "museum",
+      "hours": "08:00-16:30（16:00停止入场）",
+      "intro": "尽显仿明建筑特色。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "退思园": {
+      "name": "退思园",
+      "lng": 120.71611,
+      "lat": 31.15972,
+      "category": "attraction",
+      "intro": "世界文化遗产苏州古典园林之一，建于清光绪年间；实际位于同里古镇。",
+      "source": "维基百科",
+      "verified": true
+    },
+    "崇本堂": {
+      "name": "崇本堂",
+      "lng": 120.717606,
+      "lat": 31.158125,
+      "category": "attraction",
+      "hours": "08:00-17:15",
+      "intro": "同里古镇富观街的明清建筑，以各种精美雕刻见长；实际位于同里古镇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三桥": {
+      "name": "同里三桥（太平桥/吉利桥/长庆桥）",
+      "lng": 120.717247,
+      "lat": 31.157813,
+      "category": "attraction",
+      "intro": "太平、吉利、长庆三桥呈“品”字形跨于三河交汇处，当地有“走三桥”祈福习俗；实际位于同里古镇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "嘉荫堂": {
+      "name": "苏州同里古镇-嘉荫堂",
+      "lng": 120.717962,
+      "lat": 31.157607,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "4月-10月 07:30-17:30；11月-次年3月 08:30-17:00",
+      "intro": "肃穆庄重的明代建筑，氛围安静；实际位于同里古镇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "罗星洲": {
+      "name": "罗星洲",
+      "lng": 120.731384,
+      "lat": 31.157957,
+      "category": "attraction",
+      "intro": "同里湖中的小岛景点，可乘船登洲；实际位于同里古镇东侧。",
+      "source": "高德(POI数据)",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

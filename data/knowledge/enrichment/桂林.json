@@ -1,0 +1,112 @@
+{
+  "city": "桂林",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "center": [
+    110.29,
+    25.27
+  ],
+  "places": {
+    "阳朔": {
+      "name": "阳朔县",
+      "lng": 110.489874,
+      "lat": 24.774308,
+      "category": "other",
+      "intro": "以喀斯特山水与西街闻名的旅游名县。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "遇龙河": {
+      "name": "遇龙河风景区",
+      "lng": 110.399199,
+      "lat": 24.811217,
+      "category": "nature",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "阳朔最美的漂流线路之一，人称\"小漓江\"。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "十里画廊": {
+      "name": "十里画廊",
+      "lng": 110.49061,
+      "lat": 24.73406,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "阳朔抗战路沿线风景带，沿路风景秀丽，适合骑行。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "王城": {
+      "name": "独秀峰·王城景区",
+      "lng": 110.299321,
+      "lat": 25.28219,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:30-18:30",
+      "intro": "明代靖江王府旧址，有\"桂林山水甲天下\"石刻。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "象鼻山": {
+      "name": "象鼻山",
+      "lng": 110.296577,
+      "lat": 25.267551,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "07:00-21:00(21:00停止入园)",
+      "intro": "桂林城徽，山形如大象饮水。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "漓江精华": {
+      "name": "兴坪-九马画山漓江精华游",
+      "lng": 110.522612,
+      "lat": 24.922147,
+      "category": "viewpoint",
+      "rating": 4.1,
+      "intro": "兴坪段漓江精华游，20元人民币背景取景地一带。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "兴坪古镇": {
+      "name": "兴坪古镇",
+      "lng": 110.530679,
+      "lat": 24.916603,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "因20元人民币背景图案而闻名的古镇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西街": {
+      "name": "阳朔西街",
+      "lng": 110.49488,
+      "lat": 24.77505,
+      "category": "street",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "阳朔最古老最繁华的街道，已有1400多年历史。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "印象刘三姐": {
+      "name": "印象·刘三姐",
+      "lng": 110.508252,
+      "lat": 24.766941,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "18:00-21:00",
+      "intro": "以十二座真山为背景的大型山水实景演出。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

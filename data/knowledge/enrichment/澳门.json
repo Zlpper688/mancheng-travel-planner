@@ -1,0 +1,70 @@
+{
+  "city": "澳门",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [113.5455, 22.1912],
+  "places": {
+    "威尼斯人度假村": {
+      "name": "澳门威尼斯人度假村酒店",
+      "lng": 113.565705,
+      "lat": 22.143746,
+      "category": "hotel",
+      "rating": 4.7,
+      "intro": "坐贡多拉感受威尼斯风情。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "龙环葡韵住宅式博物馆": {
+      "name": "龙环葡韵住宅式博物馆",
+      "lng": 113.565016,
+      "lat": 22.151057,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "周二至周日 10:00-19:00（18:30停止入场）；周一不开放",
+      "intro": "重温葡式建筑的独特风情，澳门八景之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "新马路": {
+      "name": "亚美打利庇卢大马路（新马路）",
+      "lng": 113.543788,
+      "lat": 22.191485,
+      "category": "street",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "议事亭前地": {
+      "name": "议事亭前地",
+      "lng": 113.545455,
+      "lat": 22.191222,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "玫瑰圣母堂": {
+      "name": "玫瑰圣母堂",
+      "lng": 113.545444,
+      "lat": 22.191895,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "10:00-18:00（周三不开放）",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大三": {
+      "name": "大三巴牌坊",
+      "lng": 113.54594,
+      "lat": 22.19456,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "澳门最著名的历史地标，《世界遗产名录》中的一员。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

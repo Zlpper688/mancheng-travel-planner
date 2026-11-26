@@ -1,0 +1,138 @@
+{
+  "city": "台北",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    121.5637,
+    25.0375
+  ],
+  "places": {
+    "台北101": {
+      "name": "台北101",
+      "lng": 121.564458,
+      "lat": 25.033979,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "购物中心 周日至周四11:00-21:30,周五至周六11:00-22:00;观景台09:00起",
+      "intro": "台北地标摩天大楼，设有观景台与购物中心。",
+      "source": "腾讯地图/维基导游",
+      "verified": true
+    },
+    "国父纪念馆": {
+      "name": "国父纪念馆",
+      "lng": 121.521852,
+      "lat": 25.034571,
+      "category": "attraction",
+      "intro": "纪念孙中山的仿古宫殿式建筑，位于信义区，常有文艺演出。",
+      "source": "维基导游",
+      "verified": true
+    },
+    "中正纪念堂": {
+      "name": "中正纪念堂",
+      "lng": 121.52178,
+      "lat": 25.034611,
+      "category": "attraction",
+      "intro": "纪念蒋介石的建筑，又名台湾民主纪念园区，两侧为国家音乐厅与戏剧院。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "淡水": {
+      "name": "淡水",
+      "lng": 121.44475,
+      "lat": 25.16853,
+      "category": "street",
+      "intro": "淡水老街，新北市淡水区临河老街，以夕阳、古迹与小吃著称。",
+      "source": "百度百科",
+      "verified": true
+    },
+    "士林夜市": {
+      "name": "士林夜市",
+      "lng": 121.52559,
+      "lat": 25.08773,
+      "category": "market",
+      "rating": 4.1,
+      "hours": "16:00-00:00",
+      "intro": "台北最大的夜市，小吃与购物集中。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "龙山寺": {
+      "name": "龙山寺",
+      "lng": 121.4999,
+      "lat": 25.0367,
+      "category": "temple",
+      "rating": 4.2,
+      "hours": "09:30-11:00,13:30-15:00,19:00-20:30",
+      "intro": "艋舺龙山寺，台北著名寺庙，万华区信仰中心。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西门町": {
+      "name": "西门町",
+      "lng": 121.50753,
+      "lat": 25.044584,
+      "category": "street",
+      "intro": "西门町商圈，台北流行的购物娱乐街区，号称台北的原宿。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "故宫博物院": {
+      "name": "故宫博物院",
+      "lng": 121.5485,
+      "lat": 25.1023,
+      "category": "museum",
+      "intro": "国立故宫博物院，收藏大量中国古代文物，位于士林区。",
+      "source": "维基导游",
+      "verified": true
+    },
+    "士林官邸": {
+      "name": "士林官邸",
+      "lng": 121.53274,
+      "lat": 25.09604,
+      "category": "park",
+      "intro": "士林官邸，原蒋介石官邸，现为公园与花展场所。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "美丽华百乐园": {
+      "name": "美丽华百乐园",
+      "lng": 121.55725,
+      "lat": 25.083341,
+      "category": "attraction",
+      "intro": "台北市中山区大型购物中心，屋顶设有全台著名摩天轮。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "台湾大学": {
+      "name": "台湾大学",
+      "lng": 121.5367917,
+      "lat": 25.016375,
+      "category": "other",
+      "intro": "国立台湾大学校总区，位于大安区公馆，台湾规模最大的大学。",
+      "source": "维基百科",
+      "verified": true
+    },
+    "总统府": {
+      "name": "总统府",
+      "lng": 121.51195,
+      "lat": 25.040082,
+      "category": "attraction",
+      "intro": "中华民国总统府，日治时期总督府厅舍，后期文艺复兴式建筑。",
+      "source": "台湾观光局",
+      "verified": true
+    },
+    "228和平公园": {
+      "name": "228和平公园",
+      "lng": 121.51472,
+      "lat": 25.04167,
+      "category": "park",
+      "intro": "二二八和平纪念公园，位于台北市中正区，邻近总统府。",
+      "source": "维基百科",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

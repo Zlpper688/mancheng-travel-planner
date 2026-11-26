@@ -1,0 +1,484 @@
+{
+  "city": "成都",
+  "region": "四川",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-49118d6f",
+      "source": "四川地区/我是驴友-成都攻略.pdf",
+      "status": "ok",
+      "routeCount": 6
+    }
+  ],
+  "must": [
+    {
+      "name": "宽窄巷子",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "春熙路",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "大熊猫基地",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "文殊院",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "青羊宫",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "春熙路",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "大熊猫基地",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "宽窄巷子",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "磨西镇",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r6"
+      ]
+    },
+    {
+      "name": "青羊宫",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "文殊院",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "杜甫草堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "二号营地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r6"
+      ]
+    },
+    {
+      "name": "锦里",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "三号营地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r6"
+      ]
+    },
+    {
+      "name": "四号营地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r6"
+      ]
+    },
+    {
+      "name": "望江楼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "武侯祠",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "一号营地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r6"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-49118d6f:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "宽窄巷子",
+              "kind": "sight"
+            },
+            {
+              "name": "春熙路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大熊猫基地",
+              "kind": "sight"
+            },
+            {
+              "name": "文殊院",
+              "kind": "sight"
+            },
+            {
+              "name": "青羊宫",
+              "kind": "sight"
+            },
+            {
+              "name": "春熙路",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "杜甫草堂",
+              "kind": "sight"
+            },
+            {
+              "name": "武侯祠",
+              "kind": "sight"
+            },
+            {
+              "name": "锦里",
+              "kind": "sight"
+            },
+            {
+              "name": "望江楼",
+              "kind": "sight"
+            },
+            {
+              "name": "宽窄巷子",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大熊猫基地",
+              "kind": "sight"
+            },
+            {
+              "name": "文殊院",
+              "kind": "sight"
+            },
+            {
+              "name": "青羊宫",
+              "kind": "sight"
+            },
+            {
+              "name": "春熙路",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "九寨沟",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "报国寺",
+              "kind": "sight"
+            },
+            {
+              "name": "万年寺",
+              "kind": "sight"
+            },
+            {
+              "name": "雷洞坪",
+              "kind": "sight"
+            },
+            {
+              "name": "金顶",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "金顶",
+              "kind": "sight"
+            },
+            {
+              "name": "万年寺",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "生态猴区",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "乐山大佛",
+              "kind": "sight"
+            },
+            {
+              "name": "峨眉山报国寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "报国寺",
+              "kind": "sight"
+            },
+            {
+              "name": "万年寺",
+              "kind": "sight"
+            },
+            {
+              "name": "雷洞坪",
+              "kind": "sight"
+            },
+            {
+              "name": "金顶",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "金顶",
+              "kind": "sight"
+            },
+            {
+              "name": "万年寺",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "生态猴区",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "青城前山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "青城前山",
+              "kind": "sight"
+            },
+            {
+              "name": "都江堰",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-49118d6f:r6",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "磨西镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "磨西镇",
+              "kind": "sight"
+            },
+            {
+              "name": "一号营地",
+              "kind": "sight"
+            },
+            {
+              "name": "二号营地",
+              "kind": "sight"
+            },
+            {
+              "name": "三号营地",
+              "kind": "sight"
+            },
+            {
+              "name": "四号营地",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": []
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 6,
+    "placeCount": 14,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

@@ -1,0 +1,323 @@
+{
+  "city": "长沙",
+  "region": "华中",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-b19d67cd",
+      "source": "华中地区/我是驴友-长沙.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "湖南省第一师范",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "岳麓书院",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "岳麓山",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "橘子洲",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "故居",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "大观台",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "勾良苗寨",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "故居",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "虹桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "湖南省第一师范",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金鞭溪",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "橘子洲",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "十里画廊",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "天龙峡",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "天子山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "跳岩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "杨家祠堂",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "杨家界",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "袁家界",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "岳麓山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "岳麓书院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-b19d67cd:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "湖南省第一师范",
+              "kind": "sight"
+            },
+            {
+              "name": "岳麓书院",
+              "kind": "sight"
+            },
+            {
+              "name": "岳麓山",
+              "kind": "sight"
+            },
+            {
+              "name": "橘子洲",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "故居",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-b19d67cd:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "虹桥",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家祠堂",
+              "kind": "sight"
+            },
+            {
+              "name": "跳岩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "勾良苗寨",
+              "kind": "sight"
+            },
+            {
+              "name": "天龙峡",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-b19d67cd:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天子山",
+              "kind": "sight"
+            },
+            {
+              "name": "十里画廊",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大观台",
+              "kind": "sight"
+            },
+            {
+              "name": "杨家界",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "袁家界",
+              "kind": "sight"
+            },
+            {
+              "name": "金鞭溪",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 3,
+    "placeCount": 16,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

@@ -1,0 +1,147 @@
+{
+  "city": "青城山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "都江堰景区资料"
+  ],
+  "center": [
+    103.51669,
+    30.890721
+  ],
+  "places": {
+    "青城山前山": {
+      "name": "青城山-建福宫",
+      "lng": 103.572736,
+      "lat": 30.897265,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "位于青城山麓丈人峰下的道教宫观，为登临前山的起点，殿内有清代394字长联。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "月城湖": {
+      "name": "青城山-月城湖",
+      "lng": 103.568501,
+      "lat": 30.901132,
+      "category": "nature",
+      "intro": "青城前山山腰的湖泊，可乘船或沿湖步行前往索道站。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "缆车上山": {
+      "name": "青城前山-索道",
+      "lng": 103.56638,
+      "lat": 30.91056,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "08:00-17:30",
+      "intro": "连接月城湖与山上区域的观光索道，全长约2.1公里，乘坐约8分钟。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "上清宫": {
+      "name": "青城前山-上清宫",
+      "lng": 103.563298,
+      "lat": 30.910375,
+      "category": "temple",
+      "rating": 4.6,
+      "intro": "位于青城第一峰半坡的道观，可观赏日出、云海与神灯。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "祖师殿": {
+      "name": "青城山-祖师殿",
+      "lng": 103.556711,
+      "lat": 30.901815,
+      "category": "temple",
+      "intro": "青城山前山著名道观，地处幽静山谷之中。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天然图画坊": {
+      "name": "青城山-天然图画",
+      "lng": 103.567481,
+      "lat": 30.89875,
+      "category": "attraction",
+      "intro": "前山登山道上的著名景观，以“天然图画”题刻和山林景致著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "前山大门": {
+      "name": "青城前山山门",
+      "lng": 103.572193,
+      "lat": 30.897381,
+      "category": "attraction",
+      "intro": "青城山前山入口山门，为登山游览的起点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "青城后山": {
+      "name": "青城后山",
+      "lng": 103.487137,
+      "lat": 30.930711,
+      "category": "nature",
+      "intro": "青城山后山景区，以山泉、瀑布和原始森林景观为主。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "又一村": {
+      "name": "青城后山-又一村",
+      "lng": 103.474012,
+      "lat": 30.934284,
+      "category": "attraction",
+      "intro": "青城后山深处的山村景点，山清水秀。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "九僧洞": {
+      "name": "青城后山-九僧洞",
+      "lng": 103.478466,
+      "lat": 30.943969,
+      "category": "attraction",
+      "intro": "青城后山的岩洞景点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "双泉水帘洞": {
+      "name": "青城后山-双泉水帘洞",
+      "lng": 103.485491,
+      "lat": 30.944386,
+      "category": "nature",
+      "intro": "青城后山双泉瀑布与水帘洞构成自然景观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金骊索道下站": {
+      "name": "青城后山-金骊索道",
+      "lng": 103.482842,
+      "lat": 30.926814,
+      "category": "attraction",
+      "intro": "青城后山金骊索道下站，通往山上观景区域。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "都江堰景区": {
+      "name": "都江堰景区",
+      "lng": 103.609571,
+      "lat": 31.001522,
+      "category": "attraction",
+      "intro": "世界文化遗产都江堰水利工程所在地，含鱼嘴、飞沙堰、安澜索桥等景观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "灌县古城": {
+      "name": "灌县古城",
+      "lng": 103.62002,
+      "lat": 30.998556,
+      "category": "attraction",
+      "intro": "都江堰灌县古城，紧邻都江堰景区，保留老城街巷风貌。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

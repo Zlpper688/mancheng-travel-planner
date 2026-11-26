@@ -1,0 +1,61 @@
+{
+  "city": "福州",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "福州本地宝"
+  ],
+  "center": [
+    119.3,
+    26.08
+  ],
+  "places": {
+    "三坊七巷": {
+      "name": "三坊七巷",
+      "lng": 119.29682,
+      "lat": 26.08241,
+      "category": "street",
+      "rating": 4.8,
+      "ticket": "街巷免费；付费宅院联票约70元",
+      "hours": "全天开放（付费景点约8:30-21:00）",
+      "intro": "现存古民居270余座，被誉为\"中国城市建筑博物馆\"\"明清古建筑的博物馆\"。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南后街": {
+      "name": "南后街",
+      "lng": 119.296807,
+      "lat": 26.08275,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "06:00-23:30",
+      "intro": "三坊七巷的中轴商业步行街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西湖公园": {
+      "name": "西湖公园",
+      "lng": 119.2898,
+      "lat": 26.09256,
+      "category": "park",
+      "rating": 4.4,
+      "hours": "05:30-22:30(22:00停止入园)",
+      "intro": "福州迄今保存最完整的古典园林。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "五一广场": {
+      "name": "五一广场",
+      "lng": 119.30804,
+      "lat": 26.07552,
+      "category": "other",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "福州市中心大型城市广场，是娱乐活动的重要场所。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,171 @@
+{
+  "city": "舟山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "高德(POI数据)", "维基百科"],
+  "center": [122.107859, 30.017797],
+  "places": {
+    "定海古城": {
+      "name": "定海古城",
+      "lng": 122.107859,
+      "lat": 30.017797,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "全国唯一的海岛历史文化名城，历史文物众多。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄杨尖": {
+      "name": "黄杨尖",
+      "lng": 122.244383,
+      "lat": 30.036133,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鸦片战争遗址": {
+      "name": "舟山鸦片战争遗址公园",
+      "lng": 122.085976,
+      "lat": 30.010723,
+      "category": "attraction",
+      "intro": "鸦片战争定海保卫战遗址，革命纪念地。",
+      "source": "高德(POI数据)",
+      "verified": true
+    },
+    "沈家门": {
+      "name": "沈家门渔港",
+      "lng": 122.29796,
+      "lat": 29.94849,
+      "category": "other",
+      "intro": "中国国家级中心渔港，全国重要渔产品批发市场。",
+      "source": "维基百科",
+      "verified": true
+    },
+    "南海观音立像": {
+      "name": "南海观音大佛",
+      "lng": 122.393739,
+      "lat": 29.973879,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "06:00-17:30",
+      "intro": "普陀山标志性铜像，体现观世音菩萨慧眼视众生。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "潮音洞": {
+      "name": "普陀山风景名胜区-潮音洞",
+      "lng": 122.394559,
+      "lat": 29.978049,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "全天开放",
+      "intro": "普陀山佛教起源地，海浪撞洞声如潮音。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "不肯去观音院": {
+      "name": "普陀山风景名胜区-不肯去观音院",
+      "lng": 122.394389,
+      "lat": 29.97807,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:00-17:30",
+      "intro": "全山建寺最早的地方，普陀山观音道场开端。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大青山": {
+      "name": "朱家尖大青山景区",
+      "lng": 122.392187,
+      "lat": 29.849589,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "旺季 07:45-17:00；淡季 08:00-16:30",
+      "intro": "国家公园，可环岛游览看海景。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南沙": {
+      "name": "朱家尖南沙景区",
+      "lng": 122.407043,
+      "lat": 29.878651,
+      "category": "beach",
+      "source": "高德(POI数据)",
+      "verified": true
+    },
+    "国际沙雕艺术广场": {
+      "name": "朱家尖国际沙雕艺术广场",
+      "lng": 122.408614,
+      "lat": 29.877844,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "十里金沙奇观，国际沙雕艺术展示地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "乌石塘": {
+      "name": "乌石塘景区",
+      "lng": 122.40509,
+      "lat": 29.920615,
+      "category": "beach",
+      "rating": 4.4,
+      "intro": "以岸边石头都是黑色的而闻名，景区内有游乐设施。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "桃花峪": {
+      "name": "舟山桃花岛-桃花峪景区",
+      "lng": 122.307401,
+      "lat": 29.804379,
+      "category": "nature",
+      "rating": 3.9,
+      "hours": "08:00-16:30",
+      "intro": "位于桃花岛东海岸，岛上自然生态最优美的区块，奇岩壁立、可晨观日出。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "塔湾金沙": {
+      "name": "桃花岛塔湾金沙景区",
+      "lng": 122.295921,
+      "lat": 29.816218,
+      "category": "beach",
+      "rating": 4.6,
+      "hours": "08:00-17:00",
+      "intro": "桃花岛最大的海滩，“金沙日出”天象景观很有名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "安期峰": {
+      "name": "桃花岛安期峰风景区",
+      "lng": 122.287412,
+      "lat": 29.808183,
+      "category": "nature",
+      "rating": 4.2,
+      "hours": "08:00-16:30",
+      "intro": "舟山群岛第一高峰，可登高远眺山海风光。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "庙子湖岛": {
+      "name": "庙子湖岛",
+      "lng": 122.682401,
+      "lat": 30.196952,
+      "category": "nature",
+      "intro": "东极岛四个主要居民岛之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东福山岛": {
+      "name": "东福山岛",
+      "lng": 122.769461,
+      "lat": 30.131988,
+      "category": "nature",
+      "intro": "中国最东端有人居住的岛屿之一，是观看中国大陆第一缕阳光的地方。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,591 @@
+{
+  "city": "宁波",
+  "region": "浙江",
+  "aliases": [],
+  "center": [
+    121.55,
+    29.872
+  ],
+  "centerSource": "photon",
+  "sources": [
+    {
+      "id": "g-f11b4e82",
+      "source": "浙江地区/我是驴友-宁波攻略.pdf",
+      "status": "ok",
+      "routeCount": 5
+    }
+  ],
+  "must": [
+    {
+      "name": "月湖公园",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "天一阁",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "城隍庙",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "天一广场",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "奉化溪口蒋氏故居",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "雪窦山景区",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "老外滩",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "前童古镇",
+      "kind": "sight",
+      "order": 7
+    }
+  ],
+  "places": [
+    {
+      "name": "老外滩",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "天一广场",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "城隍庙",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r3"
+      ]
+    },
+    {
+      "name": "天一阁",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r3"
+      ]
+    },
+    {
+      "name": "月湖",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "百步沙",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "不肯去观音院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "仓桥直街",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "潮音洞",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "大禹陵",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "东湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "短姑圣迹",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "多宝塔",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "二龟听法石",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "法雨禅寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "梵音洞",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "奉化溪口蒋氏故居",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "慧济禅寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "兰亭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "鲁迅故里",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "洛迦山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "磐陀石",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "普济禅寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "七塔寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "前童古镇",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "庆安会馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "沈园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "心字石",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "雪窦山景区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "月湖公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-f11b4e82:r1",
+      "title": "深度四日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "月湖公园",
+              "kind": "sight"
+            },
+            {
+              "name": "天一阁",
+              "kind": "sight"
+            },
+            {
+              "name": "城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "天一广场",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "奉化溪口蒋氏故居",
+              "kind": "sight"
+            },
+            {
+              "name": "雪窦山景区",
+              "kind": "sight"
+            },
+            {
+              "name": "老外滩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "前童古镇",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-f11b4e82:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "七塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "庆安会馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老外滩",
+              "kind": "sight"
+            },
+            {
+              "name": "天一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "月湖",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-f11b4e82:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "月湖",
+              "kind": "sight"
+            },
+            {
+              "name": "天一阁",
+              "kind": "sight"
+            },
+            {
+              "name": "城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "天一广场",
+              "kind": "sight"
+            },
+            {
+              "name": "老外滩",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-f11b4e82:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大禹陵",
+              "kind": "sight"
+            },
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "仓桥直街",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-f11b4e82:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "心字石",
+              "kind": "sight"
+            },
+            {
+              "name": "磐陀石",
+              "kind": "sight"
+            },
+            {
+              "name": "二龟听法石",
+              "kind": "sight"
+            },
+            {
+              "name": "普济禅寺",
+              "kind": "sight"
+            },
+            {
+              "name": "多宝塔",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "短姑圣迹",
+              "kind": "sight"
+            },
+            {
+              "name": "洛迦山",
+              "kind": "sight"
+            },
+            {
+              "name": "不肯去观音院",
+              "kind": "sight"
+            },
+            {
+              "name": "潮音洞",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "百步沙",
+              "kind": "sight"
+            },
+            {
+              "name": "法雨禅寺",
+              "kind": "sight"
+            },
+            {
+              "name": "梵音洞",
+              "kind": "sight"
+            },
+            {
+              "name": "慧济禅寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 5,
+    "placeCount": 30,
+    "mustCount": 8
+  },
+  "enrichmentState": "needs-geo"
+}

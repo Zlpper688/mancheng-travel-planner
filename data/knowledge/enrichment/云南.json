@@ -1,0 +1,79 @@
+{
+  "city": "云南",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [102.6276, 26.7804],
+  "places": {
+    "香格里拉": {
+      "name": "香格里拉市独克宗古城",
+      "lng": 99.704421,
+      "lat": 27.804053,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "香格里拉市的核心城区与代表景点，有1300多年历史的藏族古城，是滇藏茶马古道枢纽。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "丽江": {
+      "name": "丽江古城",
+      "lng": 100.23673,
+      "lat": 26.87076,
+      "category": "attraction",
+      "intro": "又名大研古镇，世界文化遗产、国家5A级景区，以纳西族风情和古城夜景著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "虎跳峡": {
+      "name": "香格里拉虎跳峡景区",
+      "lng": 100.151796,
+      "lat": 27.241581,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "08:00-18:00",
+      "intro": "位于金沙江上，以湍急江水和虎跳石闻名，是世界著名徒步路线。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "泸沽湖": {
+      "name": "泸沽湖景区",
+      "lng": 100.781192,
+      "lat": 27.705719,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "位于云川交界的高原湖泊，以湖光山色和摩梭母系民族文化著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "里格村或大落水村": {
+      "name": "大洛水村",
+      "lng": 100.769337,
+      "lat": 27.679353,
+      "category": "attraction",
+      "intro": "位于泸沽湖畔的摩梭村落，是泸沽湖旅游的主要集散地之一，可体验摩梭民居与民俗。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "拉市海": {
+      "name": "拉市海",
+      "lng": 100.132848,
+      "lat": 26.880759,
+      "category": "nature",
+      "intro": "位于丽江市玉龙县拉市镇的高原湿地湖泊，是候鸟栖息地和茶马古道途经地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "束河古镇": {
+      "name": "丽江束河古镇",
+      "lng": 100.204324,
+      "lat": 26.917286,
+      "category": "attraction",
+      "intro": "位于丽江古城西北，是纳西族最早聚居地之一、茶马古道重要集镇，比丽江古城更为幽静。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

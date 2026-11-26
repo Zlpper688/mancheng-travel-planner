@@ -1,0 +1,83 @@
+{
+  "city": "四姑娘山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "已有enrichment数据"
+  ],
+  "center": [
+    102.830147,
+    30.993839
+  ],
+  "places": {
+    "双桥沟": {
+      "name": "双桥沟",
+      "lng": 102.769608,
+      "lat": 30.979239,
+      "category": "nature",
+      "intro": "四姑娘山景区中以雪山、森林、牧场风光著称的沟谷。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "长坪沟": {
+      "name": "长坪沟",
+      "lng": 102.84619,
+      "lat": 30.99911,
+      "category": "nature",
+      "intro": "四姑娘山景区内的徒步胜地，可远眺四姑娘山主峰。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "丹巴": {
+      "name": "丹巴县",
+      "lng": 101.89054,
+      "lat": 30.878618,
+      "category": "other",
+      "intro": "四川省甘孜州丹巴县，以甲居藏寨和美人谷闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "塔公": {
+      "name": "塔公草原",
+      "lng": 101.554997,
+      "lat": 30.329812,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "康定市塔公镇的草原景区，可远眺雅拉雪山与塔公寺。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "新都桥": {
+      "name": "新都桥",
+      "lng": 101.508829,
+      "lat": 30.033226,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "川西318国道上的摄影天堂，以光影与藏式民居闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "康定": {
+      "name": "康定市",
+      "lng": 101.96408,
+      "lat": 30.050533,
+      "category": "other",
+      "intro": "四川省甘孜州首府，川藏线上的重要门户城市。",
+      "source": "已有enrichment数据",
+      "verified": true
+    },
+    "海螺沟": {
+      "name": "海螺沟景区",
+      "lng": 102.05087,
+      "lat": 29.597081,
+      "category": "attraction",
+      "intro": "以低海拔现代冰川和温泉著称的景区，位于泸定县磨西镇。",
+      "source": "已有enrichment数据",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

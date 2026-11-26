@@ -1,0 +1,48 @@
+{
+  "city": "合肥",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    117.28,
+    31.82
+  ],
+  "places": {
+    "包公祠": {
+      "name": "包孝肃公祠",
+      "lng": 117.290828,
+      "lat": 31.855694,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "09:00-17:00(16:50停止入园)",
+      "intro": "为纪念包拯而建，是国内多处包公祠中知名度最高的一座。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "李鸿章故居": {
+      "name": "李鸿章故居旅游区",
+      "lng": 117.291162,
+      "lat": 31.864534,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "周二至周日09:00-17:00(16:30停止入园)；周一不开放",
+      "intro": "李鸿章和淮军文化主题博物馆。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三河镇": {
+      "name": "三河古镇",
+      "lng": 117.245444,
+      "lat": 31.516169,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "荟萃八古景观的江淮水乡古镇。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

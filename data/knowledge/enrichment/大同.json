@@ -1,0 +1,49 @@
+{
+  "city": "大同",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "places": {
+    "悬空寺": {
+      "name": "悬空寺",
+      "lng": 113.715959,
+      "lat": 39.661515,
+      "category": "temple",
+      "rating": 4.7,
+      "hours": "3月-4月 08:00-17:00；5月-10月 08:00-18:00；11月-次年2月 08:30-16:30（节假日及高峰期售停票时间以景区为准）",
+      "intro": "古人的智慧精华，真是无比壮观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "应县木塔": {
+      "name": "应县木塔",
+      "lng": 113.189676,
+      "lat": 39.570452,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "冬季 08:00-17:00（16:30停止售票，16:45停止入园）",
+      "intro": "与巴黎埃菲尔铁塔和比萨斜塔并称为世界三大奇塔。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "云冈石窟": {
+      "name": "云冈石窟",
+      "lng": 113.13634,
+      "lat": 40.1118,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:30-16:30",
+      "intro": "记录刻在石头上的王朝。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    113.22,
+    40.12
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

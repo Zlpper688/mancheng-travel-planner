@@ -1,0 +1,33 @@
+{
+  "city": "三亚",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    109.508268,
+    18.247872
+  ],
+  "places": {
+    "南山": {
+      "name": "南山文化旅游区",
+      "lng": 109.208571,
+      "lat": 18.299252,
+      "category": "attraction",
+      "intro": "三亚南山佛教文化苑，108米海上观音所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天涯海角": {
+      "name": "天涯海角景区",
+      "lng": 109.34769,
+      "lat": 18.295591,
+      "category": "beach",
+      "intro": "三亚天涯海角海滨景区，以巨石题刻和碧海蓝天闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

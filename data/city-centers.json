@@ -1,0 +1,192 @@
+{
+  "三亚": {
+    "center": [
+      111.9938,
+      23.7336
+    ],
+    "level": "district",
+    "resolvedName": "三亚",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "三清山": {
+    "center": [
+      118.0585,
+      28.9329
+    ],
+    "level": "city",
+    "resolvedName": "三清山风景名胜区",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "上海": {
+    "center": [
+      121.47,
+      31.2313
+    ],
+    "level": "state",
+    "resolvedName": "上海市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "丽江": {
+    "center": [
+      100.225,
+      26.8596
+    ],
+    "level": "city",
+    "resolvedName": "丽江市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "乌镇": {
+    "center": [
+      110.3612,
+      37.9343
+    ],
+    "level": "district",
+    "resolvedName": "乌镇",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "乌鲁木齐": {
+    "center": [
+      87.6139,
+      43.8244
+    ],
+    "level": "city",
+    "resolvedName": "乌鲁木齐市 ئۈرۈمچى",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "九寨沟": {
+    "center": [
+      103.9326,
+      33.3072
+    ],
+    "level": "county",
+    "resolvedName": "九寨沟县 གཟི་རྩ་སྡེ་དགུ་རྫོང།",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "云南": {
+    "center": [
+      102.6276,
+      26.7804
+    ],
+    "level": "district",
+    "resolvedName": "云南",
+    "source": "photon",
+    "provinceLike": true
+  },
+  "兰州": {
+    "center": [
+      103.6323,
+      36.2859
+    ],
+    "level": "county",
+    "resolvedName": "兰州市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "北戴河": {
+    "center": [
+      119.4354,
+      39.8606
+    ],
+    "level": "district",
+    "resolvedName": "北戴河区",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "大理": {
+    "center": [
+      100.2652,
+      25.6075
+    ],
+    "level": "county",
+    "resolvedName": "大理白族自治州",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "大连": {
+    "center": [
+      110.1051,
+      19.8551
+    ],
+    "level": "city",
+    "resolvedName": "大连",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "天津": {
+    "center": [
+      117.4164,
+      39.3033
+    ],
+    "level": "state",
+    "resolvedName": "天津",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "太原": {
+    "center": [
+      112.5437,
+      37.87
+    ],
+    "level": "city",
+    "resolvedName": "太原市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "威海": {
+    "center": [
+      122.1153,
+      37.5121
+    ],
+    "level": "city",
+    "resolvedName": "威海市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "婺源": {
+    "center": [
+      117.7543,
+      29.3234
+    ],
+    "level": "county",
+    "resolvedName": "婺源县",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "宁波": {
+    "center": [
+      121.55,
+      29.872
+    ],
+    "level": "city",
+    "resolvedName": "宁波市",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "宏村": {
+    "center": [
+      117.9847,
+      30.0048
+    ],
+    "level": "district",
+    "resolvedName": "宏村",
+    "source": "photon",
+    "provinceLike": false
+  },
+  "常州": {
+    "center": [
+      119.9692,
+      31.8123
+    ],
+    "level": "city",
+    "resolvedName": "常州市",
+    "source": "photon",
+    "provinceLike": false
+  }
+}

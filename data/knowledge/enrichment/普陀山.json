@@ -1,0 +1,108 @@
+{
+  "city": "普陀山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "places": {
+    "南海观音立像": {
+      "name": "普陀山南海观音立像",
+      "lng": 122.393739,
+      "lat": 29.973879,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "06:00-17:30",
+      "intro": "高33米的铜制观音塑像，海天佛国的象征。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "潮音洞": {
+      "name": "普陀山潮音洞",
+      "lng": 122.394516,
+      "lat": 29.977888,
+      "category": "nature",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "紫竹林": {
+      "name": "普陀山风景名胜区-紫竹林",
+      "lng": 122.394036,
+      "lat": 29.97752,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "06:00-17:30",
+      "intro": "观音在普陀山最早的道场，与不肯去观音传说相关。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "普济禅寺": {
+      "name": "普济禅寺",
+      "lng": 122.38678,
+      "lat": 29.985501,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "06:00-21:00",
+      "intro": "普陀山香火最旺的寺庙。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "不肯去观音院": {
+      "name": "普陀山风景名胜区-不肯去观音院",
+      "lng": 122.394389,
+      "lat": 29.97807,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:00-17:30",
+      "intro": "全山建寺最早的地方，普陀山观音道场发源地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "百步沙": {
+      "name": "普陀山风景名胜区-百步沙",
+      "lng": 122.391059,
+      "lat": 29.984042,
+      "category": "beach",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "海域辽阔，滩形优美，为冲浪、观日出最佳处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "法雨禅寺": {
+      "name": "普陀山风景名胜区-法雨禅寺",
+      "lng": 122.393387,
+      "lat": 30.001862,
+      "category": "temple",
+      "intro": "普陀山三大寺之一，九龙殿为镇寺之宝。",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "梵音洞": {
+      "name": "梵音洞",
+      "lng": 122.41673,
+      "lat": 30.001658,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "慧济禅寺": {
+      "name": "普陀山风景名胜区-慧济禅寺",
+      "lng": 122.390289,
+      "lat": 30.01088,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "06:00-18:00",
+      "intro": "普陀山海拔最高的寺院，四面环山，隐于浓荫翠绿之中。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    122.391,
+    30.002
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

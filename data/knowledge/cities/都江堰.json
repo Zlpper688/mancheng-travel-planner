@@ -1,0 +1,191 @@
+{
+  "city": "都江堰",
+  "region": "四川",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-28e060b5",
+      "source": "四川地区/我是驴友-都江堰.pdf",
+      "status": "ok",
+      "routeCount": 1
+    }
+  ],
+  "must": [
+    {
+      "name": "都江堰景区",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "飞沙堰",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "鱼嘴",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "安澜索桥",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "步于廊大扶梯",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "玉垒",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "青城山景区",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "虹口观光",
+      "kind": "sight",
+      "order": 7
+    }
+  ],
+  "places": [
+    {
+      "name": "安澜索桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "步于廊大扶梯",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "都江堰景区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "飞沙堰",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "虹口观光",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "青城山景区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "鱼嘴",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "玉垒",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-28e060b5:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "都江堰景区",
+              "kind": "sight"
+            },
+            {
+              "name": "飞沙堰",
+              "kind": "sight"
+            },
+            {
+              "name": "鱼嘴",
+              "kind": "sight"
+            },
+            {
+              "name": "安澜索桥",
+              "kind": "sight"
+            },
+            {
+              "name": "步于廊大扶梯",
+              "kind": "sight"
+            },
+            {
+              "name": "玉垒",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "青城山景区",
+              "kind": "sight"
+            },
+            {
+              "name": "虹口观光",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 1,
+    "placeCount": 8,
+    "mustCount": 8
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

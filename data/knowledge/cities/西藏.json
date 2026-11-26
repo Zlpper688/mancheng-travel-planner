@@ -1,0 +1,1301 @@
+{
+  "city": "西藏",
+  "region": "西南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-ccfd9afa",
+      "source": "西南地区/我是驴友-西藏旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 16
+    }
+  ],
+  "must": [
+    {
+      "name": "川藏南线六日",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "格尔木",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "昆仑山口",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "沱沱河镇",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "茶卡盐湖",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "珠峰大本营",
+      "kind": "sight",
+      "frequency": 12,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游",
+        "西藏经典八日游",
+        "山南四日游",
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "老定日",
+      "kind": "sight",
+      "frequency": 6,
+      "inMust": false,
+      "routes": [
+        "山南四日游",
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "佩枯措",
+      "kind": "sight",
+      "frequency": 6,
+      "inMust": false,
+      "routes": [
+        "山南四日游",
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "萨嘎",
+      "kind": "sight",
+      "frequency": 6,
+      "inMust": false,
+      "routes": [
+        "山南四日游",
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "塔钦",
+      "kind": "sight",
+      "frequency": 6,
+      "inMust": false,
+      "routes": [
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "希夏邦玛峰",
+      "kind": "sight",
+      "frequency": 6,
+      "inMust": false,
+      "routes": [
+        "山南四日游",
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "定日",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游",
+        "西藏经典八日游",
+        "阿里三日游"
+      ]
+    },
+    {
+      "name": "岗仁波齐",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": false,
+      "routes": [
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "拉昂措",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": false,
+      "routes": [
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "玛旁雍措",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": false,
+      "routes": [
+        "r11",
+        "那曲亲临无人区三日游",
+        "阿里三日游",
+        "r15"
+      ]
+    },
+    {
+      "name": "绒布寺",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游",
+        "西藏经典八日游",
+        "阿里三日游"
+      ]
+    },
+    {
+      "name": "格尔木",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "日喀则",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游",
+        "阿里三日游"
+      ]
+    },
+    {
+      "name": "茶卡盐湖",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "昆仑山口",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "狮泉河",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r16"
+      ]
+    },
+    {
+      "name": "沱沱河镇",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "八一",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山南四日游"
+      ]
+    },
+    {
+      "name": "巴尔兵站",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r15"
+      ]
+    },
+    {
+      "name": "川藏南线六日",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "改则",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r16"
+      ]
+    },
+    {
+      "name": "革吉",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r16"
+      ]
+    },
+    {
+      "name": "加德满都",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游"
+      ]
+    },
+    {
+      "name": "嘉措拉山口",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "阿里三日游"
+      ]
+    },
+    {
+      "name": "拉姆拉错",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r11"
+      ]
+    },
+    {
+      "name": "拉孜",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "阿里三日游"
+      ]
+    },
+    {
+      "name": "来古冰川",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山南四日游"
+      ]
+    },
+    {
+      "name": "门士",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r15"
+      ]
+    },
+    {
+      "name": "那曲",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "念青唐古拉山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "那曲亲临无人区三日游"
+      ]
+    },
+    {
+      "name": "琼果杰寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r11"
+      ]
+    },
+    {
+      "name": "然乌湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山南四日游"
+      ]
+    },
+    {
+      "name": "双湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "那曲亲临无人区三日游"
+      ]
+    },
+    {
+      "name": "唐古拉山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "托林寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r15"
+      ]
+    },
+    {
+      "name": "雅鲁藏布江",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山南四日游"
+      ]
+    },
+    {
+      "name": "盐湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r16"
+      ]
+    },
+    {
+      "name": "扎达",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "扎达土林",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r15"
+      ]
+    },
+    {
+      "name": "扎达县",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r15"
+      ]
+    },
+    {
+      "name": "扎什伦布寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游"
+      ]
+    },
+    {
+      "name": "樟木",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游"
+      ]
+    },
+    {
+      "name": "中尼公路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "日喀则三日游"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-ccfd9afa:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "川藏南线六日",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "昆仑山口",
+              "kind": "sight"
+            },
+            {
+              "name": "沱沱河镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "茶卡盐湖",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "唐古拉山",
+              "kind": "sight"
+            },
+            {
+              "name": "那曲",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "昆仑山口",
+              "kind": "sight"
+            },
+            {
+              "name": "沱沱河镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "茶卡盐湖",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "狮泉河",
+              "kind": "sight"
+            },
+            {
+              "name": "扎达",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r4",
+      "title": "西藏经典八日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "香格里拉",
+              "kind": "sight"
+            },
+            {
+              "name": "德钦",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "拉萨",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "江孜",
+              "kind": "sight"
+            },
+            {
+              "name": "白居寺",
+              "kind": "sight"
+            },
+            {
+              "name": "宗山抗英遗址定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r5",
+      "title": "日喀则三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "中尼公路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r6",
+      "title": "日喀则三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "加德满都",
+              "kind": "sight"
+            },
+            {
+              "name": "樟木",
+              "kind": "sight"
+            },
+            {
+              "name": "日喀则",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r7",
+      "title": "西藏经典八日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": []
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r8",
+      "title": "日喀则三日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "林芝五日",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r9",
+      "title": "日喀则三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "日喀则",
+              "kind": "sight"
+            },
+            {
+              "name": "扎什伦布寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r10",
+      "title": "山南四日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "八一",
+              "kind": "sight"
+            },
+            {
+              "name": "雅鲁藏布江",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "然乌湖",
+              "kind": "sight"
+            },
+            {
+              "name": "来古冰川",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r11",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "琼果杰寺",
+              "kind": "sight"
+            },
+            {
+              "name": "拉姆拉错",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "玛旁雍措",
+              "kind": "sight"
+            },
+            {
+              "name": "拉昂措",
+              "kind": "sight"
+            },
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "岗仁波齐",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r12",
+      "title": "那曲亲临无人区三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": []
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "玛旁雍措",
+              "kind": "sight"
+            },
+            {
+              "name": "拉昂措",
+              "kind": "sight"
+            },
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "岗仁波齐",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r13",
+      "title": "那曲亲临无人区三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "念青唐古拉山",
+              "kind": "sight"
+            },
+            {
+              "name": "双湖",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "玛旁雍措",
+              "kind": "sight"
+            },
+            {
+              "name": "拉昂措",
+              "kind": "sight"
+            },
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "岗仁波齐",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r14",
+      "title": "阿里三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "日喀则",
+              "kind": "sight"
+            },
+            {
+              "name": "拉孜",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉措拉山口",
+              "kind": "sight"
+            },
+            {
+              "name": "定日",
+              "kind": "sight"
+            },
+            {
+              "name": "绒布寺",
+              "kind": "sight"
+            },
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "玛旁雍措",
+              "kind": "sight"
+            },
+            {
+              "name": "拉昂措",
+              "kind": "sight"
+            },
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "岗仁波齐",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r15",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "门士",
+              "kind": "sight"
+            },
+            {
+              "name": "巴尔兵站",
+              "kind": "sight"
+            },
+            {
+              "name": "扎达土林",
+              "kind": "sight"
+            },
+            {
+              "name": "托林寺",
+              "kind": "sight"
+            },
+            {
+              "name": "扎达县",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "玛旁雍措",
+              "kind": "sight"
+            },
+            {
+              "name": "拉昂措",
+              "kind": "sight"
+            },
+            {
+              "name": "塔钦",
+              "kind": "sight"
+            },
+            {
+              "name": "岗仁波齐",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "珠峰大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "老定日",
+              "kind": "sight"
+            },
+            {
+              "name": "希夏邦玛峰",
+              "kind": "sight"
+            },
+            {
+              "name": "佩枯措",
+              "kind": "sight"
+            },
+            {
+              "name": "萨嘎",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ccfd9afa:r16",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "狮泉河",
+              "kind": "sight"
+            },
+            {
+              "name": "革吉",
+              "kind": "sight"
+            },
+            {
+              "name": "盐湖",
+              "kind": "sight"
+            },
+            {
+              "name": "改则",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 16,
+    "placeCount": 43,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

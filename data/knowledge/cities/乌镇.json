@@ -1,0 +1,359 @@
+{
+  "city": "乌镇",
+  "region": "浙江",
+  "aliases": [
+    "嘉兴"
+  ],
+  "center": [
+    110.3612,
+    37.9343
+  ],
+  "centerSource": "photon",
+  "sources": [
+    {
+      "id": "g-d5894d41",
+      "source": "浙江地区/我是驴友-乌镇攻略.pdf",
+      "status": "ok",
+      "routeCount": 5
+    }
+  ],
+  "must": [
+    {
+      "name": "夜游西栅",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "摆渡安渡坊码头",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "三寸金莲馆",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "老邮局寄明信片",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "乌镇多",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "三寸金莲馆",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "白莲塔寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "摆渡安渡坊码头",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "东栅停车场进入景区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东栅景区一日游"
+      ]
+    },
+    {
+      "name": "过逢源双桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东栅景区一日游"
+      ]
+    },
+    {
+      "name": "嘉业堂藏书楼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "江南百床",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "东栅景区一日游"
+      ]
+    },
+    {
+      "name": "老邮局寄明信片",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "灵水居",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "刘氏梯号",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "乌镇多",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "乌镇老邮局",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "西栅",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "小莲庄",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "夜游西栅",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "张石铭旧宅",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "镇大戏院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-d5894d41:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "夜游西栅",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摆渡安渡坊码头",
+              "kind": "sight"
+            },
+            {
+              "name": "三寸金莲馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老邮局寄明信片",
+              "kind": "sight"
+            },
+            {
+              "name": "乌镇多",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d5894d41:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "西栅",
+              "kind": "sight"
+            },
+            {
+              "name": "三寸金莲馆",
+              "kind": "sight"
+            },
+            {
+              "name": "乌镇老邮局",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d5894d41:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "镇大戏院",
+              "kind": "sight"
+            },
+            {
+              "name": "白莲塔寺",
+              "kind": "sight"
+            },
+            {
+              "name": "灵水居",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d5894d41:r4",
+      "title": "东栅景区一日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "东栅停车场进入景区",
+              "kind": "sight"
+            },
+            {
+              "name": "过逢源双桥",
+              "kind": "sight"
+            },
+            {
+              "name": "江南百床",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-d5894d41:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "小莲庄",
+              "kind": "sight"
+            },
+            {
+              "name": "嘉业堂藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "张石铭旧宅",
+              "kind": "sight"
+            },
+            {
+              "name": "刘氏梯号",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 5,
+    "placeCount": 17,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-geo"
+}

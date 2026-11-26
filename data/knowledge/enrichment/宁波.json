@@ -1,0 +1,95 @@
+{
+  "city": "宁波",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "POI数据", "cities文件"],
+  "center": [121.55, 29.872],
+  "places": {
+    "月湖公园": {
+      "name": "月湖公园",
+      "lng": 121.54361,
+      "lat": 29.867148,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "当地人心目中“宁波的西湖”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天一阁": {
+      "name": "天一阁博物院",
+      "lng": 121.539538,
+      "lat": 29.871109,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "5月1日-10月31日 08:30-17:30（周二至周日）;11月1日-次年4月30日 08:30-17:00（周二至周日）;周一 13:30起",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "城隍庙": {
+      "name": "城隍庙商业步行街",
+      "lng": 121.551127,
+      "lat": 29.866012,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "00:00-24:00",
+      "intro": "宁波市中心小吃遍布的老牌商业中心。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天一广场": {
+      "name": "天一广场",
+      "lng": 121.5539,
+      "lat": 29.86961,
+      "category": "market",
+      "rating": 4.8,
+      "hours": "09:30-21:30",
+      "intro": "宁波市中心商业广场，有亚洲最大的音乐喷泉和景观瀑布。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "奉化溪口蒋氏故居": {
+      "name": "蒋氏故居",
+      "lng": 121.284988,
+      "lat": 29.681162,
+      "category": "attraction",
+      "intro": "位于奉化溪口，蒋介石父子故居及蒋氏家族史迹所在地。",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "雪窦山景区": {
+      "name": "雪窦山风景区",
+      "lng": 121.213531,
+      "lat": 29.672542,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "08:00-17:00（夏季）;08:30-16:30（冬季）",
+      "intro": "有“海上蓬莱”之誉，弥勒道场所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老外滩": {
+      "name": "宁波老外滩",
+      "lng": 121.56084,
+      "lat": 29.877441,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "1844年开埠，国内仅存的百年历史外滩之一，欧式老建筑酒吧一条街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "前童古镇": {
+      "name": "前童古镇",
+      "lng": 121.351265,
+      "lat": 29.223862,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "5月1日-9月30日 08:00-17:00;10月1日-次年4月30日 08:00-16:30",
+      "intro": "小桥流水遍庭户，卵巷古院藏艺文。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

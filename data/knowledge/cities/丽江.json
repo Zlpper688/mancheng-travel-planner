@@ -1,0 +1,806 @@
+{
+  "city": "丽江",
+  "region": "云南",
+  "aliases": [],
+  "center": [
+    100.225,
+    26.8596
+  ],
+  "centerSource": "photon",
+  "sources": [
+    {
+      "id": "g-a878ed9f",
+      "source": "云南地区/我是驴友-丽江攻略.pdf",
+      "status": "ok",
+      "routeCount": 5
+    }
+  ],
+  "must": [
+    {
+      "name": "大研古城",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "黑龙潭",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "大索道登玉龙雪山",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "冰川公园",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "丽江古",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "束河古镇",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "飞来寺",
+      "kind": "sight",
+      "frequency": 7,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "上雨崩",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "西当村",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "白马雪山垭口",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "冰湖",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "大本营",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "大研古城",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "神瀑",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "下雨崩",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "依拉草原",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "24道拐终点",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "奔子栏",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "冰川公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "草海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "茶马客栈",
+      "kind": "stay",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "大落水",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "大索道登玉龙雪山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "核桃园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "黑龙潭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金沙江第一湾",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "老渡口",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "里格村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "里务比寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "丽江古",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "利家嘴",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "洛洼码头",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "木府",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "纳西雅阁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "女神山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "桥头",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "十三迎宾塔",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "束河古镇",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "万古楼",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "小草海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "小洛水村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "新渡口",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "长江第一湾",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "中虎跳",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "中峡国际青年旅舍",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "走婚桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-a878ed9f:r1",
+      "title": "慢生活三日游",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大研古城",
+              "kind": "sight"
+            },
+            {
+              "name": "黑龙潭",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大索道登玉龙雪山",
+              "kind": "sight"
+            },
+            {
+              "name": "冰川公园",
+              "kind": "sight"
+            },
+            {
+              "name": "丽江古",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "束河古镇",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a878ed9f:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "大研古城",
+              "kind": "sight"
+            },
+            {
+              "name": "木府",
+              "kind": "sight"
+            },
+            {
+              "name": "万古楼",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西当村",
+              "kind": "sight"
+            },
+            {
+              "name": "上雨崩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "上雨崩",
+              "kind": "sight"
+            },
+            {
+              "name": "大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "冰湖",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "下雨崩",
+              "kind": "sight"
+            },
+            {
+              "name": "神瀑",
+              "kind": "sight"
+            },
+            {
+              "name": "西当村",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            },
+            {
+              "name": "白马雪山垭口",
+              "kind": "sight"
+            },
+            {
+              "name": "依拉草原",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a878ed9f:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "长江第一湾",
+              "kind": "sight"
+            },
+            {
+              "name": "奔子栏",
+              "kind": "sight"
+            },
+            {
+              "name": "金沙江第一湾",
+              "kind": "sight"
+            },
+            {
+              "name": "白马雪山垭口",
+              "kind": "sight"
+            },
+            {
+              "name": "十三迎宾塔",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西当村",
+              "kind": "sight"
+            },
+            {
+              "name": "上雨崩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "上雨崩",
+              "kind": "sight"
+            },
+            {
+              "name": "大本营",
+              "kind": "sight"
+            },
+            {
+              "name": "冰湖",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "下雨崩",
+              "kind": "sight"
+            },
+            {
+              "name": "神瀑",
+              "kind": "sight"
+            },
+            {
+              "name": "西当村",
+              "kind": "sight"
+            },
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "飞来寺",
+              "kind": "sight"
+            },
+            {
+              "name": "白马雪山垭口",
+              "kind": "sight"
+            },
+            {
+              "name": "依拉草原",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a878ed9f:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "桥头",
+              "kind": "sight"
+            },
+            {
+              "name": "纳西雅阁",
+              "kind": "sight"
+            },
+            {
+              "name": "24道拐终点",
+              "kind": "sight"
+            },
+            {
+              "name": "茶马客栈",
+              "kind": "stay"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "中峡国际青年旅舍",
+              "kind": "sight"
+            },
+            {
+              "name": "中虎跳",
+              "kind": "sight"
+            },
+            {
+              "name": "核桃园",
+              "kind": "sight"
+            },
+            {
+              "name": "新渡口",
+              "kind": "sight"
+            },
+            {
+              "name": "老渡口",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-a878ed9f:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "里格村",
+              "kind": "sight"
+            },
+            {
+              "name": "小洛水村",
+              "kind": "sight"
+            },
+            {
+              "name": "小草海",
+              "kind": "sight"
+            },
+            {
+              "name": "洛洼码头",
+              "kind": "sight"
+            },
+            {
+              "name": "草海",
+              "kind": "sight"
+            },
+            {
+              "name": "走婚桥",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大落水",
+              "kind": "sight"
+            },
+            {
+              "name": "里务比寺",
+              "kind": "sight"
+            },
+            {
+              "name": "女神山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "利家嘴",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 5,
+    "placeCount": 40,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-geo"
+}

@@ -1,0 +1,166 @@
+{
+  "city": "武当山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    111.009917,
+    32.399092
+  ],
+  "places": {
+    "琼台": {
+      "name": "琼台",
+      "lng": 111.026625,
+      "lat": 32.393223,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:30-17:00",
+      "intro": "武当山琼台中观，位于金刚峰下，可乘索道至金顶。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金顶": {
+      "name": "金顶",
+      "lng": 111.009602,
+      "lat": 32.398237,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:00-17:30",
+      "intro": "武当山金顶景区，太和宫金殿所在，武当山最高处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "朝天宫": {
+      "name": "朝天宫",
+      "lng": 111.014842,
+      "lat": 32.404198,
+      "category": "temple",
+      "rating": 4.2,
+      "hours": "07:30-17:00",
+      "intro": "武当山朝天宫，登金顶途中的道观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄龙洞": {
+      "name": "黄龙洞",
+      "lng": 111.014579,
+      "lat": 32.405656,
+      "category": "temple",
+      "rating": 4,
+      "hours": "全天",
+      "intro": "武当山黄龙洞，武当山道教宫观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "榔梅祠": {
+      "name": "榔梅祠",
+      "lng": 111.017882,
+      "lat": 32.416352,
+      "category": "temple",
+      "intro": "武当山榔梅祠，位于南岩附近。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南岩宫": {
+      "name": "南岩宫",
+      "lng": 111.016871,
+      "lat": 32.421006,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:00-17:00",
+      "intro": "武当山南岩宫，武当山著名道观，有龙头香。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "乌鸦岭": {
+      "name": "乌鸦岭",
+      "lng": 111.018458,
+      "lat": 32.416624,
+      "category": "other",
+      "rating": 4,
+      "hours": "07:30-17:00",
+      "intro": "武当山乌鸦岭，南岩景区游览集散地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "紫霄宫": {
+      "name": "紫霄宫",
+      "lng": 111.028685,
+      "lat": 32.424456,
+      "category": "temple",
+      "rating": 4.5,
+      "hours": "08:30-17:00",
+      "intro": "武当山紫霄宫，武当山主要道观之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "逍遥谷": {
+      "name": "逍遥谷",
+      "lng": 111.056064,
+      "lat": 32.435739,
+      "category": "nature",
+      "rating": 4.3,
+      "hours": "08:00-17:30",
+      "intro": "武当山逍遥谷，山间峡谷景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "太子坡": {
+      "name": "太子坡",
+      "lng": 111.073563,
+      "lat": 32.455892,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:30-17:30",
+      "intro": "武当山太子坡（复真观），以九曲黄河墙著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "磨针井": {
+      "name": "磨针井",
+      "lng": 111.081929,
+      "lat": 32.469377,
+      "category": "temple",
+      "rating": 3.7,
+      "hours": "全天",
+      "intro": "武当山磨针井，道教宫观，传说真武大帝磨针悟道处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "玄岳门": {
+      "name": "玄岳门",
+      "lng": 111.13447,
+      "lat": 32.49993,
+      "category": "attraction",
+      "rating": 3.5,
+      "intro": "武当山玄岳门，武当山山门，明嘉靖年间石牌坊。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "太极湖水上游": {
+      "name": "太极湖水上游",
+      "lng": 111.086481,
+      "lat": 32.537535,
+      "category": "other",
+      "intro": "太极湖，武当山北麓水库，可乘船游览（坐标为太极湖）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "武当博物馆": {
+      "name": "武当博物馆",
+      "lng": 111.083817,
+      "lat": 32.515429,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "09:00-17:00(16:30停止入场)",
+      "intro": "武当博物馆，位于武当太极湖旅游度假区，展示武当文化。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "武术表演"
+  ]
+}

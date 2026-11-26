@@ -1,0 +1,1942 @@
+{
+  "三亚": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "50% 的点在中心 25km 内",
+      "count": 2,
+      "p50": 32,
+      "p90": 32,
+      "max": 32,
+      "nearShare": 50,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "三清山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 1,
+      "p90": 2,
+      "max": 2,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "上海": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 3,
+      "p90": 14,
+      "max": 14,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "丽江": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "67% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 6,
+      "p90": 30,
+      "max": 30,
+      "nearShare": 67,
+      "foreignCities": [
+        "束河"
+      ],
+      "farSights": []
+    }
+  },
+  "乌镇": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 0,
+      "p90": 0,
+      "max": 0,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "乌鲁木齐": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(50% 在25km内) + 大景区「金泉沟」60km",
+      "count": 6,
+      "p50": 55,
+      "p90": 106,
+      "max": 106,
+      "nearShare": 50,
+      "foreignCities": [
+        "新疆"
+      ],
+      "farSights": [
+        "金泉沟"
+      ]
+    }
+  },
+  "九寨沟": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 295km，7% 的点在 250km 外",
+      "count": 14,
+      "p50": 19,
+      "p90": 65,
+      "max": 295,
+      "nearShare": 64,
+      "foreignCities": [
+        "成都"
+      ],
+      "farSights": [
+        "九寨沟-长海",
+        "黄龙风景区"
+      ]
+    }
+  },
+  "云南": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 310km，29% 的点在 250km 外",
+      "count": 7,
+      "p50": 241,
+      "p90": 310,
+      "max": 310,
+      "nearShare": 0,
+      "foreignCities": [
+        "香格里拉",
+        "丽江",
+        "泸沽湖",
+        "束河"
+      ],
+      "farSights": []
+    }
+  },
+  "云台山": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(88% 在25km内) + 大景区「青天河风景区」34km",
+      "count": 8,
+      "p50": 4,
+      "p90": 34,
+      "max": 34,
+      "nearShare": 88,
+      "foreignCities": [],
+      "farSights": [
+        "青天河风景区"
+      ]
+    }
+  },
+  "五台山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 8,
+      "p90": 9,
+      "max": 9,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "兰州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 1,
+      "p90": 1,
+      "max": 1,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "凤凰": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 5,
+      "p50": 2,
+      "p90": 23,
+      "max": 23,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "北京": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "86% 的点在中心 25km 内",
+      "count": 7,
+      "p50": 4,
+      "p90": 60,
+      "max": 60,
+      "nearShare": 86,
+      "foreignCities": [
+        "故宫"
+      ],
+      "farSights": []
+    }
+  },
+  "北戴河": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 5,
+      "p50": 8,
+      "p90": 10,
+      "max": 10,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "北海": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(75% 在25km内) + 大景区「涠洲岛」48km",
+      "count": 4,
+      "p50": 8,
+      "p90": 48,
+      "max": 48,
+      "nearShare": 75,
+      "foreignCities": [],
+      "farSights": [
+        "涠洲岛"
+      ]
+    }
+  },
+  "北疆": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 545km，93% 的点在 250km 外",
+      "count": 14,
+      "p50": 528,
+      "p90": 539,
+      "max": 545,
+      "nearShare": 7,
+      "foreignCities": [
+        "乌鲁木齐",
+        "新疆"
+      ],
+      "farSights": []
+    }
+  },
+  "千岛湖": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 105km，城区不是主角",
+      "count": 10,
+      "p50": 105,
+      "p90": 127,
+      "max": 127,
+      "nearShare": 0,
+      "foreignCities": [
+        "黄山"
+      ],
+      "farSights": [
+        "西湖风景名胜区",
+        "黄山-温泉景区"
+      ]
+    }
+  },
+  "华山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 1,
+      "p90": 4,
+      "max": 4,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "南京": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 8,
+      "p90": 8,
+      "max": 8,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "南宁": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(83% 在25km内) + 大景区「广西德天跨国瀑布景区」159km",
+      "count": 6,
+      "p50": 5,
+      "p90": 159,
+      "max": 159,
+      "nearShare": 83,
+      "foreignCities": [
+        "广西"
+      ],
+      "farSights": [
+        "广西德天跨国瀑布景区"
+      ]
+    }
+  },
+  "南昌": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 98km，城区不是主角",
+      "count": 5,
+      "p50": 98,
+      "p90": 99,
+      "max": 99,
+      "nearShare": 0,
+      "foreignCities": [
+        "庐山"
+      ],
+      "farSights": [
+        "庐山风景名胜区",
+        "庐山国家级旅游风景名胜区-锦绣谷",
+        "庐山风景名胜区-大天池",
+        "庐山风景区-龙首崖"
+      ]
+    }
+  },
+  "厦门": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "95% 的点在中心 25km 内",
+      "count": 22,
+      "p50": 9,
+      "p90": 9,
+      "max": 109,
+      "nearShare": 95,
+      "foreignCities": [
+        "鼓浪屿"
+      ],
+      "farSights": []
+    }
+  },
+  "台北": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 13,
+      "p50": 5,
+      "p90": 7,
+      "max": 19,
+      "nearShare": 100,
+      "foreignCities": [
+        "故宫",
+        "台湾"
+      ],
+      "farSights": []
+    }
+  },
+  "台湾": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 2 个其他城市名（台北、高雄）",
+      "count": 10,
+      "p50": 112,
+      "p90": 201,
+      "max": 201,
+      "nearShare": 10,
+      "foreignCities": [
+        "台北",
+        "高雄"
+      ],
+      "farSights": [
+        "阿里山"
+      ]
+    }
+  },
+  "合肥": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(67% 在25km内) + 大景区「三河古镇」34km",
+      "count": 3,
+      "p50": 5,
+      "p90": 34,
+      "max": 34,
+      "nearShare": 67,
+      "foreignCities": [],
+      "farSights": [
+        "三河古镇"
+      ]
+    }
+  },
+  "同里": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "95% 的点在中心 25km 内",
+      "count": 19,
+      "p50": 14,
+      "p90": 24,
+      "max": 44,
+      "nearShare": 95,
+      "foreignCities": [
+        "周庄"
+      ],
+      "farSights": [
+        "南湖"
+      ]
+    }
+  },
+  "周庄": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 10,
+      "p50": 12,
+      "p90": 14,
+      "max": 14,
+      "nearShare": 100,
+      "foreignCities": [
+        "同里",
+        "苏州"
+      ],
+      "farSights": []
+    }
+  },
+  "呼伦贝尔": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 335km，17% 的点在 250km 外",
+      "count": 6,
+      "p50": 234,
+      "p90": 335,
+      "max": 335,
+      "nearShare": 17,
+      "foreignCities": [],
+      "farSights": [
+        "额尔古纳湿地景区"
+      ]
+    }
+  },
+  "哈尔滨": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 210km，城区不是主角",
+      "count": 1,
+      "p50": 210,
+      "p90": 210,
+      "max": 210,
+      "nearShare": 0,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "四姑娘山": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 2 个其他城市名（康定、海螺沟）",
+      "count": 7,
+      "p50": 134,
+      "p90": 172,
+      "max": 172,
+      "nearShare": 29,
+      "foreignCities": [
+        "康定",
+        "海螺沟"
+      ],
+      "farSights": [
+        "塔公草原"
+      ]
+    }
+  },
+  "大同": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 61km，城区不是主角",
+      "count": 3,
+      "p50": 61,
+      "p90": 66,
+      "max": 66,
+      "nearShare": 33,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "大理": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(50% 在25km内) + 大景区「喜洲古镇」30km",
+      "count": 6,
+      "p50": 30,
+      "p90": 37,
+      "max": 37,
+      "nearShare": 50,
+      "foreignCities": [],
+      "farSights": [
+        "喜洲古镇"
+      ]
+    }
+  },
+  "大连": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "50% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 38,
+      "p90": 38,
+      "max": 38,
+      "nearShare": 50,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "天津": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 28km，城区不是主角",
+      "count": 7,
+      "p50": 28,
+      "p90": 40,
+      "max": 40,
+      "nearShare": 0,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "太原": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(75% 在25km内) + 大景区「后沟古村」35km",
+      "count": 8,
+      "p50": 13,
+      "p90": 35,
+      "max": 35,
+      "nearShare": 75,
+      "foreignCities": [],
+      "farSights": [
+        "后沟古村"
+      ]
+    }
+  },
+  "威海": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(63% 在25km内) + 大景区「成头山」53km",
+      "count": 8,
+      "p50": 10,
+      "p90": 84,
+      "max": 84,
+      "nearShare": 63,
+      "foreignCities": [],
+      "farSights": [
+        "成头山"
+      ]
+    }
+  },
+  "婺源": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(70% 在25km内) + 大景区「江岭风景区」31km",
+      "count": 10,
+      "p50": 22,
+      "p90": 31,
+      "max": 31,
+      "nearShare": 70,
+      "foreignCities": [],
+      "farSights": [
+        "江岭风景区"
+      ]
+    }
+  },
+  "宁波": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(63% 在25km内) + 大景区「雪窦山风景区」39km",
+      "count": 8,
+      "p50": 1,
+      "p90": 75,
+      "max": 75,
+      "nearShare": 63,
+      "foreignCities": [],
+      "farSights": [
+        "雪窦山风景区",
+        "前童古镇"
+      ]
+    }
+  },
+  "宏村": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(71% 在25km内) + 大景区「徽州古城景区」46km",
+      "count": 7,
+      "p50": 0,
+      "p90": 46,
+      "max": 46,
+      "nearShare": 71,
+      "foreignCities": [],
+      "farSights": [
+        "徽州古城景区"
+      ]
+    }
+  },
+  "山海关": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 8,
+      "p90": 10,
+      "max": 10,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "峨眉山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 19,
+      "p50": 11,
+      "p90": 17,
+      "max": 17,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "川藏": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 1248km，71% 的点在 250km 外",
+      "count": 21,
+      "p50": 560,
+      "p90": 1123,
+      "max": 1248,
+      "nearShare": 14,
+      "foreignCities": [
+        "拉萨",
+        "成都",
+        "康定",
+        "乌镇",
+        "林芝",
+        "纳木错"
+      ],
+      "farSights": []
+    }
+  },
+  "常州": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 4 个其他城市名（镇江、扬州、苏州、无锡）",
+      "count": 23,
+      "p50": 66,
+      "p90": 84,
+      "max": 86,
+      "nearShare": 17,
+      "foreignCities": [
+        "镇江",
+        "扬州",
+        "苏州",
+        "无锡"
+      ],
+      "farSights": [
+        "金山风景区",
+        "焦山风景区",
+        "北固山景区",
+        "蜀冈瘦西湖风景名胜区"
+      ]
+    }
+  },
+  "平遥": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 11,
+      "p50": 1,
+      "p90": 1,
+      "max": 1,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "广州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "94% 的点在中心 25km 内",
+      "count": 18,
+      "p50": 8,
+      "p90": 20,
+      "max": 32,
+      "nearShare": 94,
+      "foreignCities": [
+        "北京"
+      ],
+      "farSights": []
+    }
+  },
+  "广西": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 337km，63% 的点在 250km 外",
+      "count": 8,
+      "p50": 306,
+      "p90": 337,
+      "max": 337,
+      "nearShare": 13,
+      "foreignCities": [
+        "桂林",
+        "南宁",
+        "北海"
+      ],
+      "farSights": []
+    }
+  },
+  "庐山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 19,
+      "p50": 2,
+      "p90": 6,
+      "max": 7,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "康定": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(50% 在25km内) + 大景区「磨西古镇」48km",
+      "count": 4,
+      "p50": 48,
+      "p90": 51,
+      "max": 51,
+      "nearShare": 50,
+      "foreignCities": [
+        "海螺沟"
+      ],
+      "farSights": [
+        "磨西古镇",
+        "海螺沟风景区"
+      ]
+    }
+  },
+  "张家界": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 27km，城区不是主角",
+      "count": 4,
+      "p50": 27,
+      "p90": 28,
+      "max": 28,
+      "nearShare": 25,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "惠州": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 79km，城区不是主角",
+      "count": 6,
+      "p50": 79,
+      "p90": 82,
+      "max": 82,
+      "nearShare": 17,
+      "foreignCities": [],
+      "farSights": [
+        "南昆山国家森林公园-观音潭"
+      ]
+    }
+  },
+  "成都": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 5,
+      "p50": 2,
+      "p90": 12,
+      "max": 12,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "扬州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 2,
+      "p90": 3,
+      "max": 3,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "拉萨": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 448km，17% 的点在 250km 外",
+      "count": 12,
+      "p50": 91,
+      "p90": 403,
+      "max": 448,
+      "nearShare": 33,
+      "foreignCities": [],
+      "farSights": [
+        "纳木措（天湖）",
+        "纳木措风景区",
+        "藏北大草原"
+      ]
+    }
+  },
+  "故宫": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 12,
+      "p50": 0,
+      "p90": 0,
+      "max": 0,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "敦煌": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "63% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 17,
+      "p90": 136,
+      "max": 136,
+      "nearShare": 63,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "新疆": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 72km，城区不是主角",
+      "count": 3,
+      "p50": 72,
+      "p90": 81,
+      "max": 81,
+      "nearShare": 0,
+      "foreignCities": [],
+      "farSights": [
+        "喀什古城景区",
+        "卡拉库里湖"
+      ]
+    }
+  },
+  "无锡": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 9,
+      "p50": 9,
+      "p90": 21,
+      "max": 21,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "日照": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 4,
+      "p90": 8,
+      "max": 8,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "昆明": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(75% 在25km内) + 大景区「九乡风景名胜区」68km",
+      "count": 8,
+      "p50": 9,
+      "p90": 68,
+      "max": 68,
+      "nearShare": 75,
+      "foreignCities": [
+        "云南"
+      ],
+      "farSights": [
+        "九乡风景名胜区",
+        "石林风景名胜区"
+      ]
+    }
+  },
+  "普陀山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 9,
+      "p50": 2,
+      "p90": 3,
+      "max": 3,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "曲阜": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 74km，城区不是主角",
+      "count": 14,
+      "p50": 74,
+      "p90": 119,
+      "max": 120,
+      "nearShare": 21,
+      "foreignCities": [
+        "泰山"
+      ],
+      "farSights": [
+        "大明湖",
+        "泰山风景名胜区-十八盘"
+      ]
+    }
+  },
+  "束河": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 321km，33% 的点在 250km 外",
+      "count": 3,
+      "p50": 142,
+      "p90": 321,
+      "max": 321,
+      "nearShare": 0,
+      "foreignCities": [
+        "昆明",
+        "大理"
+      ],
+      "farSights": [
+        "双廊古镇"
+      ]
+    }
+  },
+  "杭州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 11,
+      "p50": 5,
+      "p90": 8,
+      "max": 15,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "林芝": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 313km，9% 的点在 250km 外",
+      "count": 11,
+      "p50": 37,
+      "p90": 56,
+      "max": 313,
+      "nearShare": 36,
+      "foreignCities": [
+        "拉萨"
+      ],
+      "farSights": [
+        "巴松措风景区",
+        "雅鲁藏布大峡谷",
+        "南伊沟"
+      ]
+    }
+  },
+  "桂林": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 52km，城区不是主角",
+      "count": 9,
+      "p50": 52,
+      "p90": 63,
+      "max": 63,
+      "nearShare": 22,
+      "foreignCities": [],
+      "farSights": [
+        "遇龙河风景区",
+        "兴坪古镇"
+      ]
+    }
+  },
+  "横店": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 3,
+      "p90": 3,
+      "max": 3,
+      "nearShare": 100,
+      "foreignCities": [
+        "广州",
+        "香港"
+      ],
+      "farSights": []
+    }
+  },
+  "武夷山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 7,
+      "p50": 13,
+      "p90": 16,
+      "max": 16,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "武当山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 14,
+      "p50": 3,
+      "p90": 16,
+      "max": 17,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "武汉": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 14,
+      "p50": 2,
+      "p90": 9,
+      "max": 12,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "沈阳": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(75% 在25km内) + 大景区「棋盘山」32km",
+      "count": 16,
+      "p50": 14,
+      "p90": 32,
+      "max": 45,
+      "nearShare": 75,
+      "foreignCities": [
+        "故宫"
+      ],
+      "farSights": [
+        "棋盘山"
+      ]
+    }
+  },
+  "泰山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 10,
+      "p50": 16,
+      "p90": 17,
+      "max": 17,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "泸沽湖": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 9,
+      "p50": 4,
+      "p90": 10,
+      "max": 10,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "洛阳": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 14,
+      "p90": 19,
+      "max": 19,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "济南": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "73% 的点在中心 25km 内",
+      "count": 15,
+      "p50": 1,
+      "p90": 46,
+      "max": 54,
+      "nearShare": 73,
+      "foreignCities": [
+        "泰山"
+      ],
+      "farSights": []
+    }
+  },
+  "浙江": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 3 个其他城市名（杭州、宁波、绍兴）",
+      "count": 14,
+      "p50": 54,
+      "p90": 142,
+      "max": 142,
+      "nearShare": 21,
+      "foreignCities": [
+        "杭州",
+        "宁波",
+        "绍兴"
+      ],
+      "farSights": [
+        "月湖公园",
+        "东湖景区",
+        "沈园景区",
+        "鲁迅故里景区"
+      ]
+    }
+  },
+  "海口": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "63% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 15,
+      "p90": 30,
+      "max": 30,
+      "nearShare": 63,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "海螺沟": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 29km，城区不是主角",
+      "count": 5,
+      "p50": 29,
+      "p90": 94,
+      "max": 94,
+      "nearShare": 20,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "深圳": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "89% 的点在中心 25km 内",
+      "count": 9,
+      "p50": 8,
+      "p90": 28,
+      "max": 28,
+      "nearShare": 89,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "澳门": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 0,
+      "p90": 6,
+      "max": 6,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "烟台": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 3 个其他城市名（蓬莱、长岛、青岛）",
+      "count": 19,
+      "p50": 86,
+      "p90": 186,
+      "max": 186,
+      "nearShare": 16,
+      "foreignCities": [
+        "蓬莱",
+        "长岛",
+        "青岛"
+      ],
+      "farSights": [
+        "蓬莱阁景区",
+        "田横山",
+        "蓬莱八仙过海景区",
+        "长岛国家森林公园"
+      ]
+    }
+  },
+  "珠海": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 4,
+      "p90": 5,
+      "max": 5,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "甘南": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 94km，城区不是主角",
+      "count": 6,
+      "p50": 94,
+      "p90": 146,
+      "max": 146,
+      "nearShare": 0,
+      "foreignCities": [
+        "兰州"
+      ],
+      "farSights": [
+        "郎木寺景区"
+      ]
+    }
+  },
+  "白洋淀": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 3,
+      "p50": 3,
+      "p90": 6,
+      "max": 6,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "福州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 1,
+      "p90": 2,
+      "max": 2,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "秦皇岛": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 16,
+      "p90": 22,
+      "max": 22,
+      "nearShare": 100,
+      "foreignCities": [
+        "山海关",
+        "北戴河"
+      ],
+      "farSights": []
+    }
+  },
+  "稻城亚丁": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 9,
+      "p90": 21,
+      "max": 21,
+      "nearShare": 100,
+      "foreignCities": [
+        "香格里拉"
+      ],
+      "farSights": []
+    }
+  },
+  "纳木错": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 42km，城区不是主角",
+      "count": 3,
+      "p50": 42,
+      "p90": 128,
+      "max": 128,
+      "nearShare": 33,
+      "foreignCities": [
+        "拉萨"
+      ],
+      "farSights": []
+    }
+  },
+  "绍兴": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(89% 在25km内) + 大景区「鉴湖」35km",
+      "count": 9,
+      "p50": 5,
+      "p90": 35,
+      "max": 35,
+      "nearShare": 89,
+      "foreignCities": [],
+      "farSights": [
+        "鉴湖"
+      ]
+    }
+  },
+  "舟山": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 29km，城区不是主角",
+      "count": 16,
+      "p50": 29,
+      "p90": 59,
+      "max": 65,
+      "nearShare": 25,
+      "foreignCities": [
+        "普陀山"
+      ],
+      "farSights": [
+        "朱家尖大青山景区",
+        "朱家尖南沙景区",
+        "乌石塘景区",
+        "舟山桃花岛-桃花峪景区"
+      ]
+    }
+  },
+  "苏州": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 7,
+      "p50": 5,
+      "p90": 11,
+      "max": 11,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "荔波": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 7,
+      "p50": 23,
+      "p90": 24,
+      "max": 24,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "蓬莱": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 3 个其他城市名（青岛、威海、烟台）",
+      "count": 7,
+      "p50": 53,
+      "p90": 196,
+      "max": 196,
+      "nearShare": 43,
+      "foreignCities": [
+        "青岛",
+        "威海",
+        "烟台"
+      ],
+      "farSights": [
+        "芝罘岛"
+      ]
+    }
+  },
+  "蜀南竹海": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 3,
+      "p50": 2,
+      "p90": 4,
+      "max": 4,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "衡山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 10,
+      "p50": 3,
+      "p90": 4,
+      "max": 4,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "西双版纳": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(71% 在25km内) + 大景区「西双版纳热带雨林国家公园望天树景区」91km",
+      "count": 7,
+      "p50": 20,
+      "p90": 91,
+      "max": 91,
+      "nearShare": 71,
+      "foreignCities": [],
+      "farSights": [
+        "西双版纳热带雨林国家公园望天树景区"
+      ]
+    }
+  },
+  "西塘": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 11,
+      "p50": 0,
+      "p90": 0,
+      "max": 0,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "西安": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 9,
+      "p50": 2,
+      "p90": 6,
+      "max": 6,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "西溪湿地": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "80% 的点在中心 25km 内",
+      "count": 5,
+      "p50": 6,
+      "p90": 39,
+      "max": 39,
+      "nearShare": 80,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "西藏": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 1078km，100% 的点在 250km 外",
+      "count": 4,
+      "p50": 830,
+      "p90": 1078,
+      "max": 1078,
+      "nearShare": 0,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "贵阳": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 36km，城区不是主角",
+      "count": 5,
+      "p50": 36,
+      "p90": 121,
+      "max": 121,
+      "nearShare": 40,
+      "foreignCities": [
+        "黄果树"
+      ],
+      "farSights": [
+        "青岩古镇",
+        "龙宫风景名胜区",
+        "黄果树景区"
+      ]
+    }
+  },
+  "连云港": {
+    "form": "small-town-big-sight",
+    "label": "小城大景点",
+    "evidence": {
+      "reason": "城区密集(71% 在25km内) + 大景区「连岛大沙湾海滨浴场」31km",
+      "count": 7,
+      "p50": 14,
+      "p90": 31,
+      "max": 31,
+      "nearShare": 71,
+      "foreignCities": [],
+      "farSights": [
+        "连岛大沙湾海滨浴场"
+      ]
+    }
+  },
+  "都江堰": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 0,
+      "p90": 15,
+      "max": 15,
+      "nearShare": 100,
+      "foreignCities": [
+        "青城山"
+      ],
+      "farSights": []
+    }
+  },
+  "重庆": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 2,
+      "p50": 10,
+      "p90": 10,
+      "max": 10,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "野三坡": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 14,
+      "p90": 15,
+      "max": 15,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "镇江": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 4,
+      "p90": 5,
+      "max": 5,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "镇远": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 1,
+      "p90": 21,
+      "max": 21,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "长岛": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "93% 的点在中心 25km 内",
+      "count": 14,
+      "p50": 10,
+      "p90": 12,
+      "max": 43,
+      "nearShare": 93,
+      "foreignCities": [
+        "蓬莱"
+      ],
+      "farSights": []
+    }
+  },
+  "长沙": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "80% 的点在中心 25km 内",
+      "count": 5,
+      "p50": 4,
+      "p90": 57,
+      "max": 57,
+      "nearShare": 80,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "长白山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 3,
+      "p90": 17,
+      "max": 17,
+      "nearShare": 100,
+      "foreignCities": [
+        "重庆"
+      ],
+      "farSights": []
+    }
+  },
+  "雁荡山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 6,
+      "p50": 4,
+      "p90": 4,
+      "max": 4,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "青城山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 14,
+      "p50": 5,
+      "p90": 15,
+      "max": 16,
+      "nearShare": 100,
+      "foreignCities": [
+        "都江堰"
+      ],
+      "farSights": []
+    }
+  },
+  "青岛": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "71% 的点在中心 25km 内",
+      "count": 7,
+      "p50": 3,
+      "p90": 31,
+      "max": 31,
+      "nearShare": 71,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "青海": {
+    "form": "region-loop",
+    "label": "区域环线",
+    "evidence": {
+      "reason": "最远 612km，17% 的点在 250km 外",
+      "count": 6,
+      "p50": 178,
+      "p90": 612,
+      "max": 612,
+      "nearShare": 17,
+      "foreignCities": [
+        "青海湖"
+      ],
+      "farSights": []
+    }
+  },
+  "青海湖": {
+    "form": "scenic-base",
+    "label": "景区基地",
+    "evidence": {
+      "reason": "主簇离中心 60km，城区不是主角",
+      "count": 14,
+      "p50": 60,
+      "p90": 92,
+      "max": 141,
+      "nearShare": 0,
+      "foreignCities": [
+        "青海"
+      ],
+      "farSights": [
+        "鸟岛镇",
+        "青海湖鸟岛",
+        "北向阳古城",
+        "尕海古城遗址"
+      ]
+    }
+  },
+  "香格里拉": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 2 个其他城市名（丽江、泸沽湖）",
+      "count": 8,
+      "p50": 25,
+      "p90": 116,
+      "max": 116,
+      "nearShare": 50,
+      "foreignCities": [
+        "丽江",
+        "泸沽湖"
+      ],
+      "farSights": [
+        "丽江古城",
+        "泸沽湖景区"
+      ]
+    }
+  },
+  "香港": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 8,
+      "p50": 3,
+      "p90": 13,
+      "max": 13,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "香港离岛": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 5,
+      "p90": 6,
+      "max": 6,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "高雄": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "89% 的点在中心 25km 内",
+      "count": 19,
+      "p50": 4,
+      "p90": 35,
+      "max": 43,
+      "nearShare": 89,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "黄山": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 12,
+      "p50": 1,
+      "p90": 2,
+      "max": 3,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "黄果树": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "75% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 4,
+      "p90": 25,
+      "max": 25,
+      "nearShare": 75,
+      "foreignCities": [],
+      "farSights": []
+    }
+  },
+  "黔东南": {
+    "form": "multi-city",
+    "label": "多城联游",
+    "evidence": {
+      "reason": "must 含 2 个其他城市名（贵阳、镇远）",
+      "count": 4,
+      "p50": 139,
+      "p90": 144,
+      "max": 144,
+      "nearShare": 0,
+      "foreignCities": [
+        "贵阳",
+        "镇远"
+      ],
+      "farSights": [
+        "镇远古城"
+      ]
+    }
+  },
+  "鼓浪屿": {
+    "form": "city-hub",
+    "label": "单城漫游",
+    "evidence": {
+      "reason": "100% 的点在中心 25km 内",
+      "count": 4,
+      "p50": 0,
+      "p90": 1,
+      "max": 1,
+      "nearShare": 100,
+      "foreignCities": [],
+      "farSights": []
+    }
+  }
+}

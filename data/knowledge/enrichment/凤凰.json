@@ -1,0 +1,69 @@
+{
+  "city": "凤凰",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "顺途网"
+  ],
+  "center": [
+    109.6,
+    27.95
+  ],
+  "places": {
+    "沱江": {
+      "name": "沱江",
+      "lng": 109.6003,
+      "lat": 27.9475,
+      "category": "nature",
+      "intro": "凤凰古城的母亲河，穿城而过，两岸吊脚楼与跳岩构成古城经典景观。",
+      "source": "顺途网",
+      "verified": true
+    },
+    "虹桥": {
+      "name": "凤凰古城-虹桥风雨楼",
+      "lng": 109.607644,
+      "lat": 27.952802,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "全年08:00-17:30",
+      "intro": "横跨沱江的风雨楼，是凤凰古城的标志性建筑与摄影观景佳地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沈从文墓地": {
+      "name": "沈从文墓地",
+      "lng": 109.614578,
+      "lat": 27.943172,
+      "category": "other",
+      "rating": 4.3,
+      "hours": "全天",
+      "intro": "沈从文先生之墓，位于凤凰古城听涛山下，墓地朴素。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南方长城": {
+      "name": "中国南方长城景区",
+      "lng": 109.475112,
+      "lat": 27.928992,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "08:00-17:30(17:00停止入园)",
+      "intro": "中国南方唯一长城，被称为\"苗疆万里墙\"。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄丝桥古城": {
+      "name": "黄丝桥古城",
+      "lng": 109.369396,
+      "lat": 27.910053,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "全天",
+      "intro": "国内至今保存最好的一座城堡。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,51 @@
+{
+  "city": "张家界",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "高德(POI数据)"],
+  "center": [110.478887, 29.117343],
+  "places": {
+    "金鞭溪": {
+      "name": "金鞭溪",
+      "lng": 110.455397,
+      "lat": 29.335718,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "袁家界": {
+      "name": "袁家界风景区",
+      "lng": 110.452498,
+      "lat": 29.347202,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "06:30-17:00（17:00停止入园）",
+      "intro": "顶部植被郁郁葱葱，大有顶天立地之势。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天子山": {
+      "name": "天子山风景区",
+      "lng": 110.4744,
+      "lat": 29.368887,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "07:00-17:00",
+      "intro": "可观云涛、月辉、霞日、冬雪四大奇观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "十里画廊": {
+      "name": "十里画廊",
+      "lng": 110.493491,
+      "lat": 29.359546,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "在青山绿水、奇山异石间感受那份休闲。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

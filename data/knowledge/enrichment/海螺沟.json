@@ -1,0 +1,65 @@
+{
+  "city": "海螺沟",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "中国国家地理"
+  ],
+  "center": [
+    102.11,
+    29.67
+  ],
+  "places": {
+    "二郎山": {
+      "name": "二郎山",
+      "lng": 102.283925,
+      "lat": 29.878129,
+      "category": "nature",
+      "intro": "雅安天全县的名山，山势雄伟、峰峦叠嶂。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大渡河": {
+      "name": "大渡河",
+      "lng": 102.423807,
+      "lat": 29.259311,
+      "category": "nature",
+      "intro": "流经雅安石棉一带的大河，红军长征途经之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "泸定桥": {
+      "name": "泸定桥",
+      "lng": 102.232124,
+      "lat": 29.911751,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "08:00-19:00",
+      "intro": "横跨大渡河的铁索桥，红军飞夺泸定桥的发生地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "磨西古镇": {
+      "name": "磨西古镇",
+      "lng": 102.12692,
+      "lat": 29.64235,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "00:00-24:00",
+      "intro": "通往海螺沟的必经古镇，拥有众多明清古建筑与天主教堂。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "雅安": {
+      "name": "雅安市",
+      "lng": 103.0128,
+      "lat": 29.9805,
+      "category": "other",
+      "intro": "四川省地级市，川藏线上的重要城市，素有\"雨城\"之称。",
+      "source": "维基百科",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

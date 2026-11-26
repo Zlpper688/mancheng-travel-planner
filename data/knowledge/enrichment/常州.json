@@ -1,0 +1,237 @@
+{
+  "city": "常州",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "维基百科"],
+  "center": [119.9692, 31.8123],
+  "places": {
+    "中华恐龙园": {
+      "name": "中华恐龙园",
+      "lng": 120.000571,
+      "lat": 31.823901,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "孩子很喜欢看花车巡游。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "嬉戏谷": {
+      "name": "环球动漫嬉戏谷",
+      "lng": 120.04167,
+      "lat": 31.5,
+      "category": "attraction",
+      "source": "维基百科",
+      "verified": true
+    },
+    "镇江": {
+      "name": "镇江市",
+      "lng": 119.424441,
+      "lat": 32.188141,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金山": {
+      "name": "金山风景区",
+      "lng": 119.415902,
+      "lat": 32.219682,
+      "category": "attraction",
+      "intro": "这个免费的公园有完美的金山寺景观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "焦山": {
+      "name": "焦山风景区",
+      "lng": 119.487939,
+      "lat": 32.236886,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "3月21日-10月31日 08:00-17:45（16:45停止入园）；11月1日-次年3月20日 08:00-17:00（16:00停止入园）",
+      "intro": "万里长江中唯一四面环水的游览岛屿，被誉为“江中浮玉”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北固山": {
+      "name": "北固山景区",
+      "lng": 119.457323,
+      "lat": 32.21684,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "08:00-17:30（16:30停止入园）",
+      "intro": "以险峻著称，因三国故事而名扬千古。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "扬州": {
+      "name": "扬州市",
+      "lng": 119.412834,
+      "lat": 32.394404,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大明寺": {
+      "name": "大明寺（扬州大运河文化旅游度假区）",
+      "lng": 119.412684,
+      "lat": 32.419868,
+      "category": "temple",
+      "rating": 4.4,
+      "hours": "08:00-17:00（16:30停止入园）",
+      "intro": "鉴真东渡前传经授戒之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "瘦西湖": {
+      "name": "蜀冈瘦西湖风景名胜区",
+      "lng": 119.418481,
+      "lat": 32.411022,
+      "category": "park",
+      "intro": "天然景色汇合扬州独有的园林风光，使它别有一番味道。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "个园": {
+      "name": "个园",
+      "lng": 119.4437,
+      "lat": 32.39915,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "07:15-17:30",
+      "intro": "里边的花草树木都绿油油的。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "文昌阁": {
+      "name": "文昌阁",
+      "lng": 119.43362,
+      "lat": 32.39444,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "全天",
+      "intro": "扬州闹市的佳景，登楼街景尽收眼底。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "苏州": {
+      "name": "苏州市",
+      "lng": 120.585294,
+      "lat": 31.299758,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "平江路": {
+      "name": "平江路",
+      "lng": 120.63328,
+      "lat": 31.316106,
+      "category": "street",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "拙政园": {
+      "name": "拙政园",
+      "lng": 120.628761,
+      "lat": 31.324178,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "3月1日-10月31日 07:30-17:30（17:00停止入园）；11月1日-次年2月28日 07:30-17:00（16:30停止入园）",
+      "intro": "最具代表性的江南园林，园林景点必打卡。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "虎丘": {
+      "name": "虎丘山风景名胜区",
+      "lng": 120.58068,
+      "lat": 31.33586,
+      "category": "attraction",
+      "intro": "拥有虎丘塔与虎丘剑池的吴中第一名胜。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "寒山寺": {
+      "name": "寒山寺",
+      "lng": 120.568461,
+      "lat": 31.310432,
+      "category": "temple",
+      "rating": 4.7,
+      "hours": "07:30-17:30（17:00停止入园）",
+      "intro": "姑苏城外寒山寺，夜半钟声到客船。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "无锡": {
+      "name": "无锡市",
+      "lng": 120.311889,
+      "lat": 31.491064,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "灵山": {
+      "name": "灵山胜境",
+      "lng": 120.10069,
+      "lat": 31.42686,
+      "category": "temple",
+      "intro": "中国最为完整、也是唯一集中展示释迦牟尼成就的佛教文化主题园区，是个感受佛教文化的好地方。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东林书院": {
+      "name": "东林书院",
+      "lng": 120.308568,
+      "lat": 31.576786,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "09:00-17:00（16:30停止入园）",
+      "intro": "我国古代著名书院之一，对明代江南地区最有影响的书院。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "锡惠园林": {
+      "name": "锡惠公园",
+      "lng": 120.27493,
+      "lat": 31.57772,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "周一至周五 08:00-17:00（16:30停止入园）；周六至周日 08:00-17:30（17:00停止入园）",
+      "intro": "具有丰富、独特的旅游资源，有“无锡露天历史博物馆”之誉，是个赏园景休闲的好地方。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天宁寺": {
+      "name": "天宁禅寺",
+      "lng": 119.969753,
+      "lat": 31.774513,
+      "category": "temple",
+      "rating": 4.7,
+      "hours": "08:00-17:00（16:00停止入园）",
+      "intro": "千年古刹天宁寺有“东南第一丛林”之称，天宁宝塔也在其中。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "红梅公园": {
+      "name": "红梅公园",
+      "lng": 119.97341,
+      "lat": 31.774681,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "公园环境优美，园林设计精致，适合周末休闲，早上晨练，乘船游湖。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "恐龙园": {
+      "name": "中华恐龙园",
+      "lng": 120.000571,
+      "lat": 31.823901,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "孩子很喜欢看花车巡游。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

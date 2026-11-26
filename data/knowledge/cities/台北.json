@@ -1,0 +1,478 @@
+{
+  "city": "台北",
+  "region": "港澳台",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-847ad75f",
+      "source": "港澳台/我是驴友-台北旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "台北101",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "国父纪念馆",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "中正纪念堂",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "淡水",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "士林夜市",
+      "kind": "meal",
+      "order": 4
+    },
+    {
+      "name": "龙山寺",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "西门町",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "故宫博物院",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "士林官邸",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "美丽华百乐园",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "台湾大学",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "总统府",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "228和平公园",
+      "kind": "sight",
+      "order": 12
+    }
+  ],
+  "places": [
+    {
+      "name": "中正纪念堂",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "国父纪念馆",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "士林夜市",
+      "kind": "meal",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "西门町",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "228和平公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "淡水",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "故宫博物院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "龙山寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "美丽华百乐园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "士林官邸",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "台北101",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "台湾大学",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "总统府",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-847ad75f:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北101",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "台湾大学",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "总统府",
+              "kind": "sight"
+            },
+            {
+              "name": "228和平公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-847ad75f:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北故事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "北投",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            },
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "中正纪念堂",
+              "kind": "sight"
+            },
+            {
+              "name": "台湾大学",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "总统府",
+              "kind": "sight"
+            },
+            {
+              "name": "228和平公园",
+              "kind": "sight"
+            },
+            {
+              "name": "西门町",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-847ad75f:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "台北故事馆",
+              "kind": "sight"
+            },
+            {
+              "name": "北投",
+              "kind": "sight"
+            },
+            {
+              "name": "淡水",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙山寺",
+              "kind": "sight"
+            },
+            {
+              "name": "国父纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "台北101",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "故宫博物院",
+              "kind": "sight"
+            },
+            {
+              "name": "士林官邸",
+              "kind": "sight"
+            },
+            {
+              "name": "美丽华百乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "士林夜市",
+              "kind": "meal"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 3,
+    "placeCount": 13,
+    "mustCount": 13
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

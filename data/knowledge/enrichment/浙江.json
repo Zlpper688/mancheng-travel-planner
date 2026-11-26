@@ -1,0 +1,158 @@
+{
+  "city": "浙江",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "高德(POI数据)"],
+  "center": [120.163281, 30.271001],
+  "places": {
+    "杭州": {
+      "name": "杭州市（武林广场，市中心）",
+      "lng": 120.163281,
+      "lat": 30.271001,
+      "category": "other",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "浙江省省会，以西湖闻名；武林广场为传统市中心。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "灵隐寺": {
+      "name": "灵隐寺",
+      "lng": 120.101379,
+      "lat": 30.240852,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "07:30-17:30（17:00停止入园）",
+      "intro": "创建于东晋，杭州最早的古寺名刹，也是济公出家之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西湖": {
+      "name": "西湖风景名胜区",
+      "lng": 120.121431,
+      "lat": 30.221378,
+      "category": "nature",
+      "intro": "杭州最著名的景点，“西湖十景”是其精华所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "宁波": {
+      "name": "宁波市（天一广场，市中心）",
+      "lng": 121.5539,
+      "lat": 29.86961,
+      "category": "other",
+      "rating": 4.8,
+      "hours": "09:30-21:30",
+      "intro": "浙江副省级城市，天一广场为市中心商圈。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "七塔寺": {
+      "name": "七塔禅寺",
+      "lng": 121.567825,
+      "lat": 29.865396,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "05:00-17:00",
+      "intro": "宁波市区规模最大、保存最完好的寺院。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "庆安会馆": {
+      "name": "庆安会馆",
+      "lng": 121.562949,
+      "lat": 29.872081,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "周二至周日 08:30-17:00（周一不开放）",
+      "intro": "我国八大天后宫和七大会馆之一，江南现存唯一融天后宫与会馆于一体的古建筑群。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老外滩": {
+      "name": "宁波老外滩",
+      "lng": 121.56084,
+      "lat": 29.877441,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "1844年开埠，国内仅存的百年历史外滩之一，欧式哥特老建筑的酒吧一条街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天一广场": {
+      "name": "天一广场",
+      "lng": 121.5539,
+      "lat": 29.86961,
+      "category": "other",
+      "rating": 4.8,
+      "hours": "09:30-21:30",
+      "intro": "宁波市中心大型购物中心，休闲好去处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "月湖景区": {
+      "name": "月湖公园",
+      "lng": 121.54361,
+      "lat": 29.867148,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "当地人心目中“宁波的西湖”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "绍兴": {
+      "name": "绍兴市（城市广场，市中心）",
+      "lng": 120.579475,
+      "lat": 30.003084,
+      "category": "other",
+      "intro": "浙江历史文化名城，鲁迅故乡；城市广场位于市中心。",
+      "source": "高德(POI数据)",
+      "verified": true
+    },
+    "东湖": {
+      "name": "东湖景区",
+      "lng": 120.632048,
+      "lat": 29.998395,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "冬季 08:00-17:00；夏季 08:00-17:30",
+      "intro": "《西游记》取景地，可登山、游茶园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沈园": {
+      "name": "沈园景区",
+      "lng": 120.590291,
+      "lat": 29.990225,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-21:00（20:20停止入园）",
+      "intro": "蕴藏陆游与唐琬凄婉动人的爱情故事。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鲁迅故里": {
+      "name": "鲁迅故里景区",
+      "lng": 120.585501,
+      "lat": 29.992311,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "周二至周日 08:30-21:00；周一 08:30-17:00",
+      "intro": "鲁迅先生故居与纪念馆所在地，国家5A级景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "仓桥直街": {
+      "name": "仓桥直街",
+      "lng": 120.577563,
+      "lat": 30.003168,
+      "category": "street",
+      "intro": "绍兴越城区历史街区，保存完好的江南水乡老街。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

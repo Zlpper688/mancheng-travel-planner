@@ -1,0 +1,75 @@
+{
+  "city": "山海关",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "全国市县区行政中心经纬度数据"
+  ],
+  "center": [
+    119.776833,
+    39.978378
+  ],
+  "places": {
+    "天下第一关": {
+      "name": "天下第一关景区",
+      "lng": 119.757628,
+      "lat": 40.009973,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "山海关古城东门，明长城东端的重要关隘。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "王家大院": {
+      "name": "山海关王家大院",
+      "lng": 119.759435,
+      "lat": 40.00698,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "07:00-18:30",
+      "intro": "山海关古城内的典型明清四合庭院。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老龙头": {
+      "name": "老龙头景区",
+      "lng": 119.797507,
+      "lat": 39.969317,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "万里长城唯一一段伸入海中的长城，位于渤海之滨。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "孟姜女庙": {
+      "name": "孟姜女庙",
+      "lng": 119.823217,
+      "lat": 40.037283,
+      "category": "temple",
+      "intro": "山海关孟姜女庙，传说中孟姜女哭长城之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "角山": {
+      "name": "角山长城",
+      "lng": 119.731779,
+      "lat": 40.047028,
+      "category": "attraction",
+      "intro": "角山长城，山海关北侧的长城制高点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "燕塞湖": {
+      "name": "燕塞湖",
+      "lng": 119.7031,
+      "lat": 40.043907,
+      "category": "nature",
+      "intro": "山海关燕塞湖风景区，湖光山色与长城相映。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

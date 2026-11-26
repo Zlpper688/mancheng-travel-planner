@@ -1,0 +1,1029 @@
+{
+  "city": "厦门",
+  "region": "华东",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-999b150c",
+      "source": "华东地区/我是驴友-厦门旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 3
+    },
+    {
+      "id": "g-be93dc33",
+      "source": "华东地区/我是驴友-厦门八日旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 3
+    }
+  ],
+  "must": [
+    {
+      "name": "厦门大学",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "厦大",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "南普陀",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "渔家乐",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "环岛路",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "植物园爬山",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "海湾公园",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "西海",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "中山路",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "集美",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "南普陀寺",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "南靖土楼群",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "胡里山炮台",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "鼓浪屿轮渡码头",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "头万国建筑",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "毓园",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "海洋天堂构",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "郑成功纪念馆",
+      "kind": "sight",
+      "order": 10
+    },
+    {
+      "name": "鼓浪屿",
+      "kind": "sight",
+      "order": 11
+    },
+    {
+      "name": "皓月园",
+      "kind": "sight",
+      "order": 12
+    },
+    {
+      "name": "林氏府",
+      "kind": "sight",
+      "order": 13
+    },
+    {
+      "name": "菽庄花园",
+      "kind": "sight",
+      "order": 14
+    },
+    {
+      "name": "钢琴博物馆",
+      "kind": "sight",
+      "order": 15
+    },
+    {
+      "name": "日光岩",
+      "kind": "sight",
+      "order": 16
+    }
+  ],
+  "places": [
+    {
+      "name": "风洞",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "阁虎啸岩",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "环岛路",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南普陀",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "厦门大学",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "神仙楼",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "茶洞",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "大红袍",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "海湾公园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "海洋天堂构",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "九曲溪",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "水帘洞",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "宋街",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "天车架",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "天游峰",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "万春园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "武夷宫",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "仙掌峰",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "一线天",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "隐屏峰",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "鹰嘴岩",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "云窝",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": false,
+      "routes": [
+        "r3",
+        "r2"
+      ]
+    },
+    {
+      "name": "郑成功纪念馆",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "钢琴博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "鼓浪屿",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "鼓浪屿轮渡码头",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "皓月园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "胡里山炮台",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "集美",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "林氏府",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南靖土楼群",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "南普陀寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "日光岩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "厦大",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "菽庄花园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "头万国建筑",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "西海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "渔家乐",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "毓园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "植物园爬山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "中山路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-999b150c:r1",
+      "title": "休闲三日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            },
+            {
+              "name": "海湾公园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "中山路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "南普陀寺",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "胡里山炮台",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-999b150c:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "鼓浪屿",
+              "kind": "sight"
+            },
+            {
+              "name": "皓月园",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛海滨浴场",
+              "kind": "sight"
+            },
+            {
+              "name": "菽庄花园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "毓园",
+              "kind": "sight"
+            },
+            {
+              "name": "日光岩",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门海底世界",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "南普陀寺",
+              "kind": "sight"
+            },
+            {
+              "name": "厦门大学",
+              "kind": "sight"
+            },
+            {
+              "name": "胡里山炮台",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "集美学村",
+              "kind": "sight"
+            },
+            {
+              "name": "集美陈嘉庚纪念胜地",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-999b150c:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            },
+            {
+              "name": "茶洞",
+              "kind": "sight"
+            },
+            {
+              "name": "云窝",
+              "kind": "sight"
+            },
+            {
+              "name": "隐屏峰",
+              "kind": "sight"
+            },
+            {
+              "name": "仙掌峰",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "鹰嘴岩",
+              "kind": "sight"
+            },
+            {
+              "name": "天车架",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            },
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "宋街",
+              "kind": "sight"
+            },
+            {
+              "name": "万春园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-be93dc33:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": []
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "南普陀",
+              "kind": "sight"
+            },
+            {
+              "name": "厦大",
+              "kind": "sight"
+            },
+            {
+              "name": "海湾公园",
+              "kind": "sight"
+            },
+            {
+              "name": "环岛路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "渔家乐",
+              "kind": "sight"
+            },
+            {
+              "name": "植物园爬山",
+              "kind": "sight"
+            },
+            {
+              "name": "西海",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "集美",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 5,
+          "stops": [
+            {
+              "name": "南靖土楼群",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 6,
+          "stops": [
+            {
+              "name": "鼓浪屿轮渡码头",
+              "kind": "sight"
+            },
+            {
+              "name": "头万国建筑",
+              "kind": "sight"
+            },
+            {
+              "name": "毓园",
+              "kind": "sight"
+            },
+            {
+              "name": "海洋天堂构",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 7,
+          "stops": [
+            {
+              "name": "海洋天堂构",
+              "kind": "sight"
+            },
+            {
+              "name": "郑成功纪念馆",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 8,
+          "stops": [
+            {
+              "name": "鼓浪屿",
+              "kind": "sight"
+            },
+            {
+              "name": "皓月园",
+              "kind": "sight"
+            },
+            {
+              "name": "林氏府",
+              "kind": "sight"
+            },
+            {
+              "name": "菽庄花园",
+              "kind": "sight"
+            },
+            {
+              "name": "钢琴博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "日光岩",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-be93dc33:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天游峰",
+              "kind": "sight"
+            },
+            {
+              "name": "茶洞",
+              "kind": "sight"
+            },
+            {
+              "name": "云窝",
+              "kind": "sight"
+            },
+            {
+              "name": "隐屏峰",
+              "kind": "sight"
+            },
+            {
+              "name": "仙掌峰",
+              "kind": "sight"
+            },
+            {
+              "name": "一线天",
+              "kind": "sight"
+            },
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大红袍",
+              "kind": "sight"
+            },
+            {
+              "name": "鹰嘴岩",
+              "kind": "sight"
+            },
+            {
+              "name": "天车架",
+              "kind": "sight"
+            },
+            {
+              "name": "水帘洞",
+              "kind": "sight"
+            },
+            {
+              "name": "九曲溪",
+              "kind": "sight"
+            },
+            {
+              "name": "武夷宫",
+              "kind": "sight"
+            },
+            {
+              "name": "宋街",
+              "kind": "sight"
+            },
+            {
+              "name": "万春园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-be93dc33:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "风洞",
+              "kind": "sight"
+            },
+            {
+              "name": "神仙楼",
+              "kind": "sight"
+            },
+            {
+              "name": "阁虎啸岩",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 2,
+    "routeCount": 6,
+    "placeCount": 41,
+    "mustCount": 24
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

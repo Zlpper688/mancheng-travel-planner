@@ -1,0 +1,205 @@
+{
+  "city": "庐山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "POI数据", "国家公园网"],
+  "center": [115.97, 29.57],
+  "places": {
+    "牯岭街": {
+      "name": "牯岭街",
+      "lng": 115.981201,
+      "lat": 29.569074,
+      "category": "street",
+      "intro": "庐山景区中心，海拔约1164米的“云中山城”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "庐山会议旧址": {
+      "name": "庐山会议旧址纪念馆",
+      "lng": 115.977184,
+      "lat": 29.559179,
+      "category": "museum",
+      "hours": "09:00-17:00",
+      "intro": "原庐山大礼堂，1959、1961、1970年三次重要会议会址。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "博物馆": {
+      "name": "庐山博物馆",
+      "lng": 115.978584,
+      "lat": 29.558391,
+      "category": "museum",
+      "rating": 4.4,
+      "hours": "周二至周日 09:00-17:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芦林湖": {
+      "name": "芦林湖",
+      "lng": 115.974446,
+      "lat": 29.549932,
+      "category": "nature",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三宝树": {
+      "name": "庐山国家重点风景名胜区-三宝树",
+      "lng": 115.967851,
+      "lat": 29.550163,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "千年古树，主树干多人合抱都抱不拢。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄龙潭": {
+      "name": "庐山风景名胜区-黄龙潭",
+      "lng": 115.961364,
+      "lat": 29.551046,
+      "category": "nature",
+      "rating": 4.6,
+      "hours": "06:00-20:00",
+      "intro": "有秀美而纤柔的黄龙瀑布，据说在这里洗手会有好运。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "乌龙潭": {
+      "name": "庐山国家重点风景名胜区-乌龙潭",
+      "lng": 115.966242,
+      "lat": 29.552189,
+      "category": "nature",
+      "rating": 4.6,
+      "hours": "全天",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "含鄱口": {
+      "name": "含鄱口",
+      "lng": 115.975779,
+      "lat": 29.543091,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "08:30-16:00",
+      "intro": "庐山观日出最佳处，可感受红日从山峦升起的壮观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "植物园": {
+      "name": "中国科学院庐山植物园",
+      "lng": 115.986702,
+      "lat": 29.546914,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "4月至10月 07:00-19:00;11月至12月、1月至3月 07:30-18:00",
+      "intro": "中国最早的植物园之一，保存众多长江中下游地区植物物种。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "五老峰": {
+      "name": "五老峰景区",
+      "lng": 116.03014,
+      "lat": 29.557,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "07:00-17:30（17:00停止入园）",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三叠泉": {
+      "name": "三叠泉",
+      "lng": 116.04411,
+      "lat": 29.555227,
+      "category": "nature",
+      "rating": 4.4,
+      "hours": "07:00-16:30",
+      "intro": "险峰怪石、飞瀑流泉，瀑鸣如击鼓。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天桥": {
+      "name": "庐山国家级旅游风景名胜区-天桥",
+      "lng": 115.968787,
+      "lat": 29.566239,
+      "category": "attraction",
+      "rating": 3.7,
+      "hours": "全天",
+      "intro": "锦绣谷谷口奇石，有朱元璋金龙化桥的传说。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "花径": {
+      "name": "庐山国家重点风景名胜区-庐山花径公园",
+      "lng": 115.967613,
+      "lat": 29.564504,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "白居易咏《大林寺桃花》的地方，依山傍湖。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "锦绣谷": {
+      "name": "庐山国家级旅游风景名胜区-锦绣谷",
+      "lng": 115.965301,
+      "lat": 29.56525,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "07:00-19:00",
+      "intro": "谷中的断崖、怪石、峭壁与雾气相遇，构成山水画卷。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "仙人洞": {
+      "name": "庐山国家级旅游风景名胜区-仙人洞",
+      "lng": 115.961156,
+      "lat": 29.563161,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "相传吕洞宾在此修炼，庐山著名景点之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大天池": {
+      "name": "庐山风景名胜区-大天池",
+      "lng": 115.955534,
+      "lat": 29.559722,
+      "category": "viewpoint",
+      "rating": 4.3,
+      "hours": "全天",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "龙首崖": {
+      "name": "庐山风景区-龙首崖",
+      "lng": 115.954567,
+      "lat": 29.556736,
+      "category": "viewpoint",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "石门涧": {
+      "name": "庐山石门涧风景区",
+      "lng": 115.949289,
+      "lat": 29.558344,
+      "category": "nature",
+      "rating": 4.4,
+      "hours": "07:00-18:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "悬索桥": {
+      "name": "庐山-悬索桥",
+      "lng": 115.95245,
+      "lat": 29.55405,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "全天",
+      "intro": "横跨于大天池附近河面，桥下万丈深渊，十分惊险。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": ["黄龙寺"]
+}

@@ -1,0 +1,98 @@
+{
+  "city": "绍兴",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POILIST",
+    "百度百科"
+  ],
+  "center": [
+    120.592467,
+    30.002365
+  ],
+  "places": {
+    "大禹陵": {
+      "name": "大禹陵",
+      "lng": 120.609946,
+      "lat": 29.95581,
+      "category": "attraction",
+      "intro": "绍兴会稽山麓的大禹陵寝与祭祀建筑群。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "兰亭": {
+      "name": "兰亭景区",
+      "lng": 120.499901,
+      "lat": 29.925993,
+      "category": "attraction",
+      "intro": "王羲之《兰亭集序》创作地，书法圣地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东湖": {
+      "name": "绍兴东湖景区",
+      "lng": 120.632048,
+      "lat": 29.998395,
+      "category": "park",
+      "intro": "绍兴东湖，以乌篷船和奇石洞天景观著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沈园": {
+      "name": "沈园",
+      "lng": 120.590294,
+      "lat": 29.990225,
+      "category": "attraction",
+      "intro": "陆游与唐琬爱情故事的纪念园林。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鲁迅故里": {
+      "name": "鲁迅故里",
+      "lng": 120.585501,
+      "lat": 29.992311,
+      "category": "attraction",
+      "intro": "鲁迅先生故居与祖居所在地，绍兴著名人文景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "仓桥直街": {
+      "name": "仓桥直街",
+      "lng": 120.577573,
+      "lat": 30.003166,
+      "category": "street",
+      "intro": "绍兴越城区历史文化街区，保存大量传统台门建筑。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "柯岩": {
+      "name": "柯岩风景区",
+      "lng": 120.474202,
+      "lat": 30.049039,
+      "category": "attraction",
+      "intro": "绍兴柯岩风景区，以云骨石和柯山石佛著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鉴湖": {
+      "name": "鉴湖",
+      "lng": 120.2333,
+      "lat": 29.9667,
+      "category": "nature",
+      "intro": "绍兴母亲湖，古鉴湖残存水域，绍兴黄酒水源地。",
+      "source": "百度百科",
+      "verified": true
+    },
+    "鲁镇": {
+      "name": "鲁镇",
+      "lng": 120.476336,
+      "lat": 30.044952,
+      "category": "attraction",
+      "intro": "柯岩风景区内的鲁迅笔下古镇主题景区。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

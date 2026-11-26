@@ -1,0 +1,217 @@
+{
+  "city": "峨眉山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "今日限行网"
+  ],
+  "places": {
+    "报国寺": {
+      "name": "报国寺",
+      "lng": 103.442837,
+      "lat": 29.567953,
+      "category": "temple",
+      "rating": 4.5,
+      "hours": "07:00-18:00",
+      "intro": "峨眉山第一大寺，是峨眉山进山的门户，也是峨眉山佛教活动中心。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "圣积晚钟": {
+      "name": "圣积晚钟",
+      "lng": 103.44454,
+      "lat": 29.56838,
+      "category": "attraction",
+      "source": "今日限行网",
+      "verified": true
+    },
+    "第一山亭": {
+      "name": "峨眉山第一山亭",
+      "lng": 103.445925,
+      "lat": 29.565802,
+      "category": "other",
+      "rating": 4.2,
+      "hours": "全天开放",
+      "intro": "表现了峨眉山磅礴而奔放的恢弘气势。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "迎宾广场": {
+      "name": "迎宾广场",
+      "lng": 103.444978,
+      "lat": 29.566538,
+      "category": "street",
+      "rating": 4.1,
+      "hours": "5月1日-10月31日 06:00-17:00；11月1日-次年4月30日 07:00-16:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "峨眉山博物馆": {
+      "name": "峨眉山博物馆",
+      "lng": 103.44526,
+      "lat": 29.568092,
+      "category": "museum",
+      "rating": 4.3,
+      "hours": "7月1日-8月31日 09:00-17:30；9月1日-次年6月30日 09:00-17:00",
+      "intro": "馆内有许多珍贵的古生物标本。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "伏虎寺": {
+      "name": "峨眉山风景区-伏虎寺",
+      "lng": 103.436923,
+      "lat": 29.560327,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:00-16:00",
+      "intro": "峨眉山寺院规模最大的一座，寺内最高处的殿堂内供奉有五百罗汉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "清音阁": {
+      "name": "清音阁",
+      "lng": 103.393885,
+      "lat": 29.571514,
+      "category": "temple",
+      "rating": 4.5,
+      "hours": "4月至10月 06:00-18:00；1月至3月、11月至12月 07:00-17:30",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "一线天": {
+      "name": "峨眉山-一线天",
+      "lng": 103.393681,
+      "lat": 29.568269,
+      "category": "viewpoint",
+      "rating": 4.3,
+      "hours": "4月1日-10月31日 06:00-18:00；11月1日-11月30日 07:00-18:00；12月1日-次年3月31日 07:00-16:00",
+      "intro": "沿着峡谷内曲折的栈道行走，两面险崖绝壁，头顶一线蓝天。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "自然生态猴区": {
+      "name": "峨眉山生态猴区",
+      "lng": 103.3918,
+      "lat": 29.56355,
+      "category": "nature",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "目前中国最大的自然野生猴区，峨眉山的一道活景观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洪椿坪": {
+      "name": "洪椿坪",
+      "lng": 103.386156,
+      "lat": 29.551953,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "06:00-17:00",
+      "intro": "环境清幽的寺院，山中避暑胜地，“洪椿晓雨”是峨眉山传统十景之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "仙峰寺": {
+      "name": "峨眉山风景区-仙峰寺",
+      "lng": 103.359104,
+      "lat": 29.547125,
+      "category": "temple",
+      "rating": 4.6,
+      "hours": "06:00-17:00",
+      "intro": "峨眉山八大寺庙之一，可在此眺望峨眉平原沃野。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "九老洞": {
+      "name": "峨眉山-九老洞",
+      "lng": 103.359901,
+      "lat": 29.545113,
+      "category": "attraction",
+      "rating": 4.1,
+      "hours": "全天开放",
+      "intro": "步行约2到3小时。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "遇仙寺": {
+      "name": "遇仙寺",
+      "lng": 103.353729,
+      "lat": 29.559271,
+      "category": "temple",
+      "rating": 4.4,
+      "hours": "5月1日-10月31日 06:00-17:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洗象池": {
+      "name": "峨眉山风景名胜区-洗象池",
+      "lng": 103.345969,
+      "lat": 29.555149,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "11:00-17:30",
+      "intro": "峨眉山八大名寺之一，“象池夜月”是峨眉山传统十景之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "雷洞烟云": {
+      "name": "雷洞坪",
+      "lng": 103.33432,
+      "lat": 29.53936,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "06:00-18:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金顶": {
+      "name": "峨眉山金顶",
+      "lng": 103.335385,
+      "lat": 29.525633,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "06:30-18:00",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "四面十方普贤金像": {
+      "name": "峨眉山风景名胜区-十方普贤",
+      "lng": 103.338479,
+      "lat": 29.520217,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "06:00-18:30",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "华藏寺": {
+      "name": "峨眉山-华藏寺",
+      "lng": 103.338302,
+      "lat": 29.520035,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:30-17:00",
+      "intro": "感受到内心的平静和宁静。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "华严顶": {
+      "name": "华严顶",
+      "lng": 103.358833,
+      "lat": 29.561226,
+      "category": "temple",
+      "rating": 4.4,
+      "hours": "4月1日-10月31日 06:00-17:00；11月1日-次年3月31日 07:00-16:00",
+      "intro": "晴天在此可看到峨眉市，素有“小金顶”之称。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    103.486,
+    29.6
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

@@ -1,0 +1,75 @@
+{
+  "city": "华山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [110.086, 34.49],
+  "places": {
+    "玉泉院": {
+      "name": "玉泉院",
+      "lng": 110.082487,
+      "lat": 34.525462,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "登临华山的起点，华山道教活动的主要场所，全国重点道教宫观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北峰": {
+      "name": "北峰（云台峰）",
+      "lng": 110.086878,
+      "lat": 34.492383,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "华山主峰之一，海拔1614米，三面绝壁，“智取华山”故事发生地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西峰": {
+      "name": "华山西峰莲花峰",
+      "lng": 110.08198,
+      "lat": 34.483012,
+      "category": "viewpoint",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南峰": {
+      "name": "华山风景名胜区-南峰",
+      "lng": 110.083673,
+      "lat": 34.4766,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "西山门00:00-24:00；东山门索道旺季07:00-19:00/淡季08:30-17:00；北峰索道旺季07:00-19:00/淡季09:00-17:00",
+      "intro": "华山最高峰，海拔2154.9米，为五岳最高峰，又称落雁峰。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东峰": {
+      "name": "华山风景名胜区-东峰",
+      "lng": 110.08805,
+      "lat": 34.478558,
+      "category": "viewpoint",
+      "rating": 4.4,
+      "hours": "全天",
+      "intro": "华山主峰之一，观日出最佳地点之一，著名“鹞子翻身”所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中峰": {
+      "name": "华山风景名胜区-中峰",
+      "lng": 110.086687,
+      "lat": 34.479568,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "又称玉女峰，居东、西、南三峰中央，峰顶玉女祠供奉弄玉娘娘。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

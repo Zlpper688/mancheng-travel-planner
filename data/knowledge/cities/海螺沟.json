@@ -1,0 +1,197 @@
+{
+  "city": "海螺沟",
+  "region": "四川",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-bb85afe2",
+      "source": "四川地区/我是驴友-海螺沟.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "雅安",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "二郎山",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "大渡河",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "泸定桥",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "磨西古镇",
+      "kind": "sight",
+      "order": 4
+    }
+  ],
+  "places": [
+    {
+      "name": "大渡河",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "二郎山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "泸定桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "磨西古镇",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "雅安",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-bb85afe2:r1",
+      "title": "探险怀古两日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "雅安",
+              "kind": "sight"
+            },
+            {
+              "name": "二郎山",
+              "kind": "sight"
+            },
+            {
+              "name": "大渡河",
+              "kind": "sight"
+            },
+            {
+              "name": "泸定桥",
+              "kind": "sight"
+            },
+            {
+              "name": "磨西古镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": []
+        }
+      ]
+    },
+    {
+      "id": "g-bb85afe2:r2",
+      "title": "康巴全境四日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "成都",
+              "kind": "sight"
+            },
+            {
+              "name": "雅安",
+              "kind": "sight"
+            },
+            {
+              "name": "二郎山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "康定",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "新都桥",
+              "kind": "sight"
+            },
+            {
+              "name": "雅江",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "理塘",
+              "kind": "sight"
+            },
+            {
+              "name": "巴塘",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 5,
+    "mustCount": 5
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

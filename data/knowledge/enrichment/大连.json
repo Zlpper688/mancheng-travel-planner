@@ -1,0 +1,52 @@
+{
+  "city": "大连",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [121.61549, 38.91165],
+  "places": {
+    "滨海路": {
+      "name": "滨海路景区",
+      "lng": 121.646023,
+      "lat": 38.865172,
+      "category": "street",
+      "rating": 4.5,
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老虎滩": {
+      "name": "大连老虎滩海洋公园",
+      "lng": 121.675761,
+      "lat": 38.873143,
+      "category": "attraction",
+      "rating": 4.5,
+      "hours": "1月1日-8月30日 08:00-17:00（15:30停止入园）；8月31日-12月31日 08:30-16:30（15:30停止入园）；10月1日-10月7日有特殊营业时间",
+      "intro": "适合带小朋友接触海洋动物的海滨游乐场。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金石滩": {
+      "name": "金石滩国家旅游度假区",
+      "lng": 121.987741,
+      "lat": 39.090492,
+      "category": "beach",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "汇集娱乐休闲于一体，是个海滨度假好去处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "发现王国": {
+      "name": "大连海昌发现王国主题公园",
+      "lng": 122.001195,
+      "lat": 39.081569,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "周一至周四 09:30-17:00；周五至周日 09:30-21:00",
+      "intro": "丰富的娱乐休闲项目，让你快乐一整天。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

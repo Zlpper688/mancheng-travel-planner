@@ -1,0 +1,181 @@
+{
+  "city": "康定",
+  "region": "西南",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-09ef1c34",
+      "source": "西南地区/我是驴友-康定旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "木格措",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "摩西古镇",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "海螺沟景区",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "红石滩",
+      "kind": "sight",
+      "order": 3
+    }
+  ],
+  "places": [
+    {
+      "name": "木格措",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "海螺沟景区",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "红石滩",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "摩西古镇",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-09ef1c34:r1",
+      "title": "当地人推荐三日游",
+      "canonical": true,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟景区",
+              "kind": "sight"
+            },
+            {
+              "name": "红石滩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-09ef1c34:r2",
+      "title": "周边自驾四日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "摩西古镇",
+              "kind": "sight"
+            },
+            {
+              "name": "海螺沟景区",
+              "kind": "sight"
+            },
+            {
+              "name": "红石滩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "木格措",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 4,
+    "mustCount": 4
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

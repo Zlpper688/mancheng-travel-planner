@@ -1,0 +1,165 @@
+{
+  "city": "济南",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [117.022195, 36.661304],
+  "places": {
+    "趵突泉": {
+      "name": "趵突泉公园",
+      "lng": 117.016158,
+      "lat": 36.660958,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "07:00-20:00",
+      "intro": "济南三大名胜之一，被誉为“天下第一泉”，济南七十二名泉之首。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "五龙潭": {
+      "name": "五龙潭公园",
+      "lng": 117.01482,
+      "lat": 36.66605,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "07:00-22:00（22:00停止入园）",
+      "intro": "与趵突泉、黑虎泉、珍珠泉并称“济南四大名泉”，园内还有二十七处小泉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大明湖": {
+      "name": "大明湖风景名胜区",
+      "lng": 117.025711,
+      "lat": 36.675232,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "05:00-22:00",
+      "intro": "济南三大名胜之一，由城内众泉汇流而成的天然湖泊，有“泉城明珠”之誉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "曲水亭街": {
+      "name": "曲水亭街",
+      "lng": 117.024358,
+      "lat": 36.670067,
+      "category": "street",
+      "intro": "济南老城历史街区，北魏时士大夫在此建曲水流杯池，文人雅士曲水流觞之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西更道街": {
+      "name": "西更道街",
+      "lng": 117.024544,
+      "lat": 36.667097,
+      "category": "street",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "王府池子": {
+      "name": "濯缨泉（王府池子）",
+      "lng": 117.023687,
+      "lat": 36.667626,
+      "category": "attraction",
+      "rating": 4.4,
+      "intro": "隐藏在济南老城小胡同里的泉池，北魏曲水流杯池旧址，当地人游泳纳凉之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "珍珠泉": {
+      "name": "珍珠泉",
+      "lng": 117.024855,
+      "lat": 36.667437,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "09:00-18:00（18:00停止入园）",
+      "intro": "济南四大名泉之一，位于省人大院内，泉水气泡串串如珍珠，明清曾为山东巡抚驻地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芙蓉街": {
+      "name": "芙蓉街",
+      "lng": 117.02378,
+      "lat": 36.667007,
+      "category": "street",
+      "rating": 4.5,
+      "hours": "00:00-24:00",
+      "intro": "济南著名小吃步行街，紧邻曲水亭街与王府池子。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "泉城广场": {
+      "name": "泉城广场",
+      "lng": 117.022195,
+      "lat": 36.661304,
+      "category": "other",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "济南地标性城市广场，南屏千佛山、北依大明湖、西临趵突泉，有荷花音乐喷泉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黑虎泉": {
+      "name": "黑虎泉",
+      "lng": 117.033593,
+      "lat": 36.662435,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "济南四大泉群之一，泉水从三个石雕虎头中喷射而出，气势非凡。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "解放阁": {
+      "name": "解放阁-济南解放纪念馆",
+      "lng": 117.033625,
+      "lat": 36.663154,
+      "category": "museum",
+      "hours": "09:00-16:00（周一不开放）",
+      "intro": "位于护城河边环城公园内，纪念济南解放的纪念馆。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天街": {
+      "name": "泰山天街",
+      "lng": 117.108202,
+      "lat": 36.255468,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "泰山岱顶的古老街道，位于泰山风景名胜区山顶。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "玉皇顶": {
+      "name": "泰山玉皇顶",
+      "lng": 117.109193,
+      "lat": 36.257533,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "05:00-23:00",
+      "intro": "泰山主峰，海拔1545米，为山东省最高峰，可俯瞰群山与日出云海。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "后石坞": {
+      "name": "泰山后石坞",
+      "lng": 117.115633,
+      "lat": 36.261984,
+      "category": "nature",
+      "intro": "泰山景区内的自然山坞景观，以奇松怪石著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天烛峰": {
+      "name": "泰山天烛峰",
+      "lng": 117.176714,
+      "lat": 36.193695,
+      "category": "viewpoint",
+      "rating": 4,
+      "intro": "泰山东部景观，山峰形如蜡烛挺拔而立，为泰山著名的自然山景。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

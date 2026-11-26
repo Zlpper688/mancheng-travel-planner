@@ -1,0 +1,147 @@
+{
+  "city": "青海湖",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "中国国家地理",
+    "百度百科"
+  ],
+  "center": [
+    100.229141,
+    36.892642
+  ],
+  "places": {
+    "西宁": {
+      "name": "西宁市",
+      "lng": 101.777795,
+      "lat": 36.616621,
+      "category": "other",
+      "intro": "青海省省会，游览青海湖的主要集散地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "日月山口": {
+      "name": "日月山口",
+      "lng": 101.094385,
+      "lat": 36.437716,
+      "category": "viewpoint",
+      "intro": "青藏公路穿越日月山的山口，海拔约3520米，为农耕与游牧文明的分界。",
+      "source": "BIGEMAP",
+      "verified": true
+    },
+    "黑马河": {
+      "name": "黑马河乡",
+      "lng": 99.792729,
+      "lat": 36.742319,
+      "category": "other",
+      "intro": "青海湖西南岸乡镇，以湖边日出景观著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "布哈河": {
+      "name": "布哈河",
+      "lng": 99.337285,
+      "lat": 37.180437,
+      "category": "nature",
+      "intro": "青海湖最大的入湖河流，鸟岛湿地的重要水源。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鸟岛镇": {
+      "name": "鸟岛镇",
+      "lng": 99.745536,
+      "lat": 37.09065,
+      "category": "other",
+      "intro": "青海湖北岸刚察县原鸟岛镇，地处布哈河三角洲一带。",
+      "source": "第四纪研究",
+      "verified": true
+    },
+    "鸟岛": {
+      "name": "青海湖鸟岛",
+      "lng": 99.85781,
+      "lat": 36.98389,
+      "category": "nature",
+      "intro": "青海湖鸟岛国家级自然保护区，重要的候鸟栖息地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北向阳古城": {
+      "name": "北向阳古城",
+      "lng": 99.7333,
+      "lat": 37.5333,
+      "category": "attraction",
+      "intro": "汉代西海郡五县之一的古城遗址，位于刚察县吉尔孟乡。",
+      "source": "百度百科",
+      "verified": true
+    },
+    "泉吉": {
+      "name": "泉吉乡",
+      "lng": 99.879928,
+      "lat": 37.268548,
+      "category": "other",
+      "intro": "青海湖西北岸刚察县泉吉乡，环湖西路经过。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "尕海古城": {
+      "name": "尕海古城遗址",
+      "lng": 100.563493,
+      "lat": 37.139343,
+      "category": "attraction",
+      "intro": "汉代西海郡古城遗址之一，位于海晏县甘子河乡。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "原子城": {
+      "name": "原子城",
+      "lng": 100.79137,
+      "lat": 36.852547,
+      "category": "attraction",
+      "intro": "位于西海镇的中国第一个核武器研制基地旧址。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西海镇": {
+      "name": "西海镇",
+      "lng": 100.902977,
+      "lat": 36.957867,
+      "category": "other",
+      "intro": "海北藏族自治州海晏县西海镇，原子城所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "湖东种羊场": {
+      "name": "湖东种羊场",
+      "lng": 100.811038,
+      "lat": 36.632341,
+      "category": "other",
+      "intro": "青海湖东岸的种羊场区域。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "日月山": {
+      "name": "日月山景区",
+      "lng": 101.09529,
+      "lat": 36.442206,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "07:00-18:00",
+      "intro": "文成公主进藏途经之地，我国季风区与非季风区的分界线。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "倒淌河": {
+      "name": "倒淌河镇",
+      "lng": 100.97149,
+      "lat": 36.398138,
+      "category": "other",
+      "intro": "青海湖东岸的倒淌河镇，以自东向西倒流的河水得名。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "帐房宾馆"
+  ]
+}

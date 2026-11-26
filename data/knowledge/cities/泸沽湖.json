@@ -1,0 +1,251 @@
+{
+  "city": "泸沽湖",
+  "region": "云南",
+  "aliases": [
+    "丽江"
+  ],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-150819e3",
+      "source": "云南地区/我是驴友-泸沽湖.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "里格村",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "小洛水村",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "小草海",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "洛洼码头",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "草海",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "走婚桥",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "落水村",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "大落水",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "里务比寺",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "女神山",
+      "kind": "sight",
+      "order": 9
+    }
+  ],
+  "places": [
+    {
+      "name": "草海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "大落水",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "里格村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "里务比寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "洛洼码头",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "落水村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "女神山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "小草海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "小洛水村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "走婚桥",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-150819e3:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "里格村",
+              "kind": "sight"
+            },
+            {
+              "name": "小洛水村",
+              "kind": "sight"
+            },
+            {
+              "name": "小草海",
+              "kind": "sight"
+            },
+            {
+              "name": "洛洼码头",
+              "kind": "sight"
+            },
+            {
+              "name": "草海",
+              "kind": "sight"
+            },
+            {
+              "name": "走婚桥",
+              "kind": "sight"
+            },
+            {
+              "name": "落水村",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "大落水",
+              "kind": "sight"
+            },
+            {
+              "name": "里务比寺",
+              "kind": "sight"
+            },
+            {
+              "name": "女神山",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-150819e3:r2",
+      "title": "泸沽湖  古色古香三日游",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "拉市海",
+              "kind": "sight"
+            },
+            {
+              "name": "束河古镇",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 10,
+    "mustCount": 10
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

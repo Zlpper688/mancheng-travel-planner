@@ -1,0 +1,72 @@
+{
+  "city": "稻城亚丁",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [99.743582, 27.842185],
+  "places": {
+    "香格里拉": {
+      "name": "香格里拉市",
+      "lng": 99.743582,
+      "lat": 27.842185,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "松赞林寺": {
+      "name": "噶丹松赞林寺",
+      "lng": 99.705871,
+      "lat": 27.860031,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:00-17:30",
+      "intro": "云南规模最大藏传佛教寺院，犹如一座古堡。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "纳帕海": {
+      "name": "纳帕海景区",
+      "lng": 99.648757,
+      "lat": 27.855264,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "08:00-18:30（18:30停止入园）",
+      "intro": "湿地天然草原美美的风景，心旷神怡，流连忘返。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "石卡雪山": {
+      "name": "石卡雪山景区",
+      "lng": 99.60456,
+      "lat": 27.784467,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "2026年11月1日-2027年3月31日 08:30-16:30（16:30停止入园）",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "普达措国家公园": {
+      "name": "普达措国家公园",
+      "lng": 99.953029,
+      "lat": 27.856429,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "08:00-16:30（16:30停止入园）",
+      "intro": "中国政府确立的第一个国家公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "独克宗古城": {
+      "name": "香格里拉市独克宗古城",
+      "lng": 99.704421,
+      "lat": 27.804053,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "美丽的月光之城，在这儿可以重温茶马古道的沧桑历史。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

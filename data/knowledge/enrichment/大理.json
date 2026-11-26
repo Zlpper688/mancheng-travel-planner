@@ -1,0 +1,74 @@
+{
+  "city": "大理",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [100.2652, 25.6075],
+  "places": {
+    "大理古城": {
+      "name": "大理古城",
+      "lng": 100.1655,
+      "lat": 25.69547,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "大理旅游核心区，承载着大理历史文化、宗教文化、民族文化。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "喜洲": {
+      "name": "喜洲古镇",
+      "lng": 100.131561,
+      "lat": 25.852982,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "古镇上一大片的绿色稻田格外引人注目。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "周城": {
+      "name": "周城",
+      "lng": 100.105431,
+      "lat": 25.896543,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "欣赏扎染工艺，拍摄晾晒染布的美丽场景。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "蝴蝶泉": {
+      "name": "蝴蝶泉",
+      "lng": 100.09858,
+      "lat": 25.90638,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "08:30-18:00（17:00停止入园）",
+      "intro": "象征爱情忠贞的泉，每年蝴蝶会，来自各方的白族青年男女都会来这里。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "苍山": {
+      "name": "大理苍山世界地质公园",
+      "lng": 100.132295,
+      "lat": 25.659024,
+      "category": "nature",
+      "intro": "拥有变幻万千的云景和素负盛名的大理“风花雪月”四景之一的苍山雪景。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洱海": {
+      "name": "洱海景区",
+      "lng": 100.19703,
+      "lat": 25.77558,
+      "category": "nature",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "适合找个绝佳的景观位拍照。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

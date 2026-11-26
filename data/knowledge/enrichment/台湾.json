@@ -1,0 +1,106 @@
+{
+  "city": "台湾",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    120.96,
+    23.75
+  ],
+  "places": {
+    "桃园": {
+      "name": "桃园",
+      "lng": 121.30098,
+      "lat": 24.993628,
+      "category": "other",
+      "intro": "桃园市，台湾北部城市，拥有桃园国际机场。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "台北": {
+      "name": "台北",
+      "lng": 121.5637,
+      "lat": 25.0375,
+      "category": "other",
+      "intro": "台北市，台湾政治经济文化中心。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "台中": {
+      "name": "台中",
+      "lng": 120.673648,
+      "lat": 24.147736,
+      "category": "other",
+      "intro": "台中市，台湾中部主要城市。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "日月潭": {
+      "name": "日月潭",
+      "lng": 120.91127,
+      "lat": 23.866477,
+      "category": "nature",
+      "rating": 4.4,
+      "intro": "台湾最大的天然湖泊，位于南投县鱼池乡，以湖光山色著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "阿里山": {
+      "name": "阿里山",
+      "lng": 120.774203,
+      "lat": 23.436549,
+      "category": "nature",
+      "intro": "阿里山，嘉义县著名山地风景区，以云海、日出、森林铁路著称（坐标为阿里山乡）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "嘉义": {
+      "name": "嘉义",
+      "lng": 120.449111,
+      "lat": 23.480075,
+      "category": "other",
+      "intro": "嘉义市，台湾南部城市，阿里山门户。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "台南": {
+      "name": "台南",
+      "lng": 120.227027,
+      "lat": 22.999728,
+      "category": "other",
+      "intro": "台南市，台湾历史古城。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "高雄": {
+      "name": "高雄",
+      "lng": 120.301435,
+      "lat": 22.627278,
+      "category": "other",
+      "intro": "高雄市，台湾南部最大港口城市。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    },
+    "垦丁": {
+      "name": "垦丁",
+      "lng": 120.79861,
+      "lat": 21.94626,
+      "category": "beach",
+      "intro": "垦丁，屏东县恒春镇，台湾本岛最南端的热带海滨度假区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "花莲": {
+      "name": "花莲",
+      "lng": 121.601571,
+      "lat": 23.987158,
+      "category": "other",
+      "intro": "花莲县，台湾东部县份，以太鲁阁峡谷闻名（坐标为花莲县）。",
+      "source": "365-tools行政区划表",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

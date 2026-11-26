@@ -1,0 +1,91 @@
+{
+  "city": "天津",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    117.4164,
+    39.3033
+  ],
+  "places": {
+    "五大道": {
+      "name": "五大道",
+      "lng": 117.204991,
+      "lat": 39.112242,
+      "category": "street",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "五大道文化旅游区，以民园广场为中心的小洋楼建筑群。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "小白楼": {
+      "name": "小白楼",
+      "lng": 117.21492,
+      "lat": 39.115676,
+      "category": "street",
+      "rating": 4.5,
+      "hours": "00:00-24:00",
+      "intro": "天津小白楼商圈，歷史建筑与商业街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "滨江道商业街": {
+      "name": "滨江道商业街",
+      "lng": 117.19685,
+      "lat": 39.12171,
+      "category": "street",
+      "rating": 4.4,
+      "hours": "06:00-24:00",
+      "intro": "滨江道步行街，天津核心商业街。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西开教堂": {
+      "name": "西开教堂",
+      "lng": 117.194286,
+      "lat": 39.117936,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "10:00-12:00,14:00-16:00(周日不开放)",
+      "intro": "西开教堂，天津著名天主教堂。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "洋货市场": {
+      "name": "洋货市场",
+      "lng": 117.656986,
+      "lat": 39.028502,
+      "category": "market",
+      "rating": 4.3,
+      "hours": "09:00-18:00",
+      "intro": "塘沽洋货市场，天津滨海新区商品市场。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "塘沽": {
+      "name": "塘沽",
+      "lng": 117.69641,
+      "lat": 39.017809,
+      "category": "other",
+      "rating": 4.4,
+      "intro": "塘沽，天津滨海新区核心区（坐标取滨海新区中心）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "塘沽航母主题公园": {
+      "name": "塘沽航母主题公园",
+      "lng": 117.810098,
+      "lat": 39.157548,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "09:00-17:00",
+      "intro": "天津泰达航母主题公园，以基辅号航母为主题。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

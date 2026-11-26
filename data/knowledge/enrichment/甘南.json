@@ -1,0 +1,78 @@
+{
+  "city": "甘南",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "天地图·甘肃"
+  ],
+  "center": [
+    102.91,
+    34.98
+  ],
+  "places": {
+    "兰州": {
+      "name": "兰州市",
+      "lng": 103.834228,
+      "lat": 36.060798,
+      "category": "other",
+      "intro": "甘肃省省会，甘南旅行的常见集散地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "夏河": {
+      "name": "夏河县",
+      "lng": 102.548761,
+      "lat": 35.204392,
+      "category": "other",
+      "intro": "甘南藏族自治州夏河县，拉卜楞寺所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "拉卜楞寺": {
+      "name": "拉卜楞寺",
+      "lng": 102.509822,
+      "lat": 35.192468,
+      "category": "temple",
+      "rating": 4.7,
+      "hours": "5月1日-10月7日08:00-18:00；10月8日-次年4月30日09:15-16:30",
+      "intro": "藏传佛教格鲁派六大寺院之一，拥有全世界最长的转经廊。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "八角城": {
+      "name": "甘加秘境-八角城古遗址",
+      "lng": 102.575653,
+      "lat": 35.397716,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "00:00-24:00",
+      "intro": "甘加秘境内的八角古城遗址，古代甘青交通要冲。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "尕海": {
+      "name": "尕海",
+      "lng": 102.367998,
+      "lat": 34.257908,
+      "category": "nature",
+      "intro": "碌曲县尕海湖一带，甘南第一大淡水湖与候鸟保护区。",
+      "source": "腾讯地图(尕海镇)",
+      "verified": true
+    },
+    "郎木寺": {
+      "name": "郎木寺景区",
+      "lng": 102.632802,
+      "lat": 34.090618,
+      "category": "temple",
+      "rating": 4.5,
+      "hours": "07:00-19:30",
+      "intro": "甘川交界白龙江畔的藏传佛教寺院小镇。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "远观气势磅"
+  ]
+}

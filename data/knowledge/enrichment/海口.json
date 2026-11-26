@@ -1,0 +1,101 @@
+{
+  "city": "海口",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    110.32,
+    20.03
+  ],
+  "places": {
+    "五公祠": {
+      "name": "五公祠",
+      "lng": 110.359942,
+      "lat": 20.007554,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "08:00-18:00(17:30停止入园)",
+      "intro": "被誉为\"海南第一楼\"，纪念唐宋被贬海南的五位名臣。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "骑楼老街": {
+      "name": "海口骑楼老街",
+      "lng": 110.343262,
+      "lat": 20.043454,
+      "category": "street",
+      "rating": 4.6,
+      "hours": "全天开放",
+      "intro": "最具特色的南洋风格骑楼街区，感受海口历史文化。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "火山群世界地质公园": {
+      "name": "雷琼世界地质公园(海口园区)",
+      "lng": 110.221699,
+      "lat": 19.927673,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "08:00-18:00(17:30停止入园)",
+      "intro": "石山镇的火山口地质公园，熔岩景观丰富、熔岩隧道神奇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "海南热带野生动物园": {
+      "name": "海南热带野生动植物园",
+      "lng": 110.24669,
+      "lat": 19.76904,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "09:00-18:00(17:30停止入园)",
+      "intro": "中国首家大型热带野生动植物园，岛屿型热带雨林动植物大观园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "假日海滩": {
+      "name": "假日海滩旅游区",
+      "lng": 110.231967,
+      "lat": 20.040605,
+      "category": "beach",
+      "rating": 4.7,
+      "hours": "全年全天开放",
+      "intro": "阳光、海水、沙滩、椰树相映成趣的滨海休闲区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东寨港红树林": {
+      "name": "东寨港红树林旅游区",
+      "lng": 110.58413,
+      "lat": 19.951506,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "08:30-18:00(17:30停止入园)",
+      "intro": "海上森林景观，国家级红树林自然保护区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西秀海滩公园": {
+      "name": "西秀海滩公园",
+      "lng": 110.262218,
+      "lat": 20.02446,
+      "category": "beach",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "国家级帆船帆板冬训基地的海滨公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "海底村庄": {
+      "name": "琼北地震海底村庄建筑遗存陈列",
+      "lng": 110.584932,
+      "lat": 19.977908,
+      "category": "attraction",
+      "intro": "东寨港琼北地震遗址，明代7级大地震致陆地陷落成海形成的水下村落遗址。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,661 @@
+{
+  "city": "杭州",
+  "region": "浙江",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-0313d9c7",
+      "source": "浙江地区/我是驴友-杭州攻略.pdf",
+      "status": "ok",
+      "routeCount": 5
+    }
+  ],
+  "must": [
+    {
+      "name": "灵隐寺",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "西湖",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "河坊街",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "龙井村",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "清河坊",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "南宋御街",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "钱江新城",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "杭州乐园",
+      "kind": "sight",
+      "order": 7
+    },
+    {
+      "name": "鼓楼",
+      "kind": "sight",
+      "order": 8
+    },
+    {
+      "name": "保俶塔",
+      "kind": "sight",
+      "order": 9
+    },
+    {
+      "name": "京杭大运河",
+      "kind": "sight",
+      "order": 10
+    }
+  ],
+  "places": [
+    {
+      "name": "龙井村",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "河坊街",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "保俶塔",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "鼓楼",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "杭州乐园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "京杭大运河",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "灵隐寺",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "南宋御街",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "钱江新城",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "清河坊",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "西湖",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2"
+      ]
+    },
+    {
+      "name": "百草园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "东湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "猴岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "兰亭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "鲁迅故居",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "鲁迅纪念馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "鲁镇",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "南山路",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "芹川村",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "三潭岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "三味书屋",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "神龙岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "沈园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    },
+    {
+      "name": "五龙岛",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "咸亨酒店",
+      "kind": "stay",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r5"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-0313d9c7:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "清河坊",
+              "kind": "sight"
+            },
+            {
+              "name": "南宋御街",
+              "kind": "sight"
+            },
+            {
+              "name": "钱江新城",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-0313d9c7:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "南山路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "清河坊",
+              "kind": "sight"
+            },
+            {
+              "name": "南宋御街",
+              "kind": "sight"
+            },
+            {
+              "name": "钱江新城",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-0313d9c7:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "飞来峰",
+              "kind": "sight"
+            },
+            {
+              "name": "灵隐寺",
+              "kind": "sight"
+            },
+            {
+              "name": "宋城 中国美术学院 南山路",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "西湖",
+              "kind": "sight"
+            },
+            {
+              "name": "净慈寺",
+              "kind": "sight"
+            },
+            {
+              "name": "西溪湿地",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "杭州乐园",
+              "kind": "sight"
+            },
+            {
+              "name": "鼓楼",
+              "kind": "sight"
+            },
+            {
+              "name": "河坊街",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "stops": [
+            {
+              "name": "龙井村",
+              "kind": "sight"
+            },
+            {
+              "name": "保俶塔",
+              "kind": "sight"
+            },
+            {
+              "name": "京杭大运河",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-0313d9c7:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "五龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "神龙岛",
+              "kind": "sight"
+            },
+            {
+              "name": "猴岛",
+              "kind": "sight"
+            },
+            {
+              "name": "三潭岛",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "芹川村",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-0313d9c7:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "鲁镇",
+              "kind": "sight"
+            },
+            {
+              "name": "咸亨酒店",
+              "kind": "stay"
+            },
+            {
+              "name": "百草园",
+              "kind": "sight"
+            },
+            {
+              "name": "三味书屋",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅纪念馆",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故居",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "东湖",
+              "kind": "sight"
+            },
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 5,
+    "placeCount": 26,
+    "mustCount": 11
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

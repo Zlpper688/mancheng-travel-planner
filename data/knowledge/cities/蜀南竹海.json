@@ -1,0 +1,109 @@
+{
+  "city": "蜀南竹海",
+  "region": "四川",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-c0c7d26c",
+      "source": "四川地区/我是驴友-蜀南竹海.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "海中海",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "观云亭",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "七彩飞瀑",
+      "kind": "sight",
+      "order": 2
+    }
+  ],
+  "places": [
+    {
+      "name": "观云亭",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "海中海",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "七彩飞瀑",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-c0c7d26c:r1",
+      "title": "蜀南竹海常规一日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "海中海",
+              "kind": "sight"
+            },
+            {
+              "name": "观云亭",
+              "kind": "sight"
+            },
+            {
+              "name": "七彩飞瀑",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-c0c7d26c:r2",
+      "title": "竹海古镇两日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": []
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 3,
+    "mustCount": 3
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

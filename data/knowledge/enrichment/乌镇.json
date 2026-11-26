@@ -1,0 +1,59 @@
+{
+  "city": "乌镇",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    120.484191,
+    30.749961
+  ],
+  "places": {
+    "夜游西栅": {
+      "name": "夜游西栅",
+      "lng": 120.484191,
+      "lat": 30.749961,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "09:00-22:00(22:00停止入园)",
+      "intro": "乌镇西栅景区，最适合夜游与住宿的区域，世界互联网大会永久会址。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "摆渡安渡坊码头": {
+      "name": "摆渡安渡坊码头",
+      "lng": 120.487227,
+      "lat": 30.748763,
+      "category": "other",
+      "rating": 4.8,
+      "intro": "安渡坊码头，西栅景区内摆渡码头。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三寸金莲馆": {
+      "name": "三寸金莲馆",
+      "lng": 120.482903,
+      "lat": 30.749427,
+      "category": "museum",
+      "rating": 4.5,
+      "hours": "09:00-17:00",
+      "intro": "乌镇西栅景区三寸金莲馆，展示缠足文化展品。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "老邮局寄明信片": {
+      "name": "老邮局寄明信片",
+      "lng": 120.481578,
+      "lat": 30.749891,
+      "category": "other",
+      "hours": "08:00-21:00",
+      "intro": "乌镇老邮局，西栅大街上仍在运营的百年邮局，可寄明信片。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "乌镇多"
+  ]
+}

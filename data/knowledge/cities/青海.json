@@ -1,0 +1,412 @@
+{
+  "city": "青海",
+  "region": "西北",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-b296dcf7",
+      "source": "西北地区/我是驴友-青海.pdf",
+      "status": "ok",
+      "routeCount": 4
+    }
+  ],
+  "must": [
+    {
+      "name": "夏河",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "西宁",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "黑马河",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "鸟岛",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "茶卡",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "格尔木",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "格尔木",
+      "kind": "sight",
+      "frequency": 5,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    {
+      "name": "茶卡",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "黑马河",
+      "kind": "sight",
+      "frequency": 4,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "鸟岛",
+      "kind": "sight",
+      "frequency": 3,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "r2",
+        "r3"
+      ]
+    },
+    {
+      "name": "151基地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "不冻泉",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "大柴旦",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "德令哈",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "贵德",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "昆仑山口",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r3"
+      ]
+    },
+    {
+      "name": "日月山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r2"
+      ]
+    },
+    {
+      "name": "索南达杰保护站",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "唐古拉山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "天峻县",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "外星人遗址",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "r4"
+      ]
+    },
+    {
+      "name": "西宁",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "夏河",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-b296dcf7:r1",
+      "title": "未命名路线",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "夏河",
+              "kind": "sight"
+            },
+            {
+              "name": "西宁",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-b296dcf7:r2",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "贵德",
+              "kind": "sight"
+            },
+            {
+              "name": "日月山",
+              "kind": "sight"
+            },
+            {
+              "name": "151基地",
+              "kind": "sight"
+            },
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-b296dcf7:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "昆仑山口",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "黑马河",
+              "kind": "sight"
+            },
+            {
+              "name": "鸟岛",
+              "kind": "sight"
+            },
+            {
+              "name": "茶卡",
+              "kind": "sight"
+            },
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-b296dcf7:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "格尔木",
+              "kind": "sight"
+            },
+            {
+              "name": "不冻泉",
+              "kind": "sight"
+            },
+            {
+              "name": "索南达杰保护站",
+              "kind": "sight"
+            },
+            {
+              "name": "唐古拉山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "天峻县",
+              "kind": "sight"
+            },
+            {
+              "name": "德令哈",
+              "kind": "sight"
+            },
+            {
+              "name": "外星人遗址",
+              "kind": "sight"
+            },
+            {
+              "name": "大柴旦",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 4,
+    "placeCount": 17,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

@@ -1,0 +1,120 @@
+{
+  "city": "林芝",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "POI数据(GCJ-02火星坐标)", "查海拔地图"],
+  "center": [94.360255, 29.639266],
+  "places": {
+    "拉萨": {
+      "name": "拉萨市（布达拉宫参考坐标）",
+      "lng": 91.118224,
+      "lat": 29.655339,
+      "category": "other",
+      "intro": "拉萨市中心地标布达拉宫所在，作为拉萨市参考定位点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "巴松措": {
+      "name": "巴松措风景区",
+      "lng": 93.97072,
+      "lat": 30.017655,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "09:30-18:30",
+      "intro": "红教著名神湖，藏语意为“绿色的水”，西藏首个自然风景类5A景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "尼洋河": {
+      "name": "尼洋河",
+      "lng": 94.319632,
+      "lat": 29.715998,
+      "category": "nature",
+      "intro": "雅鲁藏布江五大支流之一，有“西藏江南”之美誉。",
+      "source": "查海拔地图",
+      "verified": true
+    },
+    "卡定沟": {
+      "name": "卡定沟景区",
+      "lng": 94.174631,
+      "lat": 29.762014,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "3月16日-10月31日 08:00-20:00;11月1日-次年3月15日 09:30-17:30",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "八一": {
+      "name": "八一镇",
+      "lng": 94.360255,
+      "lat": 29.639266,
+      "category": "other",
+      "intro": "林芝市巴宜区政府驻地，林芝市区所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "雅鲁藏布大峡谷": {
+      "name": "雅鲁藏布大峡谷",
+      "lng": 94.937455,
+      "lat": 29.612775,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "3月1日-10月31日 08:30-19:00;11月1日-次年2月28日 09:30-20:00",
+      "intro": "世界上最深的峡谷之一，被誉为“世界峡谷之首”。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南迦巴瓦峰": {
+      "name": "南迦巴瓦峰观景台",
+      "lng": 94.929306,
+      "lat": 29.582454,
+      "category": "viewpoint",
+      "rating": 4.5,
+      "hours": "00:00-24:00",
+      "intro": "海拔7782米，被誉为“云中的天堂”，观景台位于雅鲁藏布大峡谷内侧。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鲁朗": {
+      "name": "鲁朗镇",
+      "lng": 94.733957,
+      "lat": 29.722838,
+      "category": "other",
+      "intro": "林芝市巴宜区鲁朗镇，鲁朗国际旅游小镇所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鲁朗林海": {
+      "name": "鲁朗林海",
+      "lng": 94.698144,
+      "lat": 29.61326,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "09:00-18:30",
+      "intro": "雪山、林海、田园勾画的恬静“山居图”，每年4月至6月野花竞相开放。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南伊沟": {
+      "name": "南伊沟",
+      "lng": 94.196153,
+      "lat": 29.184763,
+      "category": "nature",
+      "intro": "位于米林县南伊珞巴民族乡，有“藏地小江南”之誉。",
+      "source": "POI数据(GCJ-02火星坐标)",
+      "verified": true
+    },
+    "喇嘛岭寺": {
+      "name": "喇嘛岭寺",
+      "lng": 94.393057,
+      "lat": 29.457169,
+      "category": "temple",
+      "rating": 4.4,
+      "hours": "08:00-19:00",
+      "intro": "布久喇嘛岭寺有莲花生大师践石遗迹，壁画堪称藏东一绝。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

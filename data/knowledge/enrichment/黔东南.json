@@ -1,0 +1,61 @@
+{
+  "city": "黔东南",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "爱查询地图"
+  ],
+  "places": {
+    "贵阳": {
+      "name": "贵阳市",
+      "lng": 106.713478,
+      "lat": 26.578343,
+      "category": "other",
+      "intro": "贵州省省会，作为区域行程的参考定位点。",
+      "source": "爱查询地图",
+      "verified": true
+    },
+    "镇远": {
+      "name": "镇远古城",
+      "lng": 108.425997,
+      "lat": 27.051399,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "闻名古镇，特色小吃，绝美夜景，度假胜地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "堂安": {
+      "name": "堂安侗寨",
+      "lng": 109.215654,
+      "lat": 25.898761,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "中国侗族地区唯一的一座生态博物馆，真正的田园世界。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "肇兴": {
+      "name": "肇兴侗寨",
+      "lng": 109.167461,
+      "lat": 25.906482,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "全国最大的侗族村寨之一，可欣赏夜景。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "典徒步路线肇兴"
+  ],
+  "center": [
+    107.981,
+    26.566
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

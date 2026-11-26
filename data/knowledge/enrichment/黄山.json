@@ -1,0 +1,141 @@
+{
+  "city": "黄山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [118.169101, 30.132112],
+  "places": {
+    "云谷寺": {
+      "name": "云谷寺",
+      "lng": 118.194018,
+      "lat": 30.119554,
+      "category": "temple",
+      "rating": 4.6,
+      "hours": "08:00-16:30",
+      "intro": "位于黄山风景区东南，云谷索道起点，冬季可拍到很美的雪景。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "始信峰": {
+      "name": "始信峰",
+      "lng": 118.174817,
+      "lat": 30.141563,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "intro": "有“始信黄山天下奇”的美誉，奇松林立，三面临空。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "猴子观海": {
+      "name": "猴子观海",
+      "lng": 118.170249,
+      "lat": 30.144428,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "07:00-17:00",
+      "intro": "黄山北海景区狮子峰前的天然奇石景观，形如猴子静观云海。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "狮子峰": {
+      "name": "狮子峰",
+      "lng": 118.170289,
+      "lat": 30.14464,
+      "category": "viewpoint",
+      "rating": 4.2,
+      "hours": "全天",
+      "intro": "形似伏卧雄狮，横卧于北海景区，为观日出云海胜处。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "排云亭": {
+      "name": "排云亭",
+      "lng": 118.161309,
+      "lat": 30.140066,
+      "category": "viewpoint",
+      "rating": 4.6,
+      "hours": "全天",
+      "intro": "西海大峡谷出入口，黄山赏日落最理想的地方。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "飞来石": {
+      "name": "飞来石",
+      "lng": 118.164143,
+      "lat": 30.135399,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "06:30-17:30",
+      "intro": "巨石似从天外飞来，高12米重600吨，1987年央视版《红楼梦》顽石取景地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西海大峡谷": {
+      "name": "黄山西海大峡谷",
+      "lng": 118.157309,
+      "lat": 30.133581,
+      "category": "nature",
+      "rating": 4.6,
+      "hours": "3月14日-12月31日08:00-17:00（16:40停止入园）",
+      "intro": "黄山最险峻的峡谷景区，栈道悬于绝壁，气势磅礴。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "光明顶": {
+      "name": "光明顶",
+      "lng": 118.169101,
+      "lat": 30.132112,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "周一至周五、周日06:30-16:30；周六06:00-16:30",
+      "intro": "黄山第二高峰，海拔1860米，看日出、观云海的最佳地点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鳌鱼峰": {
+      "name": "鳌鱼峰",
+      "lng": 118.167148,
+      "lat": 30.128557,
+      "category": "viewpoint",
+      "rating": 4.4,
+      "hours": "07:00-17:00",
+      "intro": "山峰犹如巨大高昂的鲸首，是观赏日落的最佳地点之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "莲花峰": {
+      "name": "莲花峰",
+      "lng": 118.170467,
+      "lat": 30.126561,
+      "category": "viewpoint",
+      "rating": 4.7,
+      "hours": "07:00-16:00",
+      "intro": "黄山第一高峰，海拔1864米，峻峭高耸，犹如含苞待放的莲花。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "迎客松": {
+      "name": "黄山-迎客松",
+      "lng": 118.175958,
+      "lat": 30.122347,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "周一至周五、周日06:30-16:30；周六06:00-16:30",
+      "intro": "黄山的标志性景点，位于玉屏楼景区，据说不到迎客松就没真正到过黄山。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天都峰": {
+      "name": "天都峰",
+      "lng": 118.17958,
+      "lat": 30.11827,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "07:00-17:10",
+      "intro": "黄山三大主峰之一，海拔1829米，以险峭雄奇著称，有“黄山第一峰”之誉。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

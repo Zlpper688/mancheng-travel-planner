@@ -1,0 +1,223 @@
+{
+  "city": "敦煌",
+  "region": "西北",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-616832c2",
+      "source": "西北地区/我是驴友-敦煌.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "莫高窟",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "雷音寺",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "鸣沙山",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "月牙泉",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "敦煌古城",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "西千佛洞",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "玉门关",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "魔鬼城",
+      "kind": "sight",
+      "order": 7
+    }
+  ],
+  "places": [
+    {
+      "name": "莫高窟",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "品味三日游"
+      ]
+    },
+    {
+      "name": "敦煌古城",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "雷音寺",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "鸣沙山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "魔鬼城",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "西晋墓",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "品味三日游"
+      ]
+    },
+    {
+      "name": "西千佛洞",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "玉门关",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "月牙泉",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-616832c2:r1",
+      "title": "艺术两日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "莫高窟",
+              "kind": "sight"
+            },
+            {
+              "name": "雷音寺",
+              "kind": "sight"
+            },
+            {
+              "name": "鸣沙山",
+              "kind": "sight"
+            },
+            {
+              "name": "月牙泉",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "敦煌古城",
+              "kind": "sight"
+            },
+            {
+              "name": "西千佛洞",
+              "kind": "sight"
+            },
+            {
+              "name": "玉门关",
+              "kind": "sight"
+            },
+            {
+              "name": "魔鬼城",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-616832c2:r2",
+      "title": "品味三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": true,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "莫高窟",
+              "kind": "sight"
+            },
+            {
+              "name": "西晋墓",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 9,
+    "mustCount": 8
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

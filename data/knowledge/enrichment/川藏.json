@@ -1,0 +1,197 @@
+{
+  "city": "川藏",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "places": {
+    "拉萨": {
+      "name": "拉萨市",
+      "lng": 91.171924,
+      "lat": 29.653491,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "成都": {
+      "name": "成都市",
+      "lng": 104.066301,
+      "lat": 30.572961,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "雅安": {
+      "name": "雅安市",
+      "lng": 103.041538,
+      "lat": 30.009998,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天全": {
+      "name": "天全县",
+      "lng": 102.771745,
+      "lat": 30.05728,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "康定": {
+      "name": "康定市",
+      "lng": 101.95687,
+      "lat": 29.998544,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "新都桥": {
+      "name": "新都桥",
+      "lng": 101.508829,
+      "lat": 30.033226,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "00:00-24:00",
+      "intro": "新都桥是令人神往的摄影天堂。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "雅江": {
+      "name": "雅江县",
+      "lng": 101.014366,
+      "lat": 30.031498,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "理塘": {
+      "name": "理塘县",
+      "lng": 100.269145,
+      "lat": 29.994228,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "巴塘": {
+      "name": "巴塘县",
+      "lng": 99.110555,
+      "lat": 30.00533,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芒康": {
+      "name": "芒康县",
+      "lng": 98.593493,
+      "lat": 29.679957,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "邦达": {
+      "name": "邦达镇",
+      "lng": 97.29272,
+      "lat": 30.207514,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "八宿": {
+      "name": "八宿县",
+      "lng": 96.917836,
+      "lat": 30.053209,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "然乌": {
+      "name": "然乌镇",
+      "lng": 96.751281,
+      "lat": 29.502459,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "波密": {
+      "name": "波密县",
+      "lng": 95.768439,
+      "lat": 29.859751,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "鲁朗": {
+      "name": "鲁朗国际旅游小镇",
+      "lng": 94.726406,
+      "lat": 29.729259,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "林芝": {
+      "name": "林芝市",
+      "lng": 94.361436,
+      "lat": 29.64875,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "工布江达": {
+      "name": "工布江达县",
+      "lng": 93.246369,
+      "lat": 29.885911,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "墨竹工卡": {
+      "name": "墨竹工卡县",
+      "lng": 91.916174,
+      "lat": 29.76213,
+      "category": "other",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "布达拉宫": {
+      "name": "布达拉宫",
+      "lng": 91.118224,
+      "lat": 29.655339,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "5月1日-10月31日 周二至周日 09:00-15:40（周一不开放）；11月1日-次年4月30日 周二至周日 09:30-15:20（周一不开放）",
+      "intro": "虔诚的仰望着宏伟壮观的布达拉宫。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大昭寺": {
+      "name": "大昭寺",
+      "lng": 91.133337,
+      "lat": 29.650285,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:30-18:30（18:30停止入园）",
+      "intro": "作为“西藏的眼睛”，现已成为拉萨真正的中心，信徒们朝拜的圣地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "纳木错": {
+      "name": "纳木错",
+      "lng": 90.665115,
+      "lat": 30.741583,
+      "category": "nature",
+      "rating": 4.5,
+      "hours": "11月1日-次年3月15日 09:30-18:00；3月16日-10月31日 09:00-20:00",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    91.13,
+    29.65
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

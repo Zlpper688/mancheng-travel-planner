@@ -1,0 +1,102 @@
+{
+  "city": "威海",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    122.1153,
+    37.5121
+  ],
+  "places": {
+    "甲午战争博物馆": {
+      "name": "甲午战争博物馆",
+      "lng": 122.181257,
+      "lat": 37.501566,
+      "category": "museum",
+      "hours": "08:40-16:30",
+      "intro": "中国甲午战争博物馆陈列馆，位于刘公岛，纪念甲午战争。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "刘公岛森林公园": {
+      "name": "刘公岛森林公园",
+      "lng": 122.190461,
+      "lat": 37.504472,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "08:00-16:30(14:30停止入园)",
+      "intro": "刘公岛风景名胜区，中国近代首支海军舰队诞生地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "环翠楼公园": {
+      "name": "环翠楼公园",
+      "lng": 122.108185,
+      "lat": 37.505013,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "09:00-17:00(16:30停止入园)",
+      "intro": "环翠楼公园，威海市区著名公园，可登高望海。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "影视文化城": {
+      "name": "影视文化城",
+      "lng": 122.002266,
+      "lat": 37.494007,
+      "category": "attraction",
+      "intro": "威海影视基地（影视文化城），位于环翠区世昌大道。",
+      "source": "POILIST威海景点数据",
+      "verified": true
+    },
+    "国际海水浴场": {
+      "name": "国际海水浴场",
+      "lng": 122.045212,
+      "lat": 37.529038,
+      "category": "beach",
+      "rating": 4.4,
+      "hours": "全天",
+      "intro": "威海国际海水浴场，著名海滨浴场。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "成头山": {
+      "name": "成头山",
+      "lng": 122.702488,
+      "lat": 37.393253,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "07:50-17:30",
+      "intro": "成山头风景区，位于荣成，中国陆海交接最东端，号称\"天尽头\"。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "始皇庙": {
+      "name": "始皇庙",
+      "lng": 122.702488,
+      "lat": 37.393253,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "07:50-17:30",
+      "intro": "成山头始皇庙，相传秦始皇东巡所建，位于成山头风景区内。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "乳山银滩旅游度假区": {
+      "name": "乳山银滩旅游度假区",
+      "lng": 121.70599,
+      "lat": 36.82807,
+      "category": "beach",
+      "rating": 4.3,
+      "hours": "全天开放",
+      "intro": "银滩滨海旅游度假区，乳山著名海滩度假地。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "刘公庙"
+  ]
+}

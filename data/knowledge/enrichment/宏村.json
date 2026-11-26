@@ -1,0 +1,82 @@
+{
+  "city": "宏村",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图", "顺途网"],
+  "center": [117.9885, 30.004],
+  "places": {
+    "志堂": {
+      "name": "宏村风景区-承志堂",
+      "lng": 117.989026,
+      "lat": 30.003798,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天",
+      "intro": "黟县保护最完美的大型古民居建筑，有“民间故宫”的美誉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "树人堂": {
+      "name": "宏村-树人堂",
+      "lng": 117.988352,
+      "lat": 30.004178,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "全天",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "桃园居": {
+      "name": "安徽宏村景区-桃源居",
+      "lng": 117.987819,
+      "lat": 30.003129,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "07:00-17:30",
+      "intro": "门楼砖雕和室内木雕都堪称精品，有宏村最精美的雕花门。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "红白古树": {
+      "name": "宏村村口红白古树",
+      "lng": 117.9895,
+      "lat": 30.0073,
+      "category": "nature",
+      "intro": "宏村村口两棵500年树龄的古树（红杨树与白果树），为牛形村的“牛角”和风水树。",
+      "source": "顺途网",
+      "verified": true
+    },
+    "歙县": {
+      "name": "徽州古城景区",
+      "lng": 118.43458,
+      "lat": 29.866991,
+      "category": "attraction",
+      "rating": 4.5,
+      "hours": "全天开放",
+      "intro": "位于歙县，中国四大古城之一，徽文化发祥地，国家5A级景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "屯溪": {
+      "name": "屯溪老街",
+      "lng": 118.307364,
+      "lat": 29.708087,
+      "category": "street",
+      "intro": "位于黄山市屯溪区中心，被誉为“活动着的清明上河图”，国家级历史文化保护街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西递": {
+      "name": "西递古村景区",
+      "lng": 117.996016,
+      "lat": 29.903355,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全年全天开放",
+      "intro": "世界文化遗产、国家5A级景区，以保存完好的明清古民居著称，有“桃花源里人家”之誉。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

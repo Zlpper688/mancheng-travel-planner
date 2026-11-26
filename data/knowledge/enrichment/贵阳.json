@@ -1,0 +1,69 @@
+{
+  "city": "贵阳",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "center": [
+    106.63,
+    26.65
+  ],
+  "places": {
+    "天河潭": {
+      "name": "贵州天河潭旅游度假区",
+      "lng": 106.578391,
+      "lat": 26.437663,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "3月-10月08:30-18:00；11月-次年2月09:00-17:00",
+      "intro": "欣赏钙化滩瀑布，体验400米高空滑索。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "青岩": {
+      "name": "青岩古镇",
+      "lng": 106.686813,
+      "lat": 26.331108,
+      "category": "attraction",
+      "intro": "贵阳著名的明清古镇，以石板街与卤猪脚闻名。",
+      "source": "POI数据",
+      "verified": true
+    },
+    "花溪": {
+      "name": "花溪公园",
+      "lng": 106.67144,
+      "lat": 26.43273,
+      "category": "park",
+      "intro": "花溪区的城市公园，以自然山水与花鸟风光著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "龙宫": {
+      "name": "龙宫风景名胜区",
+      "lng": 105.886487,
+      "lat": 26.106274,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "4月-10月07:00-18:00；11月-次年3月08:30-16:30",
+      "intro": "安顺市的喀斯特溶洞景区，以水洞、暗河景观闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黄果树瀑布": {
+      "name": "黄果树景区",
+      "lng": 105.675291,
+      "lat": 25.978481,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "7-8月06:30-18:30；12月-次年2月07:30-18:30",
+      "intro": "世界最大瀑布群，中国著名大瀑布。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "红军烈士陵园"
+  ]
+}

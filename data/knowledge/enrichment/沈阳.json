@@ -1,0 +1,161 @@
+{
+  "city": "沈阳",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "维基百科"
+  ],
+  "center": [
+    123.464675,
+    41.677576
+  ],
+  "places": {
+    "故宫": {
+      "name": "沈阳故宫",
+      "lng": 123.455696,
+      "lat": 41.798386,
+      "category": "museum",
+      "intro": "清代入关前的皇宫，中国仅存的两大宫殿建筑群之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中街": {
+      "name": "沈阳中街",
+      "lng": 123.456881,
+      "lat": 41.801523,
+      "category": "street",
+      "intro": "沈阳 oldest 商业步行街，历史悠久的购物街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大帅府": {
+      "name": "张氏帅府",
+      "lng": 123.458194,
+      "lat": 41.794788,
+      "category": "museum",
+      "intro": "张作霖、张学良父子的官邸与私宅，又称大帅府。",
+      "source": "维基导游",
+      "verified": true
+    },
+    "刘老根大舞台": {
+      "name": "刘老根大舞台",
+      "lng": 123.45339,
+      "lat": 41.800157,
+      "category": "attraction",
+      "intro": "沈阳著名的东北二人转演出剧场。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "北陵公园": {
+      "name": "北陵公园",
+      "lng": 123.42857,
+      "lat": 41.851591,
+      "category": "park",
+      "intro": "清太宗皇太极昭陵所在地，沈阳最大的公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "辽宁省博物馆": {
+      "name": "辽宁省博物馆",
+      "lng": 123.460503,
+      "lat": 41.678059,
+      "category": "museum",
+      "intro": "辽宁省综合性历史艺术博物馆。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "太清宫": {
+      "name": "沈阳太清宫",
+      "lng": 123.447819,
+      "lat": 41.8045,
+      "category": "temple",
+      "intro": "沈阳著名道教宫观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东陵公园": {
+      "name": "东陵公园",
+      "lng": 123.59384,
+      "lat": 41.838431,
+      "category": "park",
+      "intro": "清太祖努尔哈赤福陵所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "棋盘山": {
+      "name": "棋盘山",
+      "lng": 123.669705,
+      "lat": 41.926308,
+      "category": "nature",
+      "intro": "沈阳棋盘山风景区，山水与关东影视城所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "世博园": {
+      "name": "沈阳世博园",
+      "lng": 123.6481,
+      "lat": 41.864101,
+      "category": "park",
+      "intro": "2006年沈阳世界园艺博览会会址。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "怪坡": {
+      "name": "沈阳怪坡",
+      "lng": 123.63888,
+      "lat": 42.060591,
+      "category": "attraction",
+      "intro": "沈阳怪坡风景区，以“上坡轻松下坡费力”的视觉奇观闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "青年公园": {
+      "name": "青年公园",
+      "lng": 123.439245,
+      "lat": 41.780832,
+      "category": "park",
+      "intro": "沈阳市中心的综合性公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "彩电塔": {
+      "name": "辽宁广播电视塔",
+      "lng": 123.434038,
+      "lat": 41.783031,
+      "category": "attraction",
+      "hours": "09:00-21:00",
+      "intro": "沈阳地标性建筑，俗称彩电塔，高305.5米，设观光层与旋转餐厅。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "万象城": {
+      "name": "沈阳万象城",
+      "lng": 123.434562,
+      "lat": 41.77649,
+      "category": "market",
+      "intro": "沈阳大型购物中心。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "五里河公园": {
+      "name": "五里河公园",
+      "lng": 123.468311,
+      "lat": 41.757372,
+      "category": "park",
+      "intro": "浑河畔的五里河公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "方特欢乐世界": {
+      "name": "沈阳方特欢乐世界",
+      "lng": 123.418943,
+      "lat": 41.963786,
+      "category": "attraction",
+      "intro": "沈阳大型科技主题乐园。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

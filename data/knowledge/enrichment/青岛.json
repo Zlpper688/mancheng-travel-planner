@@ -1,0 +1,80 @@
+{
+  "city": "青岛",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    120.382665,
+    36.066938
+  ],
+  "places": {
+    "啤酒博物馆": {
+      "name": "青岛啤酒博物馆",
+      "lng": 120.34711,
+      "lat": 36.079075,
+      "category": "museum",
+      "intro": "位于青岛啤酒老厂房，展示啤酒酿造历史与工艺。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "啤酒街": {
+      "name": "青岛啤酒街",
+      "lng": 120.351157,
+      "lat": 36.080582,
+      "category": "street",
+      "intro": "登州路 beer 街，品尝原浆啤酒与海鲜的特色街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "台东夜市": {
+      "name": "台东夜市",
+      "lng": 120.354683,
+      "lat": 36.083906,
+      "category": "market",
+      "intro": "青岛知名夜市商圈，小吃摊位密集。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "崂山": {
+      "name": "青岛崂山风景名胜区",
+      "lng": 120.630179,
+      "lat": 36.174515,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "07:00-17:30",
+      "intro": "中国海岸线上第一高峰，山海相连的国家5A级旅游景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "仰口": {
+      "name": "崂山仰口游览区",
+      "lng": 120.656022,
+      "lat": 36.232237,
+      "category": "viewpoint",
+      "intro": "崂山仰口景区，以山海奇观和觅天洞著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "石老人海水浴场": {
+      "name": "石老人海水浴场",
+      "lng": 120.46695,
+      "lat": 36.089641,
+      "category": "beach",
+      "intro": "青岛东部著名海滨浴场，以海中巨石“石老人”得名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "奥帆中心": {
+      "name": "青岛奥帆中心",
+      "lng": 120.393607,
+      "lat": 36.055196,
+      "category": "attraction",
+      "intro": "2008年北京奥运会帆船比赛场地，现为滨海休闲景区。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

@@ -1,0 +1,61 @@
+{
+  "city": "西溪湿地",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [119.005984, 29.596572],
+  "places": {
+    "五龙岛": {
+      "name": "五龙岛（月光岛）",
+      "lng": 119.004862,
+      "lat": 29.613151,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "08:00-16:00",
+      "intro": "千岛湖中心湖区以爱情、锁文化为主题的岛屿，2009年更名为月光岛，由情园、逸园、系园、心园、梦园组成。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "神龙岛": {
+      "name": "神龙岛",
+      "lng": 118.963001,
+      "lat": 29.591647,
+      "category": "nature",
+      "intro": "位于千岛湖界首乡的岛屿，为千岛湖自然地名景观之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "猴岛": {
+      "name": "猴岛",
+      "lng": 118.943651,
+      "lat": 29.585311,
+      "category": "nature",
+      "rating": 3.8,
+      "hours": "全天开放",
+      "intro": "千岛湖中心湖区景点，以猕猴观赏为特色，设有猴艺表演和猴王投喂区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三潭岛": {
+      "name": "三潭岛景区",
+      "lng": 118.968529,
+      "lat": 29.546429,
+      "category": "attraction",
+      "rating": 4.1,
+      "hours": "09:00-16:30",
+      "intro": "千岛湖风景区内的岛屿景点，位于排岭南路一带。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "芹川村": {
+      "name": "芹川村（芹川古村落）",
+      "lng": 118.609315,
+      "lat": 29.518001,
+      "category": "attraction",
+      "intro": "位于淳安县浪川乡，是有750余年历史的古村落，芹川溪贯穿全村，保存大量明清古民居。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

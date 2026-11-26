@@ -1,0 +1,30 @@
+{
+  "city": "哈尔滨",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    126.53,
+    45.8
+  ],
+  "places": {
+    "雪乡": {
+      "name": "中国雪乡",
+      "lng": 128.209911,
+      "lat": 44.332596,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "双峰林场的雪乡景区，以厚重积雪与雪蘑菇景观闻名，《爸爸去哪儿》取景地。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "牛羊山",
+    "雪屋",
+    "红灯笼"
+  ]
+}

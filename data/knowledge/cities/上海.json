@@ -1,0 +1,487 @@
+{
+  "city": "上海",
+  "region": "华东",
+  "aliases": [],
+  "center": [
+    121.47,
+    31.2313
+  ],
+  "centerSource": "photon",
+  "sources": [
+    {
+      "id": "g-ee583ca4",
+      "source": "华东地区/我是驴友-上海旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 6
+    }
+  ],
+  "must": [
+    {
+      "name": "杜莎夫人蜡像馆",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "老城隍庙",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "豫园",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "金茂大厦",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "外滩",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "徐家汇天主教堂",
+      "kind": "sight",
+      "order": 5
+    },
+    {
+      "name": "徐家汇藏书楼",
+      "kind": "sight",
+      "order": 6
+    },
+    {
+      "name": "七宝老",
+      "kind": "sight",
+      "order": 7
+    }
+  ],
+  "places": [
+    {
+      "name": "老城隍庙",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "七宝老",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "外滩",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "徐家汇藏书楼",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "徐家汇天主教堂",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "豫园",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "杜莎夫人蜡像馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "金茂大厦",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "上海博物馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "田子坊",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "新天地",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "中共一大会址",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "悠闲三日游"
+      ]
+    },
+    {
+      "name": "周公馆",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "悠闲三日游"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-ee583ca4:r1",
+      "title": "文化两日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "杜莎夫人蜡像馆",
+              "kind": "sight"
+            },
+            {
+              "name": "老城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "豫园",
+              "kind": "sight"
+            },
+            {
+              "name": "金茂大厦",
+              "kind": "sight"
+            },
+            {
+              "name": "外滩",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "徐家汇天主教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "徐家汇藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "七宝老",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4:r2",
+      "title": "悠闲三日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "上海博物馆",
+              "kind": "sight"
+            },
+            {
+              "name": "外滩",
+              "kind": "sight"
+            },
+            {
+              "name": "老城隍庙",
+              "kind": "sight"
+            },
+            {
+              "name": "豫园",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "徐家汇天主教堂",
+              "kind": "sight"
+            },
+            {
+              "name": "徐家汇藏书楼",
+              "kind": "sight"
+            },
+            {
+              "name": "七宝老",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "田子坊",
+              "kind": "sight"
+            },
+            {
+              "name": "周公馆",
+              "kind": "sight"
+            },
+            {
+              "name": "新天地",
+              "kind": "sight"
+            },
+            {
+              "name": "中共一大会址",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4:r3",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁迅故里",
+              "kind": "sight"
+            },
+            {
+              "name": "鲁镇",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4:r4",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达绍兴",
+              "kind": "sight"
+            },
+            {
+              "name": "对这位大文豪",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "兰亭",
+              "kind": "sight"
+            },
+            {
+              "name": "沈园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4:r5",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "歙县",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-ee583ca4:r6",
+      "title": "未命名路线",
+      "canonical": false,
+      "excursion": true,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "达黄山市",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "歙县",
+              "kind": "sight"
+            },
+            {
+              "name": "屯溪",
+              "kind": "sight"
+            },
+            {
+              "name": "宏村",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 3,
+          "stops": [
+            {
+              "name": "宏村",
+              "kind": "sight"
+            },
+            {
+              "name": "西递",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 6,
+    "placeCount": 13,
+    "mustCount": 8
+  },
+  "enrichmentState": "needs-geo"
+}

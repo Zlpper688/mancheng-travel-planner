@@ -1,0 +1,47 @@
+{
+  "city": "蜀南竹海",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "BIGEMAP"
+  ],
+  "center": [
+    105.017532,
+    28.477164
+  ],
+  "places": {
+    "海中海": {
+      "name": "海中海-竹筏游湖",
+      "lng": 105.024371,
+      "lat": 28.463978,
+      "category": "nature",
+      "rating": 4.5,
+      "hours": "00:00-24:00",
+      "intro": "蜀南竹海中的人工湖泊，电影《卧虎藏龙》取景地，可泛舟游湖。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "观云亭": {
+      "name": "蜀南竹海-观云台",
+      "lng": 104.985465,
+      "lat": 28.451392,
+      "category": "viewpoint",
+      "rating": 4.4,
+      "hours": "全天开放",
+      "intro": "又名拜寿台、观云台，可俯瞰“百龟拜寿”景观，曾作为北京奥运会开幕式画卷取景点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "七彩飞瀑": {
+      "name": "七彩飞瀑",
+      "lng": 105.035283,
+      "lat": 28.490276,
+      "category": "nature",
+      "intro": "蜀南竹海著名瀑布，溪水分四级泻下悬崖，落差达200余米。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

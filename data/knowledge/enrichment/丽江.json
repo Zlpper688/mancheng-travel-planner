@@ -1,0 +1,75 @@
+{
+  "city": "丽江",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [100.23673, 26.87076],
+  "places": {
+    "大研古城": {
+      "name": "大研古城（丽江古城）",
+      "lng": 100.23673,
+      "lat": 26.87076,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "丽江古城核心，世界文化遗产，以纳西民居、四方街与小桥流水著称，夜景美丽。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "黑龙潭": {
+      "name": "黑龙潭公园",
+      "lng": 100.240845,
+      "lat": 26.887665,
+      "category": "park",
+      "rating": 4.7,
+      "hours": "07:30-21:00（20:30停止入园）",
+      "intro": "丽江古城北端的公园，是拍摄玉龙雪山倒影的最佳地点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大索道登玉龙雪山": {
+      "name": "玉龙雪山索道（大索道）",
+      "lng": 100.25333,
+      "lat": 27.09989,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "06:30-16:40（15:00停止售票）",
+      "intro": "玉龙雪山景区大索道，可直达冰川公园区域，近距离感受雪山冰川。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "冰川公园": {
+      "name": "玉龙雪山冰川国家地质公园",
+      "lng": 100.187955,
+      "lat": 27.135689,
+      "category": "park",
+      "rating": 4.5,
+      "hours": "07:00-18:00（15:30停止售票）",
+      "intro": "位于玉龙雪山景区内，可近距离感受现代冰川与雪山风光。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "丽江古": {
+      "name": "丽江古城",
+      "lng": 100.23673,
+      "lat": 26.87076,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "世界文化遗产丽江古城（大研古城），纳西族聚居地，以古城水系与街巷格局闻名。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "束河古镇": {
+      "name": "丽江束河古镇",
+      "lng": 100.204324,
+      "lat": 26.917286,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "世界文化遗产丽江古城的重要组成部分，比大研古城更为幽静，纳西语称“绍坞”。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

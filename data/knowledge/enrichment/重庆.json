@@ -1,0 +1,36 @@
+{
+  "city": "重庆",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "places": {
+    "磁器口千年古镇": {
+      "name": "磁器口古镇",
+      "lng": 106.44967,
+      "lat": 29.581181,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "全天开放",
+      "intro": "千年古镇，重庆缩影，正街上美食琳琅满目，往深处走有老重庆的感觉。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南山": {
+      "name": "重庆南山风景区",
+      "lng": 106.616735,
+      "lat": 29.560989,
+      "category": "viewpoint",
+      "intro": "爬山好去处，夜晚可以看灯火辉煌的山城。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    106.55,
+    29.55
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

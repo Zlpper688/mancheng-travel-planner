@@ -1,0 +1,101 @@
+{
+  "city": "太原",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    112.5437,
+    37.87
+  ],
+  "places": {
+    "晋祠": {
+      "name": "晋祠",
+      "lng": 112.44693,
+      "lat": 37.70624,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:30-18:00",
+      "intro": "晋祠公园与晋祠博物馆，山西著名古建筑园林群。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "蒙山大佛": {
+      "name": "蒙山大佛",
+      "lng": 112.446249,
+      "lat": 37.780232,
+      "category": "attraction",
+      "rating": 4.7,
+      "intro": "蒙山大佛景区，北朝摩崖石刻大佛。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "汾河公园": {
+      "name": "汾河公园",
+      "lng": 112.543838,
+      "lat": 37.831344,
+      "category": "park",
+      "rating": 4.4,
+      "intro": "汾河景区公园，沿汾河两岸的城市滨水公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "山西博物院": {
+      "name": "山西博物院",
+      "lng": 112.531218,
+      "lat": 37.865366,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "周二至周日 09:00-17:00(16:00停止入馆);周一、除夕、正月初一闭馆",
+      "intro": "山西省级综合性博物馆，晋国与佛教文物收藏丰富。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "双塔寺": {
+      "name": "双塔寺",
+      "lng": 112.596179,
+      "lat": 37.846194,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "4月1日-10月31日 08:30-17:30;11月1日-次年3月31日 09:00-17:00",
+      "intro": "双塔寺（永祚寺），太原标志，被誉为晋阳奇观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "崇善寺": {
+      "name": "崇善寺",
+      "lng": 112.579943,
+      "lat": 37.866972,
+      "category": "temple",
+      "rating": 4.8,
+      "hours": "08:00-18:00",
+      "intro": "山西省佛教协会所在地，全国重点文物保护单位，大悲殿为明代建筑。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "榆次老城": {
+      "name": "榆次老城",
+      "lng": 112.751041,
+      "lat": 37.676957,
+      "category": "attraction",
+      "rating": 4.7,
+      "hours": "08:00-18:30(18:00停止售票)",
+      "intro": "榆次老城，晋中古城区，保存大量明清古建筑。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "后沟古村": {
+      "name": "后沟古村",
+      "lng": 112.911472,
+      "lat": 37.753242,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "08:00-19:00(18:30停止入园)",
+      "intro": "后沟古村景区，晋中传统村落，黄土高原民俗文化。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

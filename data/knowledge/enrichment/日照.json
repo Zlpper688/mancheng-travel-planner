@@ -1,0 +1,53 @@
+{
+  "city": "日照",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "中国国家地理",
+    "维基百科"
+  ],
+  "center": [
+    119.526876,
+    35.416394
+  ],
+  "places": {
+    "万平口生态广": {
+      "name": "万平口风景区",
+      "lng": 119.569358,
+      "lat": 35.418153,
+      "category": "beach",
+      "intro": "日照万平口海滨风景区，日照标志性的海滨浴场与观海地点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "渔港码头": {
+      "name": "大泉沟渔港码头",
+      "lng": 119.594521,
+      "lat": 35.457131,
+      "category": "market",
+      "intro": "日照山海天大泉沟渔港码头，可购买渔船刚靠岸的海鲜。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "奥林匹克水上公园": {
+      "name": "奥林匹克水上运动公园",
+      "lng": 119.555344,
+      "lat": 35.419686,
+      "category": "park",
+      "intro": "日照奥林匹克水上运动公园，海滨水上运动场地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "灯塔景区": {
+      "name": "灯塔滨海风景区",
+      "lng": 119.563673,
+      "lat": 35.395174,
+      "category": "attraction",
+      "intro": "日照灯塔风景区，以灯塔和滨海礁石景观著称。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

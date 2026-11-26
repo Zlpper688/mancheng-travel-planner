@@ -1,0 +1,42 @@
+{
+  "city": "束河",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    100.229628,
+    26.875351
+  ],
+  "places": {
+    "昆明": {
+      "name": "昆明市",
+      "lng": 102.714601,
+      "lat": 25.049153,
+      "category": "other",
+      "intro": "云南省省会，云南旅行的主要集散地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大理": {
+      "name": "大理市",
+      "lng": 100.223675,
+      "lat": 25.5969,
+      "category": "other",
+      "intro": "云南省大理白族自治州大理市，洱海之滨的旅游城市。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "双廊": {
+      "name": "双廊古镇",
+      "lng": 100.194397,
+      "lat": 25.909386,
+      "category": "attraction",
+      "intro": "大理洱海东北岸的双廊古镇，以洱海风光和艺术小镇著称。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

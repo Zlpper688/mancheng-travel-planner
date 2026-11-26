@@ -1,0 +1,90 @@
+{
+  "city": "武夷山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    118.023112,
+    27.747097
+  ],
+  "places": {
+    "一线天": {
+      "name": "一线天",
+      "lng": 117.944814,
+      "lat": 27.626018,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "武夷山一线天景区，以狭窄岩缝著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "虎啸岩": {
+      "name": "虎啸岩",
+      "lng": 117.952268,
+      "lat": 27.634906,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "06:30-18:00(17:00停止入园)",
+      "intro": "武夷山虎啸岩，武夷山著名山峰景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "天游峰": {
+      "name": "天游峰",
+      "lng": 117.952807,
+      "lat": 27.649984,
+      "category": "viewpoint",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "武夷山第一胜地，可俯瞰九曲溪与云海。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "九曲溪": {
+      "name": "九曲溪",
+      "lng": 117.931285,
+      "lat": 27.638602,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "06:00-18:00",
+      "intro": "九曲溪，武夷山竹筏漂流河流，山水精华所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "武夷宫": {
+      "name": "武夷宫",
+      "lng": 117.971297,
+      "lat": 27.641423,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "武夷宫，武夷山景区古代宫观与游客中心所在。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大红袍": {
+      "name": "大红袍",
+      "lng": 117.96643,
+      "lat": 27.668668,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "夏季 06:30-18:00;冬季 07:00-17:30",
+      "intro": "武夷山大红袍景区，大红袍母树所在地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "水帘洞": {
+      "name": "水帘洞",
+      "lng": 117.981531,
+      "lat": 27.679454,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "3月1日-8月31日 06:30-18:00;9月1日-次年2月28日 07:00-17:00",
+      "intro": "武夷山水帘洞景区，岩壁飞瀑与摩崖石刻。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

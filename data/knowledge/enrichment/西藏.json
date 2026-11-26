@@ -1,0 +1,50 @@
+{
+  "city": "西藏",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [91.1169, 29.6578],
+  "places": {
+    "格尔木": {
+      "name": "格尔木市",
+      "lng": 94.928293,
+      "lat": 36.407272,
+      "category": "other",
+      "intro": "青海省海西州县级市，青藏铁路与青藏公路的重要节点，进藏门户。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "昆仑山口": {
+      "name": "昆仑山口",
+      "lng": 94.069241,
+      "lat": 35.640124,
+      "category": "viewpoint",
+      "rating": 4.7,
+      "hours": "08:00-18:00",
+      "intro": "海拔4767米，青藏公路上的一大关隘，青海、甘肃通往西藏的必经之地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沱沱河镇": {
+      "name": "沱沱河（唐古拉山镇）",
+      "lng": 92.57394,
+      "lat": 34.21051,
+      "category": "other",
+      "intro": "位于格尔木市唐古拉山镇，长江源头的沱沱河，青藏公路沿线重要补给点。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "茶卡盐湖": {
+      "name": "茶卡盐湖景区",
+      "lng": 99.070321,
+      "lat": 36.712523,
+      "category": "nature",
+      "rating": 4.7,
+      "hours": "07:40-20:00（19:10停止入园）",
+      "intro": "位于青海乌兰县，中国的“天空之镜”，盐湖结晶与卤水反射形成镜面景观。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": ["川藏南线六日"]
+}

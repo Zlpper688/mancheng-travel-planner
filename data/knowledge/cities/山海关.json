@@ -1,0 +1,220 @@
+{
+  "city": "山海关",
+  "region": "河北",
+  "aliases": [],
+  "center": null,
+  "centerSource": null,
+  "sources": [
+    {
+      "id": "g-66587af5",
+      "source": "河北地区/我是驴友-山海关旅游攻略.pdf",
+      "status": "ok",
+      "routeCount": 2
+    }
+  ],
+  "must": [
+    {
+      "name": "天下第一关",
+      "kind": "sight",
+      "order": 0
+    },
+    {
+      "name": "王家大院",
+      "kind": "sight",
+      "order": 1
+    },
+    {
+      "name": "老龙头",
+      "kind": "sight",
+      "order": 2
+    },
+    {
+      "name": "孟姜女庙",
+      "kind": "sight",
+      "order": 3
+    },
+    {
+      "name": "角山",
+      "kind": "sight",
+      "order": 4
+    },
+    {
+      "name": "燕塞湖",
+      "kind": "sight",
+      "order": 5
+    }
+  ],
+  "places": [
+    {
+      "name": "角山",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "山水生态两日游"
+      ]
+    },
+    {
+      "name": "老龙头",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "山水生态两日游"
+      ]
+    },
+    {
+      "name": "孟姜女庙",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "山水生态两日游"
+      ]
+    },
+    {
+      "name": "天下第一关",
+      "kind": "sight",
+      "frequency": 2,
+      "inMust": true,
+      "routes": [
+        "主推",
+        "山水生态两日游"
+      ]
+    },
+    {
+      "name": "乐岛公园",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山水生态两日游"
+      ]
+    },
+    {
+      "name": "王家大院",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "燕塞湖",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": true,
+      "routes": [
+        "主推"
+      ]
+    },
+    {
+      "name": "长寿山",
+      "kind": "sight",
+      "frequency": 1,
+      "inMust": false,
+      "routes": [
+        "山水生态两日游"
+      ]
+    }
+  ],
+  "routeTemplates": [
+    {
+      "id": "g-66587af5:r1",
+      "title": "山水生态两日游",
+      "canonical": true,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天下第一关",
+              "kind": "sight"
+            },
+            {
+              "name": "王家大院",
+              "kind": "sight"
+            },
+            {
+              "name": "老龙头",
+              "kind": "sight"
+            },
+            {
+              "name": "孟姜女庙",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "角山",
+              "kind": "sight"
+            },
+            {
+              "name": "燕塞湖",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-66587af5:r2",
+      "title": "山水生态两日游",
+      "canonical": false,
+      "excursion": false,
+      "needsReview": false,
+      "days": [
+        {
+          "day": 1,
+          "stops": [
+            {
+              "name": "天下第一关",
+              "kind": "sight"
+            },
+            {
+              "name": "老龙头",
+              "kind": "sight"
+            },
+            {
+              "name": "孟姜女庙",
+              "kind": "sight"
+            },
+            {
+              "name": "长寿山",
+              "kind": "sight"
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "stops": [
+            {
+              "name": "角山",
+              "kind": "sight"
+            },
+            {
+              "name": "乐岛公园",
+              "kind": "sight"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "guideCount": 1,
+    "routeCount": 2,
+    "placeCount": 8,
+    "mustCount": 6
+  },
+  "enrichmentState": "needs-center-and-geo"
+}

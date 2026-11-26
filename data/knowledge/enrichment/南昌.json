@@ -1,0 +1,67 @@
+{
+  "city": "南昌",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "places": {
+    "庐山": {
+      "name": "庐山风景名胜区",
+      "lng": 115.964867,
+      "lat": 29.564411,
+      "category": "nature",
+      "intro": "世界文化景观遗产、国家5A级旅游景区，以雄、奇、险、秀闻名。",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "锦绣谷": {
+      "name": "庐山国家级旅游风景名胜区-锦绣谷",
+      "lng": 115.965301,
+      "lat": 29.56525,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "07:00-19:00",
+      "intro": "谷中的断崖、怪石、峭壁与雾气相遇，构成惟妙惟肖的山水画卷。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "大天池": {
+      "name": "庐山风景名胜区-大天池",
+      "lng": 115.955534,
+      "lat": 29.559722,
+      "category": "viewpoint",
+      "rating": 4.3,
+      "hours": "全天",
+      "intro": "古庙前的小池塘，古人比喻为大天池。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "龙首崖": {
+      "name": "庐山风景区-龙首崖",
+      "lng": 115.954567,
+      "lat": 29.556736,
+      "category": "viewpoint",
+      "source": "腾讯地图POI数据",
+      "verified": true
+    },
+    "石门涧": {
+      "name": "庐山石门涧风景区",
+      "lng": 115.949289,
+      "lat": 29.558344,
+      "category": "nature",
+      "rating": 4.4,
+      "hours": "07:00-18:00",
+      "intro": "苏轼笔下“横看成林侧成峰”之地，庐山三绝占全之所。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    115.858,
+    28.682
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

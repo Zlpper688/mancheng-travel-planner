@@ -1,0 +1,212 @@
+{
+  "city": "同里",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    120.7176,
+    31.158
+  ],
+  "places": {
+    "退思园": {
+      "name": "退思园",
+      "lng": 120.720277,
+      "lat": 31.157835,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "5月6日-10月31日 08:00-21:00;11月1日-次年5月5日 08:00-17:15",
+      "intro": "同里退思园，世界文化遗产，同里最有名的私家园林。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "丽则女校": {
+      "name": "丽则女校",
+      "lng": 120.720696,
+      "lat": 31.158101,
+      "category": "attraction",
+      "rating": 4.7,
+      "intro": "丽则女校（今花间府·丽则女学），退思园主人任传薪创办的女校旧址。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "崇本堂": {
+      "name": "崇本堂",
+      "lng": 120.7176,
+      "lat": 31.158125,
+      "category": "attraction",
+      "hours": "08:00-17:15",
+      "intro": "崇本堂，同里古镇明清建筑，以雕刻精美著称。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "虎丘": {
+      "name": "虎丘",
+      "lng": 120.580811,
+      "lat": 31.335829,
+      "category": "attraction",
+      "rating": 4.7,
+      "intro": "虎丘山风景名胜区，苏州地标（联游景点，位于苏州市区）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "留园": {
+      "name": "留园",
+      "lng": 120.59256,
+      "lat": 31.315411,
+      "category": "attraction",
+      "intro": "留园，苏州四大名园之一，世界文化遗产（联游景点）。",
+      "source": "POILIST苏州景点数据",
+      "verified": true
+    },
+    "寒山寺": {
+      "name": "寒山寺",
+      "lng": 120.568359,
+      "lat": 31.310467,
+      "category": "temple",
+      "intro": "寒山寺，苏州名刹，因张继《枫桥夜泊》闻名（联游景点）。",
+      "source": "POILIST苏州景点数据",
+      "verified": true
+    },
+    "铁岭关": {
+      "name": "铁岭关",
+      "lng": 120.567154,
+      "lat": 31.310831,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "08:00-17:00",
+      "intro": "铁岭关（铁铃关），苏州枫桥景区明代抗倭关隘。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "沧浪亭": {
+      "name": "沧浪亭",
+      "lng": 120.625476,
+      "lat": 31.294689,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "沧浪亭，苏州四大名园之一，世界文化遗产（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "盘门": {
+      "name": "盘门",
+      "lng": 120.61716,
+      "lat": 31.28856,
+      "category": "attraction",
+      "rating": 4.7,
+      "intro": "盘门景区，苏州水陆城门，国家重点景点（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "网师园": {
+      "name": "网师园",
+      "lng": 120.633654,
+      "lat": 31.298021,
+      "category": "attraction",
+      "rating": 4.7,
+      "intro": "网师园，苏州古典园林，世界文化遗产（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "周庄双桥": {
+      "name": "周庄双桥",
+      "lng": 120.852283,
+      "lat": 31.114098,
+      "category": "attraction",
+      "intro": "周庄双桥，周庄古镇标志性石桥（联游景点，坐标取周庄古镇中心）。",
+      "source": "cntravelwish",
+      "verified": true
+    },
+    "张厅": {
+      "name": "张厅",
+      "lng": 120.850547,
+      "lat": 31.113787,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:30-21:00",
+      "intro": "周庄张厅，周庄古镇仅存的明代建筑之一（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南湖": {
+      "name": "南湖",
+      "lng": 120.766647,
+      "lat": 30.761012,
+      "category": "nature",
+      "intro": "嘉兴南湖，联游景点（来源为个人经纬度记录表，精度有限）。",
+      "source": "个人经纬度记录表",
+      "verified": true
+    },
+    "沈万三故居": {
+      "name": "沈万三故居",
+      "lng": 120.857932,
+      "lat": 31.11246,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "08:30-16:30",
+      "intro": "周庄沈万三故居，还原江南巨富生活场景（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "同里退思园": {
+      "name": "同里退思园",
+      "lng": 120.720277,
+      "lat": 31.157835,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "退思园，与\"退思园\"为同一景点，世界文化遗产。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "嘉荫堂": {
+      "name": "嘉荫堂",
+      "lng": 120.717962,
+      "lat": 31.157607,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "4月-10月 07:30-17:30;11月-次年3月 08:30-17:00",
+      "intro": "嘉荫堂，同里古镇明代建筑，氛围安静。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "三桥": {
+      "name": "三桥",
+      "lng": 120.71754,
+      "lat": 31.158,
+      "category": "attraction",
+      "intro": "同里三桥（太平桥、吉利桥、长庆桥），同里古镇标志性水乡桥梁。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "珍珠塔": {
+      "name": "珍珠塔",
+      "lng": 120.718127,
+      "lat": 31.160046,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-22:00",
+      "intro": "珍珠塔景园，同里最大的园林，锡剧《珍珠塔》旧宅原型。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "严家花园": {
+      "name": "严家花园",
+      "lng": 120.508964,
+      "lat": 31.252871,
+      "category": "attraction",
+      "rating": 4.8,
+      "intro": "严家花园，木渎古镇江南古典园林（联游景点）。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "历史文物陈列馆",
+    "沈厅",
+    "木渎太湖",
+    "虹饮山房",
+    "灵岩寺"
+  ]
+}

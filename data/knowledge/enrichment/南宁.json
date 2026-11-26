@@ -1,0 +1,78 @@
+{
+  "city": "南宁",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图",
+    "POI数据"
+  ],
+  "places": {
+    "青秀山风景区": {
+      "name": "青秀山风景区",
+      "lng": 108.38712,
+      "lat": 22.78737,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "06:00-24:00 | 观光车、小火车 08:00-18:00",
+      "intro": "南宁的绿肺，山不高而秀，水不深而清。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "广西民族博物馆": {
+      "name": "广西民族博物馆",
+      "lng": 108.401274,
+      "lat": 22.773827,
+      "category": "museum",
+      "rating": 4.7,
+      "hours": "周一不开放;周二至周日 09:00-17:00（16:15停止入园）",
+      "intro": "可感受壮、瑶、侗、毛南等多个少数民族的风俗民情。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "民族大道": {
+      "name": "民族大道",
+      "lng": 108.406841,
+      "lat": 22.813049,
+      "category": "street",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "南湖公园": {
+      "name": "南湖公园",
+      "lng": 108.35404,
+      "lat": 22.805731,
+      "category": "park",
+      "rating": 4.8,
+      "hours": "全天开放",
+      "intro": "环境整洁景色宜人，空气特别清新。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中山路": {
+      "name": "中山路",
+      "lng": 108.323847,
+      "lat": 22.807751,
+      "category": "street",
+      "intro": "南宁知名美食夜市街区所在道路。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "德天瀑布": {
+      "name": "广西德天跨国瀑布景区",
+      "lng": 106.795,
+      "lat": 22.818988,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "日场 07:30-18:30（17:00停止入园）;夜场 17:30-22:20（20:10停止入园）",
+      "intro": "中越边境跨国瀑布，电视剧《花千骨》取景地之一。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [],
+  "center": [
+    108.35,
+    22.78
+  ],
+  "centerSource": "联网核实（腾讯地图/城市经纬度表）"
+}

@@ -1,0 +1,146 @@
+{
+  "city": "故宫",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    116.397,
+    39.917
+  ],
+  "places": {
+    "午门": {
+      "name": "故宫博物院-午门",
+      "lng": 116.397161,
+      "lat": 39.913895,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "旺季周二至周日08:30-17:00；淡季08:30-16:30；周一闭馆",
+      "intro": "故宫正门，平面呈凹字形，上有五座楼阁，是游客进入故宫的入口。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "内金水桥": {
+      "name": "内金水桥",
+      "lng": 116.397193,
+      "lat": 39.914429,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "09:00-21:00",
+      "intro": "太和门广场前横跨内金水河的五座汉白玉石桥。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "协和门": {
+      "name": "协和门",
+      "lng": 116.398474,
+      "lat": 39.914689,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "08:30-17:00",
+      "intro": "故宫外朝东侧的屋宇式大门。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "熙和门": {
+      "name": "故宫-熙和门",
+      "lng": 116.395944,
+      "lat": 39.914572,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "08:30-17:00",
+      "intro": "故宫外朝西侧的屋宇式大门，黄琉璃瓦单檐歇山顶。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "文华殿": {
+      "name": "故宫博物院-文华殿",
+      "lng": 116.399291,
+      "lat": 39.915494,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "08:30-16:00",
+      "intro": "故宫常在此举办书画特展，需预约参观。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "武英殿": {
+      "name": "武英殿",
+      "lng": 116.394609,
+      "lat": 39.915247,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "淡季08:30-16:30；旺季周二至周日08:30-17:00",
+      "intro": "故宫西侧的宫殿，明末李自成曾在此短暂登基。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "太和门": {
+      "name": "太和门",
+      "lng": 116.397213,
+      "lat": 39.915209,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "旺季08:30-17:00；淡季08:30-16:30；周一不开放",
+      "intro": "外朝宫殿正门，门前一对明代铜狮为故宫六对铜狮中最大的一对。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "体仁阁": {
+      "name": "体仁阁",
+      "lng": 116.398389,
+      "lat": 39.916359,
+      "category": "attraction",
+      "hours": "08:30-17:00",
+      "intro": "太和殿广场东侧的建筑，清代曾为内务府银库。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "弘义阁": {
+      "name": "故宫博物院-弘义阁",
+      "lng": 116.395815,
+      "lat": 39.916264,
+      "category": "attraction",
+      "rating": 3.7,
+      "hours": "周二至周日08:30-12:00",
+      "intro": "太和殿广场西侧的建筑，清代曾为内务府银库。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "太和殿": {
+      "name": "太和殿",
+      "lng": 116.39711,
+      "lat": 39.917091,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "旺季08:30-17:00；淡季08:30-16:30；周一不开放",
+      "intro": "俗称金銮殿，外朝三大殿之一，屋脊角安设十个脊兽。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中和殿": {
+      "name": "中和殿",
+      "lng": 116.397012,
+      "lat": 39.917879,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "旺季08:30-17:00；淡季08:30-16:30；周一不开放",
+      "intro": "外朝三大殿之一，位于太和殿与保和殿之间。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "保和殿": {
+      "name": "故宫博物院-保和殿",
+      "lng": 116.397004,
+      "lat": 39.918504,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "4月-10月08:30-17:00；11月-次年3月08:30-16:30；周一关闭",
+      "intro": "外朝三大殿之一，清代科举殿试的最后一站。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

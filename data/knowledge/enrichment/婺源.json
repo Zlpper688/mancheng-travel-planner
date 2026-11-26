@@ -1,0 +1,120 @@
+{
+  "city": "婺源",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": ["腾讯地图"],
+  "center": [117.7543, 29.3234],
+  "places": {
+    "婺源县城博物馆": {
+      "name": "婺源博物馆",
+      "lng": 117.857153,
+      "lat": 29.276602,
+      "category": "museum",
+      "rating": 4.8,
+      "hours": "周二至周日08:30-16:30（16:30停止入园）；周一不开放",
+      "intro": "位于婺源县城，收藏展示徽州历史文物，有专业讲解人员。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "月亮湾": {
+      "name": "月亮湾景区",
+      "lng": 117.885576,
+      "lat": 29.301538,
+      "category": "nature",
+      "rating": 4.8,
+      "hours": "08:00-17:00",
+      "intro": "最美的水中沙洲，油菜花点缀下呈水墨山水般风景，位于秋口镇。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "李坑": {
+      "name": "李坑风景区",
+      "lng": 117.929005,
+      "lat": 29.324664,
+      "category": "attraction",
+      "rating": 4.2,
+      "hours": "08:00-17:30",
+      "intro": "南宋徽派民居古村，以小桥流水人家的徽派景象著称，国家4A级景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "汪口": {
+      "name": "汪口景区",
+      "lng": 117.994208,
+      "lat": 29.3489,
+      "category": "attraction",
+      "rating": 4.6,
+      "hours": "07:30-18:30",
+      "intro": "中国历史文化名村，汪口俞氏宗祠为全国重点文物保护单位，保留古朴民风。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "江湾": {
+      "name": "江湾景区",
+      "lng": 118.051681,
+      "lat": 29.369783,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "08:00-17:30（17:30停止入园）",
+      "intro": "国家级景区，徽派建筑布局极具特色，江湾村民居为江西省文物保护单位。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "晓起": {
+      "name": "晓起景区",
+      "lng": 118.023385,
+      "lat": 29.397009,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "08:00-17:00",
+      "intro": "被称为“生态家园”，被认为是婺源风景最美的村庄，古朴典雅。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "江岭": {
+      "name": "江岭风景区",
+      "lng": 118.033111,
+      "lat": 29.453719,
+      "category": "attraction",
+      "rating": 4.8,
+      "hours": "07:30-18:00",
+      "intro": "中国四大花海之一的江岭油菜花海梯田，婺源最著名的油菜花观赏地。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "思溪延村": {
+      "name": "思溪延村景区",
+      "lng": 117.7932,
+      "lat": 29.337496,
+      "category": "attraction",
+      "rating": 4.5,
+      "hours": "08:00-17:30",
+      "intro": "始建于南宋的徽派古村，可远望田园村舍，田园风光秀美。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "彩虹桥": {
+      "name": "彩虹桥景区",
+      "lng": 117.775228,
+      "lat": 29.414772,
+      "category": "attraction",
+      "rating": 4.3,
+      "hours": "07:30-18:00",
+      "intro": "位于清华镇，婺源标志之一，始建于南宋的廊桥，全国重点文物保护单位。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "石城周边游": {
+      "name": "石城红枫景区",
+      "lng": 117.595058,
+      "lat": 29.460908,
+      "category": "nature",
+      "rating": 4.3,
+      "hours": "04:00-24:00",
+      "intro": "位于大鄣山乡，山下大片林场、山上有两座村庄，以秋枫晨雾景观深受摄影爱好者青睐。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

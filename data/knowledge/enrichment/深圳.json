@@ -1,0 +1,96 @@
+{
+  "city": "深圳",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    114.0579,
+    22.5435
+  ],
+  "places": {
+    "地王大厦": {
+      "name": "地王大厦",
+      "lng": 114.109757,
+      "lat": 22.542374,
+      "category": "attraction",
+      "intro": "深圳地标性摩天大楼，曾为亚洲第一高楼。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中英街": {
+      "name": "中英街",
+      "lng": 114.231621,
+      "lat": 22.544551,
+      "category": "street",
+      "intro": "深圳沙头角中英街，深港边界历史街区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "小梅沙": {
+      "name": "小梅沙沙滩",
+      "lng": 114.328366,
+      "lat": 22.600864,
+      "category": "beach",
+      "intro": "深圳东部著名海滨度假区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "中信明斯克航母": {
+      "name": "明斯克航母世界",
+      "lng": 114.23701,
+      "lat": 22.55377,
+      "category": "attraction",
+      "intro": "以明斯克号航空母舰为主题的主题公园。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "锦绣中华": {
+      "name": "锦绣中华民俗村",
+      "lng": 113.988341,
+      "lat": 22.531061,
+      "category": "attraction",
+      "intro": "深圳锦绣中华与中国民俗文化村主题景区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "东门": {
+      "name": "东门步行街",
+      "lng": 114.122381,
+      "lat": 22.547895,
+      "category": "street",
+      "intro": "深圳老东门商业步行街，著名购物区。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "世界之窗": {
+      "name": "世界之窗",
+      "lng": 113.97296,
+      "lat": 22.534641,
+      "category": "attraction",
+      "intro": "深圳世界之窗主题公园，微缩世界各地名胜。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "地王观光": {
+      "name": "地王大厦-深港之窗观光层",
+      "lng": 114.110603,
+      "lat": 22.5427,
+      "category": "viewpoint",
+      "intro": "地王大厦顶层观光层，可俯瞰深圳与香港景色。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "欢乐谷": {
+      "name": "深圳欢乐谷",
+      "lng": 113.980509,
+      "lat": 22.541652,
+      "category": "attraction",
+      "intro": "深圳大型主题乐园。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": []
+}

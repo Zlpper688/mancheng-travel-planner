@@ -1,0 +1,83 @@
+{
+  "city": "五台山",
+  "verifiedAt": "2026-11-25",
+  "method": "websearch",
+  "sources": [
+    "腾讯地图"
+  ],
+  "center": [
+    113.59,
+    39.01
+  ],
+  "places": {
+    "中台": {
+      "name": "中台",
+      "lng": 113.57279,
+      "lat": 39.03025,
+      "category": "viewpoint",
+      "rating": 4,
+      "hours": "全天",
+      "intro": "五台山中台翠岩峰，五台山五座台顶之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "西台": {
+      "name": "西台",
+      "lng": 113.497279,
+      "lat": 39.038397,
+      "category": "viewpoint",
+      "rating": 4.7,
+      "hours": "全天",
+      "intro": "五台山西台挂月峰，五台山五座台顶之一。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "吉祥寺": {
+      "name": "吉祥寺",
+      "lng": 113.529959,
+      "lat": 39.031651,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "06:30-18:00",
+      "intro": "五台山吉祥寺，五台山景区寺庙。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "狮子窝": {
+      "name": "狮子窝",
+      "lng": 113.505693,
+      "lat": 39.00435,
+      "category": "temple",
+      "rating": 4.3,
+      "hours": "06:30-18:00",
+      "intro": "五台山狮子窝，五台山景区寺庙，位于台怀镇西侧。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "金阁寺": {
+      "name": "金阁寺",
+      "lng": 113.509873,
+      "lat": 38.966496,
+      "category": "temple",
+      "rating": 4.4,
+      "intro": "五台山金阁寺，以铜铸文殊像著称（坐标为金阁寺塔林）。",
+      "source": "腾讯地图",
+      "verified": true
+    },
+    "佛母洞": {
+      "name": "佛母洞",
+      "lng": 113.568908,
+      "lat": 38.938793,
+      "category": "attraction",
+      "rating": 4.4,
+      "hours": "07:00-18:00(16:30停止入园)",
+      "intro": "五台山佛母洞，五台山著名石窟景点。",
+      "source": "腾讯地图",
+      "verified": true
+    }
+  },
+  "unverified": [
+    "总行程",
+    "南台"
+  ]
+}
