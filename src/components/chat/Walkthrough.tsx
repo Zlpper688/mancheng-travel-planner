@@ -434,7 +434,7 @@ export default function Walkthrough({
         </div>
 
         <div className="flex items-center gap-1 px-3 pt-2">
-          <span className="mr-0.5 inline-flex shrink-0 items-center gap-1 rounded-full bg-jade-soft px-2 py-0.5 text-[9.5px] text-jade">
+          <span className="mr-0.5 inline-flex shrink-0 items-center gap-1 rounded-full bg-jade-soft px-2 py-0.5 text-micro text-jade">
             <Icon name="footprints" size={9} />
             导览
           </span>
@@ -461,7 +461,7 @@ export default function Walkthrough({
             type="button"
             onClick={toggleFollow}
             className={cn(
-              "inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-1 text-[9.5px] transition",
+              "inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-1 text-micro transition",
               follow
                 ? "border-jade/40 bg-jade-soft text-jade"
                 : "border-line text-ink-faint hover:text-ink",
@@ -498,7 +498,7 @@ export default function Walkthrough({
         <div className="min-h-[92px] px-4 pb-2 pt-1.5">
           {!route ? (
             <>
-              <p className="text-[9.5px] tracking-[0.16em] text-ink-faint">
+              <p className="text-micro tracking-[0.16em] text-ink-faint">
                 DAY {dayIndex} · 留白
               </p>
               <h3 className="mt-0.5 font-serif text-[17px] leading-snug text-ink">
@@ -510,7 +510,7 @@ export default function Walkthrough({
             </>
           ) : done && route ? (
             <>
-              <p className="text-[9.5px] tracking-[0.16em] text-ink-faint">
+              <p className="text-micro tracking-[0.16em] text-ink-faint">
                 DAY {route.dayIndex} · 完成
               </p>
               <h3 className="mt-0.5 font-serif text-[17px] leading-snug text-ink">
@@ -523,7 +523,7 @@ export default function Walkthrough({
             </>
           ) : current?.kind === "travel" ? (
             <>
-              <p className="text-[9.5px] tracking-[0.16em] text-ink-faint">
+              <p className="text-micro tracking-[0.16em] text-ink-faint">
                 DAY {route?.dayIndex} · 在路上
               </p>
               <h3 className="mt-0.5 font-serif text-[17px] leading-snug text-ink">
@@ -539,7 +539,7 @@ export default function Walkthrough({
             </>
           ) : current && dwellStop ? (
             <>
-              <p className="text-[9.5px] tracking-[0.16em] text-ink-faint">
+              <p className="text-micro tracking-[0.16em] text-ink-faint">
                 DAY {route?.dayIndex} · 第 {dwellStop.index + 1} / {totalStops} 站
               </p>
               <div className="flex flex-wrap items-baseline gap-x-2">

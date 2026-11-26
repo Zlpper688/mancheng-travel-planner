@@ -14,6 +14,7 @@ import {
   readLocalKnowledge,
 } from "../providers/knowledge";
 import { DEFAULT_PARAMS } from "./params";
+import { withSlots } from "./slots";
 import type { DiscoverOptions, DiscoverResult } from "../providers/types";
 import { cityShortName } from "../providers/normalize";
 import {
@@ -689,7 +690,9 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
 
   const plan: PlanResult = {
     meta,
-    days,
+    // 时段级视图：stops 仍是排线真源，slots 是按 startMin 投影出的 6 段，
+    // 供前端分段展示、局部替换、结构完整性检查使用（宪法 Step 2）。
+    days: days.map(withSlots),
     budget,
     warnings: warnings.filter((warning) => {
       if (!warning || seen.has(warning)) return false;

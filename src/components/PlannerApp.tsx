@@ -929,7 +929,7 @@ export default function PlannerApp({
               <p className="font-serif text-[19px] tracking-[0.22em] text-ink">
                 漫城
               </p>
-              <span className="hidden text-[9.5px] tracking-[0.28em] text-ink-faint sm:inline">
+              <span className="hidden text-micro tracking-[0.28em] text-ink-faint sm:inline">
                 MANCHENG
               </span>
             </div>
@@ -1089,7 +1089,7 @@ export default function PlannerApp({
                 {selectedPlaces.length ? (
                   <span
                     className={cn(
-                      "rounded-full px-1.5 py-0.5 text-[9.5px] leading-none",
+                      "rounded-full px-1.5 py-0.5 text-micro leading-none",
                       view === "catalog"
                         ? "bg-paper/20 text-paper"
                         : "bg-accent text-paper",
@@ -1100,7 +1100,7 @@ export default function PlannerApp({
                 ) : catalog ? (
                   <span
                     className={cn(
-                      "rounded-full px-1.5 py-0.5 text-[9.5px] leading-none",
+                      "rounded-full px-1.5 py-0.5 text-micro leading-none",
                       view === "catalog"
                         ? "bg-paper/20 text-paper"
                         : "bg-paper-deep text-ink-faint",

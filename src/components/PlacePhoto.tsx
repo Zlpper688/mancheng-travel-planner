@@ -175,7 +175,7 @@ export default function PlacePhoto({
             </span>
             {compact ? null : (
               <span
-                className="mt-2 text-[9px] tracking-[0.3em]"
+                className="mt-2 text-micro tracking-[0.3em]"
                 style={{ color: tint.ink, opacity: 0.6 }}
               >
                 MANCHENG
@@ -217,7 +217,7 @@ export default function PlacePhoto({
           rel="noreferrer noopener"
           onClick={(event) => event.stopPropagation()}
           title={credit ? `${photo.source} · ${credit}` : photo.source}
-          className="absolute bottom-2 right-2 rounded-full bg-ink/60 px-2 py-1 text-[9.5px] text-paper/95 backdrop-blur-sm transition hover:bg-ink/80"
+          className="absolute bottom-2 right-2 rounded-full bg-ink/60 px-2 py-1 text-micro text-paper/95 backdrop-blur-sm transition hover:bg-ink/80"
         >
           {photo.source}
         </a>

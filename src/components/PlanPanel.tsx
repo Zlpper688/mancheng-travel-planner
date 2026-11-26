@@ -17,6 +17,11 @@ import {
   minutesToTime,
   weekdayCN,
 } from "@/lib/geo";
+import {
+  SLOT_PERIOD_LABELS,
+  type DaySlot,
+  type SlotPeriod,
+} from "@/lib/types";
 import type {
   BudgetItem,
   DayPlan,
@@ -125,7 +130,7 @@ function StrategyStrip({ day }: { day: DayPlan }) {
         <Icon name="route" size={12} />
         今日走法
         {day.heroName ? (
-          <span className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-[9.5px] font-normal text-ink-soft">
+          <span className="inline-flex items-center gap-0.5 rounded-full bg-card/80 px-1.5 py-0.5 text-micro font-normal text-ink-soft">
             <Icon name="star" size={8} className="text-amber" />
             主景 · {day.heroName}
           </span>
@@ -158,7 +163,7 @@ function TipCard({ tip }: { tip: PlanTip }) {
       <p className="mt-1 text-[11.5px] leading-relaxed text-ink-soft">
         {tip.body}
       </p>
-      <p className="mt-1.5 text-[9.5px] text-ink-faint">{tip.source}</p>
+      <p className="mt-1.5 text-micro text-ink-faint">{tip.source}</p>
     </div>
   );
 }
@@ -233,7 +238,7 @@ function LegRow({ leg }: { leg: RouteLeg }) {
           </span>
         ) : null}
         {leg.estimated ? (
-          <span className="rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
+          <span className="rounded bg-amber-soft px-1 py-px text-micro text-amber">
             估算
           </span>
         ) : null}
@@ -316,7 +321,7 @@ function StopRow({
               {stop.place.name}
             </span>
             {stop.flexible ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 self-center rounded bg-jade-soft px-1.5 py-px text-[9.5px] text-jade">
+              <span className="inline-flex shrink-0 items-center gap-0.5 self-center rounded bg-jade-soft px-1.5 py-px text-micro text-jade">
                 <Icon name="clock" size={8} />
                 自由选
               </span>
@@ -326,13 +331,13 @@ function StopRow({
               </span>
             )}
             {hero ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-micro text-amber">
                 <Icon name="star" size={8} />
                 主景
               </span>
             ) : null}
             {locked ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[9.5px] text-jade">
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-micro text-jade">
                 <Icon name="lock" size={8} />
                 锁定
               </span>
@@ -374,7 +379,7 @@ function StopRow({
           {stop.attrs.map((attr) => (
             <span
               key={attr}
-              className="rounded bg-jade-soft/70 px-1.5 py-px text-[9.5px] text-jade"
+              className="rounded bg-jade-soft/70 px-1.5 py-px text-micro text-jade"
             >
               {attr}
             </span>
@@ -524,7 +529,7 @@ function WeatherChart({
     <div className="mt-2">
       {showTemp ? (
         <div className="flex items-center gap-1.5">
-          <span className="shrink-0 text-[9.5px] text-ink-faint">气温</span>
+          <span className="shrink-0 text-micro text-ink-faint">气温</span>
           <svg
             viewBox="0 0 24 100"
             preserveAspectRatio="none"
@@ -544,7 +549,7 @@ function WeatherChart({
               />
             ))}
           </svg>
-          <span className="shrink-0 text-[9.5px] tabular-nums text-ink-faint">
+          <span className="shrink-0 text-micro tabular-nums text-ink-faint">
             {Math.round(tempMin)}°~{Math.round(tempMax)}°
           </span>
         </div>
@@ -584,7 +589,7 @@ function WeatherChart({
               );
             })}
           </div>
-          <div className="mt-0.5 flex justify-between text-[9.5px] tabular-nums text-ink-faint">
+          <div className="mt-0.5 flex justify-between text-micro tabular-nums text-ink-faint">
             <span>0 时</span>
             <span>6</span>
             <span>12</span>
@@ -644,7 +649,7 @@ function WeatherStrip({ weather }: { weather: DayWeather }) {
             <span className="text-jade">雨天备选：{weather.backup.name}</span>
           ) : null}
           {weather.estimated ? (
-            <span className="rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
+            <span className="rounded bg-amber-soft px-1 py-px text-micro text-amber">
               去年同期气候
             </span>
           ) : null}
@@ -671,7 +676,7 @@ function LodgingCard({ lodging }: { lodging: LodgingPlan }) {
               <span className="text-[11.5px] font-medium text-ink">
                 {base.name}
               </span>
-              <span className="text-[9.5px] tracking-wide text-ink-faint">
+              <span className="text-micro tracking-wide text-ink-faint">
                 {base.role === "main" ? "主住" : "可选换宿"}
                 {base.nights.length ? ` · 第 ${base.nights.join("、")} 晚` : ""}
               </span>
@@ -688,6 +693,48 @@ function LodgingCard({ lodging }: { lodging: LodgingPlan }) {
           {lodging.notes.join(" ")}
         </p>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * 六段骨架条：把一天的时段结构摊开给人看。
+ * 有内容的段显示意图，空段给留白话术（不静默留白）。这是宪法 Step 2 的展示入口；
+ * stops 逐条列表仍是排线真源，这里只做结构概览，零回归。
+ */
+function SlotStrip({ slots }: { slots?: DaySlot[] }) {
+  if (!slots?.length) return null;
+  const label = (period: SlotPeriod) => SLOT_PERIOD_LABELS[period];
+  return (
+    <div className="mt-2 rounded-xl border border-line/70 bg-paper/60 px-2.5 py-2">
+      <div className="flex items-center justify-between">
+        <span className="text-micro text-ink-faint">一天的节奏</span>
+        <span className="text-micro tabular-nums text-ink-faint">
+          {slots.filter((s) => s.stops.length).length}/6 段有安排
+        </span>
+      </div>
+      <div className="mt-1.5 grid grid-cols-3 gap-1.5 sm:grid-cols-6">
+        {slots.map((slot) => {
+          const filled = slot.stops.length > 0;
+          return (
+            <div
+              key={slot.period}
+              title={filled ? slot.stops.map((s) => s.place.name).join("、") : slot.emptyHint}
+              className={cn(
+                "rounded-lg border px-1.5 py-1 text-micro",
+                filled
+                  ? "border-jade/30 bg-jade-soft/60 text-ink"
+                  : "border-line/50 bg-card/60 text-ink-faint",
+              )}
+            >
+              <div className="font-medium">{label(slot.period)}</div>
+              <div className="mt-0.5 truncate">
+                {filled ? (slot.intent ?? `${slot.stops.length} 个点`) : "留白"}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -723,6 +770,7 @@ function DayTimeline({
     <>
       {day.weather ? <WeatherStrip weather={day.weather} /> : null}
       <StrategyStrip day={day} />
+      <SlotStrip slots={day.slots} />
       <div className="relative">
       <span
         className="absolute bottom-5 left-4 top-4 w-px bg-line/80"
@@ -902,13 +950,13 @@ function DayCard({
           </div>
           <p className="mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11.5px] text-ink-faint">
             {day.far ? (
-              <span className="shrink-0 rounded bg-jade-soft px-1 py-px text-[9.5px] tracking-wide text-jade">
+              <span className="shrink-0 rounded bg-jade-soft px-1 py-px text-micro tracking-wide text-jade">
                 远足日
               </span>
             ) : null}
             {day.weather ? (
               <span
-                className="inline-flex shrink-0 items-center gap-0.5 rounded bg-paper px-1 py-px text-[9.5px] text-ink-soft"
+                className="inline-flex shrink-0 items-center gap-0.5 rounded bg-paper px-1 py-px text-micro text-ink-soft"
                 title={`${day.weather.label}${
                   day.weather.precipProb !== undefined
                     ? ` · 降水概率 ${Math.round(day.weather.precipProb)}%`
@@ -929,13 +977,13 @@ function DayCard({
               </span>
             ) : null}
             {day.tips?.length ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-[9.5px] text-jade">
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-jade-soft px-1 py-px text-micro text-jade">
                 <Icon name="sparkles" size={8} />
                 {day.tips.length} 条贴士
               </span>
             ) : null}
             {day.heroName ? (
-              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
+              <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-micro text-amber">
                 <Icon name="star" size={8} />
                 <span className="max-w-[6.5rem] truncate">
                   主景 {day.heroName}
@@ -1128,7 +1176,7 @@ export default function PlanPanel({
                 {plan ? plan.meta.title : "把一座城，走成一个圈"}
               </h2>
               {plan?.meta.isFixed ? (
-                <span className="shrink-0 rounded-full bg-jade-soft px-1.5 py-0.5 text-[9.5px] tracking-wide text-jade">
+                <span className="shrink-0 rounded-full bg-jade-soft px-1.5 py-0.5 text-micro tracking-wide text-jade">
                   {plan.meta.fixedKind === "selected"
                     ? "自选景点"
                     : plan.meta.fixedKind === "mixed"
@@ -1138,7 +1186,7 @@ export default function PlanPanel({
               ) : null}
               {plan?.meta.archetype ? (
                 <span
-                  className="shrink-0 rounded-full bg-amber-soft px-1.5 py-0.5 text-[9.5px] tracking-wide text-amber"
+                  className="shrink-0 rounded-full bg-amber-soft px-1.5 py-0.5 text-micro tracking-wide text-amber"
                   title={plan.meta.archetype.summary}
                 >
                   {plan.meta.archetype.label}

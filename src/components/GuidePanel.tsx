@@ -180,7 +180,7 @@ function GuideDay({
             className="flex h-11 w-11 shrink-0 flex-col items-center justify-center rounded-full text-paper shadow-[0_8px_18px_-12px_rgba(35,42,36,0.7)]"
             style={{ background: day.color }}
           >
-            <span className="text-[9px] tracking-[0.16em] opacity-75">DAY</span>
+            <span className="text-micro tracking-[0.16em] opacity-75">DAY</span>
             <span className="text-[14px] font-semibold leading-none">
               {day.index}
             </span>
@@ -354,7 +354,7 @@ function GuideMealCard({
           {clockRange(stop.startMin, stop.endMin)}
         </span>
         <span>停留 {stop.dwellMin} 分</span>
-        <span className="rounded bg-jade-soft px-1.5 py-px text-[9.5px] text-jade">
+        <span className="rounded bg-jade-soft px-1.5 py-px text-micro text-jade">
           自由选
         </span>
       </p>
@@ -442,7 +442,7 @@ function GuideStopCard({
           {number}
         </span>
         {hero ? (
-          <span className="absolute right-2 top-2 inline-flex items-center gap-0.5 rounded-full bg-amber-soft/95 px-2 py-0.5 text-[9.5px] text-amber backdrop-blur-sm">
+          <span className="absolute right-2 top-2 inline-flex items-center gap-0.5 rounded-full bg-amber-soft/95 px-2 py-0.5 text-micro text-amber backdrop-blur-sm">
             <Icon name="star" size={9} />
             主景
           </span>
@@ -455,7 +455,7 @@ function GuideStopCard({
             {clockRange(stop.startMin, stop.endMin)}
           </span>
           <span>停留 {stop.dwellMin} 分</span>
-          <span className="rounded bg-paper px-1.5 py-px text-[9.5px] text-ink-soft">
+          <span className="rounded bg-paper px-1.5 py-px text-micro text-ink-soft">
             {STOP_KIND_LABELS[stop.kind]}
           </span>
         </p>
@@ -493,7 +493,7 @@ function GuideStopCard({
             {stop.attrs?.slice(0, 3).map((attr) => (
               <span
                 key={attr}
-                className="rounded bg-jade-soft/70 px-1.5 py-px text-[9.5px] text-jade"
+                className="rounded bg-jade-soft/70 px-1.5 py-px text-micro text-jade"
               >
                 {attr}
               </span>

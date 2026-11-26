@@ -530,7 +530,7 @@ export default function GuideImport({
                                   {stop.place.name}
                                 </span>
                                 {stop.confidence < 0.7 ? (
-                                  <span className="shrink-0 rounded bg-amber-soft px-1 py-px text-[9.5px] text-amber">
+                                  <span className="shrink-0 rounded bg-amber-soft px-1 py-px text-micro text-amber">
                                     {stop.confidence < 0.55 ? "低置信" : "相近"}
                                   </span>
                                 ) : null}

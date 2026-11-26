@@ -252,6 +252,55 @@ export interface StopPlan {
   tips?: PlanTip[];
 }
 
+/**
+ * 一天的六个语义时段（宪法：时段级规划单元）。
+ * 时间用「早上/上午/中午/下午/晚上/夜间」这类人话，不纠结分钟；
+ * 精确时间由引擎算，展示时可折叠。
+ */
+export type SlotPeriod =
+  | "early"
+  | "morning"
+  | "noon"
+  | "afternoon"
+  | "evening"
+  | "night";
+
+export const SLOT_PERIODS: SlotPeriod[] = [
+  "early",
+  "morning",
+  "noon",
+  "afternoon",
+  "evening",
+  "night",
+];
+
+export const SLOT_PERIOD_LABELS: Record<SlotPeriod, string> = {
+  early: "早上",
+  morning: "上午",
+  noon: "中午",
+  afternoon: "下午",
+  evening: "晚上",
+  night: "夜间",
+};
+
+/** 时段是最小可编辑单元：局部替换只影响这一段，其余段锁定不变。 */
+export interface DaySlot {
+  period: SlotPeriod;
+  /** 这一段的意图（"轻松逛逛 / 拍照 / 吃本地菜"），缺省由点位类型推断。 */
+  intent?: string;
+  /** 属于这一段的停靠点（引用 stops 里的对象，不复制数据）。 */
+  stops: StopPlan[];
+  /** 该段最早开始 / 最晚结束（分钟）。 */
+  startMin?: number;
+  endMin?: number;
+  /** 上一段到这一段之间的路程（分钟）。 */
+  legFromPrevMin?: number;
+  /** 用户锁定后，重排不得改动这一段。 */
+  locked?: boolean;
+  /** 该段为空时给用户的话术，不静默展示空白。 */
+  emptyHint?: string;
+}
+
 export interface DayStats {
   stopCount: number;
   sightCount: number;
@@ -276,6 +325,8 @@ export interface DayPlan {
   area: string;
   color: string;
   stops: StopPlan[];
+  /** 时段级视图（由 stops 投影而来；stops 仍是排线真源，保持兼容）。 */
+  slots?: DaySlot[];
   legs: RouteLeg[];
   stats: DayStats;
   startMin: number;

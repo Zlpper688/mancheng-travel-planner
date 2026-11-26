@@ -650,7 +650,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
               <span className="font-serif text-[16px] tracking-wide text-ink">
                 漫城
               </span>
-              <span className="rounded-full bg-jade-soft px-1.5 py-0.5 text-[9.5px] text-jade">
+              <span className="rounded-full bg-jade-soft px-1.5 py-0.5 text-micro text-jade">
                 {mode === "ai" ? "对话模式" : "向导模式"}
               </span>
             </div>
@@ -660,7 +660,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
                 : "先定城市，再定时间与玩法"}
             </p>
             {mode === "wizard" && aiReason ? (
-              <p className="mt-0.5 truncate text-[9.5px] text-amber" title={aiReason}>
+              <p className="mt-0.5 truncate text-micro text-amber" title={aiReason}>
                 {aiReason} · 先用向导收信息
               </p>
             ) : null}

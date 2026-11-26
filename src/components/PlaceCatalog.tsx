@@ -474,7 +474,7 @@ function CatalogCard({
             </p>
             <span
               className={cn(
-                "shrink-0 rounded-full px-1.5 py-0.5 text-[9px] leading-none",
+                "shrink-0 rounded-full px-1.5 py-0.5 text-micro leading-none",
                 TIER_BADGE[entry.tier],
               )}
             >
@@ -495,7 +495,7 @@ function CatalogCard({
               {entry.tags.slice(0, 4).map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-paper/80 px-1.5 py-0.5 text-[9px] text-ink-faint"
+                  className="rounded-full bg-paper/80 px-1.5 py-0.5 text-micro text-ink-faint"
                 >
                   {tag}
                 </span>
