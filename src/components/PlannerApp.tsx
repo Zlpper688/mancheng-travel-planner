@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { CatalogResult } from "@/lib/catalog";
 import { QUICK_CITIES } from "@/lib/constants";
@@ -18,6 +19,7 @@ import type {
   TripInput,
 } from "@/lib/types";
 import { Icon } from "./Icon";
+import { journalFromPlan, saveJournal } from "@/lib/journal";
 import {
   buildShareUrl,
   copyText,
@@ -788,6 +790,21 @@ export default function PlannerApp({
     );
   }
 
+  /**
+   * 记下这趟（宪法 C 闭环）：把当前行程自动归档成旅行记录。
+   * 不需要用户填表——配方（recipe）足够别人重排同款，daySnapshots 记录去了什么。
+   */
+  function handleSaveJournal() {
+    if (!plan) return;
+    const recipe = encodeRecipe(currentRecipe());
+    try {
+      saveJournal(journalFromPlan(plan, recipe));
+      setToast("已记下这趟。在「旅行记录」里可以分享，或让别人一键排同款。");
+    } catch {
+      setToast("本地存储写不进去（可能是隐私模式），这趟没能保存。");
+    }
+  }
+
   async function handleCopyGuide() {
     if (!plan) return;
     const text = formatPlanText(
@@ -938,6 +955,14 @@ export default function PlannerApp({
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
+            <Link
+              href="/journal"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-[11px] text-ink-soft transition hover:border-jade/40 hover:text-jade"
+              title="旅行记录：去过哪、花了多少、分享给别人一键排同款"
+            >
+              <Icon name="footprints" size={11} />
+              <span className="hidden sm:inline">旅行记录</span>
+            </Link>
             <span className="hidden items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-[11px] text-ink-soft sm:inline-flex">
               <span className={cn("h-1.5 w-1.5 rounded-full", sourceDot)} />
               {sourceLabel}
@@ -1123,6 +1148,7 @@ export default function PlannerApp({
                 onActiveDay={handleActiveDay}
                 onFocusStop={handleFocusStop}
                 onShuffle={handleShuffle}
+                onSaveJournal={handleSaveJournal}
                 onGenerate={() => void requestPlan()}
                 lockedIds={lockedPlaces.map((item) => item.place.id)}
                 onToggleLock={handleToggleLock}

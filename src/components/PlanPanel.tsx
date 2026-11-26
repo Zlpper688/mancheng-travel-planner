@@ -53,6 +53,8 @@ export interface PlanPanelProps {
   onActiveDay: (day: number | "all") => void;
   onFocusStop: (day: number, placeId: string) => void;
   onShuffle: () => void;
+  /** 记下这趟：把当前行程归档成旅行记录（宪法 C 闭环）。不传则不显示按钮。 */
+  onSaveJournal?: () => void;
   /** 已锁定的点位 id，重排时这些点必须留在原定的那一天。 */
   lockedIds?: string[];
   /** 单点操作是可选的：对话里的手册视图不提供编辑，就不显示按钮。 */
@@ -1131,6 +1133,7 @@ export default function PlanPanel({
   onActiveDay,
   onFocusStop,
   onShuffle,
+  onSaveJournal,
   onGenerate,
   lockedIds = [],
   onToggleLock,
@@ -1200,15 +1203,28 @@ export default function PlanPanel({
             </p>
           </div>
           {plan ? (
-            <button
-              type="button"
-              onClick={onShuffle}
-              disabled={loading}
-              className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-3.5 py-2 text-[12px] text-ink-soft transition hover:border-ink/25 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
-            >
-              <Icon name="shuffle" size={12} />
-              换一版
-            </button>
+            <div className="flex shrink-0 items-center gap-1.5">
+              {onSaveJournal ? (
+                <button
+                  type="button"
+                  onClick={onSaveJournal}
+                  disabled={loading}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-jade/40 bg-jade-soft px-3.5 py-2 text-[12px] text-jade transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <Icon name="check" size={12} />
+                  记下这趟
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={onShuffle}
+                disabled={loading}
+                className="hidden shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-3.5 py-2 text-[12px] text-ink-soft transition hover:border-ink/25 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
+              >
+                <Icon name="shuffle" size={12} />
+                换一版
+              </button>
+            </div>
           ) : null}
         </div>
 
