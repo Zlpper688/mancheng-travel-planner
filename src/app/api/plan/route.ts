@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { TravelError } from "@/lib/errors";
-import { planTrip } from "@/lib/plan/engine";
+import { refinePlan } from "@/lib/plan/refine";
 import { sanitizeTripInput } from "@/lib/plan/validate";
 import { checkPlanRate, clientIp } from "@/lib/rate-limit";
 import type { PlanResponse } from "@/lib/types";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+// 生成-反驳-修订循环在发现明显问题时最多重排 3 轮，放宽到 180 秒。
+export const maxDuration = 180;
 
 export async function POST(request: Request): Promise<NextResponse<PlanResponse>> {
   // 一次排线会消耗 6–10 次高德搜索调用，先挡住刷接口的。
@@ -28,8 +29,17 @@ export async function POST(request: Request): Promise<NextResponse<PlanResponse>
   try {
     const body = await request.json().catch(() => null);
     const input = sanitizeTripInput(body);
-    const plan = await planTrip(input);
-    return NextResponse.json({ plan });
+    // 生成 → 反驳 → 修订：无问题时一轮即返回，有 P0/P1 才自动重排（软参数）。
+    const result = await refinePlan(input);
+    return NextResponse.json({
+      plan: result.plan,
+      refine: {
+        rounds: result.rounds,
+        score: result.score,
+        adjustments: result.adjustments,
+        issueCount: result.issues.length,
+      },
+    });
   } catch (error) {
     if (error instanceof TravelError) {
       return NextResponse.json(

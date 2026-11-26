@@ -431,6 +431,13 @@ export interface PlanResponse {
   error?: string;
   hint?: string;
   code?: string;
+  /** 生成-反驳-修订循环的透明记录（可选，老客户端忽略即可）。 */
+  refine?: {
+    rounds: number;
+    score: number;
+    adjustments: string[];
+    issueCount: number;
+  };
 }
 
 export interface GuideStop {
