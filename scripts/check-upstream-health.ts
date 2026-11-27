@@ -9,17 +9,26 @@
  * 跑法：npx tsx scripts/check-upstream-health.ts
  */
 import assert from "node:assert/strict";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import path from "node:path";
 import {
+  allEndpointsDown,
+  forgetUpstreamHealthMemory,
   isEndpointDown,
   noteEndpointFailure,
   noteEndpointSuccess,
   orderTargets,
+  reloadUpstreamHealth,
   resetUpstreamHealth,
   upstreamHealthSnapshot,
 } from "../src/lib/upstream-health";
 
 const MAIN = "https://overpass-api.de/api/interpreter";
 const MIRROR = "https://maps.mail.ru/osm/tools/overpass/api/interpreter";
+
+/** 独立缓存根，避免污染开发时真正的 .cache/。 */
+const TEST_ROOT = path.join(process.cwd(), ".cache-health-check");
+process.env.MC_CACHE_ROOT = TEST_ROOT;
 
 function main() {
   console.log("1) 无记录时端点视为健康，顺序不变");
@@ -99,8 +108,103 @@ function main() {
   }
   console.log("  ✓ 冷却到期自动恢复");
 
+  /* ---------- 落盘：跨进程记忆 ---------- */
+  // 为什么必须落盘：Next.js 每次重启、每个 worker 都是新进程。
+  // 只存在内存里的话，「overpass-api.de 是死的」这条结论每个新进程都要重学一遍，
+  // 代价就是每个冷请求白等 6 秒——而这条结论本该只学一次。
+
+  console.log("8) 失败记录落盘：清空内存后重新加载仍然生效");
   resetUpstreamHealth();
-  console.log("\n通过：排序 / 不丢源 / 恢复 / 退避 / 全故障降级 / 自动过期");
+  noteEndpointFailure(MAIN);
+  const healthDir = path.join(TEST_ROOT, "health");
+  assert.ok(existsSync(healthDir), `熔断状态应写入 ${healthDir}`);
+  const written = readdirSync(healthDir).filter((n) => n.endsWith(".json"));
+  assert.ok(written.length >= 1, "反空转：必须真的写出文件，而不是只改内存");
+  // 模拟重启：只清内存，磁盘保留。
+  // 注意不能断言「清内存后先变成未知」——ensureLoaded 是懒加载，
+  // 下一次访问就会把磁盘读回来，那正是我们要的行为。
+  forgetUpstreamHealthMemory();
+  assert.equal(
+    isEndpointDown(MAIN),
+    true,
+    "新进程的第一次访问就该从磁盘恢复「这个端点刚挂过」",
+  );
+  reloadUpstreamHealth();
+  assert.equal(isEndpointDown(MAIN), true, "显式重载后同样成立");
+  assert.deepEqual(
+    orderTargets([{ url: MAIN }, { url: MIRROR }]).map((t) => t.url),
+    [MIRROR, MAIN],
+    "重启后的第一个请求就该走镜像，而不是再等主站超时一次",
+  );
+  console.log(`  ✓ 重启后仍记得（落盘文件 ${written.length} 个）`);
+
+  console.log("9) 成功一次后，磁盘上的失败记录也被清掉");
+  noteEndpointSuccess(MAIN);
+  forgetUpstreamHealthMemory();
+  reloadUpstreamHealth();
+  assert.equal(isEndpointDown(MAIN), false, "成功过的端点重启后不该被当成故障");
+  console.log("  ✓ 成功即清盘，不会把已恢复的端点永久拉黑");
+
+  console.log("10) 落盘文件损坏时当作空记录，不抛错");
+  resetUpstreamHealth();
+  mkdirSync(healthDir, { recursive: true });
+  for (const name of readdirSync(healthDir)) {
+    if (name.endsWith(".json")) {
+      writeFileSync(path.join(healthDir, name), "{ this is not json", "utf8");
+    }
+  }
+  forgetUpstreamHealthMemory();
+  reloadUpstreamHealth();
+  assert.equal(isEndpointDown(MAIN), false, "损坏文件应退化为「没有记录」");
+  assert.deepEqual(
+    orderTargets([{ url: MAIN }, { url: MIRROR }]).map((t) => t.url),
+    [MAIN, MIRROR],
+    "没有可用记录时保持原顺序",
+  );
+  console.log("  ✓ 损坏降级为无记录，排序回到原样");
+
+  console.log("11) allEndpointsDown：可选补充源的全故障判定");
+  resetUpstreamHealth();
+  assert.equal(allEndpointsDown([]), false, "空列表不该被当成「全挂」");
+  assert.equal(allEndpointsDown([MAIN]), false, "没有记录时不算挂");
+  noteEndpointFailure(MAIN);
+  assert.equal(allEndpointsDown([MAIN]), true, "唯一端点挂了就该判定为全挂");
+  assert.equal(allEndpointsDown([MAIN, MIRROR]), false, "还有一个健康就不能说全挂");
+  noteEndpointFailure(MIRROR);
+  assert.equal(allEndpointsDown([MAIN, MIRROR]), true, "两个都挂才是全挂");
+  noteEndpointSuccess(MIRROR);
+  assert.equal(allEndpointsDown([MAIN, MIRROR]), false, "有端点恢复后立即不再全挂");
+  console.log("  ✓ 全挂判定与恢复都正确");
+
+  console.log("12) 餐饮这类可选源必须真的用上「全挂就跳过」");
+  // 守卫要能变红：把 open.ts 里的 skipIfAllDown 删掉，这条就该失败。
+  // 没有这条，第 11 条测的只是一个没人调用的函数。
+  const openSource = readFileSync(
+    path.join(process.cwd(), "src", "lib", "providers", "open.ts"),
+    "utf8",
+  );
+  const optionalCalls = openSource.match(
+    /overpassQuery\([^)]*skipIfAllDown:\s*true[^)]*\)/g,
+  );
+  assert.ok(
+    optionalCalls && optionalCalls.length >= 1,
+    "至少有一个 overpassQuery 调用要带 skipIfAllDown: true（餐饮等可选补充源）",
+  );
+  // 关键源（景点）绝不能开这个开关：那里宁可多试一次也不能断流。
+  const scenicCall = openSource.match(
+    /overpassQuery\(scenicQuery,[^)]*\)/,
+  );
+  assert.ok(scenicCall, "反空转：必须能找到景点查询的调用点");
+  assert.ok(
+    !/skipIfAllDown/.test(scenicCall[0]),
+    "景点是关键数据源，不能因为熔断就跳过——那会让整座城市没有点位",
+  );
+  console.log(`  ✓ 可选源 ${optionalCalls.length} 处开启跳过，关键源未开`);
+
+  resetUpstreamHealth();
+  console.log(
+    "\n通过：排序 / 不丢源 / 恢复 / 退避 / 全故障降级 / 自动过期 / 跨进程落盘 / 损坏降级 / 可选源跳过",
+  );
 }
 
 try {

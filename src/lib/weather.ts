@@ -1,5 +1,8 @@
+import path from "node:path";
 import { cached, fetchJson, mapLimit } from "./cache";
+import { cacheRoot } from "./disk-cache";
 import { addDaysISO, todayISOLocal } from "./geo";
+import { persistentCache } from "./persistent-cache";
 import type { HourlyPoint, RainWindow, WeatherIcon } from "./types";
 
 const FORECAST_URL = "https://api.open-meteo.com/v1/forecast";
@@ -371,7 +374,32 @@ export async function fetchTripWeather(
     unique.map((point) => pointKey(point.lat, point.lng)).join("|"),
   ].join(":");
   try {
-    return await cached(key, CACHE_TTL_MS, () => loadWeather(unique, startDate, days));
+    // 天气是纯外部查询，重启后没必要重问一遍：落盘 + 内存两层。
+    // 注意 days 是 Map，必须显式序列化——直接 JSON.stringify 会变成 `{}`，
+    // 读回来是个「看着正常、其实空的」bundle，比没缓存更危险。
+    return await persistentCache<WeatherBundle>({
+      dir: path.join(cacheRoot(), "weather"),
+      key,
+      ttlMs: CACHE_TTL_MS,
+      load: () => loadWeather(unique, startDate, days),
+      serialize: (bundle) => ({
+        kind: bundle.kind,
+        points: bundle.points,
+        days: [...bundle.days.entries()],
+      }),
+      deserialize: (raw) => {
+        const record = raw as {
+          kind: WeatherBundle["kind"];
+          points: WeatherBundle["points"];
+          days: [string, WeatherBundle["days"] extends Map<string, infer V> ? V : never][];
+        };
+        return {
+          kind: record.kind,
+          points: record.points,
+          days: new Map(record.days),
+        };
+      },
+    });
   } catch {
     return null;
   }

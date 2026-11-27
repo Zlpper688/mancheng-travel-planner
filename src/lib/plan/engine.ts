@@ -411,6 +411,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   // 酒店不是出发前必须知道的事：没定住处时，先按点位分布推荐落脚片区，
   // 后面的选点、排线和预算都用这个“基地”作为每天往返的锚点。
   const lodging = planLodging(input, planSights);
+  cursor = phase("lodging", cursor);
   const base = lodging.base;
   const trip: TripInput = { ...input, hotel: base };
 
@@ -423,6 +424,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const wishlist = buildWishlist(input.city, planSights, 14).filter(
     (goal) => !avoidSteep || goal.experience !== "hike",
   );
+  cursor = phase("wishlist", cursor);
 
   const selectedPlan = input.selectedPlaces?.length
     ? distributeSelectedPlaces(input.selectedPlaces, {
@@ -478,6 +480,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   const selection = isRegion
     ? selectRegionDays(selectionInput, params)
     : selectDays(selectionInput);
+  cursor = phase(`select(${planSights.length}候选)`, cursor);
 
   const warnings: string[] = [];
   if (selectedPlan?.warnings.length) warnings.push(...selectedPlan.warnings);
@@ -728,11 +731,17 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
       .filter((place) => Boolean(place.note?.trim()))
       .map((place) => place.id),
   );
+  const enrichStarted = Date.now();
   await enrichPlacesFromWikidata(enrichTargets, {
     maxNames: 40,
     city: input.city,
     budgetMs: 6_000,
   });
+  if (timing) {
+    console.error(
+      `[timing] ${input.city} enrichPlacesFromWikidata ${Date.now() - enrichStarted}ms 目标 ${enrichTargets.length} 个`,
+    );
+  }
   cursor = phase("enrich", cursor);
   for (const day of days) {
     for (const stop of day.stops) {

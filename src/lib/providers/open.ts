@@ -35,6 +35,7 @@ import { withinBoundary } from "./sniff/shared";
 import {
   noteEndpointFailure,
   noteEndpointSuccess,
+  allEndpointsDown,
   orderTargets,
 } from "../upstream-health";
 import type {
@@ -154,12 +155,27 @@ async function overpassQuery(
     allowMirror?: boolean;
     timeoutMs?: number;
     mirrorTimeoutMs?: number;
+    /**
+     * 可选补充源用：所有端点都在冷却时直接返回 null，不要为注定失败的请求白等。
+     * 关键数据源（景点）**不能**开这个——那里必须宁可多试一次也不能断流。
+     */
+    skipIfAllDown?: boolean;
   } = {},
 ): Promise<Place[] | null> {
-  const { allowMirror = false, timeoutMs = 6_000, mirrorTimeoutMs = 28_000 } = options;
+  const {
+    allowMirror = false,
+    timeoutMs = 6_000,
+    mirrorTimeoutMs = 28_000,
+    skipIfAllDown = false,
+  } = options;
   const body = new URLSearchParams({ data: query }).toString();
   // 主站在部分网络下完全不可达（实测 40s 无响应），而镜像 7.7s 就能返回同样结果。
   // 熔断器记住「谁刚挂过」，把健康的排到前面：数据源一个没少，只是不再为死端点排队。
+  const candidateUrls = [
+    OVERPASS_MAIN,
+    ...(allowMirror ? [OVERPASS_MIRROR] : []),
+  ];
+  if (skipIfAllDown && allEndpointsDown(candidateUrls)) return null;
   const targets = orderTargets([
     { url: OVERPASS_MAIN, timeout: timeoutMs },
     ...(allowMirror ? [{ url: OVERPASS_MIRROR, timeout: mirrorTimeoutMs }] : []),
@@ -779,10 +795,12 @@ out center tags 120;`;
     // 主站不可达时这段时间里只白等一次，而不是每次都等。
     // 刻意不给餐饮加镜像：实测镜像对这类查询稳定返回 504，加了只会把 8s 超时
     // 塞进关键路径，换不回任何点位。
+    // skipIfAllDown：主站已在冷却时直接跳过——餐饮本来就是可选补充，
+    // 为一个已知死掉的端点固定等 5s 然后拿到空，是纯亏。
     cached(
       foodKey,
       30 * 60 * 1000,
-      () => overpassQuery(foodQuery, { timeoutMs: 5_000 }),
+      () => overpassQuery(foodQuery, { timeoutMs: 5_000, skipIfAllDown: true }),
       { cacheIf: (value) => Boolean(value?.length) },
     ),
     // 行政区边界几年才变一次，却每次请求都要问一遍（上限 6s）。缓存一天。

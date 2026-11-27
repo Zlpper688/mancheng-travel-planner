@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { TravelError } from "@/lib/errors";
-import { refinePlan } from "@/lib/plan/refine";
+import { runPlan } from "@/lib/plan/prefetch-trip";
 import { sanitizeTripInput } from "@/lib/plan/validate";
 import { checkPlanRate, clientIp } from "@/lib/rate-limit";
 import type { PlanResponse } from "@/lib/types";
@@ -30,7 +30,7 @@ export async function POST(request: Request): Promise<NextResponse<PlanResponse>
     const body = await request.json().catch(() => null);
     const input = sanitizeTripInput(body);
     // 生成 → 反驳 → 修订：无问题时一轮即返回，有 P0/P1 才自动重排（软参数）。
-    const result = await refinePlan(input);
+    const result = await runPlan(input);
     return NextResponse.json({
       plan: result.plan,
       refine: {

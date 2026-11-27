@@ -1,4 +1,8 @@
+import path from "node:path";
+import { cacheRoot } from "./disk-cache";
 import { haversine } from "./geo";
+import { persistentCache } from "./persistent-cache";
+import { isEndpointDown, noteEndpointFailure, noteEndpointSuccess } from "./upstream-health";
 import { cleanNameForMatch, nameSimilarity } from "./providers/normalize";
 import type { Place } from "./types";
 
@@ -32,7 +36,6 @@ export interface WikidataFacts {
 type Binding = { value: string; "xml:lang"?: string };
 type SparqlResponse = { results?: { bindings?: Record<string, Binding>[] } };
 
-let downUntil = 0;
 let chain: Promise<unknown> = Promise.resolve();
 let lastRequestAt = 0;
 
@@ -45,8 +48,13 @@ function sparqlString(value: string): string {
 }
 
 async function runQuery(query: string): Promise<Record<string, Binding>[]> {
-  if (Date.now() < downUntil) throw new Error("QLever 冷却中");
-  for (let attempt = 0; attempt < 3; attempt += 1) {
+  // 冷却判断走共享的、**会落盘**的熔断器，而不是这个模块自己的一个内存变量。
+  // 实测（2026-11-27）：qlever.dev 对同一 IP 稳定返回 429，带不带尾斜杠、POST/GET 都一样。
+  // 原实现每次都要重试 3 次并退避 1.2s + 2.4s，于是 enrich 段固定烧掉 4.8s 却一条数据都拿不到；
+  // 而且这个「别去撞」的记忆一重启就丢，下一单继续烧。知识应该只学一次。
+  if (isEndpointDown(QLEVER_URL)) throw new Error("QLever 冷却中");
+
+  for (let attempt = 0; attempt < 2; attempt += 1) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), QUERY_TIMEOUT);
     try {
@@ -62,28 +70,25 @@ async function runQuery(query: string): Promise<Record<string, Binding>[]> {
         cache: "no-store",
       });
       if (!response.ok) {
-        // 公共端点偶尔 429；退一步重试比整批放弃划算，也避免冷却拖垮后续点位。
-        if (response.status === 429 && attempt < 2) {
-          await sleep(1_200 * (attempt + 1));
+        noteEndpointFailure(QLEVER_URL);
+        // 429 只补一次、且退避很短：真限流时退 1.2s 也回不来，
+        // 白白把用户的等待拉长；瞬时抖动则 300ms 足够。
+        if (response.status === 429 && attempt === 0) {
+          await sleep(300);
           continue;
-        }
-        if (response.status === 429 || response.status >= 500) {
-          downUntil = Date.now() + 30_000;
         }
         throw new Error(`QLever 返回 ${response.status}`);
       }
+      noteEndpointSuccess(QLEVER_URL);
       const data = (await response.json()) as SparqlResponse;
       return data.results?.bindings ?? [];
     } catch (error) {
-      const message = (error as Error)?.message ?? "";
-      if ((error as Error)?.name === "AbortError" && attempt < 2) {
-        await sleep(600);
+      const isTimeout = (error as Error)?.name === "AbortError";
+      if (isTimeout && attempt === 0) {
+        await sleep(300);
         continue;
       }
-      // 连续失败时先停一会儿，别让每个点位都去撞同一个坏端点。
-      if (!/^QLever 返回 \d+$/.test(message)) {
-        downUntil = Date.now() + 60_000;
-      }
+      noteEndpointFailure(QLEVER_URL);
       throw error;
     } finally {
       clearTimeout(timer);
@@ -93,14 +98,27 @@ async function runQuery(query: string): Promise<Record<string, Binding>[]> {
 }
 
 function sparql(query: string): Promise<Record<string, Binding>[]> {
-  const run = chain.then(async () => {
-    const wait = lastRequestAt + 120 - Date.now();
-    if (wait > 0) await sleep(wait);
-    lastRequestAt = Date.now();
-    return runQuery(query);
+  // 维基数据的事实几乎不变（景点简介、图片、坐标），但原来只有进程内缓存：
+  // 每次重启后第一单都要把同样的几条 SPARQL 重跑一遍，实测 enrich 段要 5.6s。
+  // 落盘后重启即命中。键用查询串哈希——同一批名字永远拼出同一个查询。
+  return persistentCache<Record<string, Binding>[]>({
+    dir: path.join(cacheRoot(), "wikidata"),
+    key: query,
+    ttlMs: FACTS_TTL,
+    maxFiles: 800,
+    load: () => {
+      const run = chain.then(async () => {
+        const wait = lastRequestAt + 120 - Date.now();
+        if (wait > 0) await sleep(wait);
+        lastRequestAt = Date.now();
+        return runQuery(query);
+      });
+      chain = run.catch(() => undefined);
+      return run;
+    },
+    // 空结果不落盘：一次超时/限流不该把「这个景点没有资料」钉死一整天。
+    cacheIf: (rows) => Array.isArray(rows) && rows.length > 0,
   });
-  chain = run.catch(() => undefined);
-  return run;
 }
 
 function qidOf(uri: string): string {
