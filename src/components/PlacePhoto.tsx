@@ -3,29 +3,31 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CATEGORY_ICONS, CATEGORY_LABELS } from "@/lib/constants";
+import { getStoredPhoto, storePhoto, type StoredPhoto } from "@/lib/photo-storage";
 import type { Category } from "@/lib/types";
 import { Icon } from "./Icon";
 import { cn } from "./ui";
 
-interface PhotoInfo {
-  url: string;
-  source: string;
-  sourceUrl?: string;
-  author?: string;
-  license?: string;
-  generic?: boolean;
-}
+type PhotoInfo = StoredPhoto;
 
+// 模块内只在本次会话有效；真正的持久化在 photo-storage（localStorage）。
 const photoCache = new Map<string, PhotoInfo | null>();
 const photoPending = new Map<string, Promise<PhotoInfo | null>>();
 
+/**
+ * 读取一张图：内存 → localStorage → 网络。
+ * 关键修复：失败（null）不写内存、不写 localStorage ——
+ * 冷缓存撞上超时后，下次切回来还能重试，不再被永久钉死成「没图」。
+ */
 function loadPhoto(key: string, params: URLSearchParams): Promise<PhotoInfo | null> {
   if (photoCache.has(key)) return Promise.resolve(photoCache.get(key) ?? null);
   const inflight = photoPending.get(key);
   if (inflight) return inflight;
 
+  // 15s 覆盖服务端冷缓存最坏路径（搜图 + 维基双源 + 落盘）。
+  // 之前 9s 会把首次访问误判成永久失败。
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 9_000);
+  const timer = setTimeout(() => controller.abort(), 15_000);
   const promise = fetch(`/api/photo?${params.toString()}`, {
     signal: controller.signal,
   })
@@ -36,7 +38,10 @@ function loadPhoto(key: string, params: URLSearchParams): Promise<PhotoInfo | nu
     })
     .catch(() => null)
     .then((photo) => {
-      photoCache.set(key, photo);
+      if (photo?.url) {
+        photoCache.set(key, photo);
+        storePhoto(key, photo); // 成功才持久化，跨刷新/切页一直在
+      }
       photoPending.delete(key);
       return photo;
     })
@@ -91,6 +96,7 @@ export default function PlacePhoto({
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [visible, setVisible] = useState(priority);
+  // 首屏（SSR + hydrate）同步读内存， hydrate 后 useEffect 再补 localStorage。
   const [photo, setPhoto] = useState<PhotoInfo | null>(() => photoCache.get(key) ?? null);
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -121,9 +127,15 @@ export default function PlacePhoto({
   useEffect(() => {
     setFailed(false);
     setLoaded(false);
-    const cached = photoCache.get(key);
-    setPhoto(cached ?? null);
-    if (!visible || cached !== undefined) return;
+    // 内存 → localStorage：刷新/切页后从持久层秒恢复，不重新走慢源。
+    const cached = photoCache.get(key) ?? getStoredPhoto(key) ?? null;
+    if (cached?.url) {
+      photoCache.set(key, cached);
+      setPhoto(cached);
+      return;
+    }
+    setPhoto(null);
+    if (!visible) return;
 
     let cancelled = false;
     const params = new URLSearchParams({ name, city });
