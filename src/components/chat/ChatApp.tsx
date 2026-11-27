@@ -24,6 +24,7 @@ import type {
   ChatMessage,
   ResolvedPatch,
 } from "@/lib/chat/types";
+import { NETWORK_ERROR, postPlan } from "@/lib/plan/client";
 import { EXPERIENCE_OPTIONS } from "@/lib/plan/experience-options";
 import type { PlanResponse, PlanResult, Place } from "@/lib/types";
 import type { WalkApi } from "../MapView";
@@ -442,24 +443,21 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
     setPlanError(null);
     setWalkOpen(false);
     try {
-      const response = await fetch("/api/plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(buildTripInput(source, options.seed ?? seedRef.current)),
-        signal: controller.signal,
-      });
-      const data = (await response.json()) as PlanResponse;
+      const outcome = await postPlan(
+        buildTripInput(source, options.seed ?? seedRef.current),
+        controller.signal,
+      );
       if (seq !== planSeqRef.current) return;
-      if (!response.ok || !data.plan) {
-        const message = data.error ?? "生成失败，请稍后再试。";
-        setPlanError({ message, hint: data.hint });
+      if (outcome.status === "aborted") return;
+      if (outcome.status === "error") {
+        setPlanError({ message: outcome.message, hint: outcome.hint });
         appendAssistant(
-          `安排没有成功：${message}${data.hint ? `（${data.hint}）` : ""}`,
+          `安排没有成功：${outcome.message}${outcome.hint ? `（${outcome.hint}）` : ""}`,
           [cardForStep("confirm", nextId("card"))],
         );
         return;
       }
-      const nextPlan = data.plan;
+      const nextPlan = outcome.data.plan;
       setPlan(nextPlan);
       setActiveDay("all");
       setFocus(null);
@@ -471,10 +469,11 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       } else {
         setSheetOpen(false);
       }
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "AbortError") return;
+    } catch {
+      // postPlan 已经把网络错误归成 status:"error"，走到这里说明是意料之外的异常；
+      // 仍然要给用户一句话，而不是静默停在「正在安排」。
       if (seq !== planSeqRef.current) return;
-      setPlanError({ message: "网络好像断了，没能拿到行程。" });
+      setPlanError({ message: NETWORK_ERROR.message });
       appendAssistant(
         "网络好像断了，没能拿到行程。检查服务是否还在运行后再试一次。",
         [cardForStep("confirm", nextId("card"))],

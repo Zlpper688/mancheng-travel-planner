@@ -20,6 +20,7 @@ import type {
 } from "@/lib/types";
 import { Icon } from "./Icon";
 import { journalFromPlan, saveJournal } from "@/lib/journal";
+import { postPlan } from "@/lib/plan/client";
 import { DEFAULT_TRIP } from "@/lib/trip-defaults";
 import {
   buildShareUrl,
@@ -443,22 +444,14 @@ export default function PlannerApp({
     setError(null);
 
     try {
-      const response = await fetch("/api/plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-        signal: controller.signal,
-      });
-      const data: PlanResponse = await response.json();
+      const outcome = await postPlan(body, controller.signal);
       if (seq !== seqRef.current) return;
-      if (!response.ok || !data.plan) {
-        setError({
-          message: data.error ?? "生成失败，请稍后再试。",
-          hint: data.hint,
-        });
+      if (outcome.status === "aborted") return;
+      if (outcome.status === "error") {
+        setError({ message: outcome.message, hint: outcome.hint });
         return;
       }
-      const nextPlan = data.plan;
+      const nextPlan = outcome.data.plan;
       setPlan(nextPlan);
       finishGuide();
       // 只有真的排出来了才认这一版：中途失败时地址栏应停留在上一版。
@@ -470,13 +463,6 @@ export default function PlannerApp({
           ? previous
           : "all",
       );
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return;
-      if (seq !== seqRef.current) return;
-      setError({
-        message: "网络好像断了，没能拿到新行程。",
-        hint: "确认本地服务还在运行后再试一次。",
-      });
     } finally {
       if (seq === seqRef.current) setLoading(false);
     }

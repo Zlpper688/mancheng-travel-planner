@@ -242,13 +242,22 @@ npx tsx scripts/check-live-cache.ts --live  # 落盘缓存：首次下载 + 二�
 | 运行时检索结果（搜狗图片 / 360 图片，原文指向携程、去哪儿、马蜂窝、图虫等） | 绝大多数 | **版权归原作者，未取得授权** | **仅供本地技术演示，不随作品商用分发** |
 
 也就是说：**除了界面角标明确标出作者与 CC 许可的那几张，其余图片不能在正式发布、商用或
-对外演示材料中使用。** 公开部署前请二选一：
+对外演示材料中使用。** 公开部署前走下面任意一条：
 
-1. 把 `place-photos.generated.ts` 精简到只剩有明确许可的条目（缺图的点位会回落成版式卡，不影响排线）；
-2. 换成自有拍摄或 CC0 图库的图片，再跑 `node scripts/build-photo-index.mjs` 重建索引。
+```bash
+# 方案 A：不删数据，只改取图策略（适合「保留演示效果、公网部署时切换」）
+MC_PHOTO_LIBRARY=licensed   # 跳过没有明确许可的本地图
+MC_LIVE_PHOTO=0             # 关掉搜狗/360 抓取链
+# 剩下的点位改走：高德 → OSM 图片标签 → 人工核对 → Wikidata P18 → 维基共享资源
 
-图片检索链（`src/lib/live-search.ts` 的搜狗 / 360 抓取）默认开启，因为它只影响"有没有图"，
-不影响行程质量；正式发布前可以用 `MC_LIVE_PHOTO=0` 关掉（见 `resolvePlacePhoto` 的兜底顺序）。
+# 方案 B：一次性清理（适合「提交/公开分发前彻底合规」）
+node scripts/purge-unlicensed-photos.mjs           # 先预演，看会删多少
+node scripts/purge-unlicensed-photos.mjs --apply   # 真删：生成表 + 不再引用的图片文件
+```
+
+预演数据（2026-11-27）：可删 1594 条映射、1006 个不再被引用的图片、44.2 MB；
+缺图的点位会回落成版式卡，不影响排线。想换成自有拍摄或 CC0 图库，用
+`node scripts/build-photo-index.mjs` 重建索引即可。
 
 ## 泛化验收
 
