@@ -2,6 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { haversine } from "../geo";
 import type { Category, Place } from "../types";
+import { cleanNameForMatch } from "./normalize";
 
 /**
  * 本地景点知识库读取层。
@@ -219,7 +220,10 @@ export function mergeLocalKnowledge(
 ): { places: Place[]; added: number } {
   if (!localPlaces.length) return { places: discoveredPlaces, added: 0 };
   const seen = new Set<string>();
-  const norm = (s: string) => s.replace(/[\s()（）·—_-]/g, "").toLowerCase();
+  // 归一化必须和 dedupePlaces 用同一套规则，否则「厦门大学（思明校区）」（知识库）
+  // 与「厦门大学」（实时源）会被当成两个点同时进池，最后落在行程的两天里。
+  // cleanNameForMatch 会把括号里的补充说明整段去掉。
+  const norm = (s: string) => cleanNameForMatch(s).replace(/[·•]/g, "");
   for (const p of discoveredPlaces) seen.add(norm(p.name));
   let added = 0;
   const merged = [...discoveredPlaces];
