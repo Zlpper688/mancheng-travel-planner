@@ -651,11 +651,9 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
           <span className="text-[10.5px] text-ink-faint">对话定制</span>
           <a
             href="/"
-            title="返回首页（经典版）"
-            className="ml-1 inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10.5px] text-ink-soft transition hover:border-accent/40 hover:text-accent"
+            className="ml-1 rounded-full border border-line px-2.5 py-1 text-[10.5px] text-ink-soft transition hover:border-ink/25 hover:text-ink"
           >
-            <Icon name="home" size={10} />
-            返回首页
+            经典版
           </a>
         </div>
       </div>
@@ -734,11 +732,9 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
           ) : null}
           <a
             href="/"
-            title="返回首页（经典版）"
-            className="hidden shrink-0 items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1.5 text-[11px] text-ink-soft transition hover:border-accent/40 hover:text-accent lg:inline-flex"
+            className="hidden shrink-0 rounded-full border border-line px-2.5 py-1.5 text-[10.5px] text-ink-faint transition hover:border-ink/25 hover:text-ink lg:inline-flex"
           >
-            <Icon name="home" size={11} />
-            返回首页
+            经典版
           </a>
         </div>
 
@@ -836,6 +832,11 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
               </svg>
             </button>
           </div>
+          {mode === "ai" ? (
+            <p className="mt-2 px-1 text-[10.5px] leading-relaxed text-ink-faint">
+              对话内容会发送给所配置的模型服务商用于理解需求，请不要填写身份证、手机号等敏感信息。
+            </p>
+          ) : null}
         </form>
       </section>
 

@@ -133,6 +133,28 @@ const photoStore = new Map<string, PhotoEntry>();
 const pendingStore = new Map<string, Promise<PlacePhoto | null>>();
 const unavailableUntil = new Map<string, number>();
 
+/**
+ * 图片缓存的键来自「城市 + 地点名 + 坐标」，也就是来自用户输入。
+ * 不封顶的话，同一个小进程被扫一遍就能塞进几万条（每条还挂着一个 URL）。
+ * 超过上限先清过期条目，仍然超就按写入顺序淘汰最旧的。
+ */
+const PHOTO_STORE_MAX = 2000;
+
+function rememberPhoto(key: string, entry: PhotoEntry): void {
+  if (photoStore.size >= PHOTO_STORE_MAX) {
+    const now = Date.now();
+    for (const [existing, value] of photoStore) {
+      if (value.expiresAt <= now) photoStore.delete(existing);
+    }
+    while (photoStore.size >= PHOTO_STORE_MAX) {
+      const oldest = photoStore.keys().next().value;
+      if (!oldest) break;
+      photoStore.delete(oldest);
+    }
+  }
+  photoStore.set(key, entry);
+}
+
 function providerReady(provider: string): boolean {
   return (unavailableUntil.get(provider) ?? 0) <= Date.now();
 }
@@ -509,7 +531,13 @@ async function resolveUncached(input: {
 
   // 现场找图优先于维基慢源：国内网络下维基 API 常 4.5s 超时，而搜图 ~1s。
   // 搜图前由 LLM 判存在性、搜图后判语义相关性，不会为了快而牺牲准确性。
-  const live = await searchLivePhotoDetailed(input);
+  //
+  // 但这条链是「抓搜索结果页」：既没有明确授权，也会因为搜狗/360 改版而整链失效。
+  // 公开部署时用 MC_LIVE_PHOTO=0 关掉，链路会直接落到维基 / 版式卡，行程不受影响。
+  const live =
+    process.env.MC_LIVE_PHOTO === "0"
+      ? { photo: null, nonexistent: false }
+      : await searchLivePhotoDetailed(input);
   if (live.photo) {
     // 现场图落盘：二次访问走本地静态文件，断网也能看。
     // 写盘失败会原样返回 CDN 直链，不影响可用性。
@@ -571,7 +599,7 @@ export async function resolvePlacePhoto(input: {
 
   const promise = resolveUncached(input)
     .then((photo) => {
-      photoStore.set(key, {
+      rememberPhoto(key, {
         photo,
         expiresAt: Date.now() + (photo ? PHOTO_TTL : MISS_TTL),
       });

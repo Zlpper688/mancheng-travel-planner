@@ -20,6 +20,7 @@ import type {
 } from "@/lib/types";
 import { Icon } from "./Icon";
 import { journalFromPlan, saveJournal } from "@/lib/journal";
+import { DEFAULT_TRIP } from "@/lib/trip-defaults";
 import {
   buildShareUrl,
   copyText,
@@ -110,15 +111,15 @@ function defaultRecipe(date: string): TripRecipe {
       city: INITIAL_CITY.name,
       source: "demo",
     },
-    days: 3,
+    days: DEFAULT_TRIP.days,
     date,
-    pace: "balanced",
-    styles: ["citywalk", "coastal"],
-    transport: "auto",
-    budgetTier: "comfort",
-    adults: 2,
-    children: 0,
-    seed: 42,
+    pace: DEFAULT_TRIP.pace,
+    styles: [...DEFAULT_TRIP.styles],
+    transport: DEFAULT_TRIP.transport,
+    budgetTier: DEFAULT_TRIP.budgetTier,
+    adults: DEFAULT_TRIP.adults,
+    children: DEFAULT_TRIP.children,
+    seed: DEFAULT_TRIP.seed,
     farDays: null,
   };
 }
@@ -132,17 +133,19 @@ export default function PlannerApp({
 }) {
   const [city, setCity] = useState<CityOption>(INITIAL_CITY);
   const [hotel, setHotel] = useState<Place | null>(null);
-  const [days, setDays] = useState(3);
+  // 默认值只在 src/lib/trip-defaults.ts 写一次：这里的每一项都必须和
+  // 预热用的 defaultTripInput 一致，否则用户点「生成」时预热键对不上。
+  const [days, setDays] = useState(DEFAULT_TRIP.days);
   const [date, setDate] = useState(initialDate);
-  const [pace, setPace] = useState<PaceId>("balanced");
-  const [styles, setStyles] = useState<StyleId[]>(["citywalk", "coastal"]);
+  const [pace, setPace] = useState<PaceId>(DEFAULT_TRIP.pace);
+  const [styles, setStyles] = useState<StyleId[]>([...DEFAULT_TRIP.styles]);
   const [experiences, setExperiences] = useState<ExperienceId[]>([]);
-  const [transport, setTransport] = useState<TransportPref>("auto");
-  const [budgetTier, setBudgetTier] = useState<BudgetTier>("comfort");
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [seniors, setSeniors] = useState(0);
-  const [seed, setSeed] = useState(42);
+  const [transport, setTransport] = useState<TransportPref>(DEFAULT_TRIP.transport);
+  const [budgetTier, setBudgetTier] = useState<BudgetTier>(DEFAULT_TRIP.budgetTier);
+  const [adults, setAdults] = useState(DEFAULT_TRIP.adults);
+  const [children, setChildren] = useState(DEFAULT_TRIP.children);
+  const [seniors, setSeniors] = useState(DEFAULT_TRIP.seniors);
+  const [seed, setSeed] = useState(DEFAULT_TRIP.seed);
   const [farDays, setFarDays] = useState<number | null>(null);
   const [fixedPlaces, setFixedPlaces] = useState<FixedPlace[]>([]);
   /** 单点锁定：重排时这些点必须留在原定的那天。 */
@@ -961,7 +964,7 @@ export default function PlannerApp({
               title="对话定制：像聊天一样说需求，直接排出路线"
             >
               <Icon name="sparkles" size={11} />
-              <span>对话定制</span>
+              <span className="hidden sm:inline">对话定制</span>
             </Link>
             <Link
               href="/journal"

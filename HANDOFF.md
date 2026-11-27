@@ -148,27 +148,43 @@ NEXT_DIST_DIR=.next-build/verify-$(date +%H%M%S) npm run build
 
 1. **必须用全新的 `NEXT_DIST_DIR`**。复用 `.next` 会触发 safe-delete 守卫（批量删除超 50 个文件被拦截），
    表现为 build 失败但其实是环境拦截，不是代码错误。
-2. **`next dev` 会自动改写 `tsconfig.json` 和 `next-env.d.ts`**。每次跑完必须
-   `git checkout HEAD -- tsconfig.json next-env.d.ts` 再提交，否则会把垃圾带进版本库。
+2. **`next dev` / `next build` 会自动改写 `tsconfig.json` 和 `next-env.d.ts`**。
+   `next build` 实测会往 `include` 里追加一条当前 distDir 的路径（例如
+   `".next-verify/types/**/*.ts"`），跑完必须还原再提交：
+   `git checkout HEAD -- tsconfig.json next-env.d.ts`。
+   所有 `.next-*/` 目录已经进 `.gitignore`，但 `tsconfig.json` 不在里面，得手动还原。
 3. **端口不要用 3000**（有一个坏掉的旧实例）。用 3120 之类的新端口。
 
 ---
 
-## 6. 怎么验证（八套回归，一条命令跑完）
+## 6. 怎么验证（一条命令跑完）
 
 ```bash
-npx tsc --noEmit                                  # 类型
-npm run check:type                                # 字号护栏（禁止 <10px 硬编码）
+npm run verify        # = typecheck + 字号护栏 + 十套纯函数回归
+```
+
+拆开跑：
+
+```bash
+npm run typecheck                                 # tsc --noEmit（真正的类型检查）
+npm run check:font                                # 字号护栏（禁止正文 <10px；原来叫 check:type，容易误解）
+npm run checks                                    # 下面十套依次跑
+
+# 十套回归，各自守一条不变量：
 npx tsx scripts/check-params.ts                   # PlanParams 零回归 + 乱值收敛
 npx tsx scripts/check-slots.ts                    # 6 段投影 + 空段话术 + 局部替换隔离
 npx tsx scripts/check-refine.ts                   # P0–P3 分级 + 修复判定
 npx tsx scripts/check-segments.ts                 # 区域分段：不重不漏 + 单城兜底
 npx tsx scripts/check-journal.ts                  # 记录归档 + 分享文本 + 配方往返
 npx tsx scripts/check-booking.ts                  # 跳转链接 + 待办汇总
-npx tsx scripts/check-knowledge.mjs               # 坐标合法性 + 经纬度不写反 + must 对齐
+npx tsx scripts/check-city-search.ts              # 城市索引：精确优先 / 前缀 / 空查询
+npx tsx scripts/check-disk-cache.ts               # 磁盘缓存：TTL / 坏档降级 / 永不抛错
+npx tsx scripts/check-dedupe.ts                   # 同名景点合并 + 跨天重复检测
+npx tsx scripts/check-rate-limit.ts               # 接口限流阈值 / Retry-After / 隔离
+npx tsx scripts/check-knowledge.mjs               # 坐标合法性 + 经纬度不写反 + must 对齐（不在 checks 里，需要 data/）
 ```
 
-**当前状态：全部通过。**
+**当前状态：全部通过。** `.github/workflows/verify.yml` 在每次 push 上跑同一套 + `next build`。
 
 端到端手工验证（起服务后）：
 

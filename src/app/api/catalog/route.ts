@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { cached } from "@/lib/cache";
 import { buildCatalog } from "@/lib/catalog";
 import { TravelError } from "@/lib/errors";
+import { logEvent } from "@/lib/log";
+import { checkRoute, clientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { getProvider } from "@/lib/providers";
 import { sniffCity } from "@/lib/providers/sniff";
 import type { SniffStage } from "@/lib/providers/sniff/types";
@@ -14,6 +16,11 @@ const BASE_TTL_MS = 8 * 60 * 1000;
 const DEEP_TTL_MS = 30 * 60 * 1000;
 
 export async function GET(request: Request): Promise<NextResponse> {
+  // 深挖阶段会串起 Overpass + Wikidata，单次最长 120 秒，必须限流。
+  const limited = rateLimitResponse(checkRoute("catalog", clientIp(request)));
+  if (limited) return limited;
+
+  const startedAt = Date.now();
   try {
     const { searchParams } = new URL(request.url);
     const city = (searchParams.get("city") ?? "").trim().slice(0, 40);
@@ -87,6 +94,12 @@ export async function GET(request: Request): Promise<NextResponse> {
       },
     );
 
+    logEvent("info", "catalog", {
+      ms: Date.now() - startedAt,
+      city,
+      stage,
+      total: catalog.total,
+    });
     return NextResponse.json(catalog);
   } catch (error) {
     if (error instanceof TravelError) {

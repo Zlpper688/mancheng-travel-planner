@@ -6,42 +6,27 @@
  * 预热出来的键对不上，等于白做。
  */
 import { addDaysISO, todayISOLocal } from "../geo";
+import { DEFAULT_TRIP } from "../trip-defaults";
 import { refinePlan, type RefineResult } from "./refine";
 import { prefetchCity, singleFlight, singleFlightHas, type PrefetchResult } from "./prefetch";
 import type { TripInput } from "../types";
-
-/**
- * 与 PlannerApp 的初始 state 逐项对齐（src/components/PlannerApp.tsx）。
- * 改了那边记得改这里，否则预热命中率会悄悄掉到 0。
- */
-const DEFAULTS = {
-  days: 3,
-  pace: "balanced",
-  styles: ["citywalk", "coastal"],
-  transport: "auto",
-  budgetTier: "comfort",
-  adults: 2,
-  children: 0,
-  seniors: 0,
-  seed: 42,
-} as const;
 
 export function defaultTripInput(city: string, center: [number, number]): TripInput {
   return {
     city,
     center,
-    days: DEFAULTS.days,
+    days: DEFAULT_TRIP.days,
     // 首屏默认是「明天」（src/app/page.tsx），不是今天。
     // 差一天的话天气缓存键就对不上，预热等于只热了一半。
     date: addDaysISO(todayISOLocal(), 1),
-    pace: DEFAULTS.pace,
-    styles: [...DEFAULTS.styles],
-    transport: DEFAULTS.transport,
-    budgetTier: DEFAULTS.budgetTier,
-    adults: DEFAULTS.adults,
-    children: DEFAULTS.children,
-    seniors: DEFAULTS.seniors,
-    seed: DEFAULTS.seed,
+    pace: DEFAULT_TRIP.pace,
+    styles: [...DEFAULT_TRIP.styles],
+    transport: DEFAULT_TRIP.transport,
+    budgetTier: DEFAULT_TRIP.budgetTier,
+    adults: DEFAULT_TRIP.adults,
+    children: DEFAULT_TRIP.children,
+    seniors: DEFAULT_TRIP.seniors,
+    seed: DEFAULT_TRIP.seed,
   } as TripInput;
 }
 

@@ -1,0 +1,48 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# 只保留一次运行：同一个分支连续 push 时取消旧的，省 runner 也省时间。
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # 回归脚本要跑真实的排线引擎，但没有 Key 也能跑（本地知识库 + 开放数据）。
+      # 这里显式关掉外部模型，避免 CI 里误调付费接口。
+      MC_LOG: "0"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # 1) 类型：strict 全量检查（不是字号护栏，那是 check:font）
+      - name: Typecheck
+        run: npm run typecheck
+
+      # 2) 字号护栏：正文不许出现 <10px
+      - name: Font guard
+        run: npm run check:font
+
+      # 3) 十套纯函数回归：不需要网络，几十秒内跑完
+      - name: Regression checks
+        run: npm run checks
+
+      # 4) 真构建：类型通过不代表产物能打出来
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_DIST_DIR: .next-ci
