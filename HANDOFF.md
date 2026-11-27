@@ -187,6 +187,29 @@ npx tsx scripts/check-knowledge.mjs               # 坐标合法性 + 经纬度�
 
 **当前状态：全部通过。** `.github/workflows/verify.yml` 在每次 push 上跑同一套 + `next build`。
 
+### 验收结果（2026-11-27，本地 + CI 实测）
+
+| 项 | 结果 |
+|---|---|
+| `npx tsc --noEmit` | 0 错误 |
+| 十一套回归 | 全绿（新增 `check-dedupe` / `check-rate-limit`，并入上游的 `check-photo-storage`） |
+| `next build` | exit 0，编译 21.8s，19 条路由；首屏共享 JS 103 kB |
+| `POST /api/plan` 厦门 2 天 | 200，**9.98 s**，13 个点位，**p0=0 / p1=0** |
+| 冷启动（清空路线缓存） | 23 s → **12.5 s**；其中 `scheduleDays` 22.8 s → **2.6 s** |
+| 热请求 | 277 ms |
+| 限流实测 | 搜索 59×200 → 429（Retry-After 41）；对话 12×200 → 429（Retry-After 60） |
+| 数据追踪 | `/api/guides` nft 清单 508 个 data 文件；`/api/plan` 655 个 |
+| 图片许可 | 预演可清理 1594 条映射 / 1006 个文件 / 44.2 MB（未执行，见 README） |
+
+排线日志会直接打印这些数字，答辩时不用现场数：
+
+```
+{"t":"...","level":"info","event":"plan","ms":9955,"city":"厦门","days":2,
+ "rounds":1,"issues":3,"p0":0,"p1":0,"stops":13}
+```
+
+> 冷启动剩下的大头是天气（8.6 s），不再是外部地图。
+
 端到端手工验证（起服务后）：
 
 ```bash
@@ -213,6 +236,7 @@ curl -s -X POST http://127.0.0.1:3120/api/plan -H 'Content-Type: application/jso
 | **tsx 不支持 top-level await** | `Top-level await is currently not supported with "cjs"` | 脚本用 async IIFE 包一层，或写静态 import |
 | **`.mjs` 检查脚本不能加 `.ts` 后缀** | `check-knowledge.ts` 不存在 | knowledge 检查是 `.mjs`，其余是 `.ts` |
 | **heredoc 提交消息带 `@`** | 提交标题变成 `@ feat(...)` | 用 `git commit -m @'...'@` 时别把 `@` 留在首行（已推送的不强推修正） |
+| **检查脚本里写死日期** | `check-journal` 的 savedAt 原来硬编码 2026-11-27T10:00Z，UTC 上午跑通过、下午跑失败 | 断言里的时间一律相对生成（基于上一条记录 +1 分钟） |
 | **Photon 公共端点会限流** | 批量跑 122 城时 103 城失败、IP 被封 | 只适合低频单点；不要做全量批量 |
 
 ---
