@@ -956,6 +956,14 @@ export default function PlannerApp({
           </div>
           <div className="ml-auto flex items-center gap-2">
             <Link
+              href="/chat"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-[11px] text-ink-soft transition hover:border-accent/40 hover:text-accent"
+              title="对话定制：像聊天一样说需求，直接排出路线"
+            >
+              <Icon name="sparkles" size={11} />
+              <span className="hidden sm:inline">对话定制</span>
+            </Link>
+            <Link
               href="/journal"
               className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card/80 px-2.5 py-1 text-[11px] text-ink-soft transition hover:border-jade/40 hover:text-jade"
               title="旅行记录：去过哪、花了多少、分享给别人一键排同款"

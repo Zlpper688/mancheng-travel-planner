@@ -261,13 +261,15 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [handbookOpen]);
 
-  // 双向切换：对话 ↔ 向导。向导 → 对话前先探一次模型，通了才切，
-  // 不通则留在向导并把原因写在提示里，避免切过去又立刻被打回来。
+  // 双向切换：对话 ↔ 向导。两个方向都要往聊天里追加真实内容，
+  // 否则标签翻了但界面没变化，看起来像假切换。
+  // 向导 → 对话前先探一次模型，通了才切；不通留在向导并更新原因提示。
   function toggleMode() {
     if (busy || probing) return;
     if (mode === "ai") {
       setMode("wizard");
       setAiReason("已手动切到向导模式");
+      continueWizard(draftRef.current);
       return;
     }
     setProbing(true);
@@ -280,6 +282,9 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         if (data.configured) {
           setMode("ai");
           setAiReason(null);
+          appendAssistant(
+            "已切回对话模式。想改城市、天数、玩法，直接打字告诉我。",
+          );
         } else {
           setAiReason(data.reason ?? "模型未配置，填好 Key 再试");
         }
