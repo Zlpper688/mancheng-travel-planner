@@ -1,4 +1,5 @@
 import { DEMO_HOTELS } from "@/content/demo-xiamen";
+import { CITY_FACTS, NEUTRAL_FACTS } from "@/content/city-facts.generated";
 import { QUICK_CITIES } from "@/lib/constants";
 import { isDemoCity } from "@/lib/demo";
 import type { CityOption, Place, TripInput } from "@/lib/types";
@@ -85,6 +86,15 @@ export function applyResolvedPatch(
       next.hotel = patch.hotel ?? hotelForCity(patch.city);
       next.hotelUndecided = !patch.hotel && draft.hotelUndecided;
       next.confirmed.hotel = Boolean(patch.hotel) || draft.hotelUndecided;
+      // 换城市时清掉新城市不支持的玩法：厦门勾的「海边/环海慢游」带到银川
+      // 会让排线拿到矛盾需求。单一真相源就是城市画像表，这里按它过滤。
+      const facts = CITY_FACTS[patch.city.name] ?? NEUTRAL_FACTS;
+      const allowedStyles = new Set(facts.styles);
+      const allowedExperiences = new Set(facts.experiences.map((o) => o.id));
+      next.styles = next.styles.filter((id) => allowedStyles.has(id));
+      next.experiences = next.experiences.filter((id) =>
+        allowedExperiences.has(id),
+      );
     }
   }
   if (patch.hotel) {

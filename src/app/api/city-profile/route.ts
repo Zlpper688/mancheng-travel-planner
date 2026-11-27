@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
-import { buildCityProfile, type CityProfile } from "@/lib/city-profile";
-import { readLocalKnowledge } from "@/lib/providers/knowledge";
+import { CITY_FACTS, NEUTRAL_FACTS } from "@/content/city-facts.generated";
 
 export const runtime = "nodejs";
-export const maxDuration = 20;
 
 /**
- * 城市画像：选完城市，前端调这个接口决定玩法卡片显示什么。
- * 数据来自本地知识库（离线、零成本），不会因网络抖动失败。
+ * 城市画像（兼容接口）：返回这座城市能玩什么、适合怎么玩。
+ *
+ * 真相源：scripts/build-city-facts.mjs 离线生成的 CITY_FACTS 静态表。
+ * 前端聊天卡片已直接 import 该表（同步、零延迟），本接口只留给外部/调试用。
+ * 关键：查不到的城市返回 NEUTRAL_FACTS（中性玩法），绝不再返回
+ *       「空画像让前端回退全量 8 项」——那正是内陆城市露出海边的老 bug。
  */
 export async function GET(request: Request): Promise<NextResponse> {
   const { searchParams } = new URL(request.url);
@@ -16,20 +18,23 @@ export async function GET(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: "缺少城市名称" }, { status: 400 });
   }
 
-  try {
-    const { places } = await readLocalKnowledge(city);
-    const profile: CityProfile = buildCityProfile(city, places);
-    return NextResponse.json(profile, {
-      headers: { "Cache-Control": "public, max-age=1800" },
-    });
-  } catch (error) {
-    console.warn("[city-profile] 读取失败：", String(error).slice(0, 160));
-    // 降级：返回空画像，前端会回退到全量玩法选项，不让用户卡住。
-    return NextResponse.json({
+  const facts = CITY_FACTS[city] ?? NEUTRAL_FACTS;
+  return NextResponse.json(
+    {
       city,
-      options: [],
+      capabilities: facts.capabilities,
+      styles: facts.styles,
+      options: facts.experiences.map((option) => ({
+        id: option.id,
+        label: option.label,
+        score: option.score,
+        count: option.count,
+        samples: option.samples,
+        featured: option.featured,
+      })),
       hidden: [],
-      summary: "",
-    } satisfies CityProfile);
-  }
+      summary: facts.summary,
+    },
+    { headers: { "Cache-Control": "public, max-age=1800" } },
+  );
 }

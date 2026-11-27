@@ -9,8 +9,7 @@ import {
   STYLE_LABELS,
   TRANSPORT_OPTIONS,
 } from "@/lib/constants";
-import { EXPERIENCE_OPTIONS } from "@/lib/plan/experience-options";
-import type { CityProfile } from "@/lib/city-profile";
+import { CITY_FACTS, NEUTRAL_FACTS } from "@/content/city-facts.generated";
 import { todayISOLocal } from "@/lib/geo";
 import type { Place } from "@/lib/types";
 import { cityFromPlace, hotelForCity } from "@/lib/chat/draft";
@@ -312,33 +311,18 @@ function StyleCard({
     draft.experiences,
   );
   const [note, setNote] = useState("");
-  // 城市画像：选完城市后按这座城市算玩法。加载失败回退到全量选项，
-  // 不阻塞用户继续排行程。
-  const [profile, setProfile] = useState<CityProfile | null>(null);
+  // 城市画像：同步查离线生成的表。不再 fetch、不再有「加载失败回退全量」——
+  // 那正是内陆城市露出「海边」的根因。查不到城市给中性玩法（无海陆专属）。
   const cityName = draft.city.name;
-  useEffect(() => {
-    if (!cityName) {
-      setProfile(null);
-      return;
-    }
-    const controller = new AbortController();
-    void fetch(`/api/city-profile?city=${encodeURIComponent(cityName)}`, {
-      signal: controller.signal,
-    })
-      .then(async (response) =>
-        response.ok ? ((await response.json()) as CityProfile) : null,
-      )
-      .then((data) => {
-        if (data?.options?.length) setProfile(data);
-      })
-      .catch(() => undefined);
-    return () => controller.abort();
-  }, [cityName]);
-
-  // 有画像就用画像（过滤+排序+特色），否则用写死的全量兜底。
-  const experienceOptions = profile?.options?.length
-    ? profile.options.map((option) => ({ id: option.id, label: option.label }))
-    : EXPERIENCE_OPTIONS;
+  const facts = (cityName && CITY_FACTS[cityName]) || NEUTRAL_FACTS;
+  const experienceOptions = facts.experiences.map((option) => ({
+    id: option.id as ChatDraft["experiences"][number],
+    label: option.label,
+  }));
+  // 风格与心愿同源：无海城市不会出现「环海慢游」。
+  const styleOptions = STYLES.filter((style) =>
+    (facts.styles as string[]).includes(style.id),
+  );
 
   const say = () => {
     const text = note.trim();
@@ -369,7 +353,7 @@ function StyleCard({
   return (
     <div className="space-y-2.5">
       <div className="flex flex-wrap gap-1.5">
-        {STYLES.map((style) => (
+        {styleOptions.map((style) => (
           <OptionButton
             key={style.id}
             active={styles.includes(style.id)}
@@ -382,10 +366,10 @@ function StyleCard({
       </div>
       <div>
         <p className="text-[11px] text-ink-faint">
-          {profile ? `${cityName}适合玩什么` : "一定要做的事"}
+          {cityName ? `${cityName}适合玩什么` : "一定要做的事"}
         </p>
-        {profile?.summary ? (
-          <p className="mt-0.5 text-micro text-jade">{profile.summary}</p>
+        {cityName ? (
+          <p className="mt-0.5 text-micro text-jade">{facts.summary}</p>
         ) : null}
         <div className="mt-1.5 flex flex-wrap gap-1.5">
           {experienceOptions.map((option) => (
@@ -572,11 +556,14 @@ function ConfirmCard({
   const styleText = draft.styles.length
     ? draft.styles.map((id) => STYLE_LABELS[id]).join("、")
     : "不设限";
+  const confirmFacts =
+    (draft.city.name && CITY_FACTS[draft.city.name]) || NEUTRAL_FACTS;
   const experienceText = draft.experiences.length
     ? draft.experiences
         .map(
           (id) =>
-            EXPERIENCE_OPTIONS.find((option) => option.id === id)?.label ?? id,
+            confirmFacts.experiences.find((option) => option.id === id)?.label ??
+            id,
         )
         .join("、")
     : "自动安排";
