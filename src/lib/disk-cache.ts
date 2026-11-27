@@ -41,11 +41,20 @@ export function cacheRoot(): string {
   // 函数计算 / 托管容器里只有临时目录可写，cwd 通常是只读的。
   // 不认出来也不至于崩（写入本来就 try/catch），但每次请求都白撞一次墙没必要。
   if (isServerless()) return path.join(os.tmpdir(), "mancheng-cache");
-  // 随仓库分发的演示缓存（route / health）：`npm run warm` 的产物之一。
-  // 有它的时候，换一台电脑第一次排线也能直接用真实路网耗时，不必等 OSRM 现算。
-  const shipped = path.join(process.cwd(), "data", "warm", "cache");
-  if (existsSync(shipped)) return shipped;
   return path.join(process.cwd(), ".cache");
+}
+
+/**
+ * 随仓库分发的演示缓存目录（`data/warm/cache`），**只读**。
+ *
+ * 区分「读」和「写」是为了不让运行时把缓存写回版本库：
+ * 早先 cacheRoot() 直接返回这个目录，结果开发服务器每跑一次排线，
+ * 天气和没查到的路线就多几个 json 文件挂在 git status 里。
+ * 现在读的时候先看这里（换台电脑首屏即热），写永远落到 .cache/。
+ */
+export function shippedCacheRoot(): string | null {
+  const shipped = path.join(process.cwd(), "data", "warm", "cache");
+  return existsSync(shipped) ? shipped : null;
 }
 
 /** 托管环境判定：只用来选一个能写的缓存目录，不参与业务逻辑。 */

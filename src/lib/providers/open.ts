@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { cached, fetchJson } from "../cache";
-import { cacheRoot, readDiskJson, writeDiskJson } from "../disk-cache";
+import { cacheRoot, readDiskJson, shippedCacheRoot, writeDiskJson } from "../disk-cache";
 import { getTaxiRate } from "../constants";
 import { DEMO_NOTE, XIAMEN_MEALS, XIAMEN_SIGHTS } from "../../content/demo-xiamen";
 import { isDemoCity } from "../demo";
@@ -657,19 +657,33 @@ async function osrmRoute(
   return cached(key, 6 * 60 * 60 * 1000, async () => {
     // 盘上先看一眼：两点之间的步行/驾车路径是死数据，重启后没有理由重问一遍。
     // 实测厦门 3 天排线光这一项就要 10.9s，而进程内缓存一重启就没了。
-    const persisted = readDiskJson<{
-      durationMin: number;
-      distanceKm: number;
-      geometry: [number, number][];
-    }>(routeCacheDir(), diskKey, ROUTE_TTL_MS);
+    // 先看随仓库分发的演示缓存（只读），再看本机缓存。写永远只写本机。
+    const shippedRoot = shippedCacheRoot();
+    const persisted =
+      (shippedRoot
+        ? readDiskJson<{
+            durationMin: number;
+            distanceKm: number;
+            geometry: [number, number][];
+          }>(path.join(shippedRoot, "route"), diskKey, ROUTE_TTL_MS)
+        : null) ??
+      readDiskJson<{
+        durationMin: number;
+        distanceKm: number;
+        geometry: [number, number][];
+      }>(routeCacheDir(), diskKey, ROUTE_TTL_MS);
     if (persisted) return persisted;
 
     // 半小时内刚查过、结果是「查不到」：直接用估算，不再等一次上游超时。
-    const knownMiss = readDiskJson<{ miss: true }>(
-      routeNegativeDir(),
-      diskKey,
-      ROUTE_NEGATIVE_TTL_MS,
-    );
+    const knownMiss =
+      (shippedRoot
+        ? readDiskJson<{ miss: true }>(
+            path.join(shippedRoot, "route-miss"),
+            diskKey,
+            ROUTE_NEGATIVE_TTL_MS,
+          )
+        : null) ??
+      readDiskJson<{ miss: true }>(routeNegativeDir(), diskKey, ROUTE_NEGATIVE_TTL_MS);
     if (knownMiss) return null;
 
     try {
