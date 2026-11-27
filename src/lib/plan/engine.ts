@@ -46,6 +46,12 @@ import { distributeSelectedPlaces } from "./selected";
 import { selectDays, type SelectInput } from "./select";
 import { farLimitKm } from "./select/far";
 import { avoidSteepFor, steepnessOf } from "./strenuous";
+import {
+  readWarmCache,
+  readWarmCacheEntry,
+  warmKeyOf,
+  writeWarmCache,
+} from "./warm-cache";
 import { explainDay } from "./why";
 
 // 有老人同行时整体降一档节奏，避免“充实”被理解成赶场。
@@ -72,6 +78,41 @@ export function discoverReach(input: TripInput): number {
   if (input.farDays === 0 || input.days < 2) return near;
   // 远足日按“可当日往返的上限”搜索；否则小城的名山、古寺在选点前就被近处半径裁掉。
   return Math.min(50, Math.max(near + 18, farLimitKm(input.styles)));
+}
+
+/**
+ * discover 的三层取数：磁盘热缓存 → 陈旧命中先顶上并后台刷新 → 真实网络。
+ *
+ * 消融实验（scripts/ablation-cache.ts）的结论是：砍数据源不省时间也不掉质量，
+ * 真正的成本是「冷启动第一单要打一轮外部地图」。所以这里不动数据源，只把已经算过的
+ * 结果留下来——质量上等价于原来（同一份真实数据），只是不必每次重算。
+ */
+async function discoverWithWarmCache(
+  warmKey: string,
+  loader: () => Promise<DiscoverResult>,
+): Promise<DiscoverResult> {
+  const fresh = readWarmCache(warmKey);
+  if (fresh) return fresh;
+
+  const stale = readWarmCacheEntry(warmKey);
+  if (stale) {
+    // 过期但还在盘上：先把旧结果顶上，用户不必等网络；后台补新，下次进来就是新的。
+    void loader()
+      .then((value) => writeWarmCache(warmKey, value))
+      .catch(() => {});
+    const days = Math.round(stale.ageMs / 86_400_000);
+    return {
+      ...stale.value,
+      notes: [
+        ...(stale.value.notes ?? []),
+        `景点池用的是本机 ${days} 天前缓存的同一份数据，正在后台更新。`,
+      ],
+    };
+  }
+
+  const value = await loader();
+  writeWarmCache(warmKey, value);
+  return value;
 }
 
 export async function discoverForTrip(input: TripInput): Promise<DiscoverResult> {
@@ -120,10 +161,18 @@ export async function discoverForTrip(input: TripInput): Promise<DiscoverResult>
     input.styles.join(","),
     input.farDays ?? "auto",
   ].join(":");
+  const warmKey = warmKeyOf({
+    provider: provider.source,
+    city: input.city,
+    center,
+    // 传落脚点的真实坐标：amap 的餐饮检索围着 hotel 转，用 center 代替会命中错的缓存。
+    hotel: [discoveryAnchor.lng, discoveryAnchor.lat],
+    radiusKm,
+  });
   const discovered = await cached(
     key,
     10 * 60 * 1000,
-    () => provider.discover(options),
+    () => discoverWithWarmCache(warmKey, () => provider.discover(options)),
     // 上游超时偶尔会返回空列表；这种结果绝不能缓存 10 分钟，
     // 否则一次网络抖动就会让整座城市在缓存期内都排不出行程。
     { cacheIf: (value) => value.sights.length > 0 },
@@ -326,7 +375,16 @@ function pickRainBackup(
 
 export async function planTrip(input: TripInput): Promise<PlanResult> {
   const provider = getProvider();
+  // 分段计时：MC_TIMING=1 时打到 stderr。排线各阶段全是外部 I/O，
+  // 没有这个就只能靠猜「哪里慢」——实测猜错过两次。
+  const timing = process.env.MC_TIMING === "1";
+  const startedAt = Date.now();
+  const phase = (label: string, from: number) => {
+    if (timing) console.error(`[timing] ${input.city} ${label} ${Date.now() - from}ms`);
+    return Date.now();
+  };
   const discovered = await discoverForTrip(input);
+  let cursor = phase("discover", startedAt);
   const radiusKm = discoverRadius(input);
   const holiday = getHoliday(input.date);
   const crowd = crowdFactor(input.date);
@@ -466,6 +524,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     input.date,
     input.days,
   );
+  cursor = phase("select+weather", cursor);
   const weatherByDay = new Map<number, WeatherCore | null>();
 
   for (const seedDay of selection.days) {
@@ -649,6 +708,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
   }
 
   // 维基数据补全只针对手册里真的会展示的点位；失败或超时就按原样排线。
+  cursor = phase("scheduleDays", cursor);
   const enrichTargets: Place[] = [];
   const enrichSeen = new Set<string>();
   const addEnrichTarget = (place: Place) => {
@@ -673,6 +733,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     city: input.city,
     budgetMs: 6_000,
   });
+  cursor = phase("enrich", cursor);
   for (const day of days) {
     for (const stop of day.stops) {
       const place = stop.place;

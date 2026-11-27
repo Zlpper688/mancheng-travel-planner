@@ -1,4 +1,7 @@
+import { createHash } from "node:crypto";
+import path from "node:path";
 import { cached, fetchJson } from "../cache";
+import { cacheRoot, readDiskJson, writeDiskJson } from "../disk-cache";
 import { getTaxiRate } from "../constants";
 import { DEMO_NOTE, XIAMEN_MEALS, XIAMEN_SIGHTS } from "../../content/demo-xiamen";
 import { isDemoCity } from "../demo";
@@ -29,6 +32,11 @@ import {
 } from "./photon";
 import { datavCityBoundary } from "./sniff/boundary";
 import { withinBoundary } from "./sniff/shared";
+import {
+  noteEndpointFailure,
+  noteEndpointSuccess,
+  orderTargets,
+} from "../upstream-health";
 import type {
   DiscoverOptions,
   DiscoverResult,
@@ -136,19 +144,26 @@ function mapOverpassElement(element: OverpassElement): Place | null {
   };
 }
 
+const OVERPASS_MAIN = "https://overpass-api.de/api/interpreter";
 const OVERPASS_MIRROR =
   "https://maps.mail.ru/osm/tools/overpass/api/interpreter";
 
 async function overpassQuery(
   query: string,
-  options: { allowMirror?: boolean; timeoutMs?: number } = {},
+  options: {
+    allowMirror?: boolean;
+    timeoutMs?: number;
+    mirrorTimeoutMs?: number;
+  } = {},
 ): Promise<Place[] | null> {
-  const { allowMirror = false, timeoutMs = 6_000 } = options;
+  const { allowMirror = false, timeoutMs = 6_000, mirrorTimeoutMs = 28_000 } = options;
   const body = new URLSearchParams({ data: query }).toString();
-  const targets = [
-    { url: "https://overpass-api.de/api/interpreter", timeout: timeoutMs },
-    ...(allowMirror ? [{ url: OVERPASS_MIRROR, timeout: 28_000 }] : []),
-  ];
+  // 主站在部分网络下完全不可达（实测 40s 无响应），而镜像 7.7s 就能返回同样结果。
+  // 熔断器记住「谁刚挂过」，把健康的排到前面：数据源一个没少，只是不再为死端点排队。
+  const targets = orderTargets([
+    { url: OVERPASS_MAIN, timeout: timeoutMs },
+    ...(allowMirror ? [{ url: OVERPASS_MIRROR, timeout: mirrorTimeoutMs }] : []),
+  ]);
   let mirrorRetried = false;
   for (let index = 0; index < targets.length; index++) {
     const target = targets[index];
@@ -163,10 +178,12 @@ async function overpassQuery(
         },
         target.timeout,
       );
+      noteEndpointSuccess(target.url);
       return (data.elements ?? [])
         .map(mapOverpassElement)
         .filter((place): place is Place => Boolean(place));
     } catch {
+      noteEndpointFailure(target.url);
       // 公共镜像按客户端限流，偶尔瞬时 504：快速失败时补一次重试，
       // 已经跑了很久的超时则不再拖时间。
       if (
@@ -176,7 +193,7 @@ async function overpassQuery(
       ) {
         mirrorRetried = true;
         await new Promise((resolve) => setTimeout(resolve, 1_200));
-        targets.push({ url: OVERPASS_MIRROR, timeout: 28_000 });
+        targets.push({ url: OVERPASS_MIRROR, timeout: mirrorTimeoutMs });
       }
     }
   }
@@ -571,6 +588,22 @@ type OsrmResponse = {
   }[];
 };
 
+/** 路线缓存目录与上限：一条记录含几何点串，按 4000 条约 40MB 量级封顶。 */
+const routeCacheDir = () => path.join(cacheRoot(), "route");
+/** 两点之间的步行/驾车路径基本不变，一个月足够长，又不会让改路网后一直用旧值。 */
+const ROUTE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+const ROUTE_MAX_FILES = 4000;
+
+/** 文件名只用十六进制：坐标里有小数点和冒号，不能直接当键。 */
+function routeDiskKey(profile: "foot" | "car", from: Place, to: Place): string {
+  return createHash("sha1")
+    .update(
+      `${profile}|${from.lng.toFixed(5)},${from.lat.toFixed(5)}|${to.lng.toFixed(5)},${to.lat.toFixed(5)}`,
+    )
+    .digest("hex")
+    .slice(0, 20);
+}
+
 async function osrmRoute(
   from: Place,
   to: Place,
@@ -578,14 +611,23 @@ async function osrmRoute(
 ): Promise<{ durationMin: number; distanceKm: number; geometry: [number, number][] } | null> {
   const coords = `${from.lng},${from.lat};${to.lng},${to.lat}`;
   const key = `osrm:${profile}:${from.lng.toFixed(5)},${from.lat.toFixed(5)}:${to.lng.toFixed(5)},${to.lat.toFixed(5)}`;
+  const diskKey = routeDiskKey(profile, from, to);
   return cached(key, 6 * 60 * 60 * 1000, async () => {
+    // 盘上先看一眼：两点之间的步行/驾车路径是死数据，重启后没有理由重问一遍。
+    // 实测厦门 3 天排线光这一项就要 10.9s，而进程内缓存一重启就没了。
+    const persisted = readDiskJson<{
+      durationMin: number;
+      distanceKm: number;
+      geometry: [number, number][];
+    }>(routeCacheDir(), diskKey, ROUTE_TTL_MS);
+    if (persisted) return persisted;
     try {
       const url = `https://routing.openstreetmap.de/routed-${profile}/route/v1/driving/${coords}?overview=full&geometries=geojson&alternatives=false&steps=false`;
       const data = await fetchJson<OsrmResponse>(url, {}, 12_000);
       const route = data.routes?.[0];
       if (!route || data.code === "NoRoute") return null;
       const geometry = route.geometry?.coordinates;
-      return {
+      const result = {
         durationMin: Math.max(1, Math.round(route.duration / 60)),
         distanceKm: Math.max(0.05, route.distance / 1000),
         geometry:
@@ -593,6 +635,8 @@ async function osrmRoute(
             ? geometry
             : straightLine([from.lng, from.lat], [to.lng, to.lat]),
       };
+      writeDiskJson(routeCacheDir(), diskKey, result, ROUTE_MAX_FILES);
+      return result;
     } catch {
       return null;
     }
@@ -721,6 +765,8 @@ out center tags 240;`;
 nwr(${foodBox.south},${foodBox.west},${foodBox.north},${foodBox.east})[amenity~"^(restaurant|cafe|food_court|marketplace)$"];
 out center tags 120;`;
   const scenicKey = `overpass:scenic:v4:${options.city}:${box.south.toFixed(2)},${box.west.toFixed(2)},${box.north.toFixed(2)},${box.east.toFixed(2)}`;
+  const foodKey = `overpass:food:v2:${options.city}:${foodBox.south.toFixed(2)},${foodBox.west.toFixed(2)},${foodBox.north.toFixed(2)},${foodBox.east.toFixed(2)}`;
+  const boundaryKey = `datav:boundary:v1:${options.city}:${center[0].toFixed(2)},${center[1].toFixed(2)}`;
 
   const [scenicResult, foodResult, boundary] = await Promise.all([
     cached(
@@ -729,12 +775,28 @@ out center tags 120;`;
       () => overpassQuery(scenicQuery, { allowMirror: true }),
       { cacheIf: (value) => Boolean(value?.length) },
     ),
-    // 餐饮只是可选补充，主站不可达时不值得等太久。
-    overpassQuery(foodQuery, { timeoutMs: 5_000 }),
-    Promise.race([
-      datavCityBoundary(options.city, center).catch(() => null),
-      new Promise<null>((resolve) => setTimeout(() => resolve(null), 6_000)),
-    ]),
+    // 餐饮点位以前每个请求都要重问一遍主站（上限 5s）。缓存 30 分钟：
+    // 主站不可达时这段时间里只白等一次，而不是每次都等。
+    // 刻意不给餐饮加镜像：实测镜像对这类查询稳定返回 504，加了只会把 8s 超时
+    // 塞进关键路径，换不回任何点位。
+    cached(
+      foodKey,
+      30 * 60 * 1000,
+      () => overpassQuery(foodQuery, { timeoutMs: 5_000 }),
+      { cacheIf: (value) => Boolean(value?.length) },
+    ),
+    // 行政区边界几年才变一次，却每次请求都要问一遍（上限 6s）。缓存一天。
+    cached(
+      boundaryKey,
+      24 * 60 * 60 * 1000,
+      () =>
+        Promise.race([
+          datavCityBoundary(options.city, center).catch(() => null),
+          new Promise<null>((resolve) => setTimeout(() => resolve(null), 6_000)),
+        ]),
+      // 取不到就不缓存：一次网络抖动不该让这座城市一整天都没有行政边界。
+      { cacheIf: (value) => Boolean(value) },
+    ),
   ]);
 
   let sights = (scenicResult ?? []).filter(
@@ -758,6 +820,9 @@ out center tags 120;`;
           categories: PHOTON_SIGHT_INCLUDES,
           limit: 120,
         }).catch(() => []),
+        // 保持 90s 的采集预算不缩水：这一支只在 Overpass 没兜住时才跑，
+        // 掐短它是拿「候选池变薄」换几秒，而北京实测掐到 35s 就只剩 7 个点位。
+        // 真正该省的时间在 `photonCategorySearch` 里——那里把排队改成了并发。
         90_000,
         [],
       ),

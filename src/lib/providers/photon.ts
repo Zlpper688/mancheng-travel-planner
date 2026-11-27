@@ -176,7 +176,11 @@ export async function photonCategorySearch(options: {
 }): Promise<Place[]> {
   const { center, radiusKm, categories, limit = 100 } = options;
   const bbox = bboxFor(center, radiusKm);
-  const batches = await mapLimit([...categories], 6, async (category) => {
+  // 并发度取「类别数」，让 13 个类别跑成一批而不是三批。
+  // 原先固定 6：13 个类别要排 3 轮，每轮都可能吃满 15s 超时，
+  // 于是 Photon 这一支最坏要 45s（北京实测 76s，含 Wikidata）。
+  // 请求本身一条没变，只是不再排队——数据完全一样，等待时间砍到一轮。
+  const batches = await mapLimit([...categories], categories.length || 6, async (category) => {
     const params = new URLSearchParams({
       bbox,
       limit: String(limit),

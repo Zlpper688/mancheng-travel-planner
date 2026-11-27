@@ -13,6 +13,9 @@ out
 public/photos/live/
 data/live-photo-cache.json
 
+# 规划预热缓存（本机/容器自建，由 scripts/warm-plan-cache.mjs 生成）
+.cache/
+
 # 自动合并用的备份、独立构建目录
 .backup-auto/
 .backup-mancheng-*/
