@@ -29,7 +29,7 @@ import type { PlanResponse, PlanResult, Place } from "@/lib/types";
 import type { WalkApi } from "../MapView";
 import { Icon } from "../Icon";
 import PlanPanel from "../PlanPanel";
-import { cn } from "../ui";
+import { cn, Spinner } from "../ui";
 import ChatCardView from "./ChatCards";
 import Walkthrough from "./Walkthrough";
 
@@ -193,6 +193,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<Mode>("wizard");
   const [aiReason, setAiReason] = useState<string | null>(null);
+  const [probing, setProbing] = useState(false);
   const [busy, setBusy] = useState(false);
   const [planning, setPlanning] = useState(false);
   const [plan, setPlan] = useState<PlanResult | null>(null);
@@ -260,6 +261,33 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [handbookOpen]);
 
+  // 双向切换：对话 ↔ 向导。向导 → 对话前先探一次模型，通了才切，
+  // 不通则留在向导并把原因写在提示里，避免切过去又立刻被打回来。
+  function toggleMode() {
+    if (busy || probing) return;
+    if (mode === "ai") {
+      setMode("wizard");
+      setAiReason("已手动切到向导模式");
+      return;
+    }
+    setProbing(true);
+    void fetch("/api/chat")
+      .then(async (response) => {
+        const data = (await response.json()) as {
+          configured?: boolean;
+          reason?: string;
+        };
+        if (data.configured) {
+          setMode("ai");
+          setAiReason(null);
+        } else {
+          setAiReason(data.reason ?? "模型未配置，填好 Key 再试");
+        }
+      })
+      .catch(() => setAiReason("模型探活失败，稍后再试"))
+      .finally(() => setProbing(false));
+  }
+
   function setMessagesBoth(next: ChatMessage[]) {
     messagesRef.current = next;
     setMessages(next);
@@ -325,7 +353,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         setAiReason(reason);
         const prompt = stepPrompt(next);
         appendAssistant(
-          `模型暂时没接通（${reason}），先切到向导模式，不影响安排。\n把可用的模型 Key 填进 .env.local 后重启服务，就能切回对话。`,
+          `模型暂时没接通（${reason}），先切到向导模式，不影响安排。\n点顶部标签随时重试对话；要是模型没配置，把 Key 填进 .env.local 重启即可。`,
           prompt.cards,
         );
         return;
@@ -363,7 +391,7 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       setMode("wizard");
       const prompt = stepPrompt(next);
       appendAssistant(
-        "模型网络没有接通，先切到向导模式，不影响安排。",
+        "模型网络没有接通，先切到向导模式，不影响安排。\n点顶部标签随时重试对话。",
         prompt.cards,
       );
     } finally {
@@ -650,9 +678,31 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
               <span className="font-serif text-[16px] tracking-wide text-ink">
                 漫城
               </span>
-              <span className="rounded-full bg-jade-soft px-1.5 py-0.5 text-micro text-jade">
+              <button
+                type="button"
+                onClick={toggleMode}
+                disabled={busy || probing}
+                title={
+                  mode === "ai"
+                    ? "点一下切到向导模式（免 Key）"
+                    : "点一下重试对话模式"
+                }
+                className={cn(
+                  "inline-flex shrink-0 items-center gap-1 rounded-full border px-1.5 py-0.5 text-micro transition disabled:cursor-not-allowed disabled:opacity-60",
+                  mode === "ai"
+                    ? "border-jade/40 bg-jade-soft text-jade hover:border-jade/70"
+                    : aiReason
+                      ? "border-amber/40 bg-amber-soft text-amber hover:border-amber/70"
+                      : "border-line bg-card text-ink-soft hover:border-ink/25 hover:text-ink",
+                )}
+              >
+                {probing ? (
+                  <Spinner className="h-2.5 w-2.5" />
+                ) : (
+                  <Icon name="refresh" size={10} />
+                )}
                 {mode === "ai" ? "对话模式" : "向导模式"}
-              </span>
+              </button>
             </div>
             <p className="mt-0.5 truncate text-[10.5px] text-ink-faint">
               {draft.confirmed.city
