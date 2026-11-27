@@ -137,7 +137,9 @@ data/knowledge/
 node scripts/learn-guides.mjs       # 攻略语料 -> cities/ + index.json（纯本地）
 node scripts/check-knowledge.mjs    # 结构回归：坐标合法性 / 经纬度不写反 / must 对齐
 node scripts/build-photo-index.mjs  # 1012 个已核实景点 -> 本地实景图库 + 静态索引
+node scripts/build-category-photos.mjs # 13 类通用示意图（现场找不到时的兜底）
 npx tsx scripts/check-photos.ts     # 图片回归：全量覆盖 / 文件可解码 / 前端识别
+npx tsx scripts/check-live-photos.ts --live # 现场找图：标题守门 + 分类兜底
 ```
 
 ### 全量景点图片库
@@ -147,6 +149,21 @@ npx tsx scripts/check-photos.ts     # 图片回归：全量覆盖 / 文件可解
 `src/lib/photos.ts` 解析顺序：**人工核对的维基图 → 本地图库 → 高德/OSM/Wikidata/维基检索**，
 所以演示时不再依赖外网图库。图源为人工核对的维基共享资源图 + 搜狗/360 图片搜索的实景图，
 每张都能追溯到原图页面，版权归原作者；换图只需重跑 `build-photo-index.mjs`。
+
+### 任意地点现场找图
+
+本地图库只覆盖 1012 个已核实景点；其他任何地点走**运行时现场找图**，三层兜底：
+
+1. 本地图库 / 高德 / OSM / Wikidata / 维基百科（已有链路）
+2. **现场搜索**：`src/lib/live-search.ts` 用搜狗 → 360 按「城市 + 景点名」实时搜图，
+   带 250ms 串行节流、60s 供应商冷却与 24h 缓存。搜索结果**按标题守门**——
+   标题不含景点名（或核心名）的候选一律丢弃，绝不会拿外地/无关的图冒充这一站。
+3. **分类通用图**：现场也找不到时，按 category 给一张明确标注「示意」的同类图
+   （山野 / 海滩 / 博物馆等 13 类，`data/category-photos.json`），不冒充实景。
+
+`/api/photo` 接 `category` 参数；`PlacePhoto` 把 category 传过去，图鉴里所有条目都渲染图片组件
+（不再用 `entry.photo` 当门控，否则索引外地点永远看不到图）。通用图角标写「示意」，鼠标悬停写明
+"同类示意图，非xx实景"。
 
 `enrichment/` 由 agent 逐城联网核实填入（见 `enrichment/README.md`），**坐标必须有出处、查不到就留白**，
 绝不编造。引擎侧 `src/lib/providers/knowledge.ts` 读取本地包，必去点给高热度和优先级；

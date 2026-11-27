@@ -13,6 +13,7 @@ interface PhotoInfo {
   sourceUrl?: string;
   author?: string;
   license?: string;
+  generic?: boolean;
 }
 
 const photoCache = new Map<string, PhotoInfo | null>();
@@ -86,7 +87,7 @@ export default function PlacePhoto({
   priority?: boolean;
   compact?: boolean;
 }) {
-  const key = `${city}|${name}|${lat?.toFixed(4) ?? ""}|${lng?.toFixed(4) ?? ""}|${qid ?? ""}|${image ?? ""}|${commons ?? ""}`;
+  const key = `${city}|${name}|${lat?.toFixed(4) ?? ""}|${lng?.toFixed(4) ?? ""}|${qid ?? ""}|${image ?? ""}|${commons ?? ""}|${category}`;
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [visible, setVisible] = useState(priority);
@@ -131,13 +132,14 @@ export default function PlacePhoto({
     if (qid) params.set("qid", qid);
     if (image) params.set("image", image);
     if (commons) params.set("commons", commons);
+    params.set("category", category);
     void loadPhoto(key, params).then((next) => {
       if (!cancelled) setPhoto(next);
     });
     return () => {
       cancelled = true;
     };
-  }, [visible, key, name, city, lat, lng, qid, image, commons]);
+  }, [visible, key, name, city, lat, lng, qid, image, commons, category]);
 
   useEffect(() => {
     // 图片可能在上面的 onLoad 绑定前就已缓存命中，补一次完成态检查。
@@ -216,10 +218,21 @@ export default function PlacePhoto({
           target="_blank"
           rel="noreferrer noopener"
           onClick={(event) => event.stopPropagation()}
-          title={credit ? `${photo.source} · ${credit}` : photo.source}
-          className="absolute bottom-2 right-2 rounded-full bg-ink/60 px-2 py-1 text-micro text-paper/95 backdrop-blur-sm transition hover:bg-ink/80"
+          title={
+            photo.generic
+              ? `同类示意图，非${name}实景 · ${credit ?? photo.source}`
+              : credit
+                ? `${photo.source} · ${credit}`
+                : photo.source
+          }
+          className={cn(
+            "absolute bottom-2 right-2 rounded-full px-2 py-1 text-micro text-paper/95 backdrop-blur-sm transition",
+            photo.generic
+              ? "bg-amber/80 hover:bg-amber"
+              : "bg-ink/60 hover:bg-ink/80",
+          )}
         >
-          {photo.source}
+          {photo.generic ? "示意" : photo.source}
         </a>
       ) : null}
     </div>

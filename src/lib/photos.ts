@@ -1,15 +1,28 @@
+import { CATEGORY_PHOTOS } from "../content/category-photos.generated";
 import { CURATED_PHOTOS } from "../content/place-photos";
 import { fetchJson } from "./cache";
+import { searchLivePhoto } from "./live-search";
 import { localPhotoFor } from "./photo-hints";
 import { nameSimilarity } from "./providers/normalize";
+import type { Category } from "./types";
 import { lookupWikidataByName, wikidataImageFileByQid } from "./wikidata";
 
 export interface PlacePhoto {
   url: string;
-  source: "高德" | "维基百科" | "维基共享资源" | "搜狗图片" | "360图片";
+  source:
+    | "高德"
+    | "维基百科"
+    | "维基共享资源"
+    | "搜狗图片"
+    | "360图片"
+    | "现场搜图"
+    | "通用示意图";
   sourceUrl?: string;
   author?: string;
   license?: string;
+  title?: string;
+  /** true = 同类示意图，不是这一站的实景；UI 必须标注，不能冒充。 */
+  generic?: boolean;
 }
 
 const PHOTO_TTL = 24 * 60 * 60 * 1000;
@@ -469,6 +482,7 @@ async function resolveUncached(input: {
   qid?: string;
   image?: string;
   commons?: string;
+  category?: Category;
 }): Promise<PlacePhoto | null> {
   // 本地静态图库最优先：演示零外网依赖，且每张图都能追溯到原图页面。
   const local = localPhotoFor(input.name, input.city);
@@ -505,7 +519,24 @@ async function resolveUncached(input: {
     wikipediaPhoto(input.name),
     commonsPhoto(input.name, input.city),
   ]);
-  return wiki ?? commons;
+  if (wiki || commons) return wiki ?? commons;
+
+  // 现场找图：任意地点都能搜。搜索结果按标题守门，绝不会把不相干的图当成这一站。
+  const live = await searchLivePhoto(input);
+  if (live) return live as PlacePhoto;
+
+  // 最后一层：同类通用示意图。明确标记 generic，UI 会写"示意"，不冒充实景。
+  const fallback = input.category ? CATEGORY_PHOTOS[input.category] : undefined;
+  if (fallback) {
+    return {
+      url: fallback.url,
+      source: "通用示意图",
+      sourceUrl: fallback.sourceUrl,
+      title: fallback.title,
+      generic: true,
+    };
+  }
+  return null;
 }
 
 export async function resolvePlacePhoto(input: {
@@ -516,8 +547,9 @@ export async function resolvePlacePhoto(input: {
   qid?: string;
   image?: string;
   commons?: string;
+  category?: Category;
 }): Promise<PlacePhoto | null> {
-  const key = `photo:${input.city}|${input.name}|${input.lat?.toFixed(4) ?? ""}|${input.lng?.toFixed(4) ?? ""}|${input.qid ?? ""}|${input.image ?? ""}|${input.commons ?? ""}`;
+  const key = `photo:${input.city}|${input.name}|${input.lat?.toFixed(4) ?? ""}|${input.lng?.toFixed(4) ?? ""}|${input.qid ?? ""}|${input.image ?? ""}|${input.commons ?? ""}|${input.category ?? ""}`;
   const now = Date.now();
   const hit = photoStore.get(key);
   if (hit && hit.expiresAt > now) return hit.photo;

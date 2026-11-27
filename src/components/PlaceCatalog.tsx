@@ -503,21 +503,19 @@ function CatalogCard({
             </div>
           ) : null}
         </div>
-        {entry.photo ? (
-          <PlacePhoto
-            name={entry.place.name}
-            city={city}
-            lat={entry.place.lat}
-            lng={entry.place.lng}
-            qid={entry.place.wikidataId}
-            image={entry.place.image}
-            commons={entry.place.commons}
-            category={entry.place.category}
-            compact
-            aspect="aspect-square w-[62px]"
-            className="shrink-0 rounded-lg"
-          />
-        ) : null}
+        <PlacePhoto
+          name={entry.place.name}
+          city={city}
+          lat={entry.place.lat}
+          lng={entry.place.lng}
+          qid={entry.place.wikidataId}
+          image={entry.place.image}
+          commons={entry.place.commons}
+          category={entry.place.category}
+          compact
+          aspect="aspect-square w-[62px]"
+          className="shrink-0 rounded-lg"
+        />
       </div>
       <button
         type="button"

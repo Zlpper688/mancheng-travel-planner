@@ -1,0 +1,22 @@
+// 自动生成，请勿手改。跑 scripts/build-category-photos.mjs 重建。
+export interface CategoryPhoto {
+  url: string;
+  source: string;
+  sourceUrl?: string;
+  title?: string;
+}
+export const CATEGORY_PHOTOS: Record<string, CategoryPhoto> = {
+  "attraction": {"url":"/photos/category/attraction.jpg","source":"通用示意图","sourceUrl":"https://www.sohu.com/a/299783754_727571","title":"长治人注意了！这些景点免费，只限几天，赶快去！_景区"},
+  "museum": {"url":"/photos/category/museum.jpg","source":"通用示意图","sourceUrl":"https://baike.baidu.com/item/%E5%9C%8B%E5%AE%B6%E4%B8%80%E7%B4%9A%E5%8D%9A%E7%89%A9%E9%A4%A8","title":"国家一级博物馆"},
+  "park": {"url":"/photos/category/park.jpg","source":"通用示意图","sourceUrl":"https://www.huitu.com/photo/show/20260415/201810323201.html","title":"城市中绿意盎然的公园景致图片素材下载-建筑摄影素材下的都市风光图片素材-汇图网"},
+  "viewpoint": {"url":"/photos/category/viewpoint.jpg","source":"通用示意图","sourceUrl":"https://www.kkday.com/zh-tw/product/142126-yamanashi-sun-meadows-kiyosato-japan-gw-holiday-observation-lift-round-trip-ticket","title":"太陽草甸清裡往返觀光纜車票(山梨縣北斗市)"},
+  "beach": {"url":"/photos/category/beach.jpg","source":"通用示意图","sourceUrl":"https://www.mafengwo.cn/poi/33654448.html","title":"海边礁岩海滩"},
+  "street": {"url":"/photos/category/street.jpg","source":"通用示意图","sourceUrl":"http://www.nipic.com/detail/huitu/20160521/161737512601.html","title":"街景,步行街图片素材下载-建筑摄影素材下的都市风光图片素材-汇图网"},
+  "temple": {"url":"/photos/category/temple.jpg","source":"通用示意图","sourceUrl":"http://www.nfgjz.com/25928.html","title":"黄岩灵石寺塔,北宋佛塔遗存与宋代古塔国保石刻的千年对话"},
+  "market": {"url":"/photos/category/market.jpg","source":"通用示意图","sourceUrl":"https://www.cyzone.cn/article/620570.html","title":"乱象未除,下沉市场需要怎样的“新基建”?"},
+  "nature": {"url":"/photos/category/nature.jpg","source":"通用示意图","sourceUrl":"http://www.nipic.com/detail/huitu/20160404/224308102200.html","title":"山峰蓝天图片素材下载-自然风景素材下的高山丘壑图片素材-汇图网"},
+  "food": {"url":"/photos/category/food.jpg","source":"通用示意图","sourceUrl":"http://www.nipic.com/show/51964318.html","title":"精致中式美食摆盘展示摄影图__传统美食_餐饮美食_摄影图库_昵图网"},
+  "cafe": {"url":"/photos/category/cafe.jpg","source":"通用示意图","sourceUrl":"http://www.thepaper.cn/newsDetail_forward_9278324","title":"很多人去过云南，却不知道大理是座咖啡之城_澎湃号·湃客_澎湃新闻-The Paper"},
+  "hotel": {"url":"/photos/category/hotel.jpg","source":"通用示意图","sourceUrl":"http://www.sohu.com/a/462937460_594283","title":"徐州新城区大事件！顶奢酒店空降，10万㎡汉风园林式建筑群大气磅礴！_绿地"},
+  "other": {"url":"/photos/category/other.jpg","source":"通用示意图","sourceUrl":"https://www.mafengwo.cn/poi/576108.html","title":"关山湖风景区秋景"},
+};
