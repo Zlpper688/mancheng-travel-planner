@@ -651,9 +651,11 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
           <span className="text-[10.5px] text-ink-faint">对话定制</span>
           <a
             href="/"
-            className="ml-1 rounded-full border border-line px-2.5 py-1 text-[10.5px] text-ink-soft transition hover:border-ink/25 hover:text-ink"
+            title="返回首页（经典版）"
+            className="ml-1 inline-flex items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1 text-[10.5px] text-ink-soft transition hover:border-accent/40 hover:text-accent"
           >
-            经典版
+            <Icon name="home" size={10} />
+            返回首页
           </a>
         </div>
       </div>
@@ -732,9 +734,11 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
           ) : null}
           <a
             href="/"
-            className="hidden shrink-0 rounded-full border border-line px-2.5 py-1.5 text-[10.5px] text-ink-faint transition hover:border-ink/25 hover:text-ink lg:inline-flex"
+            title="返回首页（经典版）"
+            className="hidden shrink-0 items-center gap-1 rounded-full border border-line bg-card px-2.5 py-1.5 text-[11px] text-ink-soft transition hover:border-accent/40 hover:text-accent lg:inline-flex"
           >
-            经典版
+            <Icon name="home" size={11} />
+            返回首页
           </a>
         </div>
 

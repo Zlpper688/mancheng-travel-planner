@@ -961,7 +961,7 @@ export default function PlannerApp({
               title="对话定制：像聊天一样说需求，直接排出路线"
             >
               <Icon name="sparkles" size={11} />
-              <span className="hidden sm:inline">对话定制</span>
+              <span>对话定制</span>
             </Link>
             <Link
               href="/journal"
