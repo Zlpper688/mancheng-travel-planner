@@ -55,6 +55,8 @@ export interface ChatCard {
   kind: ChatCardKind;
   title: string;
   hint?: string;
+  /** 玩法卡片专属：城市画像算出的选项，随卡片一起走，避免组件再请求 */
+  profile?: import("@/lib/city-profile").CityProfile;
 }
 
 export interface ChatMessage {
