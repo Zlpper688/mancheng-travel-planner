@@ -1,6 +1,7 @@
 import { CATEGORY_PHOTOS } from "../content/category-photos.generated";
 import { CURATED_PHOTOS } from "../content/place-photos";
 import { fetchJson } from "./cache";
+import { cacheKeyOf, persistLivePhoto } from "./live-photo-cache";
 import { searchLivePhotoDetailed } from "./live-search";
 import { localPhotoFor } from "./photo-hints";
 import { nameSimilarity } from "./providers/normalize";
@@ -509,7 +510,15 @@ async function resolveUncached(input: {
   // 现场找图优先于维基慢源：国内网络下维基 API 常 4.5s 超时，而搜图 ~1s。
   // 搜图前由 LLM 判存在性、搜图后判语义相关性，不会为了快而牺牲准确性。
   const live = await searchLivePhotoDetailed(input);
-  if (live.photo) return live.photo as PlacePhoto;
+  if (live.photo) {
+    // 现场图落盘：二次访问走本地静态文件，断网也能看。
+    // 写盘失败会原样返回 CDN 直链，不影响可用性。
+    const cached = await persistLivePhoto(
+      live.photo,
+      cacheKeyOf(input.city, input.name),
+    );
+    return cached as PlacePhoto;
+  }
 
   // LLM 明确说这地方不存在：直接落分类图，连维基慢源都不必试。
   if (!live.nonexistent) {

@@ -139,7 +139,8 @@ node scripts/check-knowledge.mjs    # 结构回归：坐标合法性 / 经纬度
 node scripts/build-photo-index.mjs  # 1012 个已核实景点 -> 本地实景图库 + 静态索引
 node scripts/build-category-photos.mjs # 13 类通用示意图（现场找不到时的兜底）
 npx tsx scripts/check-photos.ts     # 图片回归：全量覆盖 / 文件可解码 / 前端识别
-npx tsx scripts/check-live-photos.ts --live # 现场找图：标题守门 + 分类兜底
+npx tsx scripts/check-live-photos.ts --live # 现场找图：LLM 语义守门 + 分类兜底
+npx tsx scripts/check-live-cache.ts --live  # 落盘缓存：首次下载 + 二次命中
 ```
 
 ### 全量景点图片库
@@ -163,6 +164,12 @@ npx tsx scripts/check-live-photos.ts --live # 现场找图：标题守门 + 分�
 3. 维基百科 / Wikidata（CC 许可清晰但慢，放在现场搜图之后）
 4. **分类通用图**：现场也找不到时，按 category 给一张明确标注「示意」的同类图
    （山野 / 海滩 / 博物馆等 13 类，`data/category-photos.json`），不冒充实景。
+
+**现场图落盘缓存**：搜到的 CDN 图会下载到 `public/photos/live/`，压缩到 720px/q72，
+索引在 `data/live-photo-cache.json`（500 张 / 40MB 上限，超出按时间淘汰）。
+二次访问直接返回本地静态路径，几乎零延迟；断网也能看已缓存的地点。
+这两处是运行时生成的，已加入 `.gitignore`，不进版本库。写盘失败（如只读云环境）
+会退回 CDN 直链，功能不降级。
 
 `/api/photo` 接 `category` 参数；`PlacePhoto` 把 category 传过去，图鉴里所有条目都渲染图片组件
 （不再用 `entry.photo` 当门控，否则索引外地点永远看不到图）。通用图角标写「示意」，鼠标悬停写明

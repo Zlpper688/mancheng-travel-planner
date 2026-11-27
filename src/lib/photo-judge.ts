@@ -24,7 +24,8 @@ export interface JudgeConfig {
   model: string;
 }
 
-const TIMEOUT = 12_000;
+// 判定只用于增强守门，超时必须短：模型抖动不该让用户等十几秒。
+const TIMEOUT = 6_000;
 const EXIST_TTL = 7 * 24 * 60 * 60 * 1000;
 let unavailableUntil = 0;
 

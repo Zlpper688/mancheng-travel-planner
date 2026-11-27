@@ -9,6 +9,10 @@ out
 *.tsbuildinfo
 .DS_Store
 
+# 运行时现场搜图缓存（各环境按需生成，不进版本库）
+public/photos/live/
+data/live-photo-cache.json
+
 # 自动合并用的备份、独立构建目录
 .backup-auto/
 .backup-mancheng-*/
