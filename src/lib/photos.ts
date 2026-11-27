@@ -26,6 +26,25 @@ export interface PlacePhoto {
   generic?: boolean;
 }
 
+/**
+ * 本地图库的使用策略。
+ *
+ * 内置图库分两类来源：人工核对并标注 CC 许可的（共享资源），以及早期从图片搜索
+ * 抓取、只有「原图页面」没有授权的（搜狗/360）。后者在公开分发前必须处理掉。
+ *
+ * - 不设置 / MC_PHOTO_LIBRARY=all：保持现状（本地演示、答辩演示都用这一档）
+ * - MC_PHOTO_LIBRARY=licensed：只用有明确许可的来源；抓取所得的条目被跳过，
+ *   点位改走「高德 → OSM 标签 → 人工核对 → Wikidata P18 → 维基共享资源」这条链。
+ *   再配合 MC_LIVE_PHOTO=0，整站图片就都是可追溯许可的。
+ * 彻底清理而不是运行时过滤，用 scripts/purge-unlicensed-photos.mjs。
+ */
+const LICENSED_PHOTO_SOURCES = new Set(["维基共享资源", "维基百科"]);
+
+function localLibraryAllowed(source: string): boolean {
+  if (process.env.MC_PHOTO_LIBRARY?.trim() !== "licensed") return true;
+  return LICENSED_PHOTO_SOURCES.has(source);
+}
+
 const PHOTO_TTL = 24 * 60 * 60 * 1000;
 // 没有图的时候只记一小会儿：网络恢复后能重新拿到图，又不会让每个点位都重复打上游。
 const MISS_TTL = 10 * 60 * 1000;
@@ -509,7 +528,7 @@ async function resolveUncached(input: {
 }): Promise<PlacePhoto | null> {
   // 本地静态图库最优先：演示零外网依赖，且每张图都能追溯到原图页面。
   const local = localPhotoFor(input.name, input.city);
-  if (local) {
+  if (local && localLibraryAllowed(local.source)) {
     return {
       url: local.url,
       source: local.source as PlacePhoto["source"],
