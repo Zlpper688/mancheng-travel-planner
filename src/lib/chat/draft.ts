@@ -83,21 +83,15 @@ export function applyResolvedPatch(
     next.city = patch.city;
     next.confirmed.city = true;
     if (patch.city.name !== draft.city.name) {
+      // 换城市要让所有「绑定旧城市」的状态一起失效，否则排线拿到矛盾需求：
+      // ①具体酒店绑在旧城坐标上，作废并重新问；②「还没定」是跨城意愿，保留；
+      // ③点名景点属于旧城，清空。
+      const hadConcreteHotel = draft.confirmed.hotel && !draft.hotelUndecided;
       next.hotel = patch.hotel ?? hotelForCity(patch.city);
       next.hotelUndecided = !patch.hotel && draft.hotelUndecided;
-      // 默认 hotelUndecided:true 只是「还没给酒店」的初始占位，不是用户表态。
-      // 用户只报了城市时不能把住处标成已确认，否则住处那一轮被吞掉
-      // （用户实测「少一轮问」）。只有真给了酒店、或之前已表过态才算确认。
-      next.confirmed.hotel = Boolean(patch.hotel) || draft.confirmed.hotel;
-      // 换城市时清掉新城市不支持的玩法：厦门勾的「海边/环海慢游」带到银川
-      // 会让排线拿到矛盾需求。单一真相源就是城市画像表，这里按它过滤。
-      const facts = CITY_FACTS[patch.city.name] ?? NEUTRAL_FACTS;
-      const allowedStyles = new Set(facts.styles);
-      const allowedExperiences = new Set(facts.experiences.map((o) => o.id));
-      next.styles = next.styles.filter((id) => allowedStyles.has(id));
-      next.experiences = next.experiences.filter((id) =>
-        allowedExperiences.has(id),
-      );
+      next.confirmed.hotel =
+        Boolean(patch.hotel) || (draft.confirmed.hotel && !hadConcreteHotel);
+      next.selectedPlaces = [];
     }
   }
   if (patch.hotel) {
@@ -148,10 +142,30 @@ export function applyResolvedPatch(
   }
   if (patch.budgetTier !== undefined) next.budgetTier = patch.budgetTier;
   if (patch.selectedPlaces?.length) {
+    // 用 next 而非 draft：换城市那轮 next.selectedPlaces 已被清空，
+    // 若从 draft 合并会把旧城市点名景点又带回来。
     next.selectedPlaces = uniqueBy(
-      [...draft.selectedPlaces, ...patch.selectedPlaces],
+      [...next.selectedPlaces, ...patch.selectedPlaces],
       (place) => place.id || place.name,
     ).slice(0, 12);
+  }
+
+  // 城市兼容性过滤统一放在末尾：无论玩法来自旧草稿还是本轮 patch（可能同时
+  // 带 city 切换 + styles），都按最终城市校验一次。放在 city 分支里会漏掉
+  // 「同一轮既换城又给玩法」的情况，让沿海玩法混进内陆城市。
+  //
+  // 注意只做「不兼容项剔除」，不做画像表白名单过滤：画像表列的是特色高分项
+  // （厦门表就没有 food），白名单会把用户勾选的通用玩法误删。真正不兼容的
+  // 只有水/海类玩法——无海去 coast，无海无湖去 boat，无海去 coastal 风格。
+  const facts = CITY_FACTS[next.city.name] ?? NEUTRAL_FACTS;
+  const hasSea = facts.capabilities.sea;
+  const hasWater = hasSea || facts.capabilities.lake;
+  if (!hasSea) {
+    next.styles = next.styles.filter((id) => id !== "coastal");
+    next.experiences = next.experiences.filter((id) => id !== "coast");
+  }
+  if (!hasWater) {
+    next.experiences = next.experiences.filter((id) => id !== "boat");
   }
 
   return next;
@@ -193,15 +207,32 @@ export type WizardStep =
   | "hotel"
   | "confirm";
 
+const STEP_ORDER: (keyof ChatDraft["confirmed"])[] = [
+  "city",
+  "date",
+  "party",
+  "style",
+  "pace",
+  "transport",
+  "hotel",
+];
+
 export function wizardStep(draft: ChatDraft): WizardStep {
-  if (!draft.confirmed.city) return "city";
-  if (!draft.confirmed.date) return "date";
-  if (!draft.confirmed.party) return "party";
-  if (!draft.confirmed.style) return "style";
-  if (!draft.confirmed.pace) return "pace";
-  if (!draft.confirmed.transport) return "transport";
-  if (!draft.confirmed.hotel) return "hotel";
-  return "confirm";
+  // 单一真相源：按固定顺序找第一个未确认的维度。cardIsSettled 复用同一份
+  // confirmed 状态，不再各写一套 switch——两套判断正是漂移的温床。
+  const first = STEP_ORDER.find((key) => !draft.confirmed[key]);
+  return first ?? "confirm";
+}
+
+/**
+ * 某张卡片是否已处理完，用于前端过滤模型重复给的卡。
+ * 由 wizardStep 同一份 confirmed 推导：budget 提示词规定不单独问，视为已处理；
+ * confirm 永远可显示。
+ */
+export function cardIsSettled(kind: ChatCardKind, draft: ChatDraft): boolean {
+  if (kind === "budget") return true;
+  if (kind === "confirm") return false;
+  return draft.confirmed[kind as keyof ChatDraft["confirmed"]];
 }
 
 const STEP_CARDS: Record<

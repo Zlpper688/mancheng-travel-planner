@@ -46,6 +46,41 @@ export function userStatedHotel(text: string): boolean {
   return HOTEL_RE.test(text) || BLANKET_RE.test(text);
 }
 
+// 人数是硬约束（提示词规则3：城市/日期/人数必须由用户说清，不能用默认值蒙混）。
+// 模型很爱自己脑补「2 成人」，若不守门，runPlan 的 >=1 校验会被假人数骗过。
+// 「两位/三口/带娃/一家/我们/独自」等都算表态；玩法卡文本一律不算。
+const PARTY_RE =
+  /成人|大人|小孩|儿童|孩子|老人|长辈|爸妈|父母|带娃|亲子|一家|三口|两口|情侣|独自|一个人|几个人|几位|[0-9一二三四五六七八九十两]\s*(个|位|人|口|大|小)|我们|同行|结伴/;
+
+export function userStatedParty(text: string): boolean {
+  return PARTY_RE.test(text) || BLANKET_RE.test(text);
+}
+
+/**
+ * 硬约束守门：城市/日期/人数里，只有用户本轮原话明确说过的才允许进 patch。
+ * 日期已有 userStatedDate 单独校验（在 model.ts），这里补人数这道缺口；
+ * 城市已有 resolveCity + nameSimilarity 校验，不动。
+ */
+export function gateHardConstraints(
+  patch: ResolvedPatch,
+  userText: string,
+): ResolvedPatch {
+  const gated: ResolvedPatch = { ...patch };
+  const partyStated =
+    gated.adults !== undefined ||
+    gated.children !== undefined ||
+    gated.seniors !== undefined;
+  if (
+    partyStated &&
+    !userStatedParty(userText)
+  ) {
+    delete gated.adults;
+    delete gated.children;
+    delete gated.seniors;
+  }
+  return gated;
+}
+
 /**
  * 拦下模型脑补的默认值：只有用户本轮原话真的表态过该维度，才保留对应字段。
  * 城市/日期/人数是硬约束，另有各自的校验，不在这里处理。
@@ -69,6 +104,31 @@ export function gateDefaultDimensions(
 // 否则会先显示「信息齐了」再追问节奏，文案自相矛盾。
 const WRAP_UP_SAY_RE =
   /信息齐[了全]|都齐了|信息够[了]|信息齐全|开始安排|可以开始排|可以安排|那就按|按现在这些|开始排|直接排/;
+
+/**
+ * 城市是硬约束：只有用户本轮原话点名了这个城市，或模型给的就是当前草稿城市
+ * （只是补确认），才接受。原实现里 `!draft.confirmed.city ||` 会让模型在用户
+ * 只说「三天两人」时擅自把城市改成任意值——和人数脑补同源的漏洞。
+ */
+export function shouldAcceptCity(
+  nextName: string,
+  draftCityName: string,
+  confirmed: boolean,
+  userText: string,
+): boolean {
+  if (nextName === draftCityName) return true;
+  // 换城必须用户在原话里点了新城市名；已确认过的城市更要严格。
+  return userText.includes(nextName);
+}
+
+/**
+ * 点名景点是硬约束：模型常凭空列一堆景点塞进行程。只有用户原话里真的出现
+ * 了至少一个模型给的景点名，才接受这组 selectedNames。
+ */
+export function gatePlacesClaim(names: string[], userText: string): boolean {
+  if (!names.length) return false;
+  return names.some((name) => name.length > 0 && userText.includes(name));
+}
 
 /**
  * 信息没齐时，模型给的 confirm 卡、action:"plan"、收尾话术都算提前收尾，必须挡回。

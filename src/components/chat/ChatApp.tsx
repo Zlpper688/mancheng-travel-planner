@@ -13,6 +13,7 @@ import {
   applyResolvedPatch,
   buildTripInput,
   cardForStep,
+  cardIsSettled,
   makeDraft,
   wizardStep,
 } from "@/lib/chat/draft";
@@ -20,7 +21,6 @@ import { triesToFinishEarly } from "@/lib/chat/gate";
 import type {
   ChatApiResponse,
   ChatCard,
-  ChatCardKind,
   ChatDraft,
   ChatMessage,
   ResolvedPatch,
@@ -117,27 +117,6 @@ function labelForPatch(patch: ResolvedPatch): string {
     parts.push(patch.selectedPlaces.map((place) => place.name).join("、"));
   }
   return parts.filter(Boolean).join(" · ") || "好";
-}
-
-function cardIsSettled(kind: ChatCardKind, draft: ChatDraft): boolean {
-  switch (kind) {
-    case "city":
-      return draft.confirmed.city;
-    case "date":
-      return draft.confirmed.date;
-    case "party":
-      return draft.confirmed.party;
-    case "style":
-      return draft.confirmed.style;
-    case "pace":
-      return draft.confirmed.pace;
-    case "transport":
-      return draft.confirmed.transport;
-    case "hotel":
-      return draft.confirmed.hotel;
-    default:
-      return false;
-  }
 }
 
 function stepPrompt(draft: ChatDraft): { text: string; cards: ChatCard[] } {

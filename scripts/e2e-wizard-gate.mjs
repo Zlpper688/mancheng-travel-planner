@@ -4,7 +4,7 @@
  * 前置：dev server 在 3131 端口。
  * 跑法：node scripts/e2e-wizard-gate.mjs
  */
-const BASE = "http://127.0.0.1:3131";
+const BASE = `http://127.0.0.1:${process.env.PORT ?? "3131"}`;
 
 const today = new Date().toISOString().slice(0, 10);
 // 与 makeDraft 一致的初始草稿

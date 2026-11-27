@@ -13,7 +13,12 @@ import type {
   TransportPref,
 } from "@/lib/types";
 import { draftSummary, hotelForCity } from "./draft";
-import { gateDefaultDimensions } from "./gate";
+import {
+  gateDefaultDimensions,
+  gateHardConstraints,
+  gatePlacesClaim,
+  shouldAcceptCity,
+} from "./gate";
 import type {
   ChatCard,
   ChatCardKind,
@@ -517,9 +522,9 @@ export async function askChatModel(
   let city = draft.city;
   if (parsed.patch.city) {
     const nextName = parsed.patch.city;
-    const changing = nextName !== draft.city.name;
-    // 已确认城市只在用户原话点名新城市时才允许改，避免模型改写城市。
-    if (!draft.confirmed.city || !changing || lastUserText.includes(nextName)) {
+    // 城市是硬约束：用户没点名就不许模型换城（原实现 !confirmed 无条件放行，
+    // 用户只说「三天两人」时城市会被模型擅自改掉）。值不变=补确认，照常接受。
+    if (shouldAcceptCity(nextName, draft.city.name, draft.confirmed.city, lastUserText)) {
       const resolved = await resolveCity(nextName);
       // 同名地物很多，地址里对不上城市名就宁可不用。
       if (
@@ -545,7 +550,12 @@ export async function askChatModel(
     if (hotel) patch.hotel = hotel;
   }
   if (parsed.patch.hotelUndecided) patch.hotelUndecided = true;
-  if (parsed.patch.selectedNames?.length) {
+  if (
+    parsed.patch.selectedNames?.length &&
+    gatePlacesClaim(parsed.patch.selectedNames, lastUserText)
+  ) {
+    // 点名景点是硬约束：只有用户原话真提了景点名才收，否则模型会把凭空列的
+    // 景点塞进行程（用户说「没有，你安排」时尤其容易中招）。
     const places = await resolvePlaces(parsed.patch.selectedNames, city);
     if (places.length) patch.selectedPlaces = places;
   }
@@ -585,10 +595,14 @@ export async function askChatModel(
   }
   if (parsed.patch.notes) patch.notes = parsed.patch.notes;
 
-  // 节奏/出行/住处是可以按默认值走的维度，但必须用户表过态才算确认。
-  // 模型常在玩法那轮把这三个默认值打包塞进 patch，导致向导直接跳到 confirm，
-  // 用户没被问到节奏和住处（实测「这里少一轮问」）。只看用户本轮原话守门。
-  const gated = gateDefaultDimensions(patch, lastUserText);
+  // 两道守门，都以「用户本轮原话」为准，不信模型自报的默认值：
+  // 1) 硬约束：人数模型常自己脑补，必须用户说过才收（城市/日期另有各自校验）。
+  // 2) 可默认维度：节奏/出行/住处必须用户表过态或明确授权，否则会被打包塞进
+  //    patch 让向导跳到 confirm，吞掉节奏和住处两轮（实测「这里少一轮问」）。
+  const gated = gateHardConstraints(
+    gateDefaultDimensions(patch, lastUserText),
+    lastUserText,
+  );
 
   return {
     say: parsed.say,
