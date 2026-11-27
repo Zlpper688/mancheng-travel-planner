@@ -9,6 +9,12 @@ import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 import { titleMatches, searchLivePhoto } from "../src/lib/live-search";
+import {
+  isObviouslyFake,
+  judgeReady,
+  parseJsonObject,
+  photoJudgeConfig,
+} from "../src/lib/photo-judge";
 
 const root = process.cwd();
 
@@ -67,22 +73,44 @@ async function main() {
   }
   console.log("  ✓ 13 类键都在生成表里");
 
+  console.log("4) LLM 判定模块的容错解析 + 编造地名前置拦截");
+  assert.deepEqual(parseJsonObject('```json\n{"exists":true}\n```'), { exists: true });
+  assert.deepEqual(parseJsonObject('说明：{"relevant":[0,2]}'), { relevant: [0, 2] });
+  assert.equal(parseJsonObject("不是 JSON"), null);
+  console.log("  ✓ JSON 包裹/前后文字都能解析，非法输出返回 null");
+
+  assert.equal(isObviouslyFake("测试城市", "完全不存在的xyz地点"), true);
+  assert.equal(isObviouslyFake("随便编的城市", "胡编乱造的地方"), true);
+  assert.equal(isObviouslyFake("重庆", "洪崖洞"), false);
+  assert.equal(isObviouslyFake("重庆", "洪崖洞夜市"), false);
+  console.log("  ✓ 明显占位符直接拦截；真实地名（含记错名）放行给 LLM");
+
   if (process.argv.includes("--live")) {
-    console.log("4) 现场搜图（真实网络）");
+    console.log("5) 现场搜图 + LLM 语义守门（真实网络）");
+    assert.ok(photoJudgeConfig(), "需要 AI_API_KEY 才能跑语义守门验证");
+    assert.equal(judgeReady(), true, "LLM 判定模块应可用");
+
     const real = await searchLivePhoto({ name: "洪崖洞", city: "重庆" });
     assert.ok(real, "真景点应该能现场搜到图");
     assert.equal(real.source, "现场搜图");
     assert.ok(real.url.startsWith("https://"), "现场图应是直链 CDN");
     console.log(`  ✓ 洪崖洞现场搜到：${real.title?.slice(0, 40)}`);
 
+    // 关键边界：名字记岔了（多写"夜市"），标题不会精确包含原名，但必须是同一个地方。
+    const misnamed = await searchLivePhoto({ name: "洪崖洞夜市", city: "重庆" });
+    assert.ok(misnamed, "名字记岔也应通过 LLM 纠正后搜到真景点");
+    assert.equal(misnamed.source, "现场搜图", "记错名不能落到分类示意图");
+    console.log(`  ✓ 记错名"洪崖洞夜市"纠正后搜到：${misnamed.title?.slice(0, 40)}`);
+
+    // 关键边界：完全编造的地名，LLM 应在搜图前就判定不存在，不浪费一次搜索。
     const fake = await searchLivePhoto({ name: "完全不存在的xyz地点", city: "测试city" });
-    assert.equal(fake, null, "瞎编地点不应搜到图（应落到分类兜底）");
-    console.log("  ✓ 瞎编地点被守门挡住");
+    assert.equal(fake, null, "瞎编地点应在 L0 就被挡住（返回 null，不搜图）");
+    console.log("  ✓ 瞎编地点在搜图前被 LLM 挡住");
   } else {
-    console.log("4) 现场搜图网络部分跳过（加 --live 开启）");
+    console.log("5) 现场搜图 + LLM 语义守门跳过（加 --live 开启）");
   }
 
-  console.log("\n通过：标题守门 + 分类兜底 + 生成表");
+  console.log("\n通过：标题守门 + LLM 容错 + 分类兜底 + 生成表");
 }
 
 main().catch((error) => {

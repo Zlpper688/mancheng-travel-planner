@@ -1,11 +1,19 @@
+import {
+  isObviouslyFake,
+  judgeExistence,
+  judgeReady,
+  judgeRelevance,
+} from "./photo-judge";
 import type { Category } from "./types";
 
 /**
  * 运行时现场找图：搜狗图片 → 360 图片。
  *
- * 关键纪律：搜索结果里"随便编的地名"也会返回图（实测），所以必须按标题守门——
- * 标题里没有景点名（或核心名）的候选一律丢弃。宁可落到分类通用图，也不拿
- * 外地/无关的图冒充这一站的实景。
+ * 守门分两层：
+ *  - L0 搜图前：LLM 判这个地点是否真实存在、名字是否记岔（明显编造就直接停，不搜）；
+ *  - L1 搜图后：LLM 判候选标题与这个景点的语义相关性（容忍别名/记错名）；
+ *  - 兜底：LLM 不可用时退回字符串标题匹配。
+ * 绝不拿外地/无关的图冒充这一站的实景。
  */
 
 export interface LiveCandidate {
@@ -124,15 +132,21 @@ function rankCandidates(
   candidates: LiveCandidate[],
   name: string,
   city: string,
+  allowedIndices?: Set<number>,
 ): LiveCandidate[] {
   return candidates
+    .map((item, index) => ({ item, index }))
     .filter(
-      (item) =>
+      ({ item, index }) =>
         item.thumb &&
         item.width >= MIN_WIDTH &&
         item.height >= MIN_HEIGHT &&
-        titleMatches(item.title, name, city),
+        // LLM 给了语义判定就用它；没给（不可用）才退回字符串标题匹配。
+        (allowedIndices
+          ? allowedIndices.has(index)
+          : titleMatches(item.title, name, city)),
     )
+    .map(({ item }) => item)
     .map((item) => {
       let score = 0;
       if (item.title.includes(name)) score += 4;
@@ -219,29 +233,68 @@ async function search360(query: string): Promise<LiveCandidate[]> {
   }
 }
 
+export interface LiveSearchOutcome {
+  photo: LivePhoto | null;
+  /** LLM 明确判定地点不存在——调用方应直接落到分类图，不要再走慢速维基源。 */
+  nonexistent: boolean;
+}
+
 /** 现场搜图：返回一个可直接 <img src> 的候选（CDN 直链，实测无防盗链）。 */
 export async function searchLivePhoto(input: {
   name: string;
   city: string;
   category?: Category;
 }): Promise<LivePhoto | null> {
-  const query = `${input.city} ${input.name}`.trim();
+  return (await searchLivePhotoDetailed(input)).photo;
+}
+
+export async function searchLivePhotoDetailed(input: {
+  name: string;
+  city: string;
+  category?: Category;
+}): Promise<LiveSearchOutcome> {
+  // L0：搜图前先判这地方到底存不存在。明显编造的直接停，不浪费一次搜索。
+  if (isObviouslyFake(input.city, input.name)) {
+    return { photo: null, nonexistent: true };
+  }
+  let corrected = input.name;
+  if (judgeReady()) {
+    const judgement = await judgeExistence(input.city, input.name);
+    if (judgement && !judgement.exists && judgement.confidence >= 0.7) {
+      return { photo: null, nonexistent: true };
+    }
+    if (judgement?.corrected) corrected = judgement.corrected;
+  }
+
+  // 名字记岔时用纠正后的名字搜（"洪崖洞夜市" -> "洪崖洞"）。
+  const query = `${input.city} ${corrected}`.trim();
   for (const [provider, search] of [
     ["sogou", searchSogou],
     ["360", search360],
   ] as const) {
     if (!ready(provider)) continue;
     const candidates = await searchSlot(() => search(query));
-    const ranked = rankCandidates(candidates, input.name, input.city);
+    if (!candidates.length) continue;
+
+    // L1：把候选标题交给 LLM 判语义相关性；不可用时退回字符串守门。
+    let allowed: Set<number> | undefined;
+    if (judgeReady()) {
+      const relevant = await judgeRelevance(input.name, corrected, candidates.map((item) => item.title));
+      if (relevant !== null) allowed = new Set(relevant);
+    }
+    const ranked = rankCandidates(candidates, input.name, input.city, allowed);
     const best = ranked[0];
     if (!best) continue;
     return {
-      url: best.thumb,
-      source: "现场搜图",
-      sourceUrl: best.page || best.ori || best.thumb,
-      title: best.title,
-      license: "版权归原作者",
+      photo: {
+        url: best.thumb,
+        source: "现场搜图",
+        sourceUrl: best.page || best.ori || best.thumb,
+        title: best.title,
+        license: "版权归原作者",
+      },
+      nonexistent: false,
     };
   }
-  return null;
+  return { photo: null, nonexistent: false };
 }

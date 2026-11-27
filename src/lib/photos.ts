@@ -1,7 +1,7 @@
 import { CATEGORY_PHOTOS } from "../content/category-photos.generated";
 import { CURATED_PHOTOS } from "../content/place-photos";
 import { fetchJson } from "./cache";
-import { searchLivePhoto } from "./live-search";
+import { searchLivePhotoDetailed } from "./live-search";
 import { localPhotoFor } from "./photo-hints";
 import { nameSimilarity } from "./providers/normalize";
 import type { Category } from "./types";
@@ -506,24 +506,27 @@ async function resolveUncached(input: {
   const curated = curatedPhoto(input.name, input.city);
   if (curated) return curated;
 
-  // Wikidata 的 P18 是条目主图，点位有 QID 时比按名字搜更准。
-  if (input.qid && /^Q\d+$/.test(input.qid)) {
-    const byQid = await wikidataPhoto(input.qid);
-    if (byQid) return byQid;
+  // 现场找图优先于维基慢源：国内网络下维基 API 常 4.5s 超时，而搜图 ~1s。
+  // 搜图前由 LLM 判存在性、搜图后判语义相关性，不会为了快而牺牲准确性。
+  const live = await searchLivePhotoDetailed(input);
+  if (live.photo) return live.photo as PlacePhoto;
+
+  // LLM 明确说这地方不存在：直接落分类图，连维基慢源都不必试。
+  if (!live.nonexistent) {
+    // 现场没搜到才走维基源（CC 许可更清晰，但慢）。
+    if (input.qid && /^Q\d+$/.test(input.qid)) {
+      const byQid = await wikidataPhoto(input.qid);
+      if (byQid) return byQid;
+    }
+    const byName = await wikidataNamePhoto(input);
+    if (byName) return byName;
+
+    const [wiki, commons] = await Promise.all([
+      wikipediaPhoto(input.name),
+      commonsPhoto(input.name, input.city),
+    ]);
+    if (wiki || commons) return wiki ?? commons;
   }
-  const byName = await wikidataNamePhoto(input);
-  if (byName) return byName;
-
-  // 维基百科给条目主图，共享资源按地名搜图；两个都按名字匹配，不拿坐标附近的随机照片凑数。
-  const [wiki, commons] = await Promise.all([
-    wikipediaPhoto(input.name),
-    commonsPhoto(input.name, input.city),
-  ]);
-  if (wiki || commons) return wiki ?? commons;
-
-  // 现场找图：任意地点都能搜。搜索结果按标题守门，绝不会把不相干的图当成这一站。
-  const live = await searchLivePhoto(input);
-  if (live) return live as PlacePhoto;
 
   // 最后一层：同类通用示意图。明确标记 generic，UI 会写"示意"，不冒充实景。
   const fallback = input.category ? CATEGORY_PHOTOS[input.category] : undefined;
