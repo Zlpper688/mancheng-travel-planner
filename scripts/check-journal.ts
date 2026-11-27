@@ -153,7 +153,9 @@ const second: TripJournal = {
   ...journal,
   id: "j-second",
   title: "成都 3 日 · 另一版",
-  savedAt: "2026-11-27T10:00:00.000Z",
+  // journalFromPlan 用当前时间作 savedAt；这里必须明确更晚，
+  // 否则写死日期一旦早于实际运行时刻，倒序断言就会反转（曾踩坑）。
+  savedAt: new Date(Date.now() + 1000).toISOString(),
 };
 saveJournal(second);
 ok("两条记录", loadJournals().length === 2);

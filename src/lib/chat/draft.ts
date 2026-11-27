@@ -85,7 +85,10 @@ export function applyResolvedPatch(
     if (patch.city.name !== draft.city.name) {
       next.hotel = patch.hotel ?? hotelForCity(patch.city);
       next.hotelUndecided = !patch.hotel && draft.hotelUndecided;
-      next.confirmed.hotel = Boolean(patch.hotel) || draft.hotelUndecided;
+      // 默认 hotelUndecided:true 只是「还没给酒店」的初始占位，不是用户表态。
+      // 用户只报了城市时不能把住处标成已确认，否则住处那一轮被吞掉
+      // （用户实测「少一轮问」）。只有真给了酒店、或之前已表过态才算确认。
+      next.confirmed.hotel = Boolean(patch.hotel) || draft.confirmed.hotel;
       // 换城市时清掉新城市不支持的玩法：厦门勾的「海边/环海慢游」带到银川
       // 会让排线拿到矛盾需求。单一真相源就是城市画像表，这里按它过滤。
       const facts = CITY_FACTS[patch.city.name] ?? NEUTRAL_FACTS;

@@ -16,6 +16,7 @@ import {
   makeDraft,
   wizardStep,
 } from "@/lib/chat/draft";
+import { triesToFinishEarly } from "@/lib/chat/gate";
 import type {
   ChatApiResponse,
   ChatCard,
@@ -370,6 +371,22 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
         resolved = applyResolvedPatch(resolved, data.reply.patch);
         commitDraft(resolved, previous);
       }
+      const step = wizardStep(resolved);
+      // 模型常在玩法那轮把节奏/出行/住处默认值打包收尾，或提前甩 confirm 卡、
+      // action:"plan"。信息没齐时一律挡回，强制追问真正缺的那一步，
+      // 否则欢迎语承诺的节奏、住处两轮就被吞掉（用户实测「少一轮问」）。
+      if (
+        triesToFinishEarly(
+          data.reply.action,
+          data.reply.cards,
+          step,
+          data.reply.say,
+        )
+      ) {
+        const prompt = stepPrompt(resolved);
+        appendAssistant(prompt.text, prompt.cards);
+        return;
+      }
       // 模型偶尔会重复追问已经确认的维度；卡片以草稿状态为准，
       // 并补上真正还缺的那一步，避免对话原地打转。
       const cards = (data.reply.cards ?? []).filter(
@@ -379,7 +396,6 @@ export default function ChatApp({ initialDate }: { initialDate: string }) {
       if (data.reply.action === "plan") {
         void runPlan(resolved);
       } else if (!cards.length) {
-        const step = wizardStep(resolved);
         if (step === "confirm") {
           appendAssistant(
             "信息齐了。有必去或不想去的地方吗？没有就直接开始安排。",

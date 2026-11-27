@@ -13,6 +13,7 @@ import type {
   TransportPref,
 } from "@/lib/types";
 import { draftSummary, hotelForCity } from "./draft";
+import { gateDefaultDimensions } from "./gate";
 import type {
   ChatCard,
   ChatCardKind,
@@ -584,9 +585,14 @@ export async function askChatModel(
   }
   if (parsed.patch.notes) patch.notes = parsed.patch.notes;
 
+  // 节奏/出行/住处是可以按默认值走的维度，但必须用户表过态才算确认。
+  // 模型常在玩法那轮把这三个默认值打包塞进 patch，导致向导直接跳到 confirm，
+  // 用户没被问到节奏和住处（实测「这里少一轮问」）。只看用户本轮原话守门。
+  const gated = gateDefaultDimensions(patch, lastUserText);
+
   return {
     say: parsed.say,
-    patch: Object.keys(patch).length ? patch : undefined,
+    patch: Object.keys(gated).length ? gated : undefined,
     cards: parsed.cards,
     action: parsed.action,
   };
