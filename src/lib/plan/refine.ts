@@ -48,19 +48,59 @@ const LEVEL_PENALTY: Record<IssueLevel, number> = {
   P3: 1,
 };
 
+/**
+ * 每个体检项对应的「该怎么改」。
+ *
+ * 原来这里直接 `suggestion: issue.detail`，于是 UI 上会出现
+ * 「问题：排了 4 个点却在 14:57 就收工 / 建议：排了 4 个点却在 14:57 就收工」——
+ * 把问题复述一遍不等于给建议。宪法二要求的是「牺牲什么、得到什么」。
+ */
+const AUDIT_SUGGESTIONS: Record<string, string> = {
+  DAY_START_LATE: "把出发时间提到 08:30–09:00：早上的景点人最少，也能给下午留出缓冲。",
+  DAY_END_LATE: "砍掉当天最后一个点，或把它挪到另一天；20:30 之后回酒店对多数人不划算。",
+  DAY_END_EARLY: "两种改法：① 下午顺路补一个 2 km 内的点；② 就这样早点回去休息，留白也是行程的一部分。",
+  STOP_INVERTED: "这一段的时长算错了，需要重排当天时刻。",
+  STOP_OVERLAP: "两个点的时间撞在一起了，把后一个点顺延或换到别的时段。",
+  DAY_BIG_GAP: "中间空了两小时以上：补一个顺路点，或把下一段提前、把这段时间明确写成自由活动。",
+  NO_LUNCH: "把午饭固定进 11:30–13:30，别让上午的点吃到中午。",
+  NO_DINNER: "晚饭时段留出来；晚饭前不要再排需要 90 分钟以上的点。",
+  MEAL_SAME_PLACE: "午饭和晚饭换到不同片区，顺路感会好很多。",
+  LEG_TOO_LONG: "换一个更近的点，或把这段路改用打车/公交，并接受到达时间推后。",
+  DAY_TRAVEL_LONG: "当天点太分散：砍掉最远的一个，或把这一片单独拆成一天。",
+  DAY_SPAN_WIDE: "把同一片区的点集中到同一天，别在城东和城西之间来回横跳。",
+  SAME_CATEGORY_RUN: "连着的三个同类点里换掉一个，体验差异比数量更重要。",
+  SIGHT_COUNT: "这一天的点位数量偏离节奏设定，调高或调低每日点数，或换一天再排。",
+  DUPLICATE_PLACE: "同一天里同一个地方出现了两次，删掉后一次。",
+  CROSS_DAY_REPEAT: "同一个地方排进了两天：换成同片区另一个点，或把这一天改成另一片方向。",
+};
+
 /** audit 的 error/warn + critic 的 high/medium/low → 宪法的 P0–P3。 */
-function fromAudit(issue: AuditIssue): RefineIssue {
-  const level: IssueLevel = issue.severity === "error" ? "P0" : "P2";
-  // 时间重叠、重复点位、天气窗口外的硬伤不是调参数能修的。
-  const fixable = ["SIGHT_COUNT", "DAY_SPAN_WIDE", "LEG_TOO_LONG", "DAY_TRAVEL_LONG"].includes(
-    issue.code,
-  );
+function fromAudit(issue: AuditIssue, pace: PaceId): RefineIssue {
+  // 留白是宪法三明确允许的节奏需求，不该一律当问题：
+  // 慢节奏只作提示（P3），只有「排得满」的节奏下早收工才算明显不合理（P2）。
+  const earlyFinish = issue.code === "DAY_END_EARLY";
+  const level: IssueLevel = earlyFinish
+    ? pace === "packed"
+      ? "P2"
+      : "P3"
+    : issue.severity === "error"
+      ? "P0"
+      : "P2";
+  // 时间重叠、重复点位这类硬伤不是调参数能修的。
+  const fixable =
+    [
+      "SIGHT_COUNT",
+      "DAY_SPAN_WIDE",
+      "LEG_TOO_LONG",
+      "DAY_TRAVEL_LONG",
+      "SAME_CATEGORY_RUN",
+    ].includes(issue.code) || (earlyFinish && pace === "packed");
   return {
     level,
     code: `audit:${issue.code}`,
     day: issue.day,
     detail: issue.detail,
-    suggestion: issue.detail,
+    suggestion: AUDIT_SUGGESTIONS[issue.code] ?? issue.detail,
     fixable,
   };
 }
@@ -151,7 +191,7 @@ function collectIssues(
     );
   }
   return [
-    ...auditIssues.map(fromAudit),
+    ...auditIssues.map((issue) => fromAudit(issue, pace)),
     ...criticIssues.map(fromCritic),
     ...fromSlots(plan),
   ];
@@ -208,6 +248,13 @@ function adjustParams(params: PlanParams, issues: RefineIssue[], pace: PaceId): 
     band = [currentBand[0], Math.min(8, currentBand[1] + 2)];
   } else if (!sparse && crowded && currentBand[0] > 2) {
     band = [Math.max(2, currentBand[0] - 1), currentBand[1]];
+  }
+
+  // 节奏本身排得满（packed），却在下午就收工：说明每天点数的下限给低了，
+  // 抬一格下限比「补一个顺路点」更稳——后者会挑到不该去的点。
+  const earlyFinish = p0p1.some((i) => i.code === "audit:DAY_END_EARLY");
+  if (earlyFinish && !sparse && band === currentBand && band[0] < 7) {
+    band = [Math.min(7, band[0] + 1), band[1]];
   }
 
   if (band !== currentBand) raw.sightsPerDay = { ...params.sightsPerDay, [pace]: band };

@@ -26,6 +26,25 @@ export interface PlacePhoto {
   generic?: boolean;
 }
 
+/**
+ * 本地图库的使用策略。
+ *
+ * 内置图库分两类来源：人工核对并标注 CC 许可的（共享资源），以及早期从图片搜索
+ * 抓取、只有「原图页面」没有授权的（搜狗/360）。后者在公开分发前必须处理掉。
+ *
+ * - 不设置 / MC_PHOTO_LIBRARY=all：保持现状（本地演示、答辩演示都用这一档）
+ * - MC_PHOTO_LIBRARY=licensed：只用有明确许可的来源；抓取所得的条目被跳过，
+ *   点位改走「高德 → OSM 标签 → 人工核对 → Wikidata P18 → 维基共享资源」这条链。
+ *   再配合 MC_LIVE_PHOTO=0，整站图片就都是可追溯许可的。
+ * 彻底清理而不是运行时过滤，用 scripts/purge-unlicensed-photos.mjs。
+ */
+const LICENSED_PHOTO_SOURCES = new Set(["维基共享资源", "维基百科"]);
+
+function localLibraryAllowed(source: string): boolean {
+  if (process.env.MC_PHOTO_LIBRARY?.trim() !== "licensed") return true;
+  return LICENSED_PHOTO_SOURCES.has(source);
+}
+
 const PHOTO_TTL = 24 * 60 * 60 * 1000;
 // 没有图的时候只记一小会儿：网络恢复后能重新拿到图，又不会让每个点位都重复打上游。
 const MISS_TTL = 10 * 60 * 1000;
@@ -132,6 +151,28 @@ type PhotoEntry = { photo: PlacePhoto | null; expiresAt: number };
 const photoStore = new Map<string, PhotoEntry>();
 const pendingStore = new Map<string, Promise<PlacePhoto | null>>();
 const unavailableUntil = new Map<string, number>();
+
+/**
+ * 图片缓存的键来自「城市 + 地点名 + 坐标」，也就是来自用户输入。
+ * 不封顶的话，同一个小进程被扫一遍就能塞进几万条（每条还挂着一个 URL）。
+ * 超过上限先清过期条目，仍然超就按写入顺序淘汰最旧的。
+ */
+const PHOTO_STORE_MAX = 2000;
+
+function rememberPhoto(key: string, entry: PhotoEntry): void {
+  if (photoStore.size >= PHOTO_STORE_MAX) {
+    const now = Date.now();
+    for (const [existing, value] of photoStore) {
+      if (value.expiresAt <= now) photoStore.delete(existing);
+    }
+    while (photoStore.size >= PHOTO_STORE_MAX) {
+      const oldest = photoStore.keys().next().value;
+      if (!oldest) break;
+      photoStore.delete(oldest);
+    }
+  }
+  photoStore.set(key, entry);
+}
 
 function providerReady(provider: string): boolean {
   return (unavailableUntil.get(provider) ?? 0) <= Date.now();
@@ -487,7 +528,7 @@ async function resolveUncached(input: {
 }): Promise<PlacePhoto | null> {
   // 本地静态图库最优先：演示零外网依赖，且每张图都能追溯到原图页面。
   const local = localPhotoFor(input.name, input.city);
-  if (local) {
+  if (local && localLibraryAllowed(local.source)) {
     return {
       url: local.url,
       source: local.source as PlacePhoto["source"],
@@ -509,7 +550,13 @@ async function resolveUncached(input: {
 
   // 现场找图优先于维基慢源：国内网络下维基 API 常 4.5s 超时，而搜图 ~1s。
   // 搜图前由 LLM 判存在性、搜图后判语义相关性，不会为了快而牺牲准确性。
-  const live = await searchLivePhotoDetailed(input);
+  //
+  // 但这条链是「抓搜索结果页」：既没有明确授权，也会因为搜狗/360 改版而整链失效。
+  // 公开部署时用 MC_LIVE_PHOTO=0 关掉，链路会直接落到维基 / 版式卡，行程不受影响。
+  const live =
+    process.env.MC_LIVE_PHOTO === "0"
+      ? { photo: null, nonexistent: false }
+      : await searchLivePhotoDetailed(input);
   if (live.photo) {
     // 现场图落盘：二次访问走本地静态文件，断网也能看。
     // 写盘失败会原样返回 CDN 直链，不影响可用性。
@@ -571,7 +618,7 @@ export async function resolvePlacePhoto(input: {
 
   const promise = resolveUncached(input)
     .then((photo) => {
-      photoStore.set(key, {
+      rememberPhoto(key, {
         photo,
         expiresAt: Date.now() + (photo ? PHOTO_TTL : MISS_TTL),
       });

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { resolvePlacePhoto } from "@/lib/photos";
+import { checkRoute, clientIp, rateLimitResponse } from "@/lib/rate-limit";
 import type { Category } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -10,6 +11,11 @@ const CATEGORIES = new Set<Category>([
 ]);
 
 export async function GET(request: Request) {
+  // 一次解析可能依次打高德 / 维基 / 搜狗，共享资源那边还有串行 600ms 排队，
+  // 阈值放得比正文接口宽，但必须存在——否则一个列表页就能把上游打满。
+  const limited = rateLimitResponse(checkRoute("photo", clientIp(request)));
+  if (limited) return limited;
+
   const params = new URL(request.url).searchParams;
   const name = (params.get("name") ?? "").trim().slice(0, 80);
   const city = (params.get("city") ?? "").trim().slice(0, 30);

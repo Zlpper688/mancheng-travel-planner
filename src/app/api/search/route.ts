@@ -4,6 +4,7 @@ import { QUICK_CITIES } from "@/lib/constants";
 import { DEMO_HOTELS } from "@/content/demo-xiamen";
 import { isDemoCity } from "@/lib/demo";
 import { prefetchTripFor } from "@/lib/plan/prefetch-trip";
+import { checkRoute, clientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { getProvider } from "@/lib/providers";
 import { nameSimilarity } from "@/lib/providers/normalize";
 import type { Place } from "@/lib/types";
@@ -20,6 +21,10 @@ export const runtime = "nodejs";
  * 预热慢或失败都不该让用户多等一毫秒。
  */
 function maybePrefetch(query: string, results: Place[]): void {
+  // 投机预热是「一个 GET 换一次完整排线」，放大倍数最高的一条路径。
+  // 本地/演示环境留着它（首屏体验靠它），公网部署用 MC_PREFETCH=0 关掉，
+  // 或者只让带签名的内部请求触发。
+  if (process.env.MC_PREFETCH === "0") return;
   const exact = results.find((place) => place.name === query);
   if (!exact) return;
   if (!Number.isFinite(exact.lat) || !Number.isFinite(exact.lng)) return;
@@ -27,6 +32,9 @@ function maybePrefetch(query: string, results: Place[]): void {
 }
 
 export async function GET(request: Request) {
+  const limited = rateLimitResponse(checkRoute("search", clientIp(request)));
+  if (limited) return limited;
+
   const url = new URL(request.url);
   const query = (url.searchParams.get("q") ?? "").trim().slice(0, 60);
   if (!query) return NextResponse.json({ results: [] });

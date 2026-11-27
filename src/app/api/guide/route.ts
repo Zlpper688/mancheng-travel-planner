@@ -6,6 +6,8 @@ import { pickRoute, readGuide, routeToText } from "@/lib/guides/store";
 import { DEMO_HOTELS } from "@/content/demo-xiamen";
 import { discoverForTrip } from "@/lib/plan/engine";
 import { sanitizeTripInput } from "@/lib/plan/validate";
+import { logEvent } from "@/lib/log";
+import { checkRoute, clientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { getProvider } from "@/lib/providers";
 import type { Place } from "@/lib/types";
 
@@ -25,6 +27,11 @@ function preferCity(places: Place[], city: string): Place[] {
 }
 
 export async function POST(request: Request) {
+  // 解析一次攻略最多打 6 次上游搜索，还可能是 prewarm 触发的发现，必须限流。
+  const limited = rateLimitResponse(checkRoute("guide", clientIp(request)));
+  if (limited) return limited;
+
+  const startedAt = Date.now();
   try {
     const body = await request.json().catch(() => null);
     if (!body || typeof body !== "object") {
@@ -137,6 +144,12 @@ export async function POST(request: Request) {
       maxSearches: 6,
     });
 
+    logEvent("info", "guide", {
+      ms: Date.now() - startedAt,
+      chars: text.length,
+      found: result.stops?.length ?? 0,
+      guide: guideMeta?.id ?? null,
+    });
     return NextResponse.json({
       result,
       source: discovered.source,

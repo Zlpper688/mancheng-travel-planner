@@ -1,5 +1,5 @@
 import { placeDistance } from "../geo";
-import type { DayPlan, PaceId, PlanResult } from "../types";
+import type { DayPlan, PaceId, Place, PlanResult } from "../types";
 import {
   EARLY_END_MIN,
   HARD_CEIL_MIN,
@@ -49,6 +49,33 @@ function mm(value: number): string {
 
 function inWindow(minute: number, [start, end]: [number, number]): boolean {
   return minute >= start && minute <= end;
+}
+
+/**
+ * 「这是不是同一个地方」的判定键。
+ *
+ * 只比 id 是不够的：同一处景点在 OSM / 维基数据 / 本地知识库里各有各的 id，
+ * 名字还会带后缀（「厦门大学」vs「厦门大学（思明校区）」）。实测就有一次
+ * 3 天行程里排进了两次厦大、两次沙坡尾，而按 id 判重一声没吭。
+ * 所以键取「去括号、去符号后的名字 + 类别」，坐标只在名字对不上时做兜底。
+ */
+function placeKeyOf(place: { name: string; category: string; lat: number; lng: number }): string {
+  const name = place.name
+    .replace(/[（(【\[].*?[）)】\]]/g, "")
+    .replace(/[\s·•\-—_]/g, "")
+    .toLowerCase();
+  return `${place.category}|${name}`;
+}
+
+/** 名字不同但离得极近（150 m 内）也算同一处，兜住「XX 东门 / XX 景区」这类录法。 */
+function nearSamePlace(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number },
+): boolean {
+  const dLat = (a.lat - b.lat) * 111.32;
+  const dLng =
+    (a.lng - b.lng) * 111.32 * Math.cos(((a.lat + b.lat) / 2) * (Math.PI / 180));
+  return Math.hypot(dLat, dLng) <= 0.15;
 }
 
 /** 一天里是不是只剩下午和晚上能玩（日落、夜市型）。这种日子晚出门是对的。 */
@@ -183,10 +210,11 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
 
   const seen = new Set<string>();
   for (const stop of day.stops) {
-    if (seen.has(stop.place.id)) {
+    const key = placeKeyOf(stop.place);
+    if (seen.has(key)) {
       push("DUPLICATE_PLACE", "error", `「${stop.place.name}」在同一天出现两次`);
     }
-    seen.add(stop.place.id);
+    seen.add(key);
   }
 
   return issues;
@@ -194,33 +222,61 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
 
 export function auditPlan(plan: PlanResult, options: AuditOptions): AuditIssue[] {
   const issues = plan.days.flatMap((day) => auditDay(day, options));
-  // 跨天重复不是硬错误（有些城市确实会路过同一个点两次），但值得看一眼。
-  const visits = new Map<string, Set<number>>();
-  for (const day of plan.days) {
-    for (const stop of day.stops) {
-      if (stop.kind !== "sight") continue;
-      const set = visits.get(stop.place.id) ?? new Set<number>();
-      set.add(day.index);
-      visits.set(stop.place.id, set);
-    }
-  }
-  for (const day of plan.days) {
-    for (const stop of day.stops) {
-      if (stop.kind !== "sight") continue;
-      const days = visits.get(stop.place.id);
-      if (days && days.size > 1) {
-        issues.push({
-          code: "CROSS_DAY_REPEAT",
-          severity: "warn",
-          day: day.index,
-          detail: `「${stop.place.name}」在第 ${[...days].join("、")} 天都去了`,
-        });
-        visits.delete(stop.place.id);
-      }
-    }
+  for (const repeat of findCrossDayRepeats(plan.days)) {
+    issues.push({
+      code: "CROSS_DAY_REPEAT",
+      severity: "warn",
+      day: repeat.days[0],
+      detail: `「${repeat.name}」在第 ${repeat.days.join("、")} 天都去了`,
+    });
   }
   return issues;
 }
+
+/**
+ * 找出「同一处景点被排进了两天」。
+ *
+ * 单独抽出来是为了能单测（`scripts/check-dedupe.ts`）。判定不能用 id：
+ * 同一处景点在 OSM / 维基数据 / 本地知识库里各有各的 id，名字还带后缀
+ * （「厦门大学」vs「厦门大学（思明校区）」），实测就漏过一次「厦大排两遍」。
+ * 所以先按「去括号的名字 + 类别」归并，再用 150m 坐标兜一层不同名字的录法。
+ */
+export function findCrossDayRepeats(
+  days: Pick<DayPlan, "index" | "stops">[],
+): Array<{ key: string; name: string; days: number[] }> {
+  const visits = new Map<string, { days: Set<number>; name: string; point: Place }>();
+  for (const day of days) {
+    for (const stop of day.stops) {
+      if (stop.kind !== "sight") continue;
+      const key = placeKeyOf(stop.place);
+      const entry =
+        visits.get(key) ?? { days: new Set<number>(), name: stop.place.name, point: stop.place };
+      entry.days.add(day.index);
+      visits.set(key, entry);
+    }
+  }
+
+  const keys = [...visits.keys()];
+  for (let i = 0; i < keys.length; i += 1) {
+    for (let j = i + 1; j < keys.length; j += 1) {
+      const a = visits.get(keys[i]);
+      const b = visits.get(keys[j]);
+      if (!a || !b) continue;
+      if (!nearSamePlace(a.point, b.point)) continue;
+      for (const day of b.days) a.days.add(day);
+      visits.delete(keys[j]);
+    }
+  }
+
+  const out: Array<{ key: string; name: string; days: number[] }> = [];
+  for (const [key, entry] of visits) {
+    if (entry.days.size > 1) {
+      out.push({ key, name: entry.name, days: [...entry.days].sort((x, y) => x - y) });
+    }
+  }
+  return out.sort((a, b) => a.days[0] - b.days[0]);
+}
+
 
 export function summarizeAudit(issues: AuditIssue[]): {
   errors: number;

@@ -21,6 +21,7 @@ import {
   unlinkSync,
   writeFileSync,
 } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
 interface DiskRecord<T> {
@@ -35,7 +36,26 @@ const KEY_PATTERN = /^[a-z0-9_-]{1,80}$/;
  * `MC_CACHE_ROOT` 供消融实验切到独立目录，跑冷/热两组对照而不互相污染。
  */
 export function cacheRoot(): string {
-  return process.env.MC_CACHE_ROOT || path.join(process.cwd(), ".cache");
+  const explicit = process.env.MC_CACHE_ROOT?.trim();
+  if (explicit) return explicit;
+  // 函数计算 / 托管容器里只有临时目录可写，cwd 通常是只读的。
+  // 不认出来也不至于崩（写入本来就 try/catch），但每次请求都白撞一次墙没必要。
+  if (isServerless()) return path.join(os.tmpdir(), "mancheng-cache");
+  // 随仓库分发的演示缓存（route / health）：`npm run warm` 的产物之一。
+  // 有它的时候，换一台电脑第一次排线也能直接用真实路网耗时，不必等 OSRM 现算。
+  const shipped = path.join(process.cwd(), "data", "warm", "cache");
+  if (existsSync(shipped)) return shipped;
+  return path.join(process.cwd(), ".cache");
+}
+
+/** 托管环境判定：只用来选一个能写的缓存目录，不参与业务逻辑。 */
+function isServerless(): boolean {
+  return Boolean(
+    process.env.VERCEL ||
+      process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.K_SERVICE ||
+      process.env.FUNCTION_TARGET,
+  );
 }
 
 function isSafeKey(key: string): boolean {

@@ -1,5 +1,5 @@
 /**
- * 预热规划缓存：把常用城市的「发现」结果先算好落到 .cache/plan-warm/，
+ * 预热规划缓存：把常用城市的「发现」结果算好落到 MC_WARM_DIR（默认 data/warm/plan-warm/），
  * 用户第一次点生成时直接读盘（实测 13.6s → 8ms），而不是现打一轮外部地图。
  *
  * 跑法：
@@ -14,13 +14,14 @@
 import { QUICK_CITIES } from "../src/lib/constants";
 import { refinePlan } from "../src/lib/plan/refine";
 import { warmCacheStats } from "../src/lib/plan/warm-cache";
-import { diskCacheStats } from "../src/lib/disk-cache";
+import { cacheRoot, diskCacheStats } from "../src/lib/disk-cache";
 import path from "node:path";
 import type { StyleId, TripInput } from "../src/lib/types";
 
 /** 与 PlannerApp 的初始 state 保持一致，这样预热出来的键正好对上首屏那一单。 */
 const DEFAULT_STYLES: StyleId[] = ["citywalk", "coastal"];
-const ROUTE_DIR = path.join(process.cwd(), ".cache", "route");
+/** 跟着 cacheRoot() 走：`MC_CACHE_ROOT` / 仓库里的 data/warm/cache 都能生效。 */
+const routeDir = () => path.join(cacheRoot(), "route");
 
 function parseDays(argv: string[]): number[] {
   const index = argv.indexOf("--days");
@@ -74,7 +75,7 @@ async function main() {
   for (const city of targets) {
     for (const days of dayOptions) {
       const started = Date.now();
-      const routesBefore = diskCacheStats(ROUTE_DIR).count;
+      const routesBefore = diskCacheStats(routeDir()).count;
       try {
         // 跑整条排线链路，而不是只跑 discover：
         // 用户点「生成」等的是完整行程，光预热候选池只能省掉其中一段，
@@ -83,7 +84,7 @@ async function main() {
         const ms = Date.now() - started;
         slowest = Math.max(slowest, ms);
         const stops = result.plan.days.reduce((n, day) => n + day.stops.length, 0);
-        const newRoutes = diskCacheStats(ROUTE_DIR).count - routesBefore;
+        const newRoutes = diskCacheStats(routeDir()).count - routesBefore;
         // 点位太少说明上游没兜住、靠本地知识库勉强支撑——这种城市要单独提醒。
         const thin = stops < 6;
         if (thin) failed += 1;
@@ -100,7 +101,7 @@ async function main() {
   }
 
   const after = warmCacheStats();
-  const routes = diskCacheStats(ROUTE_DIR);
+  const routes = diskCacheStats(routeDir());
   console.log(
     `\n完成：候选池缓存 ${before} → ${after.count} 条 @ ${after.dir}\n      路线缓存共 ${routes.count} 条 @ ${routes.dir}\n最慢一次 ${(slowest / 1000).toFixed(1)}s；用户首屏从此走磁盘，约 10ms 量级。`,
   );
