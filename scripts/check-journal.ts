@@ -149,11 +149,15 @@ const store = new Map<string, string>();
 ok("初始为空", loadJournals().length === 0);
 saveJournal(journal);
 ok("保存成功", loadJournals().length === 1);
+// savedAt 必须比上一条「真的大」，不能写死一个时间：
+// 原来这里硬编码 2026-11-27T10:00Z，UTC 上午跑是「更晚」，下午跑就变成「更早」，
+// 于是这个断言每天只在半天内通过。改成基于上一条记录往后推一分钟。
+const previousSavedAt = loadJournals()[0]?.savedAt ?? new Date().toISOString();
 const second: TripJournal = {
   ...journal,
   id: "j-second",
   title: "成都 3 日 · 另一版",
-  savedAt: "2026-11-27T10:00:00.000Z",
+  savedAt: new Date(Date.parse(previousSavedAt) + 60_000).toISOString(),
 };
 saveJournal(second);
 ok("两条记录", loadJournals().length === 2);

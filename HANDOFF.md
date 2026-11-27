@@ -168,7 +168,7 @@ npm run verify        # = typecheck + 字号护栏 + 十套纯函数回归
 ```bash
 npm run typecheck                                 # tsc --noEmit（真正的类型检查）
 npm run check:font                                # 字号护栏（禁止正文 <10px；原来叫 check:type，容易误解）
-npm run checks                                    # 下面十套依次跑
+npm run checks                                    # 下面十一套依次跑
 
 # 十套回归，各自守一条不变量：
 npx tsx scripts/check-params.ts                   # PlanParams 零回归 + 乱值收敛
@@ -181,6 +181,7 @@ npx tsx scripts/check-city-search.ts              # 城市索引：精确优先 
 npx tsx scripts/check-disk-cache.ts               # 磁盘缓存：TTL / 坏档降级 / 永不抛错
 npx tsx scripts/check-dedupe.ts                   # 同名景点合并 + 跨天重复检测
 npx tsx scripts/check-rate-limit.ts               # 接口限流阈值 / Retry-After / 隔离
+npx tsx scripts/check-photo-storage.ts            # 图片持久化：失败不落盘 / 刷新恢复 / 配额
 npx tsx scripts/check-knowledge.mjs               # 坐标合法性 + 经纬度不写反 + must 对齐（不在 checks 里，需要 data/）
 ```
 
