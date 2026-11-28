@@ -14,6 +14,7 @@ import {
   readLocalKnowledge,
 } from "../providers/knowledge";
 import { DEFAULT_PARAMS } from "./params";
+import { describePrefs } from "./prefs";
 import { withSlots } from "./slots";
 import { selectRegionDays } from "./select-region";
 import { isRegionSpan } from "./segments";
@@ -274,6 +275,9 @@ function buildMeta(
   if (input.notes) {
     dataNotes.push(`按你的补充要求安排：${input.notes.slice(0, 120)}`);
   }
+  // 连续偏好：说清引擎到底收到什么。没有这句，用户永远不知道「骑行」有没有被听进去。
+  const prefLine = describePrefs(input.prefs);
+  if (prefLine) dataNotes.push(prefLine);
   if (selectedCount) {
     dataNotes.push(
       selectedDays > 0
@@ -458,6 +462,7 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
     fixedPlaces,
     fixedSource,
     params,
+    prefs: input.prefs,
     lockedPlaces: input.lockedPlaces,
     slimDays: input.slimDays,
     farDays: input.farDays,
@@ -559,6 +564,8 @@ export async function planTrip(input: TripInput): Promise<PlanResult> {
       usedMealIds,
       weather: core,
       spares: planSights.filter((place) => !usedPlaceIds.has(place.id)),
+      // restFreq 在这里才用得上：说「走一会要歇」的人，站间缓冲放宽。
+      prefs: input.prefs,
     });
     days.push(result.plan);
     for (const stop of result.plan.stops) {

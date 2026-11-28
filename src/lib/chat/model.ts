@@ -12,6 +12,7 @@ import type {
   StyleId,
   TransportPref,
 } from "@/lib/types";
+import { PREF_KEYS, NEUTRAL_PREFS, sanitizePrefs } from "@/lib/plan/prefs";
 import { draftSummary, hotelForCity } from "./draft";
 import {
   gateDefaultDimensions,
@@ -149,6 +150,14 @@ function systemPrompt(draft: ChatDraft): string {
    - “带小孩/亲子” → styles 加 family；“成人”只数 60 岁以下的同行者，老人单独填 seniors；“爸妈/父母”按 2 位老人记，只说“有老人”没给数字先按 1 位记；队伍全是老人时 adults 填 0（例如“我和老伴都七十多了” → adults:0, seniors:2）；
    - 只要这一轮写了 seniors，就必须同时写 adults（哪怕成年人数和草稿一样），两者相加才是总人数；“我们五个人，其中一位老人” → adults:4, seniors:1；老人同行时 pace 不高于 balanced；
    - 用户明确说“不爬山/腿脚不便/膝盖不好/不想走长台阶”时，avoidSteep 填 true，不要选 hike、不要选 packed，节奏用 chill 收住；“不想太累/不想人挤人”只降节奏，不必填 avoidSteep；
+   - 有些话不是「玩什么」，而是「玩到多深」，写进 prefs（每维 0~1，0.5 是不表态）：
+     "骑行爱好者 / 愿意走 / 不怕走远" → walkComfort 0.85；"腿脚不便 / 尽量少走路 / 全程打车" → walkComfort 0.2；
+     "喜欢逛馆 / 怕晒 / 下雨也要有地方去" → indoorBias 0.8；
+     "主要为了吃 / 想吃本地小吃" → localFoodWeight 0.85；
+     "要给孩子拍照 / 想拍大片 / 出片" → photoScore 0.85；
+     "带老人 / 走一会要歇 / 别太赶" → restFreq 0.8；
+     "人少一点 / 小众 / 不想去网红点 / 不想人挤人" → novelty 0.2；"就要去最有名的 / 第一次来必打卡" → novelty 0.85。
+     只填这一轮用户真的说到的维度，没提到就不要写；不要每轮都把 6 个维度填满。
    - 原话里还有没被参数吸收的细节（口味、纪念日、行动限制、必须避开的时段），压缩成 60 字以内写进 notes。
    即使用户的自由描述很碎，也要把能映射的字段都填上，剩余部分留在 notes；绝不能因为听不懂就清空玩法或只回一句空话。
 9. 预算 budgetTier 不单独问，用户主动提及时才记录。
@@ -165,7 +174,7 @@ budgetTier: economy | comfort | premium
 输出格式：
 {
   "say": "给用户看的短句",
-  "patch": { "city": "城市名", "days": 3, "date": "YYYY-MM-DD", "pace": "chill|balanced|packed", "styles": ["citywalk"], "experiences": ["sunset"], "transport": "auto", "budgetTier": "comfort", "adults": 2, "children": 0, "seniors": 0, "avoidSteep": false, "notes": "用户原话里的补充要求", "hotelQuery": "住处或片区名", "hotelUndecided": true, "selectedNames": ["景点名"] },
+  "patch": { "city": "城市名", "days": 3, "date": "YYYY-MM-DD", "pace": "chill|balanced|packed", "styles": ["citywalk"], "experiences": ["sunset"], "transport": "auto", "budgetTier": "comfort", "adults": 2, "children": 0, "seniors": 0, "avoidSteep": false, "prefs": { "walkComfort": 0.8, "novelty": 0.7 }, "notes": "用户原话里的补充要求", "hotelQuery": "住处或片区名", "hotelUndecided": true, "selectedNames": ["景点名"] },
   "cards": [{ "kind": "city|date|party|style|pace|transport|budget|hotel|confirm", "title": "卡片标题", "hint": "一句提示" }],
   "action": "none" | "plan"
 }
@@ -368,6 +377,19 @@ function sanitizePatch(raw: unknown): ChatPatch {
   if (children !== undefined) patch.children = children;
   if (seniors !== undefined) patch.seniors = seniors;
   if (avoidSteep !== undefined) patch.avoidSteep = avoidSteep;
+  // 连续偏好：LLM 只填听出来的维度，剩余沿用草稿。
+  // 只在确实偏离中性时才写进 patch，避免「随手写 0.5」把草稿覆盖成半吊子状态。
+  if (record.prefs && typeof record.prefs === "object") {
+    const raw = record.prefs as Record<string, unknown>;
+    const cleaned = sanitizePrefs(raw);
+    const partial: Partial<typeof cleaned> = {};
+    for (const key of PREF_KEYS) {
+      if (raw[key] === undefined) continue;
+      if (Math.abs(cleaned[key] - NEUTRAL_PREFS[key]) <= 0.02) continue;
+      partial[key] = cleaned[key];
+    }
+    if (Object.keys(partial).length) patch.prefs = partial;
+  }
   if (notes) patch.notes = notes;
   if (hotelQuery) patch.hotelQuery = hotelQuery;
   if (hotelUndecided) patch.hotelUndecided = true;

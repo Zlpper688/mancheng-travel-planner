@@ -159,6 +159,12 @@ export interface TripInput {
    * 硬约束不在这里：日期/天数/人数/点名必去点/已订酒店/排除点仍由用户决定。
    */
   planParams?: import("./plan/params").PlanParams;
+  /**
+   * 连续偏好向量（每维 0~1，0.5 = 中性）。
+   * 与 styles 的分工：styles 回答「玩什么」，它回答「玩到多深」——
+   * 愿不愿意走、怕不怕人多、要不要出片。不传时对打分零影响。
+   */
+  prefs?: import("./plan/prefs").TripVector;
 }
 
 export interface WishlistGoal {
@@ -342,6 +348,17 @@ export interface DayPlan {
   weather?: DayWeather;
   tips?: PlanTip[];
   alternatives?: DayAlternative[];
+  /**
+   * 当天体力曲线：出门时 / 回到住处时的能量，以及全天最低点。
+   * 纯记录，不参与排线决策——排序时用的是 energy.ts 的代价函数。
+   */
+  energy?: {
+    start: number;
+    end: number;
+    low: number;
+    lowPlaceId?: string;
+    strained?: boolean;
+  };
 }
 
 export interface BudgetItem {

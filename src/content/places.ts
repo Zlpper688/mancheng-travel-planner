@@ -12,6 +12,20 @@ export interface PlaceProfile {
   caution?: string;
   family?: string;
   rain?: string;
+  /**
+   * 人工核实过的人流时段（可选）。
+   * 有就按它排，没有就由 crowd.ts 按类别与名气推断——推断永远标 heuristic，
+   * 不会伪装成实测数据。
+   */
+  crowd?: {
+    /** 拥挤时段，格式 "HH:MM-HH:MM" */
+    peak?: string[];
+    /** 相对清静的时段 */
+    valley?: string[];
+    /** 拥挤时停留的放大系数 */
+    factor?: number;
+    source?: string;
+  };
   source: string;
 }
 

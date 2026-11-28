@@ -10,6 +10,7 @@ import {
   startForFirst,
   type RhythmProfile,
 } from "./profile";
+import { DP_MAX_STOPS, dpStopsOf, orderWithTimeWindows } from "./order-dp";
 
 function hardPenalty(order: Entry[]): number {
   let penalty = 0;
@@ -39,6 +40,28 @@ function hardPenalty(order: Entry[]): number {
 export interface Entry {
   place: Place;
   profile: RhythmProfile;
+}
+
+/**
+ * DP 是纯代价最优，它不认识 hardPenalty 里那几条结构规则。
+ *
+ * bandPenalty 确实罚得很重（把夜市排到中午罚 8 分×权重 6），但那是「贵」，
+ * 不是「不许」——当路程优势足够大时，DP 完全可能拿一条
+ * 「下午三点去夜市、天黑再回博物馆」的路线把代价压下去。
+ * 这里做一次廉价复核：不合法就退回启发式。
+ * 宁可少优化一点，也不要排出一条一眼错的行程。
+ */
+function structurallySane(order: Entry[]): boolean {
+  const n = order.length;
+  const hasNight = order.some((entry) => entry.profile.nightStreet);
+  const sunsetLast = hasNight ? n - 2 : n - 1;
+  for (let index = 0; index < n; index++) {
+    const profile = order[index].profile;
+    if (profile.nightStreet && index !== n - 1) return false;
+    if (profile.sunrise && index !== 0) return false;
+    if (profile.sunset && index < sunsetLast) return false;
+  }
+  return true;
 }
 
 interface ComposeState {
@@ -236,6 +259,39 @@ function plainSearch(
 ): { order: Entry[]; total: number } {
   const n = entries.length;
   if (n <= 1) return { order: [...entries], total: 0 };
+
+  // N ≤ 10 走精确解：带时间窗 + 体力 + 人流的 DP，见 rhythm/order-dp.ts。
+  // 原来的 beam search 只在点位超过 DP 上限时才兜底使用。
+  if (n <= DP_MAX_STOPS) {
+    const solved = orderWithTimeWindows({
+      hotel: input.hotel,
+      stops: dpStopsOf(
+        entries.map((entry) => entry.place),
+        {
+          city: input.city,
+          pace: input.pace,
+          styles: input.styles,
+          transport: input.transport,
+        },
+      ),
+      startMin,
+      city: input.city,
+      pace: input.pace,
+      styles: input.styles,
+      transport: input.transport,
+      dayIndex: input.dayIndex,
+    });
+    if (solved.order.length === n) {
+      const byId = new Map(entries.map((entry) => [entry.place.id, entry]));
+      const order = solved.order
+        .map((stop) => byId.get(stop.place.id))
+        .filter(Boolean) as Entry[];
+      if (order.length === n && structurallySane(order)) {
+        return { order, total: solved.cost };
+      }
+    }
+  }
+
   const buffer = PACES[input.pace].bufferMin;
 
   const initial: ComposeState[] = entries.map((entry) => {
@@ -528,6 +584,38 @@ function orderMiddle(
   if (middle.length <= 1) return [...middle];
   const buffer = PACES[input.pace].bufferMin;
   const prefix = advance(input.hotel, startMin, 0, opening, input);
+
+  // 中间段是排序最难的部分：两端锚点已经定死，中间只负责「顺路 + 踩准时间窗」。
+  // 交给精确 DP，日落/夜市不再需要 scheduleDay 事后剔除来补救。
+  if (middle.length <= DP_MAX_STOPS) {
+    const solved = orderWithTimeWindows({
+      hotel: prefix.prev,
+      stops: dpStopsOf(
+        middle.map((entry) => entry.place),
+        {
+          city: input.city,
+          pace: input.pace,
+          styles: input.styles,
+          transport: input.transport,
+        },
+      ),
+      startMin: prefix.clock,
+      city: input.city,
+      pace: input.pace,
+      styles: input.styles,
+      transport: input.transport,
+      dayIndex: input.dayIndex,
+      tail: closing[0]?.place,
+    });
+    if (solved.order.length === middle.length) {
+      const byId = new Map(middle.map((entry) => [entry.place.id, entry]));
+      const order = solved.order
+        .map((stop) => byId.get(stop.place.id))
+        .filter(Boolean) as Entry[];
+      if (order.length === middle.length && structurallySane(order)) return order;
+    }
+  }
+
   const n = middle.length;
   const beamLimit = n <= 7 ? Number.POSITIVE_INFINITY : 2400;
 

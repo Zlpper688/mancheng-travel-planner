@@ -21,6 +21,13 @@ import type {
 import { buildWishlist, experienceAffinity } from "./experience";
 import { DEFAULT_PARAMS, type PlanParams } from "./params";
 import {
+  NEUTRAL_PREFS,
+  prefContextOf,
+  prefsDelta,
+  prestigeScale,
+  type TripVector,
+} from "./prefs";
+import {
   composeDay,
   rhythmBudgetMinutes,
   rhythmOf,
@@ -34,6 +41,7 @@ import {
   pickFarGroups,
 } from "./select/far";
 import { describeArea, describeTheme } from "./select/narrative";
+import { balanceDays } from "./select/balance";
 import {
   closingOnly,
   farOneWayCapFor,
@@ -83,6 +91,16 @@ export interface SelectInput {
   notes?: string;
   /** 软参数覆盖层；不传时与现有行为完全一致。 */
   params?: PlanParams;
+  /**
+   * 连续偏好向量。中性（不传）时对打分零影响；
+   * 传了才会把「愿不愿意走 / 怕不怕人多 / 要不要出片」这类程度带进选点。
+   */
+  prefs?: TripVector;
+  /**
+   * 回归检查专用：把打分表一并返回，用来断言「偏好确实改变了排序」。
+   * 生产路径不要打开——它只是把已经算出来的数组多带一份。
+   */
+  debug?: boolean;
   /** 片区聚类半径覆盖（km）：区域环线段内选点时放大，避免跨 100km 的点被当成不同片区。 */
   clusterRadiusKm?: number;
 }
@@ -91,6 +109,8 @@ export interface SelectResult {
   days: DaySeed[];
   warnings: string[];
   farDays: number;
+  /** 仅 debug=true 时有值：按综合分降序的选点打分表。 */
+  scored?: { id: string; name: string; popularity: number; score: number }[];
 }
 
 type StyleProfile = {
@@ -182,6 +202,7 @@ function scorePlace(
   seniors = 0,
   avoidSteep = false,
   coastal = false,
+  prefs: TripVector = NEUTRAL_PREFS,
 ): number {
   const affinity = styleAffinity(place, styles);
   const wishBonus =
@@ -204,7 +225,10 @@ function scorePlace(
     popularity >= 4.5 || /classic|必去|地标/.test(text) ? 1.1 : 0;
   const ratingBonus = place.rating && place.rating >= 4.6 ? 0.3 : 0;
   const fameWeight = styles.includes("classic") ? 2.7 : 2;
-  const fameBonus = Math.max(0, popularity - 4.1) * fameWeight;
+  // 「名气」这一项值多少分，由偏好决定：想小众就压到 0.44，想打卡就抬到 1.56。
+  // 中性偏好下恰为 1，选点结果与旧行为逐字节一致。
+  const prestige = prestigeScale(prefs);
+  const fameBonus = Math.max(0, popularity - 4.1) * fameWeight * prestige;
   const metro =
     transport === "drive" ? null : metroAccess(place, city);
   const metroBonus = metro
@@ -231,15 +255,19 @@ function scorePlace(
         : 0
     : 0;
   const jitter = seededJitter(seed, place.id, 0.28);
+  // 连续偏好（愿不愿意走 / 怕不怕人多 / 要不要出片）。
+  // 中性向量下这个值恒等于 0，所以「不传 prefs」与旧行为逐字节一致。
+  const prefBonus = prefsDelta(prefs, prefContextOf(place, { steep }));
   return (
     affinity * 1 +
-    popularity * 2 +
+    popularity * 2 * prestige +
     fameBonus +
     mustSee +
     metroBonus +
     ratingBonus +
     jitter +
-    wishBonus -
+    wishBonus +
+    prefBonus -
     qualityPenalty -
     reachPenalty -
     islandPenalty -
@@ -309,6 +337,52 @@ function roleCount(profiles: RhythmProfile[]): Record<string, number> {
 }
 
 
+/**
+ * 「必去点」的排序：名气为主，但用户明确表过态之后，让综合分参与。
+ *
+ * 为什么非改这一步不可：名气够高的点会被直接选为当天主景，而主景决定了
+ * 这一整天往哪个片区走。如果这里只按名气压人，那「我偏小众」最多只能换掉
+ * 主景身边的点缀，整条行程的骨架纹丝不动——实测厦门 40 个点位，novelty
+ * 从 0.05 拉到 0.95，两天排出来的东西一个点都没变。
+ *
+ * 中性偏好时 blend = 0，排序键退化为「名气降序 → 综合分降序」，
+ * 与改动前逐字节一致（引擎的通用纪律：默认值必须等于原硬编码）。
+ */
+function fameOrder(pool: ScoredPlace[], prefs: TripVector): ScoredPlace[] {
+  const blend = Math.min(0.65, Math.abs(prefs.novelty - 0.5) * 1.3);
+  const byFame = (a: ScoredPlace, b: ScoredPlace) =>
+    (b.place.popularity ?? 0) - (a.place.popularity ?? 0) || b.score - a.score;
+  if (blend <= 0) return [...pool].sort(byFame);
+  // 先各自归一化再加权：名气是 3.4~5.0，综合分是 5~16，两个量纲直接相加
+  // 等于让综合分一票否决，那不是「参与」，是「取代」。
+  const pops = pool.map((item) => item.place.popularity ?? 0);
+  const scores = pool.map((item) => item.score);
+  const popLo = Math.min(...pops);
+  const popHi = Math.max(...pops);
+  const scoreLo = Math.min(...scores);
+  const scoreHi = Math.max(...scores);
+  const unit = (value: number, lo: number, hi: number) =>
+    hi - lo < 1e-9 ? 0.5 : (value - lo) / (hi - lo);
+  const keyOf = (item: ScoredPlace) =>
+    (1 - blend) * unit(item.place.popularity ?? 0, popLo, popHi) +
+    blend * unit(item.score, scoreLo, scoreHi);
+  return [...pool].sort((a, b) => keyOf(b) - keyOf(a) || byFame(a, b));
+}
+
+/**
+ * 只在下午到夜里才进得去：日落点、夜市、以及窗口全在 13 点以后的街区。
+ *
+ * 这种点位不该当一天的主景。主景是一天一个，把「看日落」当天的主景，
+ * 等于给这天只发了半天门票——排程最早的可用时段就是 16:00，
+ * 只能把出发时间推到下午（实测厦门第 2 天 14:30 才出门，上午整块空着）。
+ * 它正确的角色是白天日最后的那一站，也就是「收尾」。
+ */
+function eveningOnly(profile: RhythmProfile): boolean {
+  if (profile.sunrise || profile.marketMorning) return false;
+  if (!profile.windows.length) return false;
+  return Math.min(...profile.windows.map(([start]) => start)) >= 12 * 60 + 30;
+}
+
 // 锚点不再只按名气取，先保证一天里能有一个主景、一个日落/室内位，
 // 并避免把两个商业街或两个日落点排进同一天。
 function pickNearAnchors(
@@ -318,19 +392,31 @@ function pickNearAnchors(
   city: string,
   hotel: Place,
   styles: StyleId[],
+  prefs: TripVector = NEUTRAL_PREFS,
 ): ScoredPlace[] {
   const anchors: ScoredPlace[] = [];
   const profileOf = (item: ScoredPlace) => rhythmOf(city, item.place);
-  const mandatory = [...pool].sort(
-    (a, b) =>
-      (b.place.popularity ?? 0) - (a.place.popularity ?? 0) ||
-      b.score - a.score,
-  );
+  const mandatory = fameOrder(pool, prefs);
+  // 白天能进的点位够分给这几天时，傍晚型就不占锚点，退回顺路收尾。
+  // 反过来（海边小城，全城只有日落点）仍然允许它当主景，否则一天锚点都选不出来。
+  const daytimeAnchors = pool.filter((item) => !eveningOnly(profileOf(item))).length;
+  const allowEveningAnchor = daytimeAnchors < count;
+  // 「必去」门票只发给名气 4.4 以上的点。这个门槛平时是对的——第一次来就该去鼓浪屿。
+  // 但用户把 novelty 压到 0.2 以下，说的其实是「我不是第一次来了」，
+  // 这时候综合分排在前面的点也该有资格当主景，否则偏好永远只能换配角。
+  // 只在明确表态时开这个口子；中性偏好下 wildcard 为空，行为与旧版一致。
+  const wildcard =
+    0.5 - prefs.novelty >= 0.3
+      ? new Set(
+          mandatory.slice(0, Math.max(3, count * 2 + 1)).map((item) => item.place.id),
+        )
+      : null;
   for (const item of mandatory) {
     if (anchors.length >= count) break;
-    if (!isMandatoryAnchor(item.place)) continue;
+    if (!isMandatoryAnchor(item.place) && !wildcard?.has(item.place.id)) continue;
     if (anchors.some((anchor) => anchor.place.id === item.place.id)) continue;
     const profile = profileOf(item);
+    if (!allowEveningAnchor && eveningOnly(profile)) continue;
     if (profile.quickStop || !profile.heroEligible) continue;
     if (profile.sunrise && sunTooFar(item.place, hotel)) continue;
     if (
@@ -363,6 +449,7 @@ function pickNearAnchors(
     for (const item of pool) {
       if (anchors.some((anchor) => anchor.place.id === item.place.id)) continue;
       const profile = profileOf(item);
+      if (!allowEveningAnchor && eveningOnly(profile)) continue;
       // 为了一个黄昏点专程跑很远不值：傍晚型点位名气不够时只当顺路收尾。
       if (closingOnly(profile) && !isFamous(item.place)) continue;
       const standaloneLongStay =
@@ -553,6 +640,7 @@ export function selectDays(input: SelectInput): SelectResult {
         input.seniors ?? 0,
         skipSteep,
         coastal,
+        input.prefs,
       ),
       distance: placeDistance(reference, place),
     }))
@@ -710,6 +798,7 @@ export function selectDays(input: SelectInput): SelectResult {
       city,
       hotel,
       styles,
+      input.prefs,
     );
     const anchorProfiles = anchors.map((item) =>
       rhythmOf(city, item.place),
@@ -898,6 +987,30 @@ export function selectDays(input: SelectInput): SelectResult {
     }
   }
 
+  // 跨天叙事均衡：地理分片保证了「不在同一边折返」，但没管主题——
+  // 三天可能全是老城+博物馆。这里只在自动日期之间做小幅交换，
+  // 远足日、攻略日、锁定点一律不动。
+  if (autoDays.length >= 2) {
+    const slots = autoDays.filter((day) => (dayPlaces.get(day) ?? []).length > 1);
+    if (slots.length >= 2) {
+      const frozen = new Set<number>();
+      slots.forEach((day, index) => {
+        if (farDaysSet.has(day)) frozen.add(index + 1);
+      });
+      const balanced = balanceDays({
+        days: slots.map((day) => dayPlaces.get(day) ?? []),
+        city,
+        clusterKm:
+          input.clusterRadiusKm ??
+          clusterRadiusFor(styles, pace, transport, input.seniors ?? 0),
+        frozen,
+      });
+      slots.forEach((day, index) => {
+        dayPlaces.set(day, balanced.days[index]);
+      });
+    }
+  }
+
   // 把锁定的点位放到当天队列最前面：composeDay 若因时间不够删减，
   // 删的是队尾的自动点位，锁定的点不会被顺手丢掉。
   for (const [day, places] of lockedByDay) {
@@ -1022,5 +1135,15 @@ export function selectDays(input: SelectInput): SelectResult {
     days: result,
     warnings: Array.from(new Set(warnings)),
     farDays: farDaysSet.size,
+    // 只有回归检查会打开：把打分表原样带出来，才能断言「偏好确实改变了排序」，
+    // 而不是只看最后排出来的几个名字是否碰巧不同。平时它是 undefined，不占内存。
+    scored: input.debug
+      ? scored.map((item) => ({
+          id: item.place.id,
+          name: item.place.name,
+          popularity: item.place.popularity ?? 0,
+          score: item.score,
+        }))
+      : undefined,
   };
 }

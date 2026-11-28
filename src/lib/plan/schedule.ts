@@ -30,12 +30,22 @@ import type {
   TransportPref,
 } from "../types";
 import { rainLoad, temperatureRange, type WeatherCore } from "../weather";
+import { crowdDwellFactor, crowdNote, crowdOf } from "./crowd";
+import {
+  applyEnergy,
+  energyDwellScale,
+  energyNote,
+  initialEnergy,
+  summarizeEnergy,
+  timeDrain,
+} from "./energy";
 import {
   describeDay,
   rhythmDwell,
   rhythmOf,
   type DayNarrative,
 } from "./rhythm";
+import { restBufferOf, type TripVector } from "./prefs";
 import type { DaySeed } from "./select";
 
 type MealSlot = "lunch" | "dinner" | "cafe";
@@ -67,10 +77,23 @@ interface BuildContext {
   startMin: number;
   weather: WeatherCore | null;
   rainDelayNote?: string;
+  /**
+   * 出门时的体力（0–100）。由 energy.ts 按出发时刻/第几天/同行人算，
+   * 排线时用它决定「这一站还能不能按原时长走完」。
+   */
+  energyStart: number;
+  /**
+   * 连续偏好向量（可选）。目前只用来把 restFreq 换算成「每站之后多留几分钟」：
+   * 说了「走一会要歇」，站间缓冲就该宽一点。其余维度在选点层已经消化。
+   */
+  prefs?: TripVector;
 }
 
 export interface ScheduleInput
-  extends Omit<BuildContext, "far" | "startMin" | "weather" | "rainDelayNote"> {
+  extends Omit<
+    BuildContext,
+    "far" | "startMin" | "weather" | "rainDelayNote" | "energyStart"
+  > {
   seedDay: DaySeed;
   usedMealIds: Set<string>;
   weather?: WeatherCore | null;
@@ -91,6 +114,7 @@ interface BuiltDay {
   warnings: string[];
   tip: string;
   narrative: DayNarrative;
+  energy: { start: number; end: number; low: number; lowPlaceId?: string };
 }
 
 const MODES: TransportMode[] = ["walk", "transit", "taxi"];
@@ -961,6 +985,11 @@ async function buildOnce(
         strategy: "今天留白，睡到自然醒，在酒店附近随意走走。",
         rhythm: {},
       },
+      energy: {
+        start: context.energyStart,
+        end: context.energyStart,
+        low: context.energyStart,
+      },
     };
   }
 
@@ -1021,6 +1050,13 @@ async function buildOnce(
     endMin: number;
     peak: number;
   } | null = null;
+  /**
+   * 体力曲线。出门时的能量由 scheduleDay 算好（首日晚到、后几天累积疲劳、
+   * 老人小孩都在里面），这里只负责按点位扣减，并在体力见底时给出人话解释。
+   */
+  let energy = context.energyStart;
+  /** 人流提示每天只给一条：满屏「建议早点来」等于没有建议。 */
+  let crowdNoted = false;
 
   for (let index = 0; index < ordered.length; index++) {
     const stop = ordered[index];
@@ -1099,8 +1135,25 @@ async function buildOnce(
     }
 
     const startMin = Math.ceil((arriveMin + wait) / 5) * 5;
+    // 在路上也在耗：上一站结束到这一站开始，按小时扣基础消耗。
+    // 口径与 summarizeEnergy 一致（都不含站后缓冲），不然标签和解释会对不上。
+    const lastEnd = stops.length
+      ? stops[stops.length - 1].endMin
+      : context.startMin;
+    energy = Math.max(0, energy - timeDrain(lastEnd, startMin));
     const advice = weatherAdviceFor(stop, context.weather, startMin, dwell);
     dwell = advice.dwell;
+    // 拥挤拉长停留：只认人工核实的时段数据，推断规则不参与（见 crowd.ts）。
+    const crowdScale = crowdDwellFactor(crowdOf(stop.place), startMin, dwell);
+    if (crowdScale > 1) {
+      dwell = roundToFive(dwell * crowdScale);
+    }
+    // 体力见底时，重体力点位的停留收 15%。
+    // 不是为了让指标好看，是承认「走不动了」本身就要花时间：找座、歇脚、上厕所。
+    const energyScale = energyDwellScale(energy, stop.place, context.city);
+    if (energyScale < 1) {
+      dwell = Math.max(15, roundToFive(dwell * energyScale));
+    }
     const endMin = startMin + dwell;
     if (advice.heavy && (!rainiest || advice.mm > rainiest.mm)) {
       rainiest = {
@@ -1126,6 +1179,21 @@ async function buildOnce(
     const notes = [stop.place.note, openNote, ...advice.notes].filter(
       Boolean,
     ) as string[];
+    // 人流：只在「排得正好」或「撞上高峰」时说话，每天最多一条。
+    // 夜市和日落点的「高峰」就是它存在的理由，劝人避开等于劝人别去。
+    if (stop.kind === "sight" && !crowdNoted) {
+      const rhythm = rhythmOf(context.city, stop.place);
+      if (!rhythm.nightStreet && !rhythm.sunset) {
+        const stageNote = crowdNote(crowdOf(stop.place), startMin, dwell);
+        if (stageNote) {
+          notes.push(stageNote);
+          crowdNoted = true;
+        }
+      }
+    }
+    // 体力：只剩半格电还排了爬山，就把话说明白，而不是假装排得动。
+    const tiredNote = energyNote(energy, stop.place, context.city);
+    if (tiredNote) notes.push(tiredNote);
     if (stop.kind === "sight" && stop.place.costNote && stop.place.cost) {
       notes.push(`参考费用：${stop.place.costNote}`);
     }
@@ -1151,11 +1219,24 @@ async function buildOnce(
           : undefined,
     });
     clock = endMin;
+    // 待在里面同样在耗体力：停留这两小时不是「静止」，是站着、走着、排队。
+    energy = Math.max(0, energy - timeDrain(startMin, endMin));
+    energy = applyEnergy(
+      energy,
+      stop.place,
+      context.city,
+      endMin - startMin,
+      null,
+      stop.slot,
+    );
     if (stop.kind === "sight") {
       const buffer = roundToFive(
         PACES[context.pace].bufferMin *
           (stop.fixed ? 0.55 : 1) *
-          (1 + (context.crowd - 1) * 0.4),
+          (1 + (context.crowd - 1) * 0.4) +
+          // 「走一会要歇」的人，站间余量放宽一点。中性偏好的贡献恒为 0，
+          // 所以不传 prefs 时与旧行为逐字节一致。
+          restBufferOf(context.prefs),
       );
       clock += Math.max(0, buffer);
     }
@@ -1389,6 +1470,21 @@ async function buildOnce(
     tips.push(fallbacks[Math.floor((jitter + 1) * 0.5 * fallbacks.length) % fallbacks.length]);
   }
 
+  // 全天体力曲线：出门多少、最低掉到哪、回来还剩多少。
+  // 算在最后的 stops 上（含临时追加的晚饭），所以和用户看到的顺序一致。
+  const energyFlow = summarizeEnergy(
+    stops.map((stop) => ({
+      place: stop.place,
+      dwellMin: stop.dwellMin,
+      slot: stop.slot,
+      startMin: stop.startMin,
+      endMin: stop.endMin,
+    })),
+    context.energyStart,
+    context.city,
+    context.startMin,
+  );
+
   return {
     stops,
     legs,
@@ -1398,6 +1494,12 @@ async function buildOnce(
     warnings,
     tip: tips.slice(0, 2).join(" "),
     narrative,
+    energy: {
+      start: energyFlow.start,
+      end: energyFlow.end,
+      low: energyFlow.low,
+      lowPlaceId: energyFlow.lowPlaceId,
+    },
   };
 }
 
@@ -1575,6 +1677,15 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     startMin: rainStart.startMin,
     weather,
     rainDelayNote: rainStart.note,
+    // 首日晚到、第二天起累积疲劳、带小孩都要在起点扣掉；
+    // 这条曲线只影响「还能不能按原时长走完」，不影响去哪。
+    energyStart: initialEnergy({
+      startMin: rainStart.startMin,
+      dayIndex: input.seedDay.index,
+      pace: input.pace,
+      children: input.family ? 1 : 0,
+    }),
+    prefs: input.prefs,
   };
 
   let sightStops: StopSeed[] = input.seedDay.places
@@ -1763,6 +1874,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     heroPlaceId: built.narrative.heroId,
     rhythm: built.narrative.rhythm,
     far,
+    energy: built.energy,
   };
 
   return {
