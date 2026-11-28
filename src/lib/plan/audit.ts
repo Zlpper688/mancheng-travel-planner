@@ -4,6 +4,7 @@ import {
   EARLY_END_MIN,
   HARD_CEIL_MIN,
   LATEST_START,
+  LUNCH_LIMIT_MIN,
   MAX_GAP_MIN,
   MAX_SAME_CATEGORY_RUN,
 } from "./limits";
@@ -70,7 +71,10 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
     issues.push({ code, severity, day: day.index, detail });
   const params = options.params ?? DEFAULT_PARAMS;
 
-  const sights = day.stops.filter((stop) => stop.kind === "sight");
+  // 长景点被午饭切开的后半段不算第二个景点（否则「2 个景点」会被算成 3 个）。
+  const sights = day.stops.filter(
+    (stop) => stop.kind === "sight" && stop.splitPart !== 2,
+  );
   const meals = day.stops.filter((stop) => stop.kind === "meal");
   const restDay = sights.length === 0;
 
@@ -125,8 +129,26 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   // ---------- 吃饭 ----------
   const lunch = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.lunch));
   const dinner = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.dinner));
+  // 午饭是硬锚点：13:30 之后才坐下，不是「排得晚」，是这一天没人管午饭。
+  // 早饭可以省、晚饭可以晚，午饭晚到下午人会难受一整天，任何城市都不该出现。
+  const lateLunch = ordered.find(
+    (stop) => stop.slot === "lunch" && stop.startMin > LUNCH_LIMIT_MIN,
+  );
+  if (lateLunch) {
+    push(
+      "LUNCH_LATE",
+      "error",
+      `${mm(lateLunch.startMin)} 才吃午饭，午饭被前面的点位挤掉了`,
+    );
+  }
   // 出发早、收工早的半日行程可以没有晚饭，但只要有午饭需求就该有午饭。
-  if (!restDay && !lunch.length && day.endMin >= params.mealWindow.lunch[1]) {
+  // 过了午饭时段才出门的日子不算「漏了午饭」——那种日子本来就在外面吃第一顿。
+  if (
+    !restDay &&
+    !lunch.length &&
+    day.endMin >= params.mealWindow.lunch[1] &&
+    day.stops[0]?.startMin < params.mealWindow.lunch[1]
+  ) {
     push("NO_LUNCH", "warn", "午饭时段没有安排吃饭");
   }
   if (!restDay && !dinner.length && day.endMin >= params.mealWindow.dinner[0] + 30) {
@@ -191,6 +213,9 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   for (const stop of day.stops) {
     const key = placeKeyOf(stop.place);
     if (seen.has(key)) {
+      // 一个点占掉大半天时，午饭会把它切成前后两段（splitPart 2 是后半段）。
+      // 那不是「排重了」，是同一段体验被吃饭分开，不算重复。
+      if (stop.splitPart === 2) continue;
       push("DUPLICATE_PLACE", "error", `「${stop.place.name}」在同一天出现两次`);
     }
     seen.add(key);

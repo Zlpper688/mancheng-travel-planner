@@ -47,3 +47,14 @@ export const MEAL_WINDOW = {
   lunch: [11 * 60, 14 * 60 + 30] as [number, number],
   dinner: [17 * 60, 20 * 60 + 30] as [number, number],
 };
+
+/**
+ * 午饭的硬上限：13:30 还没坐下，就不是「排得晚」而是「排漏了」。
+ *
+ * MEAL_WINDOW.lunch 的右端 14:30 是「体检时还算在午饭时段内」的宽容值，
+ * 这里更严：一旦某个景点把午饭吞掉，人是要饿到下午的，任何城市都不该出现。
+ */
+export const LUNCH_LIMIT_MIN = 13 * 60 + 30;
+
+/** 到得太早（离 11:00 还差一大截）在原地干等，同样不像真人在排行程。 */
+export const LUNCH_IDLE_TOLERANCE = 25;

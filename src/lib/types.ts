@@ -254,6 +254,14 @@ export interface StopPlan {
   estimatedTicket?: boolean;
   slot?: "lunch" | "dinner" | "cafe";
   flexible?: boolean;
+  /**
+   * 1 / 2：同一个景点被午饭切成前后两段。
+   *
+   * 一个点要占掉大半天（岛、大景区、大博物馆）时，午饭既挪不到它前面、
+   * 也塞不进它后面，只能在景点里吃。拆成两站比「上午空着等吃饭」和
+   * 「15 点才吃午饭」都更接近真人的排法。
+   */
+  splitPart?: 1 | 2;
   attrs?: string[];
   tips?: PlanTip[];
 }

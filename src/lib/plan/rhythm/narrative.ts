@@ -104,9 +104,22 @@ export function describeDay(
     "evening",
     "night",
   ] as const;
-  const segments = order
-    .filter((band) => groups.get(band)?.length)
-    .map((band) => groupLabel(groups.get(band) as Entry[], band));
+  // 一句话里每个地方只该出现一次。长景点被午饭切成两段后，同一天会在两个时段
+  // 各出现一次（上午逛一半、午后接着逛），照搬就成了「上午去鼓浪屿 → 中午去鼓浪屿」。
+  const seen = new Set<string>();
+  const segments: string[] = [];
+  for (const band of order) {
+    const all = groups.get(band);
+    if (!all?.length) continue;
+    const fresh: Entry[] = [];
+    for (const entry of all) {
+      if (seen.has(entry.place.id)) continue;
+      if (fresh.some((item) => item.place.id === entry.place.id)) continue;
+      fresh.push(entry);
+      seen.add(entry.place.id);
+    }
+    if (fresh.length) segments.push(groupLabel(fresh, band));
+  }
 
   const firstStart = sights[0]?.startMin;
   return {
