@@ -186,6 +186,16 @@ function prune(): void {
 }
 
 /** 给运维/脚本用：当前缓存了多少条、目录在哪。 */
+/**
+ * 当前解析出来的缓存目录。
+ *
+ * 对外暴露是为了让检查脚本断言「写到了哪里」，而不是自己再拼一遍路径——
+ * 拼路径的写法在目录优先级改动后就会静默失配（`check-warm-cache` 就这么挂过一次）。
+ */
+export function warmCacheDir(): string {
+  return cacheDir();
+}
+
 export function warmCacheStats(): { dir: string; count: number } {
   try {
     const count = readdirSync(cacheDir()).filter((name) => name.endsWith(".json")).length;
