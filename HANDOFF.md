@@ -168,7 +168,8 @@ npm run verify        # = typecheck + 字号护栏 + 十套纯函数回归
 ```bash
 npm run typecheck                                 # tsc --noEmit（真正的类型检查）
 npm run check:font                                # 字号护栏（禁止正文 <10px；原来叫 check:type，容易误解）
-npm run checks                                    # 下面十一套依次跑
+npm run checks                                    # 下面二十二套依次跑（全部离线、约 20 秒）
+npm run checks:slow                               # check-prefetch（并发/单飞，约 60 秒，不进 CI 快路径）
 
 # 十套回归，各自守一条不变量：
 npx tsx scripts/check-params.ts                   # PlanParams 零回归 + 乱值收敛

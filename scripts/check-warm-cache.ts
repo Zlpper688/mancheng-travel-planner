@@ -12,6 +12,7 @@ import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
+  warmCacheDir,
   warmKeyOf,
   readWarmCache,
   readWarmCacheEntry,
@@ -20,6 +21,14 @@ import {
 import type { DiscoverResult } from "../src/lib/providers/types";
 
 const root = process.cwd();
+
+// 写到临时目录，别往仓库里丢探测文件。
+// data/warm/plan-warm 是随仓库分发的演示预热包，这个脚本以前会把
+// "预热探针" 真的写进去（跑一次就多一个 untracked json）。
+process.env.MC_WARM_DIR = path.join(
+  process.env.TEMP ?? process.env.TMPDIR ?? root,
+  `mc-check-warm-${process.pid}`,
+);
 const PROVIDER_DIR = path.join(root, "src", "lib", "providers");
 
 const base = {
@@ -150,9 +159,11 @@ function main() {
   assert.equal(readWarmCacheEntry(evilKey), null);
   console.log("  ✓ 非法键被忽略");
 
-  const cacheDir = path.join(root, ".cache", "plan-warm");
-  assert.ok(existsSync(cacheDir), "缓存目录应存在");
-  console.log("  ✓ 缓存落在 .cache/plan-warm/");
+  // 断言「写到当前解析出来的目录」，而不是自己拼一条路径：
+  // 目录优先级改过一次（多了 data/warm/plan-warm），拼路径的写法当场失配。
+  const cacheDir = warmCacheDir();
+  assert.ok(existsSync(cacheDir), `缓存目录应存在：${cacheDir}`);
+  console.log("  ✓ 缓存落在 " + path.relative(root, cacheDir));
 
   console.log("\n通过：键契约 + 守卫 + 读写往返 + 拒写空结果 + 拒写非法键");
 }

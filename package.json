@@ -8,11 +8,12 @@
     "start": "next start -p 3000",
     "typecheck": "tsc --noEmit",
     "check:font": "node scripts/check-type.mjs",
-    "checks": "tsx scripts/check-params.ts && tsx scripts/check-slots.ts && tsx scripts/check-refine.ts && tsx scripts/check-segments.ts && tsx scripts/check-journal.ts && tsx scripts/check-booking.ts && tsx scripts/check-city-search.ts && tsx scripts/check-disk-cache.ts && tsx scripts/check-dedupe.ts && tsx scripts/check-rate-limit.ts && tsx scripts/check-photo-storage.ts",
+    "checks": "tsx scripts/check-params.ts && tsx scripts/check-slots.ts && tsx scripts/check-refine.ts && tsx scripts/check-segments.ts && tsx scripts/check-journal.ts && tsx scripts/check-booking.ts && tsx scripts/check-city-search.ts && tsx scripts/check-disk-cache.ts && tsx scripts/check-dedupe.ts && tsx scripts/check-rate-limit.ts && tsx scripts/check-photo-storage.ts && tsx scripts/check-chat-adversarial.ts && tsx scripts/check-city-facts.ts && tsx scripts/check-city-profile.ts && tsx scripts/check-live-cache.ts && tsx scripts/check-live-photos.ts && tsx scripts/check-persistent-cache.ts && tsx scripts/check-photos.ts && tsx scripts/check-safe-draft.ts && tsx scripts/check-upstream-health.ts && tsx scripts/check-warm-cache.ts && tsx scripts/check-wizard-gate.ts",
     "verify": "npm run typecheck && npm run check:font && npm run checks",
     "bench": "tsx scripts/bench.ts",
     "check:plan": "tsx scripts/bench.ts --cities=厦门 --paces=balanced",
-    "warm": "tsx scripts/warm-plan-cache.ts"
+    "warm": "tsx scripts/warm-plan-cache.ts",
+    "checks:slow": "tsx scripts/check-prefetch.ts"
   },
   "dependencies": {
     "lucide-react": "0.468.0",
