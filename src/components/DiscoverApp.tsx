@@ -12,6 +12,7 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight,
+  ArrowUp,
   Check,
   ChevronLeft,
   Compass,
@@ -195,12 +196,23 @@ function shuffledDestinations(excludeId?: string): Destination[] {
 
 export default function DiscoverApp() {
   const [deck, setDeck] = useState<Destination[]>(DESTINATIONS);
+  const [history, setHistory] = useState<Destination[]>([]);
   const [liked, setLiked] = useState<Destination[]>([]);
   const [disliked, setDisliked] = useState<Destination[]>([]);
+  const [stamp, setStamp] = useState<{
+    direction: PoolKind;
+    phase: "desk" | "extending" | "pressed" | "exit";
+  } | null>(null);
   const [poolOpen, setPoolOpen] = useState<PoolKind | null>(null);
   const [drag, setDrag] = useState({ x: 0, y: 0 });
   const [refreshing, setRefreshing] = useState(false);
+  const [entryDirection, setEntryDirection] = useState<"up" | "down" | "fade">(
+    "fade",
+  );
   const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const choosingRef = useRef(false);
+  const choiceTimersRef = useRef<number[]>([]);
+  const stampAudioRef = useRef<HTMLAudioElement>(null);
 
   const current = deck[0];
 
@@ -210,13 +222,51 @@ export default function DiscoverApp() {
 
   const refreshDeck = useCallback(() => {
     setRefreshing(true);
+    setEntryDirection("fade");
     setDeck((items) => shuffledDestinations(items[0]?.id));
     window.setTimeout(() => setRefreshing(false), 350);
   }, []);
 
-  const decide = useCallback(
-    (direction: PoolKind) => {
+  const moveNext = useCallback(
+    (direction: "up" | "fade" = "fade") => {
       if (!current) return;
+      setEntryDirection(direction);
+      setHistory((items) => [...items, current]);
+      setDeck((items) =>
+        items.length > 1 ? items.slice(1) : shuffledDestinations(current.id),
+      );
+      setDrag({ x: 0, y: 0 });
+    },
+    [current],
+  );
+
+  const moveBackOrRefresh = useCallback(() => {
+    if (!history.length) {
+      refreshDeck();
+      setEntryDirection("down");
+      return;
+    }
+    const previous = history[history.length - 1];
+    setEntryDirection("down");
+    setHistory((items) => items.slice(0, -1));
+    setDeck((items) => [previous, ...items]);
+    setDrag({ x: 0, y: 0 });
+  }, [history, refreshDeck]);
+
+  const playStampSound = useCallback(() => {
+    const audio = stampAudioRef.current;
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+    void audio.play().catch((error: unknown) => {
+      console.warn("[discover] Could not play stamp sound", error);
+    });
+  }, []);
+
+  const choose = useCallback(
+    (direction: PoolKind) => {
+      if (!current || choosingRef.current) return;
+      choosingRef.current = true;
       if (direction === "like") {
         setLiked((items) =>
           items.some((item) => item.id === current.id)
@@ -232,15 +282,36 @@ export default function DiscoverApp() {
         );
         setLiked((items) => items.filter((item) => item.id !== current.id));
       }
-      setDeck((items) =>
-        items.length > 1 ? items.slice(1) : shuffledDestinations(current.id),
-      );
-      setDrag({ x: 0, y: 0 });
+      setStamp({ direction, phase: "desk" });
+      choiceTimersRef.current = [
+        window.setTimeout(
+          () => setStamp({ direction, phase: "extending" }),
+          20,
+        ),
+        window.setTimeout(
+          () => {
+            setStamp({ direction, phase: "pressed" });
+            playStampSound();
+          },
+          320,
+        ),
+        window.setTimeout(
+          () => setStamp({ direction, phase: "exit" }),
+          820,
+        ),
+        window.setTimeout(() => {
+          moveNext("up");
+          setStamp(null);
+          choosingRef.current = false;
+          choiceTimersRef.current = [];
+        }, 1100),
+      ];
     },
-    [current],
+    [current, moveNext, playStampSound],
   );
 
   function onPointerDown(event: PointerEvent<HTMLElement>) {
+    if (choosingRef.current) return;
     pointerStart.current = { x: event.clientX, y: event.clientY };
     event.currentTarget.setPointerCapture(event.pointerId);
   }
@@ -260,9 +331,11 @@ export default function DiscoverApp() {
     pointerStart.current = null;
     setDrag({ x: 0, y: 0 });
     if (y > 90 && Math.abs(y) > Math.abs(x)) {
-      refreshDeck();
+      moveBackOrRefresh();
+    } else if (y < -90 && Math.abs(y) > Math.abs(x)) {
+      moveNext("up");
     } else if (Math.abs(x) > 90 && Math.abs(x) > Math.abs(y)) {
-      decide(x > 0 ? "like" : "dislike");
+      choose(x > 0 ? "like" : "dislike");
     }
   }
 
@@ -277,250 +350,281 @@ export default function DiscoverApp() {
         if (event.key === "Escape") setPoolOpen(null);
         return;
       }
-      if (event.key === "ArrowLeft") decide("dislike");
-      if (event.key === "ArrowRight") decide("like");
-      if (event.key === "ArrowDown") refreshDeck();
+      if (choosingRef.current) return;
+      if (event.key === "ArrowUp") moveNext("up");
+      if (event.key === "ArrowDown") moveBackOrRefresh();
+      if (event.key === "ArrowLeft") choose("dislike");
+      if (event.key === "ArrowRight") choose("like");
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [decide, poolOpen, refreshDeck]);
+  }, [choose, moveBackOrRefresh, moveNext, poolOpen]);
+
+  useEffect(
+    () => () => {
+      choiceTimersRef.current.forEach((timer) => window.clearTimeout(timer));
+    },
+    [],
+  );
 
   const openedPool = poolOpen === "like" ? liked : disliked;
 
   return (
-    <main className="min-h-dvh overflow-hidden bg-[#f7f4ec] text-[#243129]">
-      <header className="relative z-10 flex h-[68px] items-center justify-between border-b border-[#243129]/10 px-4 sm:px-8">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-sm font-medium text-[#526055] transition hover:text-[#243129]"
+    <main className="relative h-dvh w-full overflow-hidden bg-[#111713] text-white">
+      <audio
+        ref={stampAudioRef}
+        aria-hidden="true"
+        className="hidden"
+        preload="auto"
+        src="/audio/stamp.wav"
+      />
+      {current ? (
+        <article
+          key={current.id}
+          aria-label={`${current.city} ${current.name}`}
+          className={`absolute inset-0 touch-none select-none overflow-hidden transition-transform duration-200 ease-out ${
+            stamp?.phase === "exit"
+              ? "discover-stamped-exit"
+              : entryDirection === "up"
+                ? "discover-enter-up"
+                : entryDirection === "down"
+                  ? "discover-enter-down"
+                  : ""
+          }`}
+          style={{
+            transform: `translate3d(${drag.x}px, ${drag.y}px, 0) rotate(${drag.x * 0.025}deg)`,
+            background: current.gradient,
+            transition: pointerStart.current ? "none" : undefined,
+          }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
         >
-          <ChevronLeft size={18} />
-          <span className="hidden sm:inline">回到漫城</span>
-          <span className="sm:hidden">返回</span>
-        </Link>
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-          <span className="font-serif text-[19px] tracking-[0.12em]">漫城</span>
-          <span className="ml-2 hidden text-[10px] tracking-[0.22em] text-[#798177] sm:inline">
-            DISCOVER
-          </span>
-        </Link>
-        <button
-          type="button"
-          onClick={refreshDeck}
-          className="flex items-center gap-2 rounded-full border border-[#243129]/15 bg-white/70 px-3.5 py-2 text-xs font-medium text-[#526055] transition hover:bg-white"
-        >
-          <RefreshCw size={14} className={refreshing ? "animate-spin" : ""} />
-          <span>换一批</span>
-        </button>
-      </header>
-
-      <div className="mx-auto grid min-h-[calc(100dvh-68px)] w-full max-w-[1180px] grid-cols-1 items-center gap-5 px-4 py-5 sm:px-8 lg:grid-cols-[1fr_390px_1fr] lg:gap-12 lg:py-7">
-        <section className="hidden lg:block">
-          <div className="max-w-[250px]">
-            <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8b7654]">
-              <Sparkles size={14} />
-              随手发现下一站
-            </p>
-            <h1 className="mt-4 font-serif text-[34px] leading-[1.35] tracking-wide">
-              先凭感觉，
-              <br />
-              再去看世界。
-            </h1>
-            <p className="mt-4 text-[14px] leading-7 text-[#6e776d]">
-              像刷灵感短片一样认识一座城。喜欢的向右收下，不合眼缘的向左略过。
-            </p>
-          </div>
-          <div className="mt-10 space-y-3 text-xs text-[#778075]">
-            <p className="flex items-center gap-2">
-              <ArrowLeft size={15} /> 左滑，放入 Dislike
-            </p>
-            <p className="flex items-center gap-2">
-              <ArrowRight size={15} /> 右滑，放入 Like
-            </p>
-            <p className="flex items-center gap-2">
-              <ArrowDown size={15} /> 下滑，刷新经典
-            </p>
-          </div>
-        </section>
-
-        <section className="mx-auto flex w-full max-w-[390px] flex-col items-center">
-          <div className="mb-3 flex w-full items-center justify-between px-1 lg:hidden">
-            <div>
-              <p className="font-serif text-[21px]">下一站，随心发现</p>
-              <p className="mt-0.5 text-[11px] text-[#7b847a]">
-                滑动卡片，收集旅行灵感
-              </p>
-            </div>
-            <Compass size={21} strokeWidth={1.5} className="text-[#8b7654]" />
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -right-16 top-[18%] h-[44vh] w-[44vh] rounded-full border border-white/15 bg-white/10 blur-[1px]" />
+            <div className="absolute -left-[20%] top-[30%] h-[55vh] w-[55vh] rounded-full border border-white/15 bg-black/5" />
+            <div className="absolute -bottom-[14%] left-1/2 h-[48vh] w-[130vw] -translate-x-1/2 rotate-[-8deg] rounded-[50%] border-t border-white/20 bg-black/10 blur-[1px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/5 to-black/75" />
+            <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-black/25 to-transparent" />
           </div>
 
-          {current ? (
-            <article
-              aria-label={`${current.city} ${current.name}`}
-              className="relative h-[min(62dvh,590px)] min-h-[390px] w-full touch-none select-none overflow-hidden rounded-[26px] bg-[#73877b] shadow-[0_24px_70px_-34px_rgba(27,39,31,0.65)] transition-transform duration-200 ease-out sm:h-[min(69dvh,650px)] sm:min-h-[470px]"
-              style={{
-                transform: `translate3d(${drag.x}px, ${drag.y}px, 0) rotate(${drag.x * 0.035}deg)`,
-                background: current.gradient,
-                transition: pointerStart.current ? "none" : undefined,
-              }}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onPointerCancel={onPointerCancel}
+          <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-4 pb-4 pt-[calc(env(safe-area-inset-top)+14px)] sm:px-7">
+            <Link
+              href="/"
+              onPointerDown={(event) => event.stopPropagation()}
+              className="flex h-10 items-center gap-1.5 rounded-full bg-black/20 px-3 text-xs text-white/95 backdrop-blur-md transition hover:bg-black/35"
             >
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -right-10 top-14 h-52 w-52 rounded-full border border-white/15 bg-white/10 blur-[1px]" />
-                <div className="absolute -left-10 top-32 h-64 w-64 rounded-full border border-white/15 bg-black/5" />
-                <div className="absolute bottom-28 left-1/2 h-44 w-[120%] -translate-x-1/2 rotate-[-8deg] rounded-[50%] border-t border-white/20 bg-black/10 blur-[1px]" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/65" />
-              </div>
-
-              <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-                <span className="rounded-full border border-white/25 bg-black/15 px-3 py-1.5 text-[11px] tracking-wide text-white backdrop-blur-md">
-                  {current.category}
-                </span>
-                <span className="flex items-center gap-1.5 rounded-full border border-white/25 bg-black/15 px-3 py-1.5 text-[11px] text-white backdrop-blur-md">
-                  {current.type === "video" ? <Video size={13} /> : <ImageIcon size={13} />}
-                  {current.type === "video" ? "视频占位" : "图片占位"}
-                </span>
-              </div>
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                <div className="mb-4 grid h-20 w-20 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur-sm">
-                  {current.type === "video" ? (
-                    <Play size={26} fill="currentColor" className="ml-1" />
-                  ) : (
-                    <ImageIcon size={27} strokeWidth={1.4} />
-                  )}
-                </div>
-                <span className="text-[11px] tracking-[0.28em] text-white/75">
-                  {current.motif}
-                </span>
-                <span className="mt-2 text-[10px] tracking-[0.15em] text-white/55">
-                  MEDIA PLACEHOLDER
-                </span>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 px-6 pb-7 pt-24 text-white">
-                <p className="mb-2 flex items-center gap-1.5 text-xs text-white/80">
-                  <MapPin size={14} />
-                  {current.city}
-                </p>
-                <h2 className="font-serif text-[30px] leading-tight tracking-wide sm:text-[34px]">
-                  {current.name}
-                </h2>
-                <p className="mt-2 max-w-[300px] text-[13px] leading-6 text-white/85">
-                  {current.caption}
-                </p>
-                <div className="mt-5 flex items-center gap-1.5 text-[10px] text-white/65">
-                  <span className="h-1 w-1 rounded-full bg-white/80" />
-                  图片与视频为视觉占位，后续可接入真实素材
-                </div>
-              </div>
-
-              {drag.x > 45 ? (
-                <div className="absolute left-5 top-20 rotate-[-10deg] rounded-lg border-2 border-white px-4 py-2 text-xl font-black uppercase tracking-widest text-white">
-                  Like
-                </div>
-              ) : null}
-              {drag.x < -45 ? (
-                <div className="absolute right-5 top-20 rotate-[10deg] rounded-lg border-2 border-white px-4 py-2 text-xl font-black uppercase tracking-widest text-white">
-                  Nope
-                </div>
-              ) : null}
-              {drag.y > 55 ? (
-                <div className="absolute left-1/2 top-20 -translate-x-1/2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
-                  换一批
-                </div>
-              ) : null}
-            </article>
-          ) : (
-            <div className="grid h-[min(62dvh,590px)] min-h-[390px] w-full place-items-center rounded-[26px] bg-[#e8e4d9] text-sm text-[#697368]">
-              正在准备下一批灵感…
+              <ChevronLeft size={17} />
+              <span>漫城</span>
+            </Link>
+            <div className="absolute left-1/2 flex -translate-x-1/2 flex-col items-center">
+              <span className="font-serif text-[17px] tracking-[0.14em]">为你推荐</span>
+              <span className="mt-1 h-0.5 w-5 rounded-full bg-white/90" />
             </div>
-          )}
-
-          <div className="mt-4 flex w-full items-center justify-center gap-5">
             <button
               type="button"
-              onClick={() => decide("dislike")}
-              aria-label="加入 Dislike"
-              className="grid h-[54px] w-[54px] place-items-center rounded-full border border-[#d9c9b9] bg-white text-[#ab6c57] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f8eae3]"
-            >
-              <X size={25} strokeWidth={1.8} />
-            </button>
-            <button
-              type="button"
-              onClick={refreshDeck}
               aria-label="刷新景点"
-              className="grid h-[42px] w-[42px] place-items-center rounded-full border border-[#d9d8ca] bg-[#eeede4] text-[#778075] transition hover:rotate-[-20deg] hover:bg-white"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={refreshDeck}
+              className="flex h-10 items-center gap-2 rounded-full bg-black/20 px-3.5 text-xs text-white/95 backdrop-blur-md transition hover:bg-black/35"
             >
-              <RefreshCw size={17} />
+              <RefreshCw size={15} className={refreshing ? "animate-spin" : ""} />
+              <span>换一批</span>
+            </button>
+          </div>
+
+          <div className="absolute left-4 top-[calc(env(safe-area-inset-top)+76px)] z-10 flex flex-wrap items-center gap-2 sm:left-7">
+            <span className="rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-[11px] tracking-wide text-white/95 backdrop-blur-md">
+              {current.category}
+            </span>
+            <span className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-[10px] text-white/85 backdrop-blur-md">
+              {current.type === "video" ? <Video size={12} /> : <ImageIcon size={12} />}
+              {current.type === "video" ? "视频占位" : "图片占位"}
+            </span>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-white">
+            <div className="mb-4 grid h-[76px] w-[76px] place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur-sm sm:h-[88px] sm:w-[88px]">
+              {current.type === "video" ? (
+                <Play size={28} fill="currentColor" className="ml-1" />
+              ) : (
+                <ImageIcon size={29} strokeWidth={1.35} />
+              )}
+            </div>
+            <span className="text-[11px] tracking-[0.28em] text-white/80">
+              {current.motif}
+            </span>
+            <span className="mt-2 text-[9px] tracking-[0.18em] text-white/55">
+              MEDIA PLACEHOLDER
+            </span>
+          </div>
+
+          <aside className="absolute bottom-[calc(env(safe-area-inset-bottom)+190px)] right-3 z-20 flex flex-col items-center gap-4 sm:right-6 sm:gap-5">
+            <button
+              type="button"
+              aria-label="加入 Like"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => choose("like")}
+              disabled={stamp !== null}
+              className="flex w-[54px] flex-col items-center gap-1 text-white drop-shadow-lg"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/35">
+                <Heart size={23} strokeWidth={2} />
+              </span>
+              <span className="text-[10px] font-medium">Like</span>
+              <span className="text-[10px] text-white/75">{liked.length}</span>
             </button>
             <button
               type="button"
-              onClick={() => decide("like")}
-              aria-label="加入 Like"
-              className="grid h-[54px] w-[54px] place-items-center rounded-full bg-[#416b54] text-white shadow-[0_8px_24px_-12px_rgba(40,76,53,0.8)] transition hover:-translate-y-0.5 hover:bg-[#345a46]"
+              aria-label="加入 Dislike"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => choose("dislike")}
+              disabled={stamp !== null}
+              className="flex w-[54px] flex-col items-center gap-1 text-white drop-shadow-lg"
             >
-              <Heart size={23} strokeWidth={1.8} />
+              <span className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/35">
+                <X size={24} strokeWidth={2} />
+              </span>
+              <span className="text-[10px] font-medium">Dislike</span>
+              <span className="text-[10px] text-white/75">{disliked.length}</span>
             </button>
-          </div>
-          <p className="mt-3 flex items-center gap-2 text-[10px] text-[#8a9187]">
-            <span className="flex items-center gap-1">
-              <ArrowLeft size={12} /> 不喜欢
-            </span>
-            <span className="text-[#c3c4b8]">·</span>
-            <span>下滑刷新</span>
-            <span className="text-[#c3c4b8]">·</span>
-            <span className="flex items-center gap-1">
-              喜欢 <ArrowRight size={12} />
-            </span>
-          </p>
-        </section>
+            <button
+              type="button"
+              aria-label="查看 Like 收藏"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => setPoolOpen("like")}
+              className="flex w-[54px] flex-col items-center gap-1 text-white drop-shadow-lg"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/35">
+                <Heart size={19} />
+              </span>
+              <span className="text-[10px]">收藏夹</span>
+            </button>
+            <button
+              type="button"
+              aria-label="查看 Dislike 清单"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={() => setPoolOpen("dislike")}
+              className="flex w-[54px] flex-col items-center gap-1 text-white drop-shadow-lg"
+            >
+              <span className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/35">
+                <Compass size={19} />
+              </span>
+              <span className="text-[10px]">跳过清单</span>
+            </button>
+          </aside>
 
-        <aside className="mx-auto grid w-full max-w-[390px] grid-cols-2 gap-3 lg:block lg:max-w-[230px]">
-          <button
-            type="button"
-            onClick={() => setPoolOpen("like")}
-            className="flex items-center gap-3 rounded-2xl border border-[#416b54]/15 bg-white/70 p-3.5 text-left transition hover:bg-white lg:w-full lg:p-4"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#e5eee7] text-[#416b54]">
-              <Heart size={19} />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold text-[#354b3d]">Like 收藏</span>
-              <span className="mt-1 block text-[11px] text-[#81887d]">{liked.length} 个灵感</span>
-            </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setPoolOpen("dislike")}
-            className="flex items-center gap-3 rounded-2xl border border-[#ab6c57]/15 bg-white/70 p-3.5 text-left transition hover:bg-white lg:mt-3 lg:w-full lg:p-4"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#f4e8e2] text-[#ab6c57]">
-              <X size={20} />
-            </span>
-            <span>
-              <span className="block text-xs font-semibold text-[#5b4038]">Dislike 跳过</span>
-              <span className="mt-1 block text-[11px] text-[#81887d]">{disliked.length} 个景点</span>
-            </span>
-          </button>
-          <div className="col-span-2 mt-1 hidden rounded-2xl border border-[#243129]/10 bg-white/45 p-4 lg:block">
-            <p className="flex items-center gap-2 text-xs font-semibold text-[#4c5a4d]">
-              <Compass size={15} />
-              发现小提示
+          <div className="absolute bottom-0 left-0 right-[76px] z-10 px-5 pb-[calc(env(safe-area-inset-bottom)+24px)] pt-28 text-white sm:left-4 sm:right-24 sm:px-6 sm:pb-8">
+            <p className="mb-2 flex items-center gap-1.5 text-xs text-white/85">
+              <MapPin size={14} />
+              {current.city}
+              <span className="mx-0.5 text-white/50">·</span>
+              <Sparkles size={12} />
+              <span>{current.category}</span>
             </p>
-            <p className="mt-2 text-[11px] leading-5 text-[#7b847a]">
-              每次刷新都会重新打乱目的地。用键盘方向键也可以操作：← 跳过，→ 喜欢，↓ 刷新。
+            <h1 className="max-w-[min(78vw,620px)] font-serif text-[30px] leading-tight tracking-wide drop-shadow sm:text-[38px]">
+              {current.name}
+            </h1>
+            <p className="mt-2 max-w-[min(76vw,580px)] text-[13px] leading-6 text-white/90 drop-shadow sm:text-sm">
+              {current.caption}
             </p>
+            <p className="mt-3 text-[10px] text-white/60">
+              占位素材 · 上滑看下一条，下滑回看历史
+            </p>
+            <div className="mt-4 flex items-center gap-2 text-[10px] text-white/75">
+              <span className="flex items-center gap-1">
+                <ArrowLeft size={12} /> 跳过
+              </span>
+              <span className="text-white/40">·</span>
+              <span className="flex items-center gap-1">
+                <ArrowUp size={12} /> 下一条
+              </span>
+              <span className="text-white/40">·</span>
+              <span className="flex items-center gap-1">
+                <ArrowDown size={12} /> {history.length ? "回看" : "回看/刷新"}
+              </span>
+              <span className="text-white/40">·</span>
+              <span className="flex items-center gap-1">
+                喜欢 <ArrowRight size={12} />
+              </span>
+            </div>
           </div>
-        </aside>
-      </div>
+
+          {drag.x > 45 ? (
+            <div className="pointer-events-none absolute left-6 top-1/2 z-20 -translate-y-1/2 rotate-[-10deg] rounded-lg border-2 border-white px-4 py-2 text-xl font-black uppercase tracking-widest text-white">
+              Like
+            </div>
+          ) : null}
+          {drag.x < -45 ? (
+            <div className="pointer-events-none absolute right-6 top-1/2 z-20 -translate-y-1/2 rotate-[10deg] rounded-lg border-2 border-white px-4 py-2 text-xl font-black uppercase tracking-widest text-white">
+              Nope
+            </div>
+          ) : null}
+          {drag.y > 55 ? (
+            <div className="pointer-events-none absolute left-1/2 top-24 z-20 -translate-x-1/2 rounded-full bg-black/25 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
+              {history.length ? "上一条" : "换一批"}
+            </div>
+          ) : null}
+          {drag.y < -55 ? (
+            <div className="pointer-events-none absolute left-1/2 top-24 z-20 -translate-x-1/2 rounded-full bg-black/25 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
+              下一条
+            </div>
+          ) : null}
+          {stamp ? (
+            <div className="pointer-events-auto absolute inset-0 z-30 overflow-hidden">
+              <div className="absolute inset-0 bg-black/10" />
+              <div
+                className={`discover-stamp-desk ${
+                  stamp.direction === "like"
+                    ? "discover-stamp-from-right"
+                    : "discover-stamp-from-left"
+                } ${stamp.phase !== "desk" ? "discover-stamp-desk-open" : ""} ${
+                  stamp.phase === "pressed" || stamp.phase === "exit"
+                    ? "discover-stamp-desk-drop"
+                    : ""
+                }`}
+                aria-hidden="true"
+              >
+                <div
+                  className={`flex h-full w-full items-center p-3 ${
+                    stamp.direction === "like" ? "justify-start" : "justify-end"
+                  }`}
+                >
+                  <div className="flex h-full w-full items-center justify-center rounded-xl border-[5px] border-[#48372b] bg-gradient-to-br from-[#ba8050] via-[#8f5b39] to-[#553a2b] p-2 shadow-[inset_0_2px_8px_rgba(255,230,190,0.28),0_18px_38px_rgba(0,0,0,0.4)]">
+                    <div className="flex h-full w-full flex-col items-center justify-center rounded-lg border border-[#d6b088]/50 bg-gradient-to-br from-[#6e342e] to-[#3f211f] text-[#f3d9bb] shadow-[inset_0_0_20px_rgba(0,0,0,0.55)]">
+                      <span className="whitespace-nowrap text-[8px] tracking-[0.12em] text-[#e2bd98]/75">
+                        MANCHENG · {stamp.direction === "like" ? "APPROVED" : "REJECTED"}
+                      </span>
+                      <span className="mt-2 h-1 w-12 rounded-full bg-[#a96c4b]/70" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {stamp.phase === "pressed" || stamp.phase === "exit" ? (
+                <div
+                  className={`discover-stamp-impression ${
+                    stamp.direction === "like"
+                      ? "discover-stamp-impression-right discover-stamp-mark-like"
+                      : "discover-stamp-impression-left discover-stamp-mark-dislike"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {stamp.direction === "like" ? "LIKE" : "DISLIKE"}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+        </article>
+      ) : (
+        <div className="absolute inset-0 grid place-items-center bg-[#111713] text-sm text-white/70">
+          正在准备下一批灵感…
+        </div>
+      )}
 
       {poolOpen ? (
         <div
-          className="fixed inset-0 z-30 flex items-end justify-center bg-[#162019]/40 p-0 backdrop-blur-[2px] sm:items-center sm:p-5"
+          className="fixed inset-0 z-30 flex items-end justify-center bg-black/55 p-0 backdrop-blur-[3px] sm:items-center sm:p-5"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setPoolOpen(null);
           }}
@@ -529,7 +633,7 @@ export default function DiscoverApp() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="pool-title"
-            className="max-h-[78dvh] w-full max-w-md overflow-hidden rounded-t-[24px] bg-[#fffdf8] shadow-2xl sm:rounded-[24px]"
+            className="max-h-[78dvh] w-full max-w-md overflow-hidden rounded-t-[24px] bg-[#fffdf8] text-[#243129] shadow-2xl sm:rounded-[24px]"
           >
             <header className="flex items-center justify-between border-b border-[#243129]/10 px-5 py-4">
               <div>
