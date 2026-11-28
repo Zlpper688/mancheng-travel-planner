@@ -2,6 +2,12 @@ import { DEMO_HOTELS } from "@/content/demo-xiamen";
 import { CITY_FACTS, NEUTRAL_FACTS } from "@/content/city-facts.generated";
 import { QUICK_CITIES } from "@/lib/constants";
 import { isDemoCity } from "@/lib/demo";
+import {
+  describePrefs,
+  hasPrefs,
+  mergePrefs,
+  NEUTRAL_PREFS,
+} from "@/lib/plan/prefs";
 import type { CityOption, Place, TripInput } from "@/lib/types";
 import type { ChatCard, ChatCardKind, ChatDraft, ResolvedPatch } from "./types";
 
@@ -22,6 +28,7 @@ export function makeDraft(initialDate: string): ChatDraft {
     seniors: 0,
     avoidSteep: false,
     notes: "",
+    prefs: { ...NEUTRAL_PREFS },
     selectedPlaces: [],
     confirmed: {
       city: false,
@@ -124,6 +131,10 @@ export function applyResolvedPatch(
     const notes = patch.notes.replace(/\s+/g, " ").trim().slice(0, 200);
     if (notes) next.notes = notes;
   }
+  // 连续偏好逐轮累积：这一轮说了哪几维就盖哪几维，没说到的沿用上一轮。
+  if (patch.prefs !== undefined) {
+    next.prefs = mergePrefs(draft.prefs, patch.prefs);
+  }
   if (patch.styles !== undefined) {
     next.styles = uniqueBy(patch.styles, (item) => item).slice(0, 3);
     next.confirmed.style = true;
@@ -189,6 +200,8 @@ export function buildTripInput(draft: ChatDraft, seed = 42): TripInput {
     seniors: draft.seniors,
     avoidSteep: draft.avoidSteep || undefined,
     notes: draft.notes || undefined,
+    // 中性向量不往请求里带：少了它，行为与没有这一层时逐字节一致。
+    prefs: hasPrefs(draft.prefs) ? draft.prefs : undefined,
     seed,
     hotelPrice: draft.hotelUndecided ? undefined : draft.hotel.cost,
     selectedPlaces: draft.selectedPlaces.length
@@ -338,6 +351,10 @@ export function draftSummary(draft: ChatDraft): string {
         : "未确认"
     }`,
     draft.avoidSteep ? "避坑：不爬山、不走长台阶" : "",
+    // 已经收到的「程度」偏好也要让模型看见，否则它会每轮重新猜一遍。
+    // describePrefs 自带「按你的偏好：」前缀，这里别再套一层，否则会念成
+    // 「已收到的偏好：按你的偏好：愿意多走路」。
+    describePrefs(draft.prefs) ?? "",
     draft.notes ? `用户原话补充：${draft.notes}` : "",
     draft.selectedPlaces.length
       ? `用户点名要去：${draft.selectedPlaces.map((place) => place.name).join("、")}`

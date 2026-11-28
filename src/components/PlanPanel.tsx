@@ -502,6 +502,23 @@ function DayCard({
                 {day.tips.length} 条贴士
               </span>
             ) : null}
+            {day.energy ? (
+              <span
+                className={`inline-flex shrink-0 items-center gap-0.5 rounded px-1 py-px text-micro ${
+                  day.energy.strained || day.energy.low <= 40
+                    ? "bg-amber-soft text-amber"
+                    : "bg-paper text-ink-soft"
+                }`}
+                title={`出门 ${day.energy.start} 分 → 回住处 ${day.energy.end} 分，全天最低 ${day.energy.low} 分。100 分是刚出门的体力；低于 40 分就不该再塞硬景点了。`}
+              >
+                <Icon name="footprints" size={8} />
+                <span className="tabular-nums">
+                  {day.energy.strained || day.energy.low <= 40
+                    ? `体力吃紧 ${day.energy.low}`
+                    : `体力 ${day.energy.end}`}
+                </span>
+              </span>
+            ) : null}
             {day.heroName ? (
               <span className="inline-flex shrink-0 items-center gap-0.5 rounded bg-amber-soft px-1 py-px text-micro text-amber">
                 <Icon name="star" size={8} />

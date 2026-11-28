@@ -14,6 +14,7 @@ import {
 import type { PlaceProvider, RawRoute } from "../providers/types";
 import { metroLabel, usableMetroTrip } from "../transit/metro";
 import type { MetroTrip } from "../transit/types";
+import { LUNCH_IDLE_TOLERANCE, LUNCH_LIMIT_MIN, LATEST_START } from "./limits";
 import { lateReturnLimits, PAID_SIGHT_WARNING_LIMIT } from "./policy";
 import type {
   Category,
@@ -30,12 +31,22 @@ import type {
   TransportPref,
 } from "../types";
 import { rainLoad, temperatureRange, type WeatherCore } from "../weather";
+import { crowdDwellFactor, crowdNote, crowdOf } from "./crowd";
+import {
+  applyEnergy,
+  energyDwellScale,
+  energyNote,
+  initialEnergy,
+  summarizeEnergy,
+  timeDrain,
+} from "./energy";
 import {
   describeDay,
   rhythmDwell,
   rhythmOf,
   type DayNarrative,
 } from "./rhythm";
+import { restBufferOf, type TripVector } from "./prefs";
 import type { DaySeed } from "./select";
 
 type MealSlot = "lunch" | "dinner" | "cafe";
@@ -46,6 +57,10 @@ interface StopSeed {
   fixed: boolean;
   slot?: MealSlot;
   flexible?: boolean;
+  /** 这一段停留多少分钟；不填就按类别/节奏/偏好现算。用于把一个点切成两段。 */
+  dwellOverride?: number;
+  /** 1 / 2 = 同一个景点被午饭切开的前后半段，见 lunchInside。 */
+  splitPart?: 1 | 2;
 }
 
 interface BuildContext {
@@ -67,10 +82,42 @@ interface BuildContext {
   startMin: number;
   weather: WeatherCore | null;
   rainDelayNote?: string;
+  /**
+   * 出门时的体力（0–100）。由 energy.ts 按出发时刻/第几天/同行人算，
+   * 排线时用它决定「这一站还能不能按原时长走完」。
+   */
+  energyStart: number;
+  /**
+   * 连续偏好向量（可选）。目前只用来把 restFreq 换算成「每站之后多留几分钟」：
+   * 说了「走一会要歇」，站间缓冲就该宽一点。其余维度在选点层已经消化。
+   */
+  prefs?: TripVector;
+  /**
+   * 午饭插在第几个景点之前（0 = 第一站之前）。
+   *
+   * 默认由 insertMeals 按粗排时间推算，但粗排会低估真实耗时，
+   * 碰上「一个大景点吃掉整个午间」就会把午饭排到 15:00 之后。
+   * scheduleDay 发现排晚了，就抬高这个值把午饭往前挪，再重排一次。
+   */
+  lunchBefore?: number;
+  /**
+   * 把一个景点从中间切开，午饭就吃在景点里。
+   *
+   * 只对「一个点就占掉大半天」的景点启用（岛上、景区、大博物馆）：这种点没法整体
+   * 挪到午饭前或午饭后，硬挪就是上午空着、或者在饭馆干等一小时。真人怎么做，
+   * 就怎么排：上午逛一半，在景区里吃饭，下午接着逛。
+   *
+   * 按 placeId 记，不按下标：后面砍点、撤茶歇都会让下标漂移，
+   * 而「哪个景点被切开」这件事跟下标无关。
+   */
+  lunchInside?: { placeId: string; firstMin: number; restMin: number };
 }
 
 export interface ScheduleInput
-  extends Omit<BuildContext, "far" | "startMin" | "weather" | "rainDelayNote"> {
+  extends Omit<
+    BuildContext,
+    "far" | "startMin" | "weather" | "rainDelayNote" | "energyStart"
+  > {
   seedDay: DaySeed;
   usedMealIds: Set<string>;
   weather?: WeatherCore | null;
@@ -91,6 +138,7 @@ interface BuiltDay {
   warnings: string[];
   tip: string;
   narrative: DayNarrative;
+  energy: { start: number; end: number; low: number; lowPlaceId?: string };
 }
 
 const MODES: TransportMode[] = ["walk", "transit", "taxi"];
@@ -613,8 +661,14 @@ function insertMeals(
 
   let lunchIndex = sights.length;
   if (options.lunch) {
-    const found = rough.findIndex((item) => item.arrive >= LUNCH_START + 15);
-    if (found >= 0) lunchIndex = found;
+    // 排程层已经点名「午饭放在第几个景点之前」时，就以它为准：
+    // 粗排时间估不准，越估越晚，最后只能让真实排程回头纠正。
+    if (context.lunchBefore !== undefined) {
+      lunchIndex = Math.max(0, Math.min(sights.length, context.lunchBefore));
+    } else {
+      const found = rough.findIndex((item) => item.arrive >= LUNCH_START + 15);
+      if (found >= 0) lunchIndex = found;
+    }
   }
   let cafeIndex = -1;
   if (options.cafe) {
@@ -675,27 +729,31 @@ function insertMeals(
   }
 
   if (options.lunch) {
-    const target = midpointTarget(sights, lunchIndex, context.hotel);
+    const split = context.lunchInside;
+    const splitAt = split
+      ? sights.findIndex((stop) => stop.place.id === split.placeId)
+      : -1;
+    const splitHost = splitAt >= 0 ? sights[splitAt] : null;
+    const target = splitHost
+      ? splitHost.place
+      : midpointTarget(sights, lunchIndex, context.hotel);
     // 夜市那片的小吃街留给晚饭，午饭选别的，避免晚上再跑一趟。
     const lunchPool = beforeNight
       ? foodPlaces.filter((place) => placeDistance(place, lastPlace) > 0.6)
       : foodPlaces;
-    const suggestion = chooseMeal(
-      lunchPool,
-      used,
-      target,
-      "meal",
-      context.styles,
-      4.2,
-      "lunch",
-    );
+    // 吃在景点里的时候不去翻餐厅库：隔壁街区的店在岛上根本吃不到，
+    // 给一个「这一带随挑」的占位，比编一个要走 40 分钟的店名诚实。
+    const suggestion = splitHost
+      ? null
+      : chooseMeal(lunchPool, used, target, "meal", context.styles, 4.2, "lunch");
     if (suggestion) used.add(suggestion.id);
-    const anchor =
-      lunchIndex > 0
+    const anchor = splitHost
+      ? splitHost.place
+      : lunchIndex > 0
         ? sights[lunchIndex - 1]?.place ?? context.hotel
         : context.hotel;
     insertions.push({
-      index: lunchIndex,
+      index: splitHost ? splitAt : lunchIndex,
       order: 0,
       seed: {
         place: flexibleMealPlace("lunch", anchor, suggestion, false, context),
@@ -721,7 +779,32 @@ function insertMeals(
   }
 
   const result: StopSeed[] = [];
+  const split = context.lunchInside;
+  const splitAt = split
+    ? sights.findIndex((stop) => stop.place.id === split.placeId)
+    : -1;
   for (let index = 0; index <= sights.length; index++) {
+    if (index === splitAt) {
+      // 这个景点被午饭切开：前段 → 饭 → 后段。茶歇不挤进来，跟着后段走。
+      const host = sights[index];
+      result.push({
+        ...host,
+        dwellOverride: split!.firstMin,
+        splitPart: 1,
+      });
+      insertions
+        .filter((item) => item.index === index && item.order === 0)
+        .forEach((item) => result.push(item.seed));
+      result.push({
+        ...host,
+        dwellOverride: split!.restMin,
+        splitPart: 2,
+      });
+      insertions
+        .filter((item) => item.index === index && item.order !== 0)
+        .forEach((item) => result.push(item.seed));
+      continue;
+    }
     insertions
       .filter((item) => item.index === index)
       .sort((a, b) => a.order - b.order)
@@ -961,6 +1044,11 @@ async function buildOnce(
         strategy: "今天留白，睡到自然醒，在酒店附近随意走走。",
         rhythm: {},
       },
+      energy: {
+        start: context.energyStart,
+        end: context.energyStart,
+        low: context.energyStart,
+      },
     };
   }
 
@@ -1021,6 +1109,13 @@ async function buildOnce(
     endMin: number;
     peak: number;
   } | null = null;
+  /**
+   * 体力曲线。出门时的能量由 scheduleDay 算好（首日晚到、后几天累积疲劳、
+   * 老人小孩都在里面），这里只负责按点位扣减，并在体力见底时给出人话解释。
+   */
+  let energy = context.energyStart;
+  /** 人流提示每天只给一条：满屏「建议早点来」等于没有建议。 */
+  let crowdNoted = false;
 
   for (let index = 0; index < ordered.length; index++) {
     const stop = ordered[index];
@@ -1037,7 +1132,7 @@ async function buildOnce(
       context.crowd,
       context.city,
     );
-    let dwell = roundToFive(rawDwell);
+    let dwell = roundToFive(stop.dwellOverride ?? rawDwell);
     let wait = 0;
     let openNote: string | undefined;
 
@@ -1099,8 +1194,25 @@ async function buildOnce(
     }
 
     const startMin = Math.ceil((arriveMin + wait) / 5) * 5;
+    // 在路上也在耗：上一站结束到这一站开始，按小时扣基础消耗。
+    // 口径与 summarizeEnergy 一致（都不含站后缓冲），不然标签和解释会对不上。
+    const lastEnd = stops.length
+      ? stops[stops.length - 1].endMin
+      : context.startMin;
+    energy = Math.max(0, energy - timeDrain(lastEnd, startMin));
     const advice = weatherAdviceFor(stop, context.weather, startMin, dwell);
     dwell = advice.dwell;
+    // 拥挤拉长停留：只认人工核实的时段数据，推断规则不参与（见 crowd.ts）。
+    const crowdScale = crowdDwellFactor(crowdOf(stop.place), startMin, dwell);
+    if (crowdScale > 1) {
+      dwell = roundToFive(dwell * crowdScale);
+    }
+    // 体力见底时，重体力点位的停留收 15%。
+    // 不是为了让指标好看，是承认「走不动了」本身就要花时间：找座、歇脚、上厕所。
+    const energyScale = energyDwellScale(energy, stop.place, context.city);
+    if (energyScale < 1) {
+      dwell = Math.max(15, roundToFive(dwell * energyScale));
+    }
     const endMin = startMin + dwell;
     if (advice.heavy && (!rainiest || advice.mm > rainiest.mm)) {
       rainiest = {
@@ -1126,6 +1238,27 @@ async function buildOnce(
     const notes = [stop.place.note, openNote, ...advice.notes].filter(
       Boolean,
     ) as string[];
+    // 被午饭切开的长景点：说清这两段是一件事，别让人以为「同一个地方排了两遍」。
+    if (stop.splitPart === 1) {
+      notes.push("逛到中午就在这里吃，吃完接着逛，不用赶回市区");
+    } else if (stop.splitPart === 2) {
+      notes.push("接着上午没走完的那一半");
+    }
+    // 人流：只在「排得正好」或「撞上高峰」时说话，每天最多一条。
+    // 夜市和日落点的「高峰」就是它存在的理由，劝人避开等于劝人别去。
+    if (stop.kind === "sight" && !crowdNoted) {
+      const rhythm = rhythmOf(context.city, stop.place);
+      if (!rhythm.nightStreet && !rhythm.sunset) {
+        const stageNote = crowdNote(crowdOf(stop.place), startMin, dwell);
+        if (stageNote) {
+          notes.push(stageNote);
+          crowdNoted = true;
+        }
+      }
+    }
+    // 体力：只剩半格电还排了爬山，就把话说明白，而不是假装排得动。
+    const tiredNote = energyNote(energy, stop.place, context.city);
+    if (tiredNote) notes.push(tiredNote);
     if (stop.kind === "sight" && stop.place.costNote && stop.place.cost) {
       notes.push(`参考费用：${stop.place.costNote}`);
     }
@@ -1141,6 +1274,7 @@ async function buildOnce(
       note: notes.length ? notes.join(" · ") : undefined,
       slot: stop.slot,
       flexible: stop.flexible,
+      splitPart: stop.splitPart,
       ticket:
         stop.kind === "sight" && stop.place.cost !== undefined
           ? stop.place.cost
@@ -1151,11 +1285,24 @@ async function buildOnce(
           : undefined,
     });
     clock = endMin;
+    // 待在里面同样在耗体力：停留这两小时不是「静止」，是站着、走着、排队。
+    energy = Math.max(0, energy - timeDrain(startMin, endMin));
+    energy = applyEnergy(
+      energy,
+      stop.place,
+      context.city,
+      endMin - startMin,
+      null,
+      stop.slot,
+    );
     if (stop.kind === "sight") {
       const buffer = roundToFive(
         PACES[context.pace].bufferMin *
           (stop.fixed ? 0.55 : 1) *
-          (1 + (context.crowd - 1) * 0.4),
+          (1 + (context.crowd - 1) * 0.4) +
+          // 「走一会要歇」的人，站间余量放宽一点。中性偏好的贡献恒为 0，
+          // 所以不传 prefs 时与旧行为逐字节一致。
+          restBufferOf(context.prefs),
       );
       clock += Math.max(0, buffer);
     }
@@ -1255,9 +1402,12 @@ async function buildOnce(
     (sum, stop) => sum + (stop.kind === "sight" && stop.ticket ? stop.ticket : 0),
     0,
   );
+  // 「停留」按段算：被午饭切开的长景点确实是两段停留，卡片也照着两段列。
+  // 但「景点数」要按地点算，不然一个岛会被统计成两个景点。
+  const counted = stops.filter((stop) => stop.splitPart !== 2);
   const stats: DayStats = {
     stopCount: stops.length,
-    sightCount: stops.filter((stop) => stop.kind === "sight").length,
+    sightCount: counted.filter((stop) => stop.kind === "sight").length,
     distanceKm: legs.reduce((sum, leg) => sum + leg.distanceKm, 0),
     travelMin: legs.reduce((sum, leg) => sum + leg.durationMin, 0),
     walkKm: legs.reduce(
@@ -1389,6 +1539,21 @@ async function buildOnce(
     tips.push(fallbacks[Math.floor((jitter + 1) * 0.5 * fallbacks.length) % fallbacks.length]);
   }
 
+  // 全天体力曲线：出门多少、最低掉到哪、回来还剩多少。
+  // 算在最后的 stops 上（含临时追加的晚饭），所以和用户看到的顺序一致。
+  const energyFlow = summarizeEnergy(
+    stops.map((stop) => ({
+      place: stop.place,
+      dwellMin: stop.dwellMin,
+      slot: stop.slot,
+      startMin: stop.startMin,
+      endMin: stop.endMin,
+    })),
+    context.energyStart,
+    context.city,
+    context.startMin,
+  );
+
   return {
     stops,
     legs,
@@ -1398,6 +1563,12 @@ async function buildOnce(
     warnings,
     tip: tips.slice(0, 2).join(" "),
     narrative,
+    energy: {
+      start: energyFlow.start,
+      end: energyFlow.end,
+      low: energyFlow.low,
+      lowPlaceId: energyFlow.lowPlaceId,
+    },
   };
 }
 
@@ -1410,14 +1581,30 @@ function clockMinute(value?: string): number | null {
 
 // 一天里中午到傍晚空出两小时以上，多半是因为下一个点是日落或夜市。
 // 从发现池里顺路补一个白天点位，比让行程干等更像真人写的攻略。
-interface AfternoonHole {
+//
+// 空洞有两种，原来只认前一种：
+//   · between —— 两个停留点之间空着（等日落/夜市）；
+//   · tail    —— 当天最后一段之后什么都没有，也不吃晚饭就回酒店。
+// 后者就是「砍点砍过头」的样子：厦大 15:34 出馆、午饭吃完，剩下一整个下午消失。
+// 用户看到的不是「松弛」，是「半天没了」。
+export interface AfternoonHole {
   prev: StopPlan;
-  next: StopPlan;
+  /** null = 尾段空洞，后面没有点可以接，只能往当天末尾补。 */
+  next: StopPlan | null;
   startMin: number;
   endMin: number;
 }
 
-function afternoonHole(stops: StopPlan[]): AfternoonHole | null {
+/** 尾段空洞的目标收尾时刻：补到能自然接上晚饭，而不是硬拖到很晚。 */
+const TAIL_FILL_END = 18 * 60 + 30;
+/** 尾段从这个时刻之前散场才算空洞；17 点后收工属于正常下午结束。 */
+const TAIL_HOLE_BEFORE = 17 * 60;
+
+/** 导出给回归检查用（scripts/check-tail-hole.ts）。 */
+export function afternoonHole(
+  stops: StopPlan[],
+  endLimit = 19 * 60,
+): AfternoonHole | null {
   let best: AfternoonHole | null = null;
   for (let index = 0; index < stops.length - 1; index++) {
     const prev = stops[index];
@@ -1425,18 +1612,32 @@ function afternoonHole(stops: StopPlan[]): AfternoonHole | null {
     const startMin = prev.endMin;
     const endMin = next.startMin;
     if (endMin - startMin < 120) continue;
-    if (startMin < 12 * 60 + 30 || endMin > 18 * 60) continue;
+    // 从 12:00 起算：午饭常常在 12:05 结束，卡 12:30 会把「吃完午饭一直空到日落」
+    // 这种最典型的空洞漏掉（实测厦门第 3 天就漏了 285 分钟）。
+    if (startMin < 12 * 60 || endMin > 18 * 60) continue;
     if (!best || endMin - startMin > best.endMin - best.startMin) {
       best = { prev, next, startMin, endMin };
     }
   }
-  return best;
+  if (best) return best;
+
+  const last = stops[stops.length - 1];
+  if (!last) return null;
+  // 晚饭已经在里面，说明这一天是有收尾的，不补。
+  if (stops.some((stop) => stop.slot === "dinner")) return null;
+  // 时间型点位（日出/早市/夜市）不当尾段填补的对象，那是另一套节奏。
+  if (last.kind !== "sight" && last.kind !== "meal") return null;
+  if (last.endMin >= TAIL_HOLE_BEFORE) return null;
+  // 目标收尾既不能早于午饭结束 + 一段停留，也不该越过当天的回家上限。
+  const endMin = Math.min(Math.max(TAIL_FILL_END, last.endMin + 90), endLimit);
+  if (endMin - last.endMin < 90) return null;
+  return { prev: last, next: null, startMin: last.endMin, endMin };
 }
 
 function supportFits(
   candidate: Place,
   prev: Place,
-  next: Place,
+  next: Place | null,
   hole: { startMin: number; endMin: number },
   city: string,
   hasSunset: boolean,
@@ -1454,13 +1655,17 @@ function supportFits(
     return false;
   }
   if (placeDistance(prev, candidate) > 3.2) return false;
-  if (placeDistance(candidate, next) > 3.6) return false;
+  if (next && placeDistance(candidate, next) > 3.6) return false;
   if (Boolean(prev.island) !== Boolean(candidate.island)) return false;
   if (prev.island && candidate.island && prev.island !== candidate.island) {
     return false;
   }
+  // 尾段空洞没有「下一个点」可以挤，直接补到目标收尾；
+  // 中间空洞才能把下一个点整体后移 45 分钟（等日落/夜市本身就有余量）。
   const slotStart = hole.startMin + estimateModeMinutes(prev, candidate, "taxi");
-  const slotEnd = hole.endMin + 45 - estimateModeMinutes(candidate, next, "taxi");
+  const slotEnd = next
+    ? hole.endMin + 45 - estimateModeMinutes(candidate, next, "taxi")
+    : hole.endMin;
   if (slotEnd - slotStart < 45) return false;
   return profile.windows.some(
     ([start, end]) => Math.min(end, slotEnd) - Math.max(start, slotStart) >= 40,
@@ -1482,20 +1687,41 @@ async function fillAfternoonHole(
   built: BuiltDay;
 } | null> {
   if (!spares.length) return null;
-  const hole = afternoonHole(built.stops);
+  const hole = afternoonHole(built.stops, endLimit);
   if (!hole) return null;
-  const nextIndex = attempt.findIndex(
-    (stop) => stop.place.id === hole.next.place.id,
-  );
+  // 尾段空洞往末尾追加；中间空洞插在下一个点之前。
+  const nextIndex = hole.next
+    ? attempt.findIndex((stop) => stop.place.id === hole.next?.place.id)
+    : attempt.length;
   if (nextIndex < 0) return null;
   const usedIds = new Set(attempt.map((stop) => stop.place.id));
   const hasSunset = attempt.some(
     (stop) => rhythmOf(context.city, stop.place).sunset,
   );
+  // 补点是为了让下午有事做，不是为了凑数：如果前两个点已经是同一类
+  // （连着两座馆、两条老街），再补一个同类就成了「三个一样的」，
+  // 体检会记 SAME_CATEGORY_RUN，人也会觉得白来一趟。宁可不补。
+  const prevIndex = built.stops.findIndex((stop) => stop.id === hole.prev.id);
+  const beforeCat =
+    prevIndex > 0 ? built.stops[prevIndex - 1].place.category : undefined;
+  const prevCat = hole.prev.place.category;
+  const nextCat = hole.next?.place.category;
+  /** 前后已经有两个同类点，再补一个同类的就是三个连排。 */
+  const makesTriple = (category: string) =>
+    (beforeCat === category && prevCat === category) ||
+    (prevCat === category && nextCat === category);
   const candidates = spares
     .filter((place) => !usedIds.has(place.id))
+    .filter((place) => !makesTriple(place.category))
     .filter((place) =>
-      supportFits(place, hole.prev.place, hole.next.place, hole, context.city, hasSunset),
+      supportFits(
+        place,
+        hole.prev.place,
+        hole.next?.place ?? null,
+        hole,
+        context.city,
+        hasSunset,
+      ),
     )
     .sort(
       (a, b) =>
@@ -1523,6 +1749,76 @@ async function fillAfternoonHole(
   return null;
 }
 
+/**
+ * 午饭排歪了怎么救。
+ *
+ * 早餐可以省、晚饭可以晚，午饭不行：那是行程里唯一一个「过了点就难受」的锚点。
+ * 排程最初的午饭位置来自粗排时间，而粗排一律低估真实耗时（候船、排队、等日落），
+ * 于是一个大景点就能把午饭吞到 15:00 之后 —— 厦门鼓浪屿、北京故宫、青岛崂山都这么中过。
+ *
+ * 这里只做判定，不动时间轴：调用方拿到结论后重排整天，再由真实时间复核。
+ *   earlier      —— 午饭被前一个景点吞了，把午饭挪到它前面
+ *   later-start  —— 午饭是第一站却到得太早，整天晚点出门，别在饭馆干等
+ */
+export type LunchFix =
+  | { kind: "earlier"; before: number }
+  | { kind: "later-start"; shift: number; idleMin: number }
+  | { kind: "inside"; placeId: string; firstMin: number; restMin: number };
+
+/** 一个点自己就要占掉 2.5 小时以上，才值得为它把午饭安排在里面。 */
+export const LUNCH_SPLIT_MIN_DWELL = 150;
+
+/** 想让午饭几点开饭（切开长景点时用它倒推前段多长）。 */
+const LUNCH_IN_SIGHT_TARGET = 12 * 60;
+
+export function lunchFix(
+  day: { stops: StopPlan[]; legs: RouteLeg[] },
+  options: { startMin: number; latestStart: number },
+): LunchFix | null {
+  const index = day.stops.findIndex((stop) => stop.slot === "lunch");
+  if (index < 0) return null;
+  const lunch = day.stops[index];
+  // legs[i] 是「上一站 → stops[i]」，所以午饭那一段的到达时刻就在同一下标上。
+  const arriveMin = day.legs[index]?.arriveMin ?? lunch.startMin;
+  const idleMin = Math.max(0, lunch.startMin - arriveMin);
+  const sightsBefore = day.stops
+    .slice(0, index)
+    .filter((stop) => stop.kind === "sight").length;
+
+  if (lunch.startMin > LUNCH_LIMIT_MIN) {
+    // 先看吞掉午间的是不是一个大点。是就切开、在景点里吃 —— 这种点整体挪到
+    // 午饭前会让上午空着，挪到午饭后会让午饭更晚，只有拆开才成立。
+    const host = index > 0 ? day.stops[index - 1] : undefined;
+    if (host && host.kind === "sight" && host.dwellMin >= LUNCH_SPLIT_MIN_DWELL) {
+      const firstMin = Math.min(
+        host.dwellMin - 45,
+        Math.max(45, roundToFive(LUNCH_IN_SIGHT_TARGET - host.startMin)),
+      );
+      if (firstMin >= 45 && host.startMin + firstMin <= LUNCH_LIMIT_MIN) {
+        return {
+          kind: "inside",
+          placeId: host.place.id,
+          firstMin,
+          restMin: host.dwellMin - firstMin,
+        };
+      }
+    }
+    // 前面还有景点可以把午饭插进去；一个都没有，说明是「出门就晚了」，
+    // 那属于出发时间的账，不在这里硬掰。
+    return sightsBefore > 0 ? { kind: "earlier", before: sightsBefore - 1 } : null;
+  }
+
+  if (sightsBefore === 0 && idleMin > LUNCH_IDLE_TOLERANCE) {
+    // 后移量同时受三件事约束：要消掉的空等、节奏允许的最晚出门、以及一次别挪太多。
+    const room = options.latestStart - options.startMin;
+    const shift = Math.min(idleMin - LUNCH_IDLE_TOLERANCE / 2, room, 90);
+    if (shift >= 20) {
+      return { kind: "later-start", shift: roundToFive(shift), idleMin };
+    }
+  }
+  return null;
+}
+
 export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult> {
   const warnings: string[] = [];
   const far = Boolean(input.seedDay.far);
@@ -1541,8 +1837,23 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
         input.pace === "chill" ? 8 * 60 : 7 * 60 + 30,
       )
     : PACES[input.pace].startMin;
-  const baseStart =
+  const rawStart =
     input.seedDay.startMinHint ?? paceStart - (farLong ? 30 : 0);
+  // 出发时间不能晚过节奏允许的上限。
+  // compose 有时为了等日落把整天往后挪，结果 11:00 才出门 ——
+  // 审计认为午餐前的上午白扔了，用户看到的也是「出门就快中午」。
+  // 例外是整天只有日落/夜市型点位：那种日子下午出门本来就是对的。
+  const afternoonOnly = input.seedDay.places.every((place) => {
+    const profile = rhythmOf(input.city, place);
+    if (profile.sunset || profile.nightStreet) return true;
+    return (
+      profile.windows.length > 0 &&
+      Math.min(...profile.windows.map(([start]) => start)) >= 13 * 60 + 30
+    );
+  });
+  const baseStart = afternoonOnly
+    ? rawStart
+    : Math.min(rawStart, LATEST_START[input.pace]);
   const sunrisePlace = input.seedDay.places.some(
     (place) => rhythmOf(input.city, place).sunrise,
   );
@@ -1575,6 +1886,15 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     startMin: rainStart.startMin,
     weather,
     rainDelayNote: rainStart.note,
+    // 首日晚到、第二天起累积疲劳、带小孩都要在起点扣掉；
+    // 这条曲线只影响「还能不能按原时长走完」，不影响去哪。
+    energyStart: initialEnergy({
+      startMin: rainStart.startMin,
+      dayIndex: input.seedDay.index,
+      pace: input.pace,
+      children: input.family ? 1 : 0,
+    }),
+    prefs: input.prefs,
   };
 
   let sightStops: StopSeed[] = input.seedDay.places
@@ -1629,6 +1949,45 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
   let drops = 0;
   let localUsed = new Set(input.usedMealIds);
   let last = await buildOnce(attempt, context, localUsed, { cafe: includeCafe });
+
+  /**
+   * 午饭守住 11:00–13:30。判定见 lunchFix，这里只负责「按结论重排」。
+   *
+   * 为什么不用粗排一次算准：粗排的结果就是这轮要纠正的东西，
+   * 真实时间得排出来才知道。所以接受「排一遍 → 发现晚了 → 挪午饭 → 再排一遍」，
+   * 最多三轮；每轮都只在 context 上改一个数，行程内容一律不动。
+   */
+  const guardLunch = async (day: BuiltDay): Promise<BuiltDay> => {
+    let current = day;
+    for (let guard = 0; guard < 4; guard += 1) {
+      const fix = lunchFix(current, {
+        startMin: context.startMin,
+        latestStart: LATEST_START[input.pace],
+      });
+      if (!fix) return current;
+      if (fix.kind === "earlier") {
+        context.lunchBefore = fix.before;
+        context.lunchInside = undefined;
+      } else if (fix.kind === "inside") {
+        context.lunchInside = {
+          placeId: fix.placeId,
+          firstMin: fix.firstMin,
+          restMin: fix.restMin,
+        };
+        context.lunchBefore = undefined;
+      } else {
+        // 出门晚了，体力起点不该跟着变差：这段是「等」，不是「赶」。
+        context.startMin += fix.shift;
+      }
+      localUsed = new Set(input.usedMealIds);
+      current = await buildOnce(attempt, context, localUsed, {
+        cafe: includeCafe,
+      });
+    }
+    return current;
+  };
+
+  last = await guardLunch(last);
 
   while (true) {
     // 日落点排到天黑以后就没有意义了。先撤掉挤占午后的支撑点把日落拉回来，
@@ -1727,13 +2086,17 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     last = await buildOnce(attempt, context, localUsed, { cafe: includeCafe });
   }
 
+  // 砍点、撤茶歇、追日落都会重排整天，午饭位置跟着变，收尾再核一次。
+  last = await guardLunch(last);
+
   const filled = await fillAfternoonHole(
     attempt,
     last,
     context,
     input.usedMealIds,
     includeCafe,
-    input.spares ?? [],
+    // 攻略日（fixed）的点位是用户点名的，不往里塞我们自己挑的点。
+    input.seedDay.fixed ? [] : input.spares ?? [],
     endLimit,
     overrunLimit,
   );
@@ -1763,6 +2126,7 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     heroPlaceId: built.narrative.heroId,
     rhythm: built.narrative.rhythm,
     far,
+    energy: built.energy,
   };
 
   return {

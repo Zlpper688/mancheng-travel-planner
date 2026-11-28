@@ -4,10 +4,12 @@ import {
   EARLY_END_MIN,
   HARD_CEIL_MIN,
   LATEST_START,
+  LUNCH_LIMIT_MIN,
   MAX_GAP_MIN,
   MAX_SAME_CATEGORY_RUN,
 } from "./limits";
 import { DEFAULT_PARAMS, type PlanParams } from "./params";
+import { nearSamePlace, placeKeyOf } from "./same-place";
 
 /**
  * 行程体检。
@@ -52,31 +54,9 @@ function inWindow(minute: number, [start, end]: [number, number]): boolean {
 }
 
 /**
- * 「这是不是同一个地方」的判定键。
- *
- * 只比 id 是不够的：同一处景点在 OSM / 维基数据 / 本地知识库里各有各的 id，
- * 名字还会带后缀（「厦门大学」vs「厦门大学（思明校区）」）。实测就有一次
- * 3 天行程里排进了两次厦大、两次沙坡尾，而按 id 判重一声没吭。
- * 所以键取「去括号、去符号后的名字 + 类别」，坐标只在名字对不上时做兜底。
+ * 「同一处景点」的判定在 same-place.ts —— 排线去重和事后体检共用一把尺子，
+ * 各写一套迟早出现「体检说重复、去重却没发现」。
  */
-function placeKeyOf(place: { name: string; category: string; lat: number; lng: number }): string {
-  const name = place.name
-    .replace(/[（(【\[].*?[）)】\]]/g, "")
-    .replace(/[\s·•\-—_]/g, "")
-    .toLowerCase();
-  return `${place.category}|${name}`;
-}
-
-/** 名字不同但离得极近（150 m 内）也算同一处，兜住「XX 东门 / XX 景区」这类录法。 */
-function nearSamePlace(
-  a: { lat: number; lng: number },
-  b: { lat: number; lng: number },
-): boolean {
-  const dLat = (a.lat - b.lat) * 111.32;
-  const dLng =
-    (a.lng - b.lng) * 111.32 * Math.cos(((a.lat + b.lat) / 2) * (Math.PI / 180));
-  return Math.hypot(dLat, dLng) <= 0.15;
-}
 
 /** 一天里是不是只剩下午和晚上能玩（日落、夜市型）。这种日子晚出门是对的。 */
 function isAfternoonOnly(day: DayPlan): boolean {
@@ -91,7 +71,10 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
     issues.push({ code, severity, day: day.index, detail });
   const params = options.params ?? DEFAULT_PARAMS;
 
-  const sights = day.stops.filter((stop) => stop.kind === "sight");
+  // 长景点被午饭切开的后半段不算第二个景点（否则「2 个景点」会被算成 3 个）。
+  const sights = day.stops.filter(
+    (stop) => stop.kind === "sight" && stop.splitPart !== 2,
+  );
   const meals = day.stops.filter((stop) => stop.kind === "meal");
   const restDay = sights.length === 0;
 
@@ -146,8 +129,26 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   // ---------- 吃饭 ----------
   const lunch = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.lunch));
   const dinner = meals.filter((stop) => inWindow(stop.startMin, params.mealWindow.dinner));
+  // 午饭是硬锚点：13:30 之后才坐下，不是「排得晚」，是这一天没人管午饭。
+  // 早饭可以省、晚饭可以晚，午饭晚到下午人会难受一整天，任何城市都不该出现。
+  const lateLunch = ordered.find(
+    (stop) => stop.slot === "lunch" && stop.startMin > LUNCH_LIMIT_MIN,
+  );
+  if (lateLunch) {
+    push(
+      "LUNCH_LATE",
+      "error",
+      `${mm(lateLunch.startMin)} 才吃午饭，午饭被前面的点位挤掉了`,
+    );
+  }
   // 出发早、收工早的半日行程可以没有晚饭，但只要有午饭需求就该有午饭。
-  if (!restDay && !lunch.length && day.endMin >= params.mealWindow.lunch[1]) {
+  // 过了午饭时段才出门的日子不算「漏了午饭」——那种日子本来就在外面吃第一顿。
+  if (
+    !restDay &&
+    !lunch.length &&
+    day.endMin >= params.mealWindow.lunch[1] &&
+    day.stops[0]?.startMin < params.mealWindow.lunch[1]
+  ) {
     push("NO_LUNCH", "warn", "午饭时段没有安排吃饭");
   }
   if (!restDay && !dinner.length && day.endMin >= params.mealWindow.dinner[0] + 30) {
@@ -212,6 +213,9 @@ export function auditDay(day: DayPlan, options: AuditOptions): AuditIssue[] {
   for (const stop of day.stops) {
     const key = placeKeyOf(stop.place);
     if (seen.has(key)) {
+      // 一个点占掉大半天时，午饭会把它切成前后两段（splitPart 2 是后半段）。
+      // 那不是「排重了」，是同一段体验被吃饭分开，不算重复。
+      if (stop.splitPart === 2) continue;
       push("DUPLICATE_PLACE", "error", `「${stop.place.name}」在同一天出现两次`);
     }
     seen.add(key);

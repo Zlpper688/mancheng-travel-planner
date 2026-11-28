@@ -7,7 +7,7 @@
  * 跑法：npx tsx scripts/check-disk-cache.ts
  */
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import {
   clearDiskCache,
@@ -34,6 +34,13 @@ function main() {
   console.log("3) 过期返回 null，但文件仍在（供 stale 使用）");
   assert.equal(readDiskJson(DIR, "roundtrip", 0), null, "TTL=0 应当过期");
   assert.ok(existsSync(path.join(DIR, "roundtrip.json")), "过期不等于删除");
+  // 不能只靠「写和读不在同一毫秒」这种时序运气：CI 上读写常常同毫秒，
+  // 那样断言会随机变红（这个检查确实在 CI 上这样红过一次）。
+  // 直接摆一条 10 秒前的记录，5 秒 ttl 必须过期、60 秒 ttl 必须命中。
+  const aged = path.join(DIR, "aged.json");
+  writeFileSync(aged, JSON.stringify({ savedAt: Date.now() - 10_000, value: 1 }), "utf8");
+  assert.equal(readDiskJson(DIR, "aged", 5_000), null, "超过 ttl 应当过期");
+  assert.equal(readDiskJson(DIR, "aged", 60_000), 1, "没过期应当命中");
   console.log("  ✓ TTL 生效且不删文件");
 
   console.log("4) 非法键既不写也不读（挡路径穿越）");
@@ -45,7 +52,6 @@ function main() {
 
   console.log("5) 损坏的 JSON 当作 miss，不抛错");
   writeDiskJson(DIR, "broken", value);
-  const { writeFileSync } = require("node:fs") as typeof import("node:fs");
   writeFileSync(path.join(DIR, "broken.json"), "{ not json", "utf8");
   assert.equal(readDiskJson(DIR, "broken", 60_000), null);
   console.log("  ✓ 损坏文件降级为 miss");

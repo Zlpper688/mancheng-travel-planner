@@ -14,6 +14,7 @@ import type {
 } from "../types";
 import { EXPERIENCE_DEFS } from "./experience";
 import { sanitizeParams } from "./params";
+import { sanitizePrefs } from "./prefs";
 
 const CATEGORIES: Category[] = [
   "attraction",
@@ -324,5 +325,7 @@ export function sanitizeTripInput(raw: unknown): TripInput {
     planParams: data.planParams !== undefined
       ? sanitizeParams(data.planParams, data.avoidSteep === true)
       : undefined,
+    // 连续偏好同理：非法值一律退回 0.5（中性），不传时对打分零影响。
+    prefs: data.prefs !== undefined ? sanitizePrefs(data.prefs) : undefined,
   };
 }

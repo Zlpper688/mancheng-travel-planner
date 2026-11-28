@@ -1,3 +1,4 @@
+import type { TripVector } from "@/lib/plan/prefs";
 import type {
   BudgetTier,
   CityOption,
@@ -35,6 +36,11 @@ export interface ChatDraft {
   seniors: number;
   avoidSteep: boolean;
   notes: string;
+  /**
+   * 连续偏好（每维 0~1）。草稿里始终有值，中性 0.5 表示没表过态；
+   * 只有偏离中性时才往排线请求里带，避免「默认值悄悄影响打分」。
+   */
+  prefs: TripVector;
   selectedPlaces: Place[];
   confirmed: ChatConfirmed;
 }
@@ -82,6 +88,8 @@ export interface ChatPatch {
   hotelQuery?: string;
   hotelUndecided?: boolean;
   selectedNames?: string[];
+  /** 连续偏好的增量：只带这一轮说到的维度。 */
+  prefs?: Partial<TripVector>;
 }
 
 // 服务端解析后的补丁，客户端可以直接写进草稿。
@@ -101,6 +109,8 @@ export interface ResolvedPatch {
   seniors?: number;
   avoidSteep?: boolean;
   notes?: string;
+  /** LLM 只填它听出来的那几维，其余沿用草稿。 */
+  prefs?: Partial<TripVector>;
   selectedPlaces?: Place[];
 }
 
