@@ -86,6 +86,112 @@ function isBigOutdoor(place: Place): boolean {
   return BIG_OUTDOOR.has(place.category) && (place.popularity ?? 0) >= 4.15;
 }
 
+/**
+ * 单个点位的「分量」——名气加不可替代性，不是评分本身。
+ *
+ * 为什么要单独算一遍：高德那套 popularity 是四分制往上挤的，
+ * 一个郊野公园和一个世界遗产都能到 4.6，光看分数分不出「值不值得跑 60 公里」。
+ * 所以把「旗舰 / 城里人人知道 / 大室外 / 评分」分开加权，
+ * 让只占其中一项的点位自然比占三项的低一档。
+ */
+function placeWeight(place: Place): number {
+  let weight = 0.8;
+  if (isFlagship(place)) weight += 1.6;
+  if (isFamous(place)) weight += 1.0;
+  if (isPremier(place)) weight += 0.6;
+  if (isBigOutdoor(place)) weight += 0.5;
+  // 评分只做微调：3.4 分以下不加分，4.8 以上封顶 1.4。
+  weight += Math.min(1.4, Math.max(0, (place.popularity ?? 0) - 3.4));
+  return weight;
+}
+
+/** 一组点位的总分量。第二个点边际递减——顺路逛值得，但不能跟主景同权。 */
+export function farGroupWeight(group: ScoredPlace[]): number {
+  const weights = group
+    .map((item) => placeWeight(item.place))
+    .sort((a, b) => b - a);
+  return weights.reduce(
+    (sum, weight, index) => sum + weight * (index === 0 ? 1 : index === 1 ? 0.55 : 0.3),
+    0,
+  );
+}
+
+/** 单程超过这个时长，才需要「分量」来证明值得跑一趟。 */
+export const FAR_JUSTIFY_MIN = 45;
+
+/**
+ * 远足日值不值 = 分量 ÷ 单程小时。
+ *
+ * 原来只拦「组里只有 1 个点、又不是旗舰、单程还超过 45 分钟」，
+ * 于是「郊野公园 + 一个广场」这种两点的组合能过，换来 85.9 km、路上 3 小时 53 分。
+ * 那是通勤，不是远足。改成按小时折算，路程越久，要求的分量越高。
+ */
+export function farDayValue(
+  group: ScoredPlace[],
+  oneWayMin: number,
+): { weight: number; hours: number; value: number } {
+  const weight = farGroupWeight(group);
+  const hours = Math.max(0.5, oneWayMin / 60);
+  return { weight, hours, value: weight / hours };
+}
+
+/**
+ * 门槛不是固定值：主城越够玩，越不该为郊外一个点丢掉城里的一整天。
+ *
+ * 三档按实测标定（厦门 / 三亚 / 成都 / 黄山 / 驻马店）：
+ *   · 城里已经很丰富 —— 7.0：厦门「郊野公园 + 广场」算出 6.0，过不去；
+ *   · 城里一般 —— 4.6：普通远郊点仍然排得进；
+ *   · 城里没得玩 —— 2.8：名气全在城外的城市照旧给远足日。
+ */
+export const FAR_VALUE_FLOOR = {
+  rich: 7,
+  normal: 4.6,
+  sparse: 2.8,
+} as const;
+
+/**
+ * 顶级名录景点（世界遗产、5A、国家风景名胜）的折让系数。
+ *
+ * 「分量」里 isFlagship 只代表「高分」，一堆县城郊野公园也能到 4.6；
+ * 真正值得专程跑的只有名录级那一小撮。所以门槛不整体下调，
+ * 只在这一组里确实有 premier 点位时打折——黄山单点值 4.2，乘 0.6 后 4.2 的门槛留得住它。
+ */
+export const FAR_PREMIER_DISCOUNT = 0.6;
+
+export function farValueFloor(
+  nearStrong: number,
+  autoCount: number,
+  sparseNear: boolean,
+): number {
+  if (sparseNear) return FAR_VALUE_FLOOR.sparse;
+  // 主城强点数量达到「每天两个」就算富：这种城市把一天交给单程一小时的路，
+  // 换回来的通常只是一个 4.6 分的公园，划不来。
+  return nearStrong >= Math.max(2, autoCount * 2)
+    ? FAR_VALUE_FLOOR.rich
+    : FAR_VALUE_FLOOR.normal;
+}
+
+/**
+ * 这一组远郊点位值不值得单独占一天。
+ *
+ * 三种情况直接放行，不必算账：
+ *   1. 单程不超过 45 分钟 —— 本来就在主城边上，顺路；
+ *   2. 组里有 reachMin 的必去点（区域环线）—— 它就是这趟行程的目的；
+ *   3. 组里有 premier 名录景点（世界遗产/5A/国家风景名胜）—— 门槛打折。
+ */
+export function farDayWorthGoing(
+  group: ScoredPlace[],
+  oneWayMin: number,
+  valueFloor: number,
+): boolean {
+  if (oneWayMin <= FAR_JUSTIFY_MIN) return true;
+  if (group.some((item) => (item.place.reachMin ?? 0) > 60)) return true;
+  const required =
+    valueFloor *
+    (group.some((item) => isPremier(item.place)) ? FAR_PREMIER_DISCOUNT : 1);
+  return farDayValue(group, oneWayMin).value >= required;
+}
+
 export function pickFarGroups(
   pool: ScoredPlace[],
   count: number,
@@ -94,6 +200,7 @@ export function pickFarGroups(
   seed: number,
   city: string,
   styles: StyleId[],
+  valueFloor: number = FAR_VALUE_FLOOR.normal,
 ): ScoredPlace[][] {
   const remaining = [...pool].sort((a, b) => b.score - a.score);
   const used = new Set<string>();
@@ -235,8 +342,12 @@ export function pickFarGroups(
       isFlagship(anchor.place) ||
       (BIG_OUTDOOR.has(anchor.place.category) &&
         (anchor.place.popularity ?? 0) >= 4.25);
-    const thinFar = group.length === 1 && !fillsDay && oneWay > 45;
-    if (thinFar) continue;
+    // 值不值，看「分量 ÷ 单程小时」而不是点数：两点组合（郊野公园 + 一个广场）
+    // 一样可能凑不出一趟值得的路，见 farDayValue 的注释。
+    if (!farDayWorthGoing(group, oneWay, valueFloor)) continue;
+    // 一个点撑不起一天、还要走一个多小时的路：以前只有这一条能拦，
+    // 现在上面的分量门槛已经覆盖，保留判断是为了远足日不足时能给出解释。
+    if (group.length === 1 && !fillsDay && oneWay > 45) continue;
     groups.push(group);
     if (isBigOutdoor(anchor.place)) usedBigOutdoor = true;
     usedRoles.sunset = (usedRoles.sunset ?? 0) + (groupRoles.sunset > 0 ? 1 : 0);

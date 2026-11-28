@@ -38,10 +38,12 @@ import {
   decideFarDays,
   farLimitKm,
   farReachKm,
+  farValueFloor,
   pickFarGroups,
 } from "./select/far";
 import { describeArea, describeTheme } from "./select/narrative";
 import { balanceDays } from "./select/balance";
+import { dedupeAcrossDays } from "./select/crossday";
 import {
   closingOnly,
   farOneWayCapFor,
@@ -709,6 +711,8 @@ export function selectDays(input: SelectInput): SelectResult {
     nearStrong,
     sparseNear,
   );
+  // 主城越够玩，远足日的门槛越高：见 farValueFloor 的三档说明。
+  const valueFloor = farValueFloor(nearStrong, autoDays.length, sparseNear);
   const farGroups =
     farCount > 0
       ? pickFarGroups(
@@ -719,6 +723,7 @@ export function selectDays(input: SelectInput): SelectResult {
           seed,
           city,
           styles,
+          valueFloor,
         )
       : [];
   farCount = farGroups.length;
@@ -1008,6 +1013,34 @@ export function selectDays(input: SelectInput): SelectResult {
       slots.forEach((day, index) => {
         dayPlaces.set(day, balanced.days[index]);
       });
+    }
+  }
+
+  // 跨天去重：同一处景点排进两天（尤其同一座岛被拆成两天，等于买两趟轮渡）
+  // 在选点阶段就掐掉，并用同片区候补点补位。远足日整组冻结。
+  if (autoDays.length >= 2) {
+    const deduped = dedupeAcrossDays({
+      days: autoDays.map((day) => ({
+        day,
+        places: dayPlaces.get(day) ?? [],
+        frozen: farDaysSet.has(day),
+      })),
+      scored,
+      clusterKm:
+        input.clusterRadiusKm ??
+        clusterRadiusFor(styles, pace, transport, input.seniors ?? 0),
+    });
+    for (const [day, places] of deduped.days) {
+      dayPlaces.set(day, places);
+    }
+    for (const change of deduped.changes) {
+      warnings.push(
+        change.reason === "same-area"
+          ? `「${change.name}」和${change.replacedBy ?? "另一天"}在同一片区域，第 ${change.day} 天不再重复去。`
+          : change.replacedBy
+            ? `「${change.name}」前一天已经去过，第 ${change.day} 天换成了「${change.replacedBy}」。`
+            : `「${change.name}」前一天已经去过，第 ${change.day} 天不再重复。`,
+      );
     }
   }
 
