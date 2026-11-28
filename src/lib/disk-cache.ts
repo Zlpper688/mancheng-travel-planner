@@ -86,7 +86,10 @@ export function readDiskJson<T>(dir: string, key: string, ttlMs: number): T | nu
   try {
     const record = JSON.parse(readFileSync(file, "utf8")) as DiskRecord<T>;
     if (!record || typeof record.savedAt !== "number") return null;
-    if (Date.now() - record.savedAt > ttlMs) return null;
+    // 边界取 `>=`：写和读落在同一毫秒时（CI 上很常见）age 是 0，
+    // `0 > 0` 不成立，于是 `ttlMs = 0` 会返回「新鲜」的值——和上面写的
+    // 「0 表示一律视为过期」相反，`check-disk-cache` 因此在 CI 里随机红。
+    if (Date.now() - record.savedAt >= ttlMs) return null;
     return record.value;
   } catch {
     // 半截写入、JSON 损坏、权限不足——都是 miss，不是错误。
