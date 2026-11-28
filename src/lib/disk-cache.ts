@@ -21,6 +21,7 @@ import {
   unlinkSync,
   writeFileSync,
 } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
 interface DiskRecord<T> {
@@ -35,7 +36,35 @@ const KEY_PATTERN = /^[a-z0-9_-]{1,80}$/;
  * `MC_CACHE_ROOT` 供消融实验切到独立目录，跑冷/热两组对照而不互相污染。
  */
 export function cacheRoot(): string {
-  return process.env.MC_CACHE_ROOT || path.join(process.cwd(), ".cache");
+  const explicit = process.env.MC_CACHE_ROOT?.trim();
+  if (explicit) return explicit;
+  // 函数计算 / 托管容器里只有临时目录可写，cwd 通常是只读的。
+  // 不认出来也不至于崩（写入本来就 try/catch），但每次请求都白撞一次墙没必要。
+  if (isServerless()) return path.join(os.tmpdir(), "mancheng-cache");
+  return path.join(process.cwd(), ".cache");
+}
+
+/**
+ * 随仓库分发的演示缓存目录（`data/warm/cache`），**只读**。
+ *
+ * 区分「读」和「写」是为了不让运行时把缓存写回版本库：
+ * 早先 cacheRoot() 直接返回这个目录，结果开发服务器每跑一次排线，
+ * 天气和没查到的路线就多几个 json 文件挂在 git status 里。
+ * 现在读的时候先看这里（换台电脑首屏即热），写永远落到 .cache/。
+ */
+export function shippedCacheRoot(): string | null {
+  const shipped = path.join(process.cwd(), "data", "warm", "cache");
+  return existsSync(shipped) ? shipped : null;
+}
+
+/** 托管环境判定：只用来选一个能写的缓存目录，不参与业务逻辑。 */
+function isServerless(): boolean {
+  return Boolean(
+    process.env.VERCEL ||
+      process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.K_SERVICE ||
+      process.env.FUNCTION_TARGET,
+  );
 }
 
 function isSafeKey(key: string): boolean {

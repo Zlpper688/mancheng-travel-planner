@@ -181,7 +181,16 @@ export function sanitizeTripInput(raw: unknown): TripInput {
   if (Array.isArray(data.center) && data.center.length === 2) {
     const lng = Number(data.center[0]);
     const lat = Number(data.center[1]);
-    if (Number.isFinite(lng) && Number.isFinite(lat)) center = [lng, lat];
+    // 只判有限性是不够的：[9999, 9999] 会一路走到 bboxForRadius，
+    // 生成一个横跨地球的 Overpass 查询，白烧配额还查不出东西。
+    if (
+      Number.isFinite(lng) &&
+      Number.isFinite(lat) &&
+      Math.abs(lat) <= 90 &&
+      Math.abs(lng) <= 180
+    ) {
+      center = [lng, lat];
+    }
   }
   if (!center && rawHotel) center = [rawHotel.lng, rawHotel.lat];
   if (!center) {

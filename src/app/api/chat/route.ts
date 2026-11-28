@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
+// 两边都留下：safeDraft 是我方拆出的独立守门模块（替代对方原来的本地实现），
+// logEvent / rate-limit 是对方新增的护栏，二者互补，不冲突。
 import { safeDraft } from "@/lib/chat/safe-draft";
+import { logEvent } from "@/lib/log";
+import { checkRoute, clientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { askChatModel, chatModelConfig, ChatModelError, probeChatModel } from "@/lib/chat/model";
 import type { ChatApiResponse, ChatMessage } from "@/lib/chat/types";
 
@@ -42,6 +46,12 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  // 这个接口每被调用一次就是一次真实的模型计费。没有护栏时，一条链接就够把
+  // 额度刷光——排在 /api/plan 之后第二个必须限流的接口。
+  const limited = rateLimitResponse(checkRoute("chat", clientIp(request)));
+  if (limited) return limited;
+
+  const startedAt = Date.now();
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body || typeof body !== "object") {
     return NextResponse.json(
@@ -71,6 +81,13 @@ export async function POST(request: Request) {
 
   try {
     const reply = await askChatModel(config, draft, messages);
+    logEvent("info", "chat", {
+      ms: Date.now() - startedAt,
+      model: config.model,
+      turns: messages.length,
+      action: reply.action,
+      ok: true,
+    });
     return NextResponse.json({
       ai: true,
       configured: true,
@@ -78,6 +95,12 @@ export async function POST(request: Request) {
       reply,
     } satisfies ChatApiResponse);
   } catch (error) {
+    logEvent("warn", "chat", {
+      ms: Date.now() - startedAt,
+      model: config.model,
+      turns: messages.length,
+      ok: false,
+    });
     const raw = error instanceof ChatModelError ? error.message : `${(error as Error)?.message ?? error}`;
     const reason = /401|403|无效的令牌|unauthorized|invalid.*token/i.test(raw)
       ? "模型 Key 无效或被拒绝"

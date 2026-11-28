@@ -149,13 +149,18 @@ const store = new Map<string, string>();
 ok("初始为空", loadJournals().length === 0);
 saveJournal(journal);
 ok("保存成功", loadJournals().length === 1);
+// savedAt 必须比上一条「真的大」，不能写死一个时间：
+// 原来这里硬编码 2026-11-27T10:00Z，UTC 上午跑是「更晚」，下午跑就变成「更早」，
+// 于是这个断言每天只在半天内通过。改成基于上一条记录往后推一分钟。
+const previousSavedAt = loadJournals()[0]?.savedAt ?? new Date().toISOString();
 const second: TripJournal = {
   ...journal,
   id: "j-second",
   title: "成都 3 日 · 另一版",
-  // journalFromPlan 用当前时间作 savedAt；这里必须明确更晚，
-  // 否则写死日期一旦早于实际运行时刻，倒序断言就会反转（曾踩坑）。
-  savedAt: new Date(Date.now() + 1000).toISOString(),
+  // 不能写死日期：写死的时刻一旦早于实际运行时刻，倒序断言就会反转（曾踩坑）。
+  // 也不能只靠 Date.now()：上一条记录若本身更晚，仍会反转。
+  // 因此统一「以上一条 savedAt 为基准往后推一分钟」，两边意图合并到这里。
+  savedAt: new Date(Date.parse(previousSavedAt) + 60_000).toISOString(),
 };
 saveJournal(second);
 ok("两条记录", loadJournals().length === 2);

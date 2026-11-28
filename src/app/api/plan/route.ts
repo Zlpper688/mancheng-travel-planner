@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { TravelError } from "@/lib/errors";
+import { logEvent } from "@/lib/log";
 import { runPlan } from "@/lib/plan/prefetch-trip";
 import { sanitizeTripInput } from "@/lib/plan/validate";
 import { checkPlanRate, clientIp } from "@/lib/rate-limit";
@@ -26,11 +27,23 @@ export async function POST(request: Request): Promise<NextResponse<PlanResponse>
     );
   }
 
+  const startedAt = Date.now();
   try {
     const body = await request.json().catch(() => null);
     const input = sanitizeTripInput(body);
     // 生成 → 反驳 → 修订：无问题时一轮即返回，有 P0/P1 才自动重排（软参数）。
     const result = await runPlan(input);
+    // 一行 JSON：城市、天数、耗时、轮数、问题数。排障和答辩演示口径一致。
+    logEvent("info", "plan", {
+      ms: Date.now() - startedAt,
+      city: input.city,
+      days: input.days,
+      rounds: result.rounds,
+      issues: result.issues.length,
+      p0: result.issues.filter((issue) => issue.level === "P0").length,
+      p1: result.issues.filter((issue) => issue.level === "P1").length,
+      stops: result.plan.days.reduce((sum, day) => sum + day.stops.length, 0),
+    });
     return NextResponse.json({
       plan: result.plan,
       refine: {
@@ -48,6 +61,7 @@ export async function POST(request: Request): Promise<NextResponse<PlanResponse>
         { status: error.code === "AMAP_BUDGET_EXHAUSTED" ? 429 : 400 },
       );
     }
+    logEvent("error", "plan", { ms: Date.now() - startedAt, ok: false });
     console.error("[plan]", error);
     return NextResponse.json(
       {

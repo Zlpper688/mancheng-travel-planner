@@ -123,6 +123,11 @@ export function parseAmapLocation(value: unknown): [number, number] | null {
   return [lng, lat];
 }
 
+/** 餐饮/咖啡/酒店不去参与「同名同景」合并：连锁店本来就该各算各的。 */
+function mergesBySightName(category: Place["category"]): boolean {
+  return !["food", "cafe", "hotel", "other"].includes(category);
+}
+
 export function dedupePlaces(places: Place[]): Place[] {
   const out: Place[] = [];
   for (const place of places) {
@@ -131,7 +136,16 @@ export function dedupePlaces(places: Place[]): Place[] {
         Math.abs(existing.lat - place.lat) + Math.abs(existing.lng - place.lng);
       const sameName =
         cleanNameForMatch(existing.name) === cleanNameForMatch(place.name);
-      return (sameName && distance < 0.003) || distance < 0.00008;
+      // 同名景点在 2 km 内按同一个地方处理。
+      // 原来这里只有 0.003（约 300 m），于是「厦门大学」和「厦门大学（思明校区）」
+      // 会被当成两个点，排进同一次行程的两天里——跨天重复的根因之一。
+      // 景点（校区、景区大门、索道口）本来就可以差一两公里；
+      // 餐饮咖啡仍用严格阈值，避免把同名的连锁店并成一间。
+      const sameNameRadius =
+        mergesBySightName(place.category) && mergesBySightName(existing.category)
+          ? 0.02
+          : 0.003;
+      return (sameName && distance < sameNameRadius) || distance < 0.00008;
     });
     if (!duplicate) out.push(place);
   }

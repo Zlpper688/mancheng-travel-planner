@@ -66,9 +66,17 @@ export async function fetchJson<T>(
       cache: "no-store",
     });
   } catch (error) {
-    // Next 内置 fetch 走 undici 连接池，某些网络环境下会复用被上游关闭的
-    // 空闲连接，报 UND_ERR_SOCKET / other side closed。这时退回 node:https
-    // 单独建连，绕开连接池，实测更稳。
+    // 超时不要走 https 兜底。
+    //
+    // 兜底那条路是给「连接池复用了被上游关掉的空闲连接」（UND_ERR_SOCKET）准备的，
+    // 属于「立刻失败」的场景；而超时是「已经等满了 timeout」——
+    // undici 把 abort 包成 TypeError: fetch failed，会被下面的正则误判成 socket 错误，
+    // 于是又用 https 重来一遍，12 秒直接变 24 秒。
+    // 实测厦门跨海步行段（鼓浪屿 ↔ 中山路）每次冷启动都要付这笔钱。
+    if (controller.signal.aborted) {
+      clearTimeout(timer);
+      throw error;
+    }
     if (!isSocketLevelError(error)) {
       clearTimeout(timer);
       throw error;

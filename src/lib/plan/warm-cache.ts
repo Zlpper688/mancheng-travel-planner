@@ -59,10 +59,23 @@ interface WarmRecord {
   value: DiscoverResult;
 }
 
-/** 缓存目录挂在 cwd 下，跟着仓库/容器卷走；`MC_CACHE_ROOT` 供消融实验切到独立目录。 */
+/**
+ * 缓存目录的优先级：
+ *   1. `MC_WARM_DIR` —— 显式指定（测试、消融实验）
+ *   2. `MC_CACHE_ROOT` —— 整个缓存根换位置
+ *   3. `data/warm/` —— **随仓库分发的演示预热包**。答辩电脑换了、断网了，
+ *      只要这份文件在，第一次排线也是热的。这是它和 .cache/ 的关键区别：
+ *      .cache/ 被 .gitignore 忽略，换台机器就没了。
+ *   4. `.cache/plan-warm` —— 本地默认
+ */
 function cacheDir(): string {
-  const root = process.env.MC_CACHE_ROOT || path.join(process.cwd(), ".cache");
-  return path.join(root, "plan-warm");
+  const explicit = process.env.MC_WARM_DIR?.trim();
+  if (explicit) return explicit;
+  const root = process.env.MC_CACHE_ROOT?.trim();
+  if (root) return path.join(root, "plan-warm");
+  const shipped = path.join(process.cwd(), "data", "warm", "plan-warm");
+  if (existsSync(shipped)) return shipped;
+  return path.join(process.cwd(), ".cache", "plan-warm");
 }
 /** 景点数据不是行情，一周内不会变；超过一周就转成「陈旧命中」，先顶上再后台刷。 */
 const TTL_MS = 7 * 24 * 60 * 60 * 1000;

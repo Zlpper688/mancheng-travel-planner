@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { cached, fetchJson } from "../cache";
-import { cacheRoot, readDiskJson, writeDiskJson } from "../disk-cache";
+import { cacheRoot, readDiskJson, shippedCacheRoot, writeDiskJson } from "../disk-cache";
 import { getTaxiRate } from "../constants";
 import { DEMO_NOTE, XIAMEN_MEALS, XIAMEN_SIGHTS } from "../../content/demo-xiamen";
 import { isDemoCity } from "../demo";
@@ -610,6 +610,32 @@ const routeCacheDir = () => path.join(cacheRoot(), "route");
 const ROUTE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const ROUTE_MAX_FILES = 4000;
 
+/**
+ * 查不到路的「负缓存」。
+ *
+ * 为什么需要：OSRM 对跨海的步行请求会一直挂着直到超时（鼓浪屿 ↔ 中山路实测 12 秒），
+ * 而失败结果以前只留在内存里——进程一重启（每次部署、每台新机器）就再来一遍。
+ * 一次厦门排线有两段这样的路，冷启动因此从 7 秒变成 23 秒。
+ * 把「这条查不到」也落盘半小时，代价是这半小时内该段继续用估算，
+ * 收益是除第一次之外所有冷启动都不用再等上游超时。
+ */
+const routeNegativeDir = () => path.join(cacheRoot(), "route-miss");
+const ROUTE_NEGATIVE_TTL_MS = 30 * 60 * 1000;
+const ROUTE_NEGATIVE_MAX_FILES = 2000;
+
+/**
+ * 单次路线请求的超时。
+ *
+ * 12 秒对一条两点直线距离 2 公里的步行请求来说太长了：正常 OSRM 在 1 秒内就回。
+ * 步行压到 7 秒、驾车 10 秒，配合上面的「不重试」，最坏情况从 24 秒降到 7 秒。
+ * 慢网络下想放宽可以用 MC_OSRM_TIMEOUT_MS 统一覆盖。
+ */
+function osrmTimeoutMs(profile: "foot" | "car"): number {
+  const override = Number(process.env.MC_OSRM_TIMEOUT_MS);
+  if (Number.isFinite(override) && override >= 1_000) return override;
+  return profile === "foot" ? 7_000 : 10_000;
+}
+
 /** 文件名只用十六进制：坐标里有小数点和冒号，不能直接当键。 */
 function routeDiskKey(profile: "foot" | "car", from: Place, to: Place): string {
   return createHash("sha1")
@@ -631,17 +657,48 @@ async function osrmRoute(
   return cached(key, 6 * 60 * 60 * 1000, async () => {
     // 盘上先看一眼：两点之间的步行/驾车路径是死数据，重启后没有理由重问一遍。
     // 实测厦门 3 天排线光这一项就要 10.9s，而进程内缓存一重启就没了。
-    const persisted = readDiskJson<{
-      durationMin: number;
-      distanceKm: number;
-      geometry: [number, number][];
-    }>(routeCacheDir(), diskKey, ROUTE_TTL_MS);
+    // 先看随仓库分发的演示缓存（只读），再看本机缓存。写永远只写本机。
+    const shippedRoot = shippedCacheRoot();
+    const persisted =
+      (shippedRoot
+        ? readDiskJson<{
+            durationMin: number;
+            distanceKm: number;
+            geometry: [number, number][];
+          }>(path.join(shippedRoot, "route"), diskKey, ROUTE_TTL_MS)
+        : null) ??
+      readDiskJson<{
+        durationMin: number;
+        distanceKm: number;
+        geometry: [number, number][];
+      }>(routeCacheDir(), diskKey, ROUTE_TTL_MS);
     if (persisted) return persisted;
+
+    // 半小时内刚查过、结果是「查不到」：直接用估算，不再等一次上游超时。
+    const knownMiss =
+      (shippedRoot
+        ? readDiskJson<{ miss: true }>(
+            path.join(shippedRoot, "route-miss"),
+            diskKey,
+            ROUTE_NEGATIVE_TTL_MS,
+          )
+        : null) ??
+      readDiskJson<{ miss: true }>(routeNegativeDir(), diskKey, ROUTE_NEGATIVE_TTL_MS);
+    if (knownMiss) return null;
+
     try {
       const url = `https://routing.openstreetmap.de/routed-${profile}/route/v1/driving/${coords}?overview=full&geometries=geojson&alternatives=false&steps=false`;
-      const data = await fetchJson<OsrmResponse>(url, {}, 12_000);
+      const data = await fetchJson<OsrmResponse>(url, {}, osrmTimeoutMs(profile));
       const route = data.routes?.[0];
-      if (!route || data.code === "NoRoute") return null;
+      if (!route || data.code === "NoRoute") {
+        writeDiskJson(
+          routeNegativeDir(),
+          diskKey,
+          { miss: true },
+          ROUTE_NEGATIVE_MAX_FILES,
+        );
+        return null;
+      }
       const geometry = route.geometry?.coordinates;
       const result = {
         durationMin: Math.max(1, Math.round(route.duration / 60)),
@@ -654,6 +711,13 @@ async function osrmRoute(
       writeDiskJson(routeCacheDir(), diskKey, result, ROUTE_MAX_FILES);
       return result;
     } catch {
+      // 超时 / 上游 5xx 也记成「查不到」，避免每次冷启动都为同一条路再等一遍。
+      writeDiskJson(
+        routeNegativeDir(),
+        diskKey,
+        { miss: true },
+        ROUTE_NEGATIVE_MAX_FILES,
+      );
       return null;
     }
   });

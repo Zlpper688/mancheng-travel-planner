@@ -13,11 +13,21 @@ out
 public/photos/live/
 data/live-photo-cache.json
 
-# 规划预热缓存（本机/容器自建，由 scripts/warm-plan-cache.mjs 生成）
+# 本机运行时缓存（路由、天气、健康状态）。注意：data/warm/ 是**故意提交**的演示预热包，
+# 不在这里忽略——换台机器也能首屏即热。用 npm run warm 重新生成。
 .cache/
+
+# 演示预热包里只有 route/ 和 plan-warm/ 值得提交；
+# 天气会过期、route-miss 是本机网络环境产物，都不该进版本库。
+data/warm/cache/weather/
+data/warm/cache/health/
+data/warm/cache/route-miss/
 # 回归脚本自建的隔离缓存目录
 .cache-*/
 # 独立构建目录（验证时用 NEXT_DIST_DIR 切出来，避免互相污染）
+# next dev/build 会自己往 tsconfig.json 的 include 里塞 distDir 路径，
+# 所以每次验证完都要把 tsconfig.json 还原再提交（HANDOFF §5 第 2 条）。
+.next-*/
 .next-dev-*/
 .next-build*/
 
@@ -25,3 +35,7 @@ data/live-photo-cache.json
 .backup-auto/
 .backup-mancheng-*/
 .next-build/
+.npm-cache/
+# 本机运行时产物（路由/天气/上游健康探测）。代码里没有任何地方读它，
+# 只是某次运行被误提交进来的，运行时会自己重建。
+.tmp-cache/

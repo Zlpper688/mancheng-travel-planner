@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { TravelError } from "./errors";
 
 /**
@@ -91,12 +92,71 @@ export function checkPlanRate(ip: string): LimitDecision {
   );
 }
 
-/** 搜索是随输入触发的，网格放宽一些，配额靠下面的每日额度兜。 */
-export function checkSearchRate(ip: string): LimitDecision {
-  return consumeBoth(
-    `search:${ip}`,
+/**
+ * 除 /api/plan 之外的接口，按「上游成本」分档限流。
+ *
+ * 之前只有排线接口有护栏，其余五个接口是敞开的：一个拿到链接的人用二十行脚本
+ * 就能把模型额度刷光、把高德日配额打穿、把进程拖满。这里按每档的真实成本定阈值：
+ *   chat    一次请求 = 一次 LLM 调用，最贵，压到最低
+ *   catalog 一次可能跑满 120 秒（Overpass + Wikidata 深挖）
+ *   guide   最多 6 次上游搜索
+ *   photo   多级回退 + 共享资源串行，但单次便宜、页面会并发发起
+ *   search  随输入触发，阈值放宽，真正的大头由 prefetch 开关和每日额度兜
+ */
+export type LimitedRoute = "chat" | "catalog" | "guide" | "photo" | "search";
+
+const ROUTE_BUDGET: Record<
+  LimitedRoute,
+  [burst: { limit: number; windowMs: number }, sustained: { limit: number; windowMs: number }]
+> = {
+  chat: [
+    { limit: 12, windowMs: 60_000 },
+    { limit: 60, windowMs: 3_600_000 },
+  ],
+  catalog: [
+    { limit: 6, windowMs: 60_000 },
+    { limit: 40, windowMs: 3_600_000 },
+  ],
+  guide: [
+    { limit: 10, windowMs: 60_000 },
+    { limit: 80, windowMs: 3_600_000 },
+  ],
+  photo: [
     { limit: 90, windowMs: 60_000 },
     { limit: 900, windowMs: 3_600_000 },
+  ],
+  search: [
+    { limit: 60, windowMs: 60_000 },
+    { limit: 600, windowMs: 3_600_000 },
+  ],
+};
+
+export function checkRoute(route: LimitedRoute, ip: string): LimitDecision {
+  const [burst, sustained] = ROUTE_BUDGET[route];
+  return consumeBoth(`${route}:${ip}`, burst, sustained);
+}
+
+/** 搜索是随输入触发的，网格放宽一些，配额靠下面的每日额度兜。 */
+export function checkSearchRate(ip: string): LimitDecision {
+  return checkRoute("search", ip);
+}
+
+/**
+ * 路由守卫的统一出口：限流没过时返回 429 + Retry-After。
+ * 返回 null 表示放行，调用方继续走自己的逻辑。
+ */
+export function rateLimitResponse(decision: LimitDecision): NextResponse | null {
+  if (decision.ok) return null;
+  return NextResponse.json(
+    {
+      error: "点得有点快，先缓一下。",
+      hint: `约 ${decision.retryAfterSec} 秒后可以再试。`,
+      code: "RATE_LIMITED",
+    },
+    {
+      status: 429,
+      headers: { "Retry-After": String(decision.retryAfterSec) },
+    },
   );
 }
 

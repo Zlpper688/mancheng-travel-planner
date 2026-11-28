@@ -424,7 +424,23 @@ function parseReply(content: string): {
   };
 }
 
+/**
+ * 城市/酒店解析结果的小缓存。
+ *
+ * 键里带用户输入的城市名——不做上限的话，一个脚本用随机字符串就能让它
+ * 无限增长（Map 不会自己忘）。这里按「写入顺序淘汰最旧」封顶，
+ * 语义上够用：热门城市会反复被写回，冷门条目自然被挤掉。
+ */
+const RESOLVE_CACHE_MAX = 200;
 const resolveCache = new Map<string, { value: CityOption | Place | null; at: number }>();
+
+function rememberResolved(key: string, value: CityOption | Place | null): void {
+  if (resolveCache.size >= RESOLVE_CACHE_MAX) {
+    const oldest = resolveCache.keys().next().value;
+    if (oldest) resolveCache.delete(oldest);
+  }
+  resolveCache.set(key, { value, at: Date.now() });
+}
 
 async function resolveCity(name: string): Promise<CityOption | undefined> {
   const key = `city:${name}`;
@@ -439,7 +455,7 @@ async function resolveCity(name: string): Promise<CityOption | undefined> {
       name.includes(option.name),
   );
   if (local) {
-    resolveCache.set(key, { value: local, at: Date.now() });
+    rememberResolved(key, local);
     return local;
   }
   try {
@@ -455,7 +471,7 @@ async function resolveCity(name: string): Promise<CityOption | undefined> {
           address: best.address,
         }
       : null;
-    resolveCache.set(key, { value, at: Date.now() });
+    rememberResolved(key, value);
     return value ?? undefined;
   } catch {
     return undefined;

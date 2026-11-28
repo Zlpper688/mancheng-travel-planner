@@ -6,9 +6,13 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
-    "check:type": "node scripts/check-type.mjs",
+    "typecheck": "tsc --noEmit",
+    "check:font": "node scripts/check-type.mjs",
+    "checks": "tsx scripts/check-params.ts && tsx scripts/check-slots.ts && tsx scripts/check-refine.ts && tsx scripts/check-segments.ts && tsx scripts/check-journal.ts && tsx scripts/check-booking.ts && tsx scripts/check-city-search.ts && tsx scripts/check-disk-cache.ts && tsx scripts/check-dedupe.ts && tsx scripts/check-rate-limit.ts && tsx scripts/check-photo-storage.ts",
+    "verify": "npm run typecheck && npm run check:font && npm run checks",
     "bench": "tsx scripts/bench.ts",
-    "check:plan": "tsx scripts/bench.ts --cities=厦门 --paces=balanced"
+    "check:plan": "tsx scripts/bench.ts --cities=厦门 --paces=balanced",
+    "warm": "tsx scripts/warm-plan-cache.ts"
   },
   "dependencies": {
     "lucide-react": "0.468.0",
@@ -25,5 +29,8 @@
     "tailwindcss": "4.3.5",
     "tsx": "^4.23.15",
     "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
