@@ -14,6 +14,7 @@ import {
 import type { PlaceProvider, RawRoute } from "../providers/types";
 import { metroLabel, usableMetroTrip } from "../transit/metro";
 import type { MetroTrip } from "../transit/types";
+import { LATEST_START } from "./limits";
 import { lateReturnLimits, PAID_SIGHT_WARNING_LIMIT } from "./policy";
 import type {
   Category,
@@ -1512,14 +1513,30 @@ function clockMinute(value?: string): number | null {
 
 // 一天里中午到傍晚空出两小时以上，多半是因为下一个点是日落或夜市。
 // 从发现池里顺路补一个白天点位，比让行程干等更像真人写的攻略。
-interface AfternoonHole {
+//
+// 空洞有两种，原来只认前一种：
+//   · between —— 两个停留点之间空着（等日落/夜市）；
+//   · tail    —— 当天最后一段之后什么都没有，也不吃晚饭就回酒店。
+// 后者就是「砍点砍过头」的样子：厦大 15:34 出馆、午饭吃完，剩下一整个下午消失。
+// 用户看到的不是「松弛」，是「半天没了」。
+export interface AfternoonHole {
   prev: StopPlan;
-  next: StopPlan;
+  /** null = 尾段空洞，后面没有点可以接，只能往当天末尾补。 */
+  next: StopPlan | null;
   startMin: number;
   endMin: number;
 }
 
-function afternoonHole(stops: StopPlan[]): AfternoonHole | null {
+/** 尾段空洞的目标收尾时刻：补到能自然接上晚饭，而不是硬拖到很晚。 */
+const TAIL_FILL_END = 18 * 60 + 30;
+/** 尾段从这个时刻之前散场才算空洞；17 点后收工属于正常下午结束。 */
+const TAIL_HOLE_BEFORE = 17 * 60;
+
+/** 导出给回归检查用（scripts/check-tail-hole.ts）。 */
+export function afternoonHole(
+  stops: StopPlan[],
+  endLimit = 19 * 60,
+): AfternoonHole | null {
   let best: AfternoonHole | null = null;
   for (let index = 0; index < stops.length - 1; index++) {
     const prev = stops[index];
@@ -1527,18 +1544,32 @@ function afternoonHole(stops: StopPlan[]): AfternoonHole | null {
     const startMin = prev.endMin;
     const endMin = next.startMin;
     if (endMin - startMin < 120) continue;
-    if (startMin < 12 * 60 + 30 || endMin > 18 * 60) continue;
+    // 从 12:00 起算：午饭常常在 12:05 结束，卡 12:30 会把「吃完午饭一直空到日落」
+    // 这种最典型的空洞漏掉（实测厦门第 3 天就漏了 285 分钟）。
+    if (startMin < 12 * 60 || endMin > 18 * 60) continue;
     if (!best || endMin - startMin > best.endMin - best.startMin) {
       best = { prev, next, startMin, endMin };
     }
   }
-  return best;
+  if (best) return best;
+
+  const last = stops[stops.length - 1];
+  if (!last) return null;
+  // 晚饭已经在里面，说明这一天是有收尾的，不补。
+  if (stops.some((stop) => stop.slot === "dinner")) return null;
+  // 时间型点位（日出/早市/夜市）不当尾段填补的对象，那是另一套节奏。
+  if (last.kind !== "sight" && last.kind !== "meal") return null;
+  if (last.endMin >= TAIL_HOLE_BEFORE) return null;
+  // 目标收尾既不能早于午饭结束 + 一段停留，也不该越过当天的回家上限。
+  const endMin = Math.min(Math.max(TAIL_FILL_END, last.endMin + 90), endLimit);
+  if (endMin - last.endMin < 90) return null;
+  return { prev: last, next: null, startMin: last.endMin, endMin };
 }
 
 function supportFits(
   candidate: Place,
   prev: Place,
-  next: Place,
+  next: Place | null,
   hole: { startMin: number; endMin: number },
   city: string,
   hasSunset: boolean,
@@ -1556,13 +1587,17 @@ function supportFits(
     return false;
   }
   if (placeDistance(prev, candidate) > 3.2) return false;
-  if (placeDistance(candidate, next) > 3.6) return false;
+  if (next && placeDistance(candidate, next) > 3.6) return false;
   if (Boolean(prev.island) !== Boolean(candidate.island)) return false;
   if (prev.island && candidate.island && prev.island !== candidate.island) {
     return false;
   }
+  // 尾段空洞没有「下一个点」可以挤，直接补到目标收尾；
+  // 中间空洞才能把下一个点整体后移 45 分钟（等日落/夜市本身就有余量）。
   const slotStart = hole.startMin + estimateModeMinutes(prev, candidate, "taxi");
-  const slotEnd = hole.endMin + 45 - estimateModeMinutes(candidate, next, "taxi");
+  const slotEnd = next
+    ? hole.endMin + 45 - estimateModeMinutes(candidate, next, "taxi")
+    : hole.endMin;
   if (slotEnd - slotStart < 45) return false;
   return profile.windows.some(
     ([start, end]) => Math.min(end, slotEnd) - Math.max(start, slotStart) >= 40,
@@ -1584,20 +1619,41 @@ async function fillAfternoonHole(
   built: BuiltDay;
 } | null> {
   if (!spares.length) return null;
-  const hole = afternoonHole(built.stops);
+  const hole = afternoonHole(built.stops, endLimit);
   if (!hole) return null;
-  const nextIndex = attempt.findIndex(
-    (stop) => stop.place.id === hole.next.place.id,
-  );
+  // 尾段空洞往末尾追加；中间空洞插在下一个点之前。
+  const nextIndex = hole.next
+    ? attempt.findIndex((stop) => stop.place.id === hole.next?.place.id)
+    : attempt.length;
   if (nextIndex < 0) return null;
   const usedIds = new Set(attempt.map((stop) => stop.place.id));
   const hasSunset = attempt.some(
     (stop) => rhythmOf(context.city, stop.place).sunset,
   );
+  // 补点是为了让下午有事做，不是为了凑数：如果前两个点已经是同一类
+  // （连着两座馆、两条老街），再补一个同类就成了「三个一样的」，
+  // 体检会记 SAME_CATEGORY_RUN，人也会觉得白来一趟。宁可不补。
+  const prevIndex = built.stops.findIndex((stop) => stop.id === hole.prev.id);
+  const beforeCat =
+    prevIndex > 0 ? built.stops[prevIndex - 1].place.category : undefined;
+  const prevCat = hole.prev.place.category;
+  const nextCat = hole.next?.place.category;
+  /** 前后已经有两个同类点，再补一个同类的就是三个连排。 */
+  const makesTriple = (category: string) =>
+    (beforeCat === category && prevCat === category) ||
+    (prevCat === category && nextCat === category);
   const candidates = spares
     .filter((place) => !usedIds.has(place.id))
+    .filter((place) => !makesTriple(place.category))
     .filter((place) =>
-      supportFits(place, hole.prev.place, hole.next.place, hole, context.city, hasSunset),
+      supportFits(
+        place,
+        hole.prev.place,
+        hole.next?.place ?? null,
+        hole,
+        context.city,
+        hasSunset,
+      ),
     )
     .sort(
       (a, b) =>
@@ -1643,8 +1699,23 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
         input.pace === "chill" ? 8 * 60 : 7 * 60 + 30,
       )
     : PACES[input.pace].startMin;
-  const baseStart =
+  const rawStart =
     input.seedDay.startMinHint ?? paceStart - (farLong ? 30 : 0);
+  // 出发时间不能晚过节奏允许的上限。
+  // compose 有时为了等日落把整天往后挪，结果 11:00 才出门 ——
+  // 审计认为午餐前的上午白扔了，用户看到的也是「出门就快中午」。
+  // 例外是整天只有日落/夜市型点位：那种日子下午出门本来就是对的。
+  const afternoonOnly = input.seedDay.places.every((place) => {
+    const profile = rhythmOf(input.city, place);
+    if (profile.sunset || profile.nightStreet) return true;
+    return (
+      profile.windows.length > 0 &&
+      Math.min(...profile.windows.map(([start]) => start)) >= 13 * 60 + 30
+    );
+  });
+  const baseStart = afternoonOnly
+    ? rawStart
+    : Math.min(rawStart, LATEST_START[input.pace]);
   const sunrisePlace = input.seedDay.places.some(
     (place) => rhythmOf(input.city, place).sunrise,
   );
@@ -1844,7 +1915,8 @@ export async function scheduleDay(input: ScheduleInput): Promise<ScheduleResult>
     context,
     input.usedMealIds,
     includeCafe,
-    input.spares ?? [],
+    // 攻略日（fixed）的点位是用户点名的，不往里塞我们自己挑的点。
+    input.seedDay.fixed ? [] : input.spares ?? [],
     endLimit,
     overrunLimit,
   );
